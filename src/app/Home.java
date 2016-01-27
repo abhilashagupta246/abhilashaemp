@@ -24,7 +24,7 @@ public class Home extends javax.swing.JFrame {
     Statement stmt;
     ResultSet rs;
     PreparedStatement pst;
-
+String nm=null;
     /**
      * Creates new form Home
      */
