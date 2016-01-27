@@ -5,17 +5,28 @@
  */
 package app;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  *
  * @author Ashraf Hameed
  */
 public class Home extends javax.swing.JFrame {
 
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
+    PreparedStatement pst;
+
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
+        con=mysqlconnect.ConnectDb();
     }
 
     /**
