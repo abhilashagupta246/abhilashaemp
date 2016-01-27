@@ -8,7 +8,11 @@ package app;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.event.InternalFrameEvent;
 
 /**
  *
@@ -39,6 +43,18 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        SubjectFrame = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        abadd = new javax.swing.JButton();
+        abenter = new javax.swing.JButton();
+        abdelete = new javax.swing.JButton();
+        SubjectAddFrame = new javax.swing.JInternalFrame();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        AddNewSubject = new javax.swing.JTextArea();
+        abaddnewsubject = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -55,6 +71,129 @@ public class Home extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        SubjectFrame.setVisible(true);
+
+        jLabel1.setText("Subjects");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "S. no.", "Subject Name"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        abadd.setText("Add");
+        abadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abaddActionPerformed(evt);
+            }
+        });
+
+        abenter.setText("Enter");
+
+        abdelete.setText("Delete");
+        abdelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abdeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SubjectFrameLayout = new javax.swing.GroupLayout(SubjectFrame.getContentPane());
+        SubjectFrame.getContentPane().setLayout(SubjectFrameLayout);
+        SubjectFrameLayout.setHorizontalGroup(
+            SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(abadd)
+                        .addGap(200, 200, 200)
+                        .addComponent(abdelete)
+                        .addGap(168, 168, 168)
+                        .addComponent(abenter)))
+                .addContainerGap(364, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(407, 407, 407))
+        );
+        SubjectFrameLayout.setVerticalGroup(
+            SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(255, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                        .addGap(557, 557, 557)
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(abenter)
+                            .addComponent(abadd)
+                            .addComponent(abdelete))
+                        .addGap(117, 117, 117))))
+        );
+
+        desktopPane.add(SubjectFrame);
+        SubjectFrame.setBounds(0, 0, 1428, 887);
+
+        SubjectAddFrame.setVisible(true);
+
+        jLabel2.setText("Subject Name");
+
+        AddNewSubject.setColumns(20);
+        AddNewSubject.setRows(5);
+        jScrollPane2.setViewportView(AddNewSubject);
+
+        abaddnewsubject.setText("Add");
+        abaddnewsubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abaddnewsubjectActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SubjectAddFrameLayout = new javax.swing.GroupLayout(SubjectAddFrame.getContentPane());
+        SubjectAddFrame.getContentPane().setLayout(SubjectAddFrameLayout);
+        SubjectAddFrameLayout.setHorizontalGroup(
+            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(357, 357, 357)
+                        .addComponent(jLabel2)
+                        .addGap(149, 149, 149)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(521, 521, 521)
+                        .addComponent(abaddnewsubject)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        SubjectAddFrameLayout.setVerticalGroup(
+            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(152, 152, 152)
+                .addComponent(abaddnewsubject)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(SubjectAddFrame);
+        SubjectAddFrame.setBounds(0, 0, 1261, 523);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -123,11 +262,11 @@ public class Home extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,6 +275,32 @@ public class Home extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void abaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddActionPerformed
+        SubjectFrame.setVisible(false);
+        SubjectAddFrame.pack();
+        SubjectAddFrame.setVisible(true);
+        SubjectAddFrame.requestFocus();
+        
+    }//GEN-LAST:event_abaddActionPerformed
+
+    private void abdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abdeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_abdeleteActionPerformed
+
+    private void abaddnewsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddnewsubjectActionPerformed
+
+        
+        String sqlsubject = "INSERT INTO Subject VALUES (?)";
+        try {
+            pst.setString(1,AddNewSubject.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        SubjectFrame.setVisible(true);
+    }//GEN-LAST:event_abaddnewsubjectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +338,13 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea AddNewSubject;
+    private javax.swing.JInternalFrame SubjectAddFrame;
+    private javax.swing.JInternalFrame SubjectFrame;
+    private javax.swing.JButton abadd;
+    private javax.swing.JButton abaddnewsubject;
+    private javax.swing.JButton abdelete;
+    private javax.swing.JButton abenter;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
@@ -183,6 +355,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
