@@ -33,6 +33,9 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         con = mysqlconnect.ConnectDb();
         Populate_Subject();
+        SubjectAddFrame.setVisible(false);
+        LessonsFrame.setVisible(false);
+        AddLessonFrame.setVisible(false);
     }
 
     /**
@@ -423,9 +426,12 @@ public class Home extends javax.swing.JFrame {
 
     private void abaddnewsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddnewsubjectActionPerformed
         
-        String sqlsubject = "INSERT INTO Subject VALUES (?)";
+        String insertsubject = "INSERT INTO Subject( subject) VALUES(?)";
         try {
-            pst.setString(1, AddNewSubject.getText());
+        pst = con.prepareStatement(insertsubject);
+        pst.setString(1, AddNewSubject.getText());
+        pst.executeUpdate();
+            
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
