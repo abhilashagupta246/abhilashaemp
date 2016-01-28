@@ -60,7 +60,7 @@ String nm=null;
         jScrollPane3 = new javax.swing.JScrollPane();
         Ls_Table = new javax.swing.JTable();
         Ls_Add_Btn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Ls_Delete_Btn = new javax.swing.JButton();
         Ls_Enter_Btn = new javax.swing.JButton();
         AddLessonFrame = new javax.swing.JInternalFrame();
         Add_Ls_Label = new javax.swing.JLabel();
@@ -208,6 +208,7 @@ String nm=null;
 
         LessonsFrame.setVisible(true);
 
+        Ls_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Ls_Label.setText("Lessons");
 
         Ls_Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -225,7 +226,7 @@ String nm=null;
 
         Ls_Add_Btn.setText("Add");
 
-        jButton2.setText("Delete");
+        Ls_Delete_Btn.setText("Delete");
 
         Ls_Enter_Btn.setText("Enter");
 
@@ -237,39 +238,40 @@ String nm=null;
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(LessonsFrameLayout.createSequentialGroup()
                                 .addComponent(Ls_Add_Btn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
+                                .addGap(36, 36, 36)
+                                .addComponent(Ls_Delete_Btn)
+                                .addGap(30, 30, 30)
                                 .addComponent(Ls_Enter_Btn))))
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                        .addGap(198, 198, 198)
+                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         LessonsFrameLayout.setVerticalGroup(
             LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Ls_Label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ls_Enter_Btn)
-                    .addComponent(jButton2)
-                    .addComponent(Ls_Add_Btn))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addComponent(Ls_Add_Btn)
+                    .addComponent(Ls_Delete_Btn)
+                    .addComponent(Ls_Enter_Btn))
+                .addGap(82, 82, 82))
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 382);
+        LessonsFrame.setBounds(0, 0, 497, 394);
 
+        AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
 
+        Add_Ls_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Add_Ls_Label.setText("Lesson");
 
         Add_Ls_Submit_Btn.setText("Submit");
@@ -281,29 +283,29 @@ String nm=null;
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(85, 85, 85)
+                        .addGap(99, 99, 99)
                         .addComponent(Add_Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
+                        .addGap(203, 203, 203)
                         .addComponent(Add_Ls_Submit_Btn)))
                 .addContainerGap(231, Short.MAX_VALUE))
         );
         AddLessonFrameLayout.setVerticalGroup(
             AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Add_Ls_Label))
-                .addGap(46, 46, 46)
+                .addGap(67, 67, 67)
                 .addComponent(Add_Ls_Submit_Btn)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 340);
+        AddLessonFrame.setBounds(0, 0, 607, 348);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -455,6 +457,7 @@ String nm=null;
     private javax.swing.JTextField Add_Ls_TextField;
     private javax.swing.JInternalFrame LessonsFrame;
     private javax.swing.JButton Ls_Add_Btn;
+    private javax.swing.JButton Ls_Delete_Btn;
     private javax.swing.JButton Ls_Enter_Btn;
     private javax.swing.JLabel Ls_Label;
     private javax.swing.JTable Ls_Table;
@@ -474,7 +477,6 @@ String nm=null;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
