@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -25,7 +26,8 @@ public class Home extends javax.swing.JFrame {
     ResultSet rs;
     PreparedStatement pst;
     String nm = null;
- String subject= null;
+    String subject= null;
+    String selectedlesson=null;
     /**
      * Creates new form Home
      */
@@ -36,6 +38,7 @@ public class Home extends javax.swing.JFrame {
         SubjectAddFrame.setVisible(false);
         LessonsFrame.setVisible(false);
         AddLessonFrame.setVisible(false);
+        LessonsContent.setVisible(false);
     }
 
     /**
@@ -48,17 +51,6 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        SubjectFrame = new javax.swing.JInternalFrame();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        abadd = new javax.swing.JButton();
-        abdelete = new javax.swing.JButton();
-        SubjectAddFrame = new javax.swing.JInternalFrame();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        AddNewSubject = new javax.swing.JTextArea();
-        abaddnewsubject = new javax.swing.JButton();
         LessonsFrame = new javax.swing.JInternalFrame();
         Ls_Label = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -71,6 +63,22 @@ public class Home extends javax.swing.JFrame {
         Add_Ls_Submit_Btn = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         Add_Ls_TextArea = new javax.swing.JTextArea();
+        LessonsContent = new javax.swing.JInternalFrame();
+        ablessonlabel = new javax.swing.JLabel();
+        lessonContent = new javax.swing.JTextArea();
+        Update = new javax.swing.JButton();
+        SubjectFrame = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        abadd = new javax.swing.JButton();
+        abdelete = new javax.swing.JButton();
+        abenter = new javax.swing.JButton();
+        SubjectAddFrame = new javax.swing.JInternalFrame();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        AddNewSubject = new javax.swing.JTextArea();
+        abaddnewsubject = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -87,126 +95,6 @@ public class Home extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        SubjectFrame.setVisible(true);
-
-        jLabel1.setText("Subjects");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "S. no.", "Subject Name"
-            }
-        ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        abadd.setText("Add");
-        abadd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abaddActionPerformed(evt);
-            }
-        });
-
-        abdelete.setText("Delete");
-        abdelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abdeleteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SubjectFrameLayout = new javax.swing.GroupLayout(SubjectFrame.getContentPane());
-        SubjectFrame.getContentPane().setLayout(SubjectFrameLayout);
-        SubjectFrameLayout.setHorizontalGroup(
-            SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(452, 452, 452)
-                        .addComponent(abadd)
-                        .addGap(289, 289, 289)
-                        .addComponent(abdelete)))
-                .addContainerGap(364, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(407, 407, 407))
-        );
-        SubjectFrameLayout.setVerticalGroup(
-            SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(257, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                        .addGap(557, 557, 557)
-                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(abadd)
-                            .addComponent(abdelete))
-                        .addGap(117, 117, 117))))
-        );
-
-        desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 891);
-
-        SubjectAddFrame.setVisible(true);
-
-        jLabel2.setText("Subject Name");
-
-        AddNewSubject.setColumns(20);
-        AddNewSubject.setRows(5);
-        jScrollPane2.setViewportView(AddNewSubject);
-
-        abaddnewsubject.setText("Add");
-        abaddnewsubject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abaddnewsubjectActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SubjectAddFrameLayout = new javax.swing.GroupLayout(SubjectAddFrame.getContentPane());
-        SubjectAddFrame.getContentPane().setLayout(SubjectAddFrameLayout);
-        SubjectAddFrameLayout.setHorizontalGroup(
-            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(jLabel2)
-                        .addGap(149, 149, 149)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                        .addGap(521, 521, 521)
-                        .addComponent(abaddnewsubject)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        SubjectAddFrameLayout.setVerticalGroup(
-            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(152, 152, 152)
-                .addComponent(abaddnewsubject)
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-
-        desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1261, 523);
 
         LessonsFrame.setVisible(true);
 
@@ -231,6 +119,11 @@ public class Home extends javax.swing.JFrame {
         Ls_Delete_Btn.setText("Delete");
 
         Ls_Enter_Btn.setText("Enter");
+        Ls_Enter_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ls_Enter_BtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout LessonsFrameLayout = new javax.swing.GroupLayout(LessonsFrame.getContentPane());
         LessonsFrame.getContentPane().setLayout(LessonsFrameLayout);
@@ -315,6 +208,186 @@ public class Home extends javax.swing.JFrame {
 
         desktopPane.add(AddLessonFrame);
         AddLessonFrame.setBounds(0, 0, 623, 408);
+
+        LessonsContent.setVisible(true);
+
+        lessonContent.setColumns(20);
+        lessonContent.setRows(5);
+
+        Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LessonsContentLayout = new javax.swing.GroupLayout(LessonsContent.getContentPane());
+        LessonsContent.getContentPane().setLayout(LessonsContentLayout);
+        LessonsContentLayout.setHorizontalGroup(
+            LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LessonsContentLayout.createSequentialGroup()
+                .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LessonsContentLayout.createSequentialGroup()
+                        .addGap(532, 532, 532)
+                        .addComponent(ablessonlabel))
+                    .addGroup(LessonsContentLayout.createSequentialGroup()
+                        .addGap(845, 845, 845)
+                        .addComponent(Update)))
+                .addContainerGap(597, Short.MAX_VALUE))
+            .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LessonsContentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 1084, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        LessonsContentLayout.setVerticalGroup(
+            LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LessonsContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ablessonlabel)
+                .addGap(796, 796, 796)
+                .addComponent(Update)
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LessonsContentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        desktopPane.add(LessonsContent);
+        LessonsContent.setBounds(0, 0, 1380, 890);
+
+        SubjectFrame.setVisible(true);
+
+        jLabel1.setText("Subjects");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "S. no.", "Subject Name"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        abadd.setText("Add");
+        abadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abaddActionPerformed(evt);
+            }
+        });
+
+        abdelete.setText("Delete");
+        abdelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abdeleteActionPerformed(evt);
+            }
+        });
+
+        abenter.setText("Enter");
+        abenter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abenterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SubjectFrameLayout = new javax.swing.GroupLayout(SubjectFrame.getContentPane());
+        SubjectFrame.getContentPane().setLayout(SubjectFrameLayout);
+        SubjectFrameLayout.setHorizontalGroup(
+            SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(452, 452, 452)
+                        .addComponent(abadd)
+                        .addGap(164, 164, 164)
+                        .addComponent(abdelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(abenter)))
+                .addContainerGap(364, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(407, 407, 407))
+        );
+        SubjectFrameLayout.setVerticalGroup(
+            SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(abdelete)
+                            .addComponent(abenter))
+                        .addContainerGap(124, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                        .addGap(557, 557, 557)
+                        .addComponent(abadd)
+                        .addGap(117, 117, 117))))
+        );
+
+        desktopPane.add(SubjectFrame);
+        SubjectFrame.setBounds(0, 0, 1428, 882);
+
+        SubjectAddFrame.setVisible(true);
+
+        jLabel2.setText("Subject Name");
+
+        AddNewSubject.setColumns(20);
+        AddNewSubject.setRows(5);
+        jScrollPane2.setViewportView(AddNewSubject);
+
+        abaddnewsubject.setText("Add");
+        abaddnewsubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abaddnewsubjectActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SubjectAddFrameLayout = new javax.swing.GroupLayout(SubjectAddFrame.getContentPane());
+        SubjectAddFrame.getContentPane().setLayout(SubjectAddFrameLayout);
+        SubjectAddFrameLayout.setHorizontalGroup(
+            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(357, 357, 357)
+                        .addComponent(jLabel2)
+                        .addGap(149, 149, 149)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(521, 521, 521)
+                        .addComponent(abaddnewsubject)))
+                .addContainerGap(850, Short.MAX_VALUE))
+        );
+        SubjectAddFrameLayout.setVerticalGroup(
+            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(152, 152, 152)
+                .addComponent(abaddnewsubject)
+                .addContainerGap(764, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(SubjectAddFrame);
+        SubjectAddFrame.setBounds(0, 0, 2085, 1230);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -415,7 +488,15 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_abaddActionPerformed
 
     private void abdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abdeleteActionPerformed
-        // TODO add your handling code here:
+        int viewIndex = jTable1.getSelectedRow();
+    if(viewIndex != -1) {
+        int modelIndex = jTable1.convertRowIndexToModel(viewIndex); // converts the row index in the view to the appropriate index in the model
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.removeRow(modelIndex);
+            System.out.println(modelIndex);
+    }
+    
+       
     }//GEN-LAST:event_abdeleteActionPerformed
 
     private void abaddnewsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddnewsubjectActionPerformed
@@ -434,6 +515,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void abenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abenterActionPerformed
         String lessonsid="";
         String lessonsname="";
         try {
@@ -443,16 +528,10 @@ public class Home extends javax.swing.JFrame {
                 pst = con.prepareStatement(lessonsid); // create a statement
              
             rs = pst.executeQuery(lessonsid);
-            
-            // extract data from the ResultSet
-           // while (rs.next()) {
-            //  lessonsname=rs.getString(1);
+           
               
                Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
                
-               
-                
-            //}
              LessonsFrame.setVisible(true);
              SubjectFrame.setVisible(false);
               System.out.println(lessonsname);
@@ -461,7 +540,48 @@ public class Home extends javax.swing.JFrame {
             catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_abenterActionPerformed
+
+    private void Ls_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnActionPerformed
+        String lessonscontent="";
+       
+        try {
+            selectedlesson=jTable1.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
+            lessonscontent="select lesson_name,lesson_content from lessons where lesson_id="+selectedlesson;
+           
+                pst = con.prepareStatement(lessonscontent); 
+             
+            rs = pst.executeQuery(lessonscontent);
+           
+                while (rs.next()) {   
+                ablessonlabel.setText(rs.getString(1));
+                lessonContent.setText(rs.getString(2)); 
+                }
+                
+             LessonsFrame.setVisible(false);
+             LessonsContent.setVisible(true);
+              System.out.println(lessonscontent);
+        }
+      
+            catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }        
+    }//GEN-LAST:event_Ls_Enter_BtnActionPerformed
+
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        String updatelessoncontent = "Update lessons set lesson_content=?";
+        try {
+        pst = con.prepareStatement(updatelessoncontent);
+        pst.setString(1, lessonContent.getText());
+        pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        LessonsFrame.setVisible(true);
+        LessonsContent.setVisible(false);
+    }//GEN-LAST:event_UpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -504,6 +624,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Add_Ls_Label;
     private javax.swing.JButton Add_Ls_Submit_Btn;
     private javax.swing.JTextArea Add_Ls_TextArea;
+    private javax.swing.JInternalFrame LessonsContent;
     private javax.swing.JInternalFrame LessonsFrame;
     private javax.swing.JButton Ls_Add_Btn;
     private javax.swing.JButton Ls_Delete_Btn;
@@ -512,9 +633,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable Ls_Table;
     private javax.swing.JInternalFrame SubjectAddFrame;
     private javax.swing.JInternalFrame SubjectFrame;
+    private javax.swing.JButton Update;
     private javax.swing.JButton abadd;
     private javax.swing.JButton abaddnewsubject;
     private javax.swing.JButton abdelete;
+    private javax.swing.JButton abenter;
+    private javax.swing.JLabel ablessonlabel;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
@@ -532,6 +656,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea lessonContent;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
