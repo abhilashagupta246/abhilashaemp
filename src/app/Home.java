@@ -12,25 +12,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.event.InternalFrameEvent;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author Ashraf Hameed
  */
 public class Home extends javax.swing.JFrame {
-
+    
     Connection con;
     Statement stmt;
     ResultSet rs;
     PreparedStatement pst;
-String nm=null;
+    String nm = null;
+ String subject= null;
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
-        con=mysqlconnect.ConnectDb();
+        con = mysqlconnect.ConnectDb();
+        Populate_Subject();
     }
 
     /**
@@ -90,15 +92,17 @@ String nm=null;
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "S. no.", "Subject Name"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         abadd.setText("Add");
@@ -258,7 +262,7 @@ String nm=null;
                 .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Add_Btn)
                     .addComponent(Ls_Delete_Btn)
@@ -267,7 +271,7 @@ String nm=null;
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 398);
+        LessonsFrame.setBounds(0, 0, 497, 402);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
@@ -309,11 +313,11 @@ String nm=null;
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(42, 42, 42)
                 .addComponent(Add_Ls_Submit_Btn)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 352);
+        AddLessonFrame.setBounds(0, 0, 607, 356);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -392,6 +396,15 @@ String nm=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Populate_Subject() {
+        try {
+            pst = con.prepareStatement("select * from subject");
+            rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+        }
+    }
+    
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
@@ -409,18 +422,21 @@ String nm=null;
     }//GEN-LAST:event_abdeleteActionPerformed
 
     private void abaddnewsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddnewsubjectActionPerformed
-
         
         String sqlsubject = "INSERT INTO Subject VALUES (?)";
         try {
-            pst.setString(1,AddNewSubject.getText());
+            pst.setString(1, AddNewSubject.getText());
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
         SubjectFrame.setVisible(true);
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+     subject=jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString();
+     System.out.println(subject);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
