@@ -84,6 +84,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         AddNewSubject = new javax.swing.JTextArea();
         abaddnewsubject = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -176,7 +177,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 402);
+        LessonsFrame.setBounds(0, 0, 605, 454);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
@@ -254,7 +255,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 360);
+        AddLessonFrame.setBounds(0, 0, 623, 446);
 
         LessonsContent.setVisible(true);
 
@@ -294,7 +295,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(ablessonlabel)
                 .addGap(796, 796, 796)
                 .addComponent(Update)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(LessonsContentLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -370,7 +371,7 @@ public class Home extends javax.swing.JFrame {
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +381,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(abdelete)
                             .addComponent(abenter))
-                        .addContainerGap(126, Short.MAX_VALUE))
+                        .addContainerGap(130, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
                         .addGap(557, 557, 557)
                         .addComponent(abadd)
@@ -388,7 +389,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 796);
+        SubjectFrame.setBounds(0, 0, 1428, 904);
 
         SubjectAddFrame.setVisible(true);
 
@@ -405,6 +406,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Add Subject");
+
         javax.swing.GroupLayout SubjectAddFrameLayout = new javax.swing.GroupLayout(SubjectAddFrame.getContentPane());
         SubjectAddFrame.getContentPane().setLayout(SubjectAddFrameLayout);
         SubjectAddFrameLayout.setHorizontalGroup(
@@ -418,13 +421,18 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SubjectAddFrameLayout.createSequentialGroup()
                         .addGap(521, 521, 521)
-                        .addComponent(abaddnewsubject)))
+                        .addComponent(abaddnewsubject))
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(682, 682, 682)
+                        .addComponent(jLabel4)))
                 .addContainerGap(850, Short.MAX_VALUE))
         );
         SubjectAddFrameLayout.setVerticalGroup(
             SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel4)
+                .addGap(77, 77, 77)
                 .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -434,7 +442,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1986, 1178);
+        SubjectAddFrame.setBounds(0, 0, 2085, 1230);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -522,6 +530,15 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+    private void Populate_Lessons() {
+        try {
+            pst = con.prepareStatement("select * from lessons where subject_id="+subject);
+            rs = pst.executeQuery();
+           Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+        }
+    }
+    
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
@@ -536,11 +553,21 @@ public class Home extends javax.swing.JFrame {
 
     private void abdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abdeleteActionPerformed
         int viewIndex = jTable1.getSelectedRow();
+          DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+          String selected = model.getValueAt(viewIndex, 0).toString();
     if(viewIndex != -1) {
-        int modelIndex = jTable1.convertRowIndexToModel(viewIndex); // converts the row index in the view to the appropriate index in the model
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        model.removeRow(modelIndex);
-            System.out.println(modelIndex);
+       
+      
+        model.removeRow(viewIndex);
+         try {                
+                    pst = con.prepareStatement("delete from subject where subject_id='"+selected+"' ");
+                    pst.executeUpdate();
+                }
+                catch (Exception w) {
+                    JOptionPane.showMessageDialog(this, "Connection Error!");
+                } 
+        
+        SubjectAddFrame.setVisible(false);
     }
     
        
@@ -557,7 +584,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        Populate_Subject();
         SubjectFrame.setVisible(true);
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
 
@@ -568,20 +595,21 @@ public class Home extends javax.swing.JFrame {
     private void abenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abenterActionPerformed
         String lessonsid="";
         String lessonsname="";
+        
         try {
             subject=jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString();
-            lessonsid="select lesson_id,lesson_name from lessons where subject_id="+subject;
+            lessonsid="select lesson_id  as Sno,lesson_name as Lessons from lessons where subject_id="+subject;
            
-                pst = con.prepareStatement(lessonsid); // create a statement
+            pst = con.prepareStatement(lessonsid); // create a statement
              
             rs = pst.executeQuery(lessonsid);
            
-              
                Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
                
              LessonsFrame.setVisible(true);
              SubjectFrame.setVisible(false);
-              System.out.println(lessonsname);
+             SubjectAddFrame.setVisible(false);
+            
         }
       
             catch (SQLException ex) {
@@ -674,8 +702,14 @@ String selected = model.getValueAt(row, 0).toString();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        Populate_Lessons();
         LessonsFrame.setVisible(true);
+        Add_Ls_TextArea.setText("");
+        Add_ls_content_textArea.setText("");
+        AddLessonFrame.setVisible(false);
+        
+        
+        
     }//GEN-LAST:event_Add_Ls_Submit_BtnActionPerformed
 
     /**
@@ -749,6 +783,7 @@ String selected = model.getValueAt(row, 0).toString();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
