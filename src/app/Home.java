@@ -209,7 +209,7 @@ String nm=null;
 
         LessonsFrame.setVisible(true);
 
-        Ls_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Ls_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Ls_Label.setText("Lessons");
 
         Ls_Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -258,7 +258,7 @@ String nm=null;
                 .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Add_Btn)
                     .addComponent(Ls_Delete_Btn)
@@ -267,7 +267,7 @@ String nm=null;
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 394);
+        LessonsFrame.setBounds(0, 0, 497, 398);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
