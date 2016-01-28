@@ -596,7 +596,7 @@ public class Home extends javax.swing.JFrame {
             selectedlesson=jTable1.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
             lessonscontent="select lesson_name,lesson_content from lessons where lesson_id="+selectedlesson;
            
-                pst = con.prepareStatement(lessonscontent); 
+              pst = con.prepareStatement(lessonscontent); 
              
             rs = pst.executeQuery(lessonscontent);
            
