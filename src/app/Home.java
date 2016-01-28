@@ -62,6 +62,10 @@ String nm=null;
         Ls_Add_Btn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Ls_Enter_Btn = new javax.swing.JButton();
+        AddLessonFrame = new javax.swing.JInternalFrame();
+        Add_Ls_Label = new javax.swing.JLabel();
+        Add_Ls_TextField = new javax.swing.JTextField();
+        Add_Ls_Submit_Btn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -258,11 +262,48 @@ String nm=null;
                     .addComponent(Ls_Enter_Btn)
                     .addComponent(jButton2)
                     .addComponent(Ls_Add_Btn))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 378);
+        LessonsFrame.setBounds(0, 0, 497, 382);
+
+        AddLessonFrame.setVisible(true);
+
+        Add_Ls_Label.setText("Lesson");
+
+        Add_Ls_Submit_Btn.setText("Submit");
+
+        javax.swing.GroupLayout AddLessonFrameLayout = new javax.swing.GroupLayout(AddLessonFrame.getContentPane());
+        AddLessonFrame.getContentPane().setLayout(AddLessonFrameLayout);
+        AddLessonFrameLayout.setHorizontalGroup(
+            AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(Add_Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(Add_Ls_Submit_Btn)))
+                .addContainerGap(231, Short.MAX_VALUE))
+        );
+        AddLessonFrameLayout.setVerticalGroup(
+            AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Add_Ls_Label))
+                .addGap(46, 46, 46)
+                .addComponent(Add_Ls_Submit_Btn)
+                .addContainerGap(153, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(AddLessonFrame);
+        AddLessonFrame.setBounds(0, 0, 607, 340);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -407,7 +448,11 @@ String nm=null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JInternalFrame AddLessonFrame;
     private javax.swing.JTextArea AddNewSubject;
+    private javax.swing.JLabel Add_Ls_Label;
+    private javax.swing.JButton Add_Ls_Submit_Btn;
+    private javax.swing.JTextField Add_Ls_TextField;
     private javax.swing.JInternalFrame LessonsFrame;
     private javax.swing.JButton Ls_Add_Btn;
     private javax.swing.JButton Ls_Enter_Btn;
