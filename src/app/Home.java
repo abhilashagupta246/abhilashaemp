@@ -26,6 +26,7 @@ public class Home extends javax.swing.JFrame {
     PreparedStatement pst;
     String nm = null;
  String subject= null;
+ String LessonId=null;
     /**
      * Creates new form Home
      */
@@ -228,6 +229,11 @@ public class Home extends javax.swing.JFrame {
                 "Sl.No.", "Lesson"
             }
         ));
+        Ls_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Ls_TableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(Ls_Table);
 
         Ls_Add_Btn.setText("Add");
@@ -518,6 +524,10 @@ public class Home extends javax.swing.JFrame {
         AddLessonFrame.setVisible(true);
         AddLessonFrame.requestFocus();
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
+
+    private void Ls_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_TableMouseClicked
+       LessonId=Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
+    }//GEN-LAST:event_Ls_TableMouseClicked
 
     /**
      * @param args the command line arguments
