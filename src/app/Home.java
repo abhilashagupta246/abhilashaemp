@@ -64,8 +64,9 @@ String nm=null;
         Ls_Enter_Btn = new javax.swing.JButton();
         AddLessonFrame = new javax.swing.JInternalFrame();
         Add_Ls_Label = new javax.swing.JLabel();
-        Add_Ls_TextField = new javax.swing.JTextField();
         Add_Ls_Submit_Btn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Add_Ls_TextArea = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -276,6 +277,10 @@ String nm=null;
 
         Add_Ls_Submit_Btn.setText("Submit");
 
+        Add_Ls_TextArea.setColumns(20);
+        Add_Ls_TextArea.setRows(5);
+        jScrollPane4.setViewportView(Add_Ls_TextArea);
+
         javax.swing.GroupLayout AddLessonFrameLayout = new javax.swing.GroupLayout(AddLessonFrame.getContentPane());
         AddLessonFrame.getContentPane().setLayout(AddLessonFrameLayout);
         AddLessonFrameLayout.setHorizontalGroup(
@@ -285,27 +290,30 @@ String nm=null;
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(Add_Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(203, 203, 203)
                         .addComponent(Add_Ls_Submit_Btn)))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         AddLessonFrameLayout.setVerticalGroup(
             AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Add_Ls_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Add_Ls_Label))
-                .addGap(67, 67, 67)
+                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(Add_Ls_Label))
+                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
                 .addComponent(Add_Ls_Submit_Btn)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 348);
+        AddLessonFrame.setBounds(0, 0, 607, 352);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -454,7 +462,7 @@ String nm=null;
     private javax.swing.JTextArea AddNewSubject;
     private javax.swing.JLabel Add_Ls_Label;
     private javax.swing.JButton Add_Ls_Submit_Btn;
-    private javax.swing.JTextField Add_Ls_TextField;
+    private javax.swing.JTextArea Add_Ls_TextArea;
     private javax.swing.JInternalFrame LessonsFrame;
     private javax.swing.JButton Ls_Add_Btn;
     private javax.swing.JButton Ls_Delete_Btn;
@@ -482,6 +490,7 @@ String nm=null;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
