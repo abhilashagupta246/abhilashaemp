@@ -34,8 +34,8 @@ public class Home extends javax.swing.JFrame {
         con = mysqlconnect.ConnectDb();
         Populate_Subject();
         SubjectAddFrame.setVisible(false);
-        LessonsFrame.setVisible(false);
-        AddLessonFrame.setVisible(false);
+        //LessonsFrame.setVisible(false);
+       // AddLessonFrame.setVisible(false);
     }
 
     /**
@@ -71,6 +71,10 @@ public class Home extends javax.swing.JFrame {
         Add_Ls_Submit_Btn = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         Add_Ls_TextArea = new javax.swing.JTextArea();
+        Add_Ls_NewLabel = new javax.swing.JLabel();
+        Add_Ls_content_Label = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        Add_ls_content_textArea = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -144,13 +148,13 @@ public class Home extends javax.swing.JFrame {
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(257, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
                         .addGap(557, 557, 557)
                         .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -160,7 +164,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 891);
+        SubjectFrame.setBounds(0, 0, 1428, 776);
 
         SubjectAddFrame.setVisible(true);
 
@@ -202,11 +206,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(152, 152, 152)
                 .addComponent(abaddnewsubject)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(614, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1261, 523);
+        SubjectAddFrame.setBounds(0, 0, 1146, 1028);
 
         LessonsFrame.setVisible(true);
 
@@ -227,6 +231,11 @@ public class Home extends javax.swing.JFrame {
         jScrollPane3.setViewportView(Ls_Table);
 
         Ls_Add_Btn.setText("Add");
+        Ls_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ls_Add_BtnActionPerformed(evt);
+            }
+        });
 
         Ls_Delete_Btn.setText("Delete");
 
@@ -240,18 +249,18 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(LessonsFrameLayout.createSequentialGroup()
-                                .addComponent(Ls_Add_Btn)
-                                .addGap(36, 36, 36)
-                                .addComponent(Ls_Delete_Btn)
-                                .addGap(30, 30, 30)
-                                .addComponent(Ls_Enter_Btn))))
+                        .addComponent(Ls_Add_Btn)
+                        .addGap(36, 36, 36)
+                        .addComponent(Ls_Delete_Btn)
+                        .addGap(30, 30, 30)
+                        .addComponent(Ls_Enter_Btn))
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
                         .addGap(198, 198, 198)
-                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LessonsFrameLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1919, Short.MAX_VALUE))
         );
         LessonsFrameLayout.setVerticalGroup(
             LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +268,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Add_Btn)
                     .addComponent(Ls_Delete_Btn)
@@ -268,19 +277,34 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 605, 454);
+        LessonsFrame.setBounds(0, 0, 2299, 430);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
 
-        Add_Ls_Label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Add_Ls_Label.setText("Lesson");
+        Add_Ls_Label.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Add_Ls_Label.setText("Lesson Name");
 
         Add_Ls_Submit_Btn.setText("Submit");
+        Add_Ls_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Add_Ls_Submit_BtnActionPerformed(evt);
+            }
+        });
 
         Add_Ls_TextArea.setColumns(20);
         Add_Ls_TextArea.setRows(5);
         jScrollPane4.setViewportView(Add_Ls_TextArea);
+
+        Add_Ls_NewLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Add_Ls_NewLabel.setText("Add Lesson");
+
+        Add_Ls_content_Label.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Add_Ls_content_Label.setText("Lesson Content");
+
+        Add_ls_content_textArea.setColumns(20);
+        Add_ls_content_textArea.setRows(5);
+        jScrollPane5.setViewportView(Add_ls_content_textArea);
 
         javax.swing.GroupLayout AddLessonFrameLayout = new javax.swing.GroupLayout(AddLessonFrame.getContentPane());
         AddLessonFrame.getContentPane().setLayout(AddLessonFrameLayout);
@@ -289,32 +313,44 @@ public class Home extends javax.swing.JFrame {
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(Add_Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Add_Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Add_Ls_content_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(203, 203, 203)
+                        .addGap(207, 207, 207)
+                        .addComponent(Add_Ls_NewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                        .addGap(204, 204, 204)
                         .addComponent(Add_Ls_Submit_Btn)))
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         AddLessonFrameLayout.setVerticalGroup(
             AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(Add_Ls_Label))
-                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
+                .addGap(69, 69, 69)
+                .addComponent(Add_Ls_Label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Add_Ls_content_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
+            .addGroup(AddLessonFrameLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Add_Ls_NewLabel)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(Add_Ls_Submit_Btn)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 623, 408);
+        AddLessonFrame.setBounds(0, 0, 607, 360);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -440,13 +476,10 @@ public class Home extends javax.swing.JFrame {
             subject=jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString();
             lessonsid="select lesson_id,lesson_name from lessons where subject_id="+subject;
            
-                pst = con.prepareStatement(lessonsid); // create a statement
+                pst = con.prepareStatement(lessonsid); 
              
             rs = pst.executeQuery(lessonsid);
             
-            // extract data from the ResultSet
-           // while (rs.next()) {
-            //  lessonsname=rs.getString(1);
               
                Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
                
@@ -462,6 +495,29 @@ public class Home extends javax.swing.JFrame {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void Add_Ls_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Ls_Submit_BtnActionPerformed
+         String insertsubject = "INSERT INTO Lessons( lesson_name,lesson_content,subject_id) VALUES(?,?,?)";
+        try {
+        pst = con.prepareStatement(insertsubject);
+        pst.setString(1, Add_Ls_TextArea.getText());
+        pst.setString(2,Add_ls_content_textArea.getText());
+        pst.setString(3, subject);
+        pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        LessonsFrame.setVisible(true);
+    }//GEN-LAST:event_Add_Ls_Submit_BtnActionPerformed
+
+    private void Ls_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Add_BtnActionPerformed
+        LessonsFrame.setVisible(false);
+        AddLessonFrame.pack();
+        AddLessonFrame.setVisible(true);
+        AddLessonFrame.requestFocus();
+    }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,8 +558,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JInternalFrame AddLessonFrame;
     private javax.swing.JTextArea AddNewSubject;
     private javax.swing.JLabel Add_Ls_Label;
+    private javax.swing.JLabel Add_Ls_NewLabel;
     private javax.swing.JButton Add_Ls_Submit_Btn;
     private javax.swing.JTextArea Add_Ls_TextArea;
+    private javax.swing.JLabel Add_Ls_content_Label;
+    private javax.swing.JTextArea Add_ls_content_textArea;
     private javax.swing.JInternalFrame LessonsFrame;
     private javax.swing.JButton Ls_Add_Btn;
     private javax.swing.JButton Ls_Delete_Btn;
@@ -531,6 +590,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
