@@ -40,7 +40,8 @@ public class Home extends javax.swing.JFrame {
         con = mysqlconnect.ConnectDb();
         Populate_Subject();
         Populate_Users();
-      closeAllFrames();
+        closeAllFrames();
+        //UserManagementFrame.setVisible(true);
     }
 
     /**
@@ -372,41 +373,37 @@ public class Home extends javax.swing.JFrame {
             .addGroup(SubjectFrameLayout.createSequentialGroup()
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(189, 189, 189)
+                        .addGap(348, 348, 348)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(221, 221, 221)
                         .addComponent(abadd)
-                        .addGap(145, 145, 145)
+                        .addGap(114, 114, 114)
                         .addComponent(abdelete)
-                        .addGap(138, 138, 138)
+                        .addGap(125, 125, 125)
                         .addComponent(abenter))
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(731, Short.MAX_VALUE))
+                        .addGap(118, 118, 118)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(305, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(abadd)
-                            .addComponent(abdelete)
-                            .addComponent(abenter))
-                        .addGap(205, 205, 205))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(abdelete)
+                    .addComponent(abenter)
+                    .addComponent(abadd))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 809);
+        SubjectFrame.setBounds(0, 0, 985, 714);
 
         SubjectAddFrame.setVisible(true);
 
@@ -455,11 +452,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(145, 145, 145)
                 .addComponent(abaddnewsubject)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1146, 525);
+        SubjectAddFrame.setBounds(0, 0, 1146, 529);
 
         UserManagementFrame.setVisible(true);
 
@@ -517,36 +514,35 @@ public class Home extends javax.swing.JFrame {
         UserManagementFrame.getContentPane().setLayout(UserManagementFrameLayout);
         UserManagementFrameLayout.setHorizontalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(password_label)
-                .addGap(210, 210, 210))
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(add_user_btn)
-                .addGap(102, 102, 102)
-                .addComponent(delete_user_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(update_user_btn)
-                .addGap(148, 148, 148))
-            .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addComponent(username_label)
-                        .addGap(18, 18, 18)
-                        .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(email_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(146, 146, 146)
+                        .addComponent(add_user_btn)
+                        .addGap(115, 115, 115)
+                        .addComponent(delete_user_btn)
+                        .addGap(107, 107, 107)
+                        .addComponent(update_user_btn))
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addGap(93, 93, 93)
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                                .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(138, 138, 138)
-                                .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(us_mng_label))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(username_label)
+                                .addGap(18, 18, 18)
+                                .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(email_label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                        .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(54, 54, 54)
+                                        .addComponent(password_label)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(us_mng_label))))))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,22 +557,17 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(email_label)
                     .addComponent(password_label)
                     .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(update_user_btn)
-                            .addComponent(delete_user_btn)
-                            .addComponent(add_user_btn))
-                        .addGap(122, 122, 122))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_user_btn)
+                    .addComponent(delete_user_btn)
+                    .addComponent(update_user_btn)))
         );
 
         desktopPane.add(UserManagementFrame);
-        UserManagementFrame.setBounds(0, 0, 618, 328);
+        UserManagementFrame.setBounds(0, 0, 708, 386);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -657,7 +648,7 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Subject() {
         try {
-            pst = con.prepareStatement("select * from subject");
+            pst = con.prepareStatement("select subject_id as Id ,subject as Subject from subject");
             rs = pst.executeQuery();
             subjects_table.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
@@ -666,7 +657,7 @@ public class Home extends javax.swing.JFrame {
     
     private void Populate_Lessons() {
         try {
-            pst = con.prepareStatement("select * from lessons where subject_id="+subject);
+            pst = con.prepareStatement("select lesson_id as Id,lesson_name as Lesson from lessons where subject_id="+subject);
             rs = pst.executeQuery();
            Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
@@ -683,7 +674,7 @@ public class Home extends javax.swing.JFrame {
     }
       private void Populate_Users() {
         try {
-            pst = con.prepareStatement("select * from users");
+            pst = con.prepareStatement("select user_id as Id,user_name as Name, email_id as Email, user_password as Password from users");
             rs = pst.executeQuery();
             user_table.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
@@ -744,6 +735,7 @@ public class Home extends javax.swing.JFrame {
         AddNewSubject.setText("");
         Populate_Subject();
         SubjectFrame.setVisible(true);
+        SubjectAddFrame.setVisible(false);
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
 
     private void subjects_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjects_tableMouseClicked
@@ -763,7 +755,7 @@ public class Home extends javax.swing.JFrame {
         
         try {
             subject=subjects_table.getModel().getValueAt(subjects_table.getSelectedRow(), 0).toString();
-            lessonsid="select lesson_id  as Sno,lesson_name as Lessons from lessons where subject_id="+subject;
+            lessonsid="select lesson_id  as Id,lesson_name as Lesson from lessons where subject_id="+subject;
            
             pst = con.prepareStatement(lessonsid); // create a statement
              
