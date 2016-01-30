@@ -31,6 +31,7 @@ public class Home extends javax.swing.JFrame {
     String subject= null;
     String selectedlesson=null;
     String selectedUserid =null;
+    int rowcount=0;
     /**
      * Creates new form Home
      */
@@ -39,11 +40,7 @@ public class Home extends javax.swing.JFrame {
         con = mysqlconnect.ConnectDb();
         Populate_Subject();
         Populate_Users();
-        SubjectAddFrame.setVisible(false);
-        LessonsFrame.setVisible(false);
-        AddLessonFrame.setVisible(false);
-        LessonsContent.setVisible(false);
-        UserManagementFrame.setVisible(true);
+      closeAllFrames();
     }
 
     /**
@@ -79,7 +76,7 @@ public class Home extends javax.swing.JFrame {
         SubjectFrame = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        subjects_table = new javax.swing.JTable();
         abadd = new javax.swing.JButton();
         abdelete = new javax.swing.JButton();
         abenter = new javax.swing.JButton();
@@ -93,7 +90,6 @@ public class Home extends javax.swing.JFrame {
         us_mng_label = new javax.swing.JLabel();
         user_textField = new javax.swing.JTextField();
         email_textField = new javax.swing.JTextField();
-        password_textField = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         user_table = new javax.swing.JTable();
         add_user_btn = new javax.swing.JButton();
@@ -102,6 +98,7 @@ public class Home extends javax.swing.JFrame {
         username_label = new javax.swing.JLabel();
         email_label = new javax.swing.JLabel();
         password_label = new javax.swing.JLabel();
+        password_textField = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -135,6 +132,11 @@ public class Home extends javax.swing.JFrame {
                 "Sl.No.", "Lesson"
             }
         ));
+        Ls_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Ls_TableMousePressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(Ls_Table);
 
         Ls_Add_Btn.setText("Add");
@@ -166,26 +168,26 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(LessonsFrameLayout.createSequentialGroup()
-                                .addComponent(Ls_Add_Btn)
-                                .addGap(36, 36, 36)
-                                .addComponent(Ls_Delete_Btn)
-                                .addGap(30, 30, 30)
-                                .addComponent(Ls_Enter_Btn))))
+                        .addComponent(Ls_Add_Btn)
+                        .addGap(36, 36, 36)
+                        .addComponent(Ls_Delete_Btn)
+                        .addGap(30, 30, 30)
+                        .addComponent(Ls_Enter_Btn))
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
                         .addGap(198, 198, 198)
-                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LessonsFrameLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
         LessonsFrameLayout.setVerticalGroup(
             LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsFrameLayout.createSequentialGroup()
                 .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Add_Btn)
                     .addComponent(Ls_Delete_Btn)
@@ -194,7 +196,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 402);
+        LessonsFrame.setBounds(0, 0, 497, 419);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
@@ -272,7 +274,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 360);
+        AddLessonFrame.setBounds(0, 0, 607, 361);
 
         LessonsContent.setVisible(true);
 
@@ -324,7 +326,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel1.setText("Subjects");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        subjects_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -332,12 +334,15 @@ public class Home extends javax.swing.JFrame {
                 "S. no.", "Subject Name"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        subjects_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                subjects_tableMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                subjects_tableMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(subjects_table);
 
         abadd.setText("Add");
         abadd.addActionListener(new java.awt.event.ActionListener() {
@@ -401,7 +406,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 808);
+        SubjectFrame.setBounds(0, 0, 1428, 809);
 
         SubjectAddFrame.setVisible(true);
 
@@ -437,7 +442,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(SubjectAddFrameLayout.createSequentialGroup()
                         .addGap(700, 700, 700)
                         .addComponent(abaddnewsubject)))
-                .addContainerGap(850, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SubjectAddFrameLayout.setVerticalGroup(
             SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,11 +455,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(145, 145, 145)
                 .addComponent(abaddnewsubject)
-                .addContainerGap(775, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1986, 1163);
+        SubjectAddFrame.setBounds(0, 0, 1146, 525);
 
         UserManagementFrame.setVisible(true);
 
@@ -474,6 +479,9 @@ public class Home extends javax.swing.JFrame {
         user_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 user_tableMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                user_tableMousePressed(evt);
             }
         });
         jScrollPane6.setViewportView(user_table);
@@ -512,9 +520,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(password_label)
-                .addGap(29, 29, 29)
-                .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+                .addGap(210, 210, 210))
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addComponent(add_user_btn)
@@ -535,29 +541,32 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(email_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(138, 138, 138)
+                                .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(us_mng_label))))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(us_mng_label)
+                .addGap(53, 53, 53)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username_label)
+                    .addComponent(email_label)
+                    .addComponent(password_label)
+                    .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(username_label)
-                            .addComponent(email_label)
-                            .addComponent(password_label))
                         .addGap(49, 49, 49)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(173, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(update_user_btn)
@@ -567,7 +576,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(UserManagementFrame);
-        UserManagementFrame.setBounds(0, 0, 710, 489);
+        UserManagementFrame.setBounds(0, 0, 618, 328);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -650,7 +659,7 @@ public class Home extends javax.swing.JFrame {
         try {
             pst = con.prepareStatement("select * from subject");
             rs = pst.executeQuery();
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            subjects_table.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
         }
     }
@@ -664,6 +673,14 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+    private void closeAllFrames()
+    {
+         SubjectAddFrame.setVisible(false);
+        LessonsFrame.setVisible(false);
+        AddLessonFrame.setVisible(false);
+        LessonsContent.setVisible(false);
+        UserManagementFrame.setVisible(false);
+    }
       private void Populate_Users() {
         try {
             pst = con.prepareStatement("select * from users");
@@ -685,11 +702,18 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_abaddActionPerformed
 
     private void abdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abdeleteActionPerformed
-        int viewIndex = jTable1.getSelectedRow();
-          DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        int viewIndex = subjects_table.getSelectedRow();
+         rowcount= subjects_table.getSelectedRowCount();
+        if(rowcount>1)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a single subject to delete at a time","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+          DefaultTableModel model = (DefaultTableModel)subjects_table.getModel();
           String selected = model.getValueAt(viewIndex, 0).toString();
-    if(viewIndex != -1) {
-       
+      
+          if(viewIndex != -1) {
       
         model.removeRow(viewIndex);
          try {                
@@ -702,7 +726,7 @@ public class Home extends javax.swing.JFrame {
         
         SubjectAddFrame.setVisible(false);
     }
-    
+        }
        
     }//GEN-LAST:event_abdeleteActionPerformed
 
@@ -722,23 +746,30 @@ public class Home extends javax.swing.JFrame {
         SubjectFrame.setVisible(true);
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void subjects_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjects_tableMouseClicked
         
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_subjects_tableMouseClicked
 
     private void abenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abenterActionPerformed
         String lessonsid="";
         String lessonsname="";
+        rowcount= subjects_table.getSelectedRowCount();
+        if(rowcount>1)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a single subject at a time","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
         
         try {
-            subject=jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString();
+            subject=subjects_table.getModel().getValueAt(subjects_table.getSelectedRow(), 0).toString();
             lessonsid="select lesson_id  as Sno,lesson_name as Lessons from lessons where subject_id="+subject;
            
             pst = con.prepareStatement(lessonsid); // create a statement
              
             rs = pst.executeQuery(lessonsid);
            
-               Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
                
              LessonsFrame.setVisible(true);
              SubjectFrame.setVisible(false);
@@ -749,11 +780,18 @@ public class Home extends javax.swing.JFrame {
             catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }   
     }//GEN-LAST:event_abenterActionPerformed
 
     private void Ls_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnActionPerformed
         String lessonscontent="";
-        
+        rowcount= Ls_Table.getSelectedRowCount();
+        if(rowcount>1)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a single lesson at a time","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
         try {
             selectedlesson=Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
             
@@ -775,7 +813,8 @@ public class Home extends javax.swing.JFrame {
       
             catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }        
+            } 
+        }
     }//GEN-LAST:event_Ls_Enter_BtnActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
@@ -797,24 +836,30 @@ public class Home extends javax.swing.JFrame {
     private void Ls_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnActionPerformed
                                                        
         int row = Ls_Table.getSelectedRow();
-DefaultTableModel model= (DefaultTableModel)Ls_Table.getModel();
+        rowcount= Ls_Table.getSelectedRowCount();
+        if(rowcount>1)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a single lesson to delete at a time","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            DefaultTableModel model= (DefaultTableModel)Ls_Table.getModel();
 
-String selected = model.getValueAt(row, 0).toString();
-
-            if (row >= 0) {
+            String selected = model.getValueAt(row, 0).toString();
+       
+            if (row >=0) {
 
                 model.removeRow(row);
 
                 try {
-                    //Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "hey");
                     pst = con.prepareStatement("delete from lessons where lesson_id='"+selected+"' ");
                     pst.executeUpdate();
                 }
                 catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }           
-            }
-    
+                 }
+        }
     }//GEN-LAST:event_Ls_Delete_BtnActionPerformed
 
     private void Ls_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Add_BtnActionPerformed
@@ -850,10 +895,18 @@ String selected = model.getValueAt(row, 0).toString();
 
     private void delete_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_user_btnActionPerformed
         int row = user_table.getSelectedRow();
-DefaultTableModel model= (DefaultTableModel)user_table.getModel();
+        rowcount = user_table.getSelectedRowCount();
+        DefaultTableModel model= (DefaultTableModel)user_table.getModel();
 
-String selected = model.getValueAt(row, 0).toString();
-
+        String selected = model.getValueAt(row, 0).toString();
+        if(rowcount>1)
+        {
+               
+            JOptionPane.showMessageDialog(null, "Please select single user to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+           
+        }
+        else
+        {
             if (row >= 0) {
 
                 model.removeRow(row);
@@ -870,29 +923,34 @@ String selected = model.getValueAt(row, 0).toString();
                     user_textField.setText("");
                     email_textField.setText("");
                     password_textField.setText("");
+        }
     }//GEN-LAST:event_delete_user_btnActionPerformed
 
     private void user_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_tableMouseClicked
         int row = user_table.getSelectedRow();
-DefaultTableModel model= (DefaultTableModel)user_table.getModel();
+        DefaultTableModel model= (DefaultTableModel)user_table.getModel();
 
-       selectedUserid = model.getValueAt(row, 0).toString();
-String selectedUsername = model.getValueAt(row, 1).toString();
-String selectedEmail = model.getValueAt(row, 2).toString();
-String selectedPassword = model.getValueAt(row, 3).toString();
+        selectedUserid = model.getValueAt(row, 0).toString();
+        String selectedUsername = model.getValueAt(row, 1).toString();
+        String selectedEmail = model.getValueAt(row, 2).toString();
+        String selectedPassword = model.getValueAt(row, 3).toString();
 
-            if (row >= 0) {
-user_textField.setText(selectedUsername);
-email_textField.setText(selectedEmail);
-password_textField.setText(selectedPassword);
+            if (row >=0) {
+        user_textField.setText(selectedUsername);
+        email_textField.setText(selectedEmail);
+        password_textField.setText(selectedPassword);
             
+            }    
            
-            }
     }//GEN-LAST:event_user_tableMouseClicked
 
     private void add_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_btnActionPerformed
+        String userName="";
+        String userEmailid="";
+        String userPassword="";
         if(!user_textField.getText().equalsIgnoreCase("") || !email_textField.getText().equalsIgnoreCase("") || !password_textField.getText().equalsIgnoreCase(""))
         {
+           
         String insertuser = "INSERT INTO users( user_name,email_id,user_password) VALUES(?,?,?)";
         try {
         pst = con.prepareStatement(insertuser);
@@ -918,6 +976,15 @@ password_textField.setText(selectedPassword);
 
     private void update_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_user_btnActionPerformed
        
+        rowcount=user_table.getSelectedRowCount();
+        if(rowcount>1)
+        {
+               
+            JOptionPane.showMessageDialog(null, "Please select single user to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+           
+        }
+        else
+        {
                 try {
                     pst = con.prepareStatement("Update users set user_name=?,email_id=?,user_password=? where user_id="+selectedUserid);
                      pst.setString(1, user_textField.getText());
@@ -932,7 +999,23 @@ password_textField.setText(selectedPassword);
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
                 Populate_Users();
+        }
     }//GEN-LAST:event_update_user_btnActionPerformed
+
+    private void Ls_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_TableMousePressed
+        
+            
+           
+    }//GEN-LAST:event_Ls_TableMousePressed
+
+    private void subjects_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjects_tableMousePressed
+        
+        
+    }//GEN-LAST:event_subjects_tableMousePressed
+
+    private void user_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_tableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user_tableMousePressed
 
 
     /**
@@ -1018,7 +1101,6 @@ password_textField.setText(selectedPassword);
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea lessonContent;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
@@ -1027,6 +1109,7 @@ password_textField.setText(selectedPassword);
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JTable subjects_table;
     private javax.swing.JButton update_user_btn;
     private javax.swing.JLabel us_mng_label;
     private javax.swing.JTable user_table;
