@@ -183,7 +183,7 @@
                           <Component id="Ls_Delete_Btn" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                           <Component id="Ls_Enter_Btn" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace pref="134" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -324,10 +324,10 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Component id="Add_ls_content_Label" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="116" max="32767" attributes="0"/>
+                              <EmptySpace pref="128" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="25" max="32767" attributes="0"/>
+                              <EmptySpace pref="37" max="32767" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Add_Ls_Submit_Btn" min="-2" pref="37" max="-2" attributes="0"/>
@@ -431,7 +431,7 @@
                               <Component id="Update" min="-2" pref="104" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -444,7 +444,7 @@
                       <Component id="lessonContent" min="-2" pref="142" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Update" min="-2" pref="40" max="-2" attributes="0"/>
-                      <EmptySpace pref="80" max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -524,7 +524,7 @@
                           <Component id="abdelete" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="abenter" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="172" max="32767" attributes="0"/>
+                      <EmptySpace pref="184" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -669,7 +669,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="abaddnewsubject" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace pref="127" max="32767" attributes="0"/>
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -739,8 +739,8 @@
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="add_user_btn" min="-2" pref="91" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                                      <Component id="add_user_btn" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
                                       <Component id="delete_user_btn" min="-2" pref="96" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="update_user_btn" min="-2" pref="94" max="-2" attributes="0"/>
@@ -785,18 +785,21 @@
                           <Component id="password_label" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="password_textField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="124" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="delete_user_btn" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="add_user_btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="add_user_btn" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="update_user_btn" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="delete_user_btn" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="update_user_btn" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
