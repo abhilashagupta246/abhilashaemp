@@ -472,6 +472,11 @@ public class Home extends javax.swing.JFrame {
         add_user_btn.setText("Add");
 
         delete_user_btn.setText("delete");
+        delete_user_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_user_btnActionPerformed(evt);
+            }
+        });
 
         update_user_btn.setText("update");
 
@@ -815,6 +820,28 @@ String selected = model.getValueAt(row, 0).toString();
         
         
     }//GEN-LAST:event_Add_Ls_Submit_BtnActionPerformed
+
+    private void delete_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_user_btnActionPerformed
+        int row = user_table.getSelectedRow();
+DefaultTableModel model= (DefaultTableModel)user_table.getModel();
+
+String selected = model.getValueAt(row, 0).toString();
+
+            if (row >= 0) {
+
+                model.removeRow(row);
+
+                try {
+                    //Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "hey");
+                    pst = con.prepareStatement("delete from users where user_id='"+selected+"' ");
+                    pst.executeUpdate();
+                }
+                catch (Exception w) {
+                    JOptionPane.showMessageDialog(this, "Connection Error!");
+                }           
+            }
+    
+    }//GEN-LAST:event_delete_user_btnActionPerformed
 
     /**
      * @param args the command line arguments
