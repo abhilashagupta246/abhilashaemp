@@ -832,6 +832,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_user_btnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="delete_user_btn">
               <Properties>
@@ -845,6 +848,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="update_user_btnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="username_label">
               <Properties>

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -29,6 +30,7 @@ public class Home extends javax.swing.JFrame {
     String nm = null;
     String subject= null;
     String selectedlesson=null;
+    String selectedUserid =null;
     /**
      * Creates new form Home
      */
@@ -36,10 +38,12 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         con = mysqlconnect.ConnectDb();
         Populate_Subject();
+        Populate_Users();
         SubjectAddFrame.setVisible(false);
         LessonsFrame.setVisible(false);
         AddLessonFrame.setVisible(false);
         LessonsContent.setVisible(false);
+        UserManagementFrame.setVisible(true);
     }
 
     /**
@@ -475,6 +479,11 @@ public class Home extends javax.swing.JFrame {
         jScrollPane6.setViewportView(user_table);
 
         add_user_btn.setText("Add");
+        add_user_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_user_btnActionPerformed(evt);
+            }
+        });
 
         delete_user_btn.setText("delete");
         delete_user_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -484,6 +493,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         update_user_btn.setText("update");
+        update_user_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_user_btnActionPerformed(evt);
+            }
+        });
 
         username_label.setText("User Name");
 
@@ -650,6 +664,14 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+      private void Populate_Users() {
+        try {
+            pst = con.prepareStatement("select * from users");
+            rs = pst.executeQuery();
+            user_table.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+        }
+    }
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
@@ -845,14 +867,16 @@ String selected = model.getValueAt(row, 0).toString();
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }           
             }
-    
+                    user_textField.setText("");
+                    email_textField.setText("");
+                    password_textField.setText("");
     }//GEN-LAST:event_delete_user_btnActionPerformed
 
     private void user_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_tableMouseClicked
         int row = user_table.getSelectedRow();
 DefaultTableModel model= (DefaultTableModel)user_table.getModel();
 
-String selectedUserid = model.getValueAt(row, 0).toString();
+       selectedUserid = model.getValueAt(row, 0).toString();
 String selectedUsername = model.getValueAt(row, 1).toString();
 String selectedEmail = model.getValueAt(row, 2).toString();
 String selectedPassword = model.getValueAt(row, 3).toString();
@@ -861,22 +885,55 @@ String selectedPassword = model.getValueAt(row, 3).toString();
 user_textField.setText(selectedUsername);
 email_textField.setText(selectedEmail);
 password_textField.setText(selectedPassword);
-               // model.removeRow(row);
+            
+           
+            }
+    }//GEN-LAST:event_user_tableMouseClicked
 
+    private void add_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_btnActionPerformed
+        if(!user_textField.getText().equalsIgnoreCase("") || !email_textField.getText().equalsIgnoreCase("") || !password_textField.getText().equalsIgnoreCase(""))
+        {
+        String insertuser = "INSERT INTO users( user_name,email_id,user_password) VALUES(?,?,?)";
+        try {
+        pst = con.prepareStatement(insertuser);
+        pst.setString(1, user_textField.getText());
+        pst.setString(2, email_textField.getText());
+        pst.setString(3, password_textField.getText());
+        pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter correct user information","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+        user_textField.setText("");
+        email_textField.setText("");
+        password_textField.setText("");
+        Populate_Users();
+      
+    }//GEN-LAST:event_add_user_btnActionPerformed
+
+    private void update_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_user_btnActionPerformed
+       
                 try {
-                    //Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "hey");
-                  // "Update lessons set lesson_content=? where lesson_id="+selectedlesson;
                     pst = con.prepareStatement("Update users set user_name=?,email_id=?,user_password=? where user_id="+selectedUserid);
                      pst.setString(1, user_textField.getText());
                      pst.setString(2, email_textField.getText());
                      pst.setString(3, password_textField.getText());
                     pst.executeUpdate();
+                    user_textField.setText("");
+                    email_textField.setText("");
+                    password_textField.setText("");
                 }
                 catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
-                }           
-            }
-    }//GEN-LAST:event_user_tableMouseClicked
+                }
+                Populate_Users();
+    }//GEN-LAST:event_update_user_btnActionPerformed
+
 
     /**
      * @param args the command line arguments
