@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -36,10 +37,12 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         con = mysqlconnect.ConnectDb();
         Populate_Subject();
+        Populate_Users();
         SubjectAddFrame.setVisible(false);
         LessonsFrame.setVisible(false);
         AddLessonFrame.setVisible(false);
         LessonsContent.setVisible(false);
+        UserManagementFrame.setVisible(true);
     }
 
     /**
@@ -190,7 +193,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 402);
+        LessonsFrame.setBounds(0, 0, 497, 403);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
@@ -268,7 +271,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 360);
+        AddLessonFrame.setBounds(0, 0, 607, 361);
 
         LessonsContent.setVisible(true);
 
@@ -397,7 +400,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 808);
+        SubjectFrame.setBounds(0, 0, 1428, 809);
 
         SubjectAddFrame.setVisible(true);
 
@@ -450,7 +453,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1986, 1163);
+        SubjectAddFrame.setBounds(0, 0, 1986, 1164);
 
         UserManagementFrame.setVisible(true);
 
@@ -470,6 +473,11 @@ public class Home extends javax.swing.JFrame {
         jScrollPane6.setViewportView(user_table);
 
         add_user_btn.setText("Add");
+        add_user_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_user_btnActionPerformed(evt);
+            }
+        });
 
         delete_user_btn.setText("delete");
         delete_user_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -548,7 +556,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(UserManagementFrame);
-        UserManagementFrame.setBounds(0, 0, 710, 489);
+        UserManagementFrame.setBounds(0, 0, 710, 490);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -645,6 +653,14 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+      private void Populate_Users() {
+        try {
+            pst = con.prepareStatement("select * from users");
+            rs = pst.executeQuery();
+            user_table.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException e) {
+        }
+    }
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
@@ -842,6 +858,32 @@ String selected = model.getValueAt(row, 0).toString();
             }
     
     }//GEN-LAST:event_delete_user_btnActionPerformed
+
+    private void add_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_btnActionPerformed
+        if(!user_textField.getText().equalsIgnoreCase("") || !email_textField.getText().equalsIgnoreCase("") || !password_textField.getText().equalsIgnoreCase(""))
+        {
+        String insertuser = "INSERT INTO users( user_name,email_id,user_password) VALUES(?,?,?)";
+        try {
+        pst = con.prepareStatement(insertuser);
+        pst.setString(1, user_textField.getText());
+        pst.setString(2, email_textField.getText());
+        pst.setString(3, password_textField.getText());
+        pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter correct user information","Alert",JOptionPane.ERROR_MESSAGE);
+        }
+        user_textField.setText("");
+        email_textField.setText("");
+        password_textField.setText("");
+        Populate_Users();
+      
+    }//GEN-LAST:event_add_user_btnActionPerformed
 
     /**
      * @param args the command line arguments
