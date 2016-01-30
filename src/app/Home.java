@@ -467,6 +467,11 @@ public class Home extends javax.swing.JFrame {
                 "User name", "Email Address", "Password"
             }
         ));
+        user_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                user_tableMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(user_table);
 
         add_user_btn.setText("Add");
@@ -842,6 +847,36 @@ String selected = model.getValueAt(row, 0).toString();
             }
     
     }//GEN-LAST:event_delete_user_btnActionPerformed
+
+    private void user_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_tableMouseClicked
+        int row = user_table.getSelectedRow();
+DefaultTableModel model= (DefaultTableModel)user_table.getModel();
+
+String selectedUserid = model.getValueAt(row, 0).toString();
+String selectedUsername = model.getValueAt(row, 1).toString();
+String selectedEmail = model.getValueAt(row, 2).toString();
+String selectedPassword = model.getValueAt(row, 3).toString();
+
+            if (row >= 0) {
+user_textField.setText(selectedUsername);
+email_textField.setText(selectedEmail);
+password_textField.setText(selectedPassword);
+               // model.removeRow(row);
+
+                try {
+                    //Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "hey");
+                  // "Update lessons set lesson_content=? where lesson_id="+selectedlesson;
+                    pst = con.prepareStatement("Update users set user_name=?,email_id=?,user_password=? where user_id="+selectedUserid);
+                     pst.setString(1, user_textField.getText());
+                     pst.setString(2, email_textField.getText());
+                     pst.setString(3, password_textField.getText());
+                    pst.executeUpdate();
+                }
+                catch (Exception w) {
+                    JOptionPane.showMessageDialog(this, "Connection Error!");
+                }           
+            }
+    }//GEN-LAST:event_user_tableMouseClicked
 
     /**
      * @param args the command line arguments
