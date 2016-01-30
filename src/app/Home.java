@@ -119,7 +119,7 @@ public class Home extends javax.swing.JFrame {
 
         LessonsFrame.setVisible(true);
 
-        Ls_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Ls_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         Ls_Label.setText("Lessons");
 
         Ls_Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -168,19 +168,20 @@ public class Home extends javax.swing.JFrame {
             .addGroup(LessonsFrameLayout.createSequentialGroup()
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(Ls_Add_Btn)
-                        .addGap(36, 36, 36)
-                        .addComponent(Ls_Delete_Btn)
-                        .addGap(30, 30, 30)
-                        .addComponent(Ls_Enter_Btn))
-                    .addGroup(LessonsFrameLayout.createSequentialGroup()
                         .addGap(198, 198, 198)
-                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(LessonsFrameLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(Ls_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(Ls_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(Ls_Enter_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         LessonsFrameLayout.setVerticalGroup(
             LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,21 +189,21 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ls_Add_Btn)
-                    .addComponent(Ls_Delete_Btn)
-                    .addComponent(Ls_Enter_Btn))
-                .addGap(82, 82, 82))
+                    .addComponent(Ls_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ls_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ls_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(92, 92, 92))
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 497, 419);
+        LessonsFrame.setBounds(0, 0, 617, 424);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
 
-        Add_Ls_Label.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Add_Ls_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Add_Ls_Label.setText("Lesson Name");
 
         Add_Ls_Submit_Btn.setText("Submit");
@@ -216,14 +217,14 @@ public class Home extends javax.swing.JFrame {
         Add_Ls_TextArea.setRows(5);
         jScrollPane4.setViewportView(Add_Ls_TextArea);
 
-        Add_ls_content_Label.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Add_ls_content_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Add_ls_content_Label.setText("Lesson Content");
 
         Add_ls_content_textArea.setColumns(20);
         Add_ls_content_textArea.setRows(5);
         jScrollPane5.setViewportView(Add_ls_content_textArea);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setText("Add Lesson");
 
         javax.swing.GroupLayout AddLessonFrameLayout = new javax.swing.GroupLayout(AddLessonFrame.getContentPane());
@@ -242,11 +243,11 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(Add_Ls_Submit_Btn))
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel3))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jLabel3)))
+                        .addGap(239, 239, 239)
+                        .addComponent(Add_Ls_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(210, Short.MAX_VALUE))
         );
         AddLessonFrameLayout.setVerticalGroup(
@@ -265,17 +266,17 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(Add_ls_content_Label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(108, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(Add_Ls_Submit_Btn)
-                .addGap(32, 32, 32))
+                        .addGap(18, 18, 18)
+                        .addComponent(Add_Ls_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 607, 361);
+        AddLessonFrame.setBounds(0, 0, 607, 364);
 
         LessonsContent.setVisible(true);
 
@@ -289,6 +290,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        ablessonlabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         ablessonlabel.setText("jLabel5");
 
         javax.swing.GroupLayout LessonsContentLayout = new javax.swing.GroupLayout(LessonsContent.getContentPane());
@@ -298,35 +300,38 @@ public class Home extends javax.swing.JFrame {
             .addGroup(LessonsContentLayout.createSequentialGroup()
                 .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsContentLayout.createSequentialGroup()
-                        .addGap(317, 317, 317)
-                        .addComponent(Update))
+                        .addGap(52, 52, 52)
+                        .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(LessonsContentLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(199, 199, 199)
+                        .addComponent(ablessonlabel))
                     .addGroup(LessonsContentLayout.createSequentialGroup()
-                        .addGap(309, 309, 309)
-                        .addComponent(ablessonlabel)))
-                .addContainerGap(769, Short.MAX_VALUE))
+                        .addGap(200, 200, 200)
+                        .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         LessonsContentLayout.setVerticalGroup(
             LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsContentLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(55, 55, 55)
                 .addComponent(ablessonlabel)
-                .addGap(75, 75, 75)
-                .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Update)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         desktopPane.add(LessonsContent);
         LessonsContent.setBounds(0, 0, 1380, 890);
 
+        SubjectFrame.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         SubjectFrame.setVisible(true);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Subjects");
 
+        subjects_table.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         subjects_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -345,13 +350,16 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(subjects_table);
 
+        abadd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         abadd.setText("Add");
+        abadd.setMaximumSize(new java.awt.Dimension(75, 50));
         abadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abaddActionPerformed(evt);
             }
         });
 
+        abdelete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         abdelete.setText("Delete");
         abdelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +367,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        abenter.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         abenter.setText("Enter");
         abenter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,40 +382,42 @@ public class Home extends javax.swing.JFrame {
             .addGroup(SubjectFrameLayout.createSequentialGroup()
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(abadd)
-                        .addGap(114, 114, 114)
-                        .addComponent(abdelete)
-                        .addGap(125, 125, 125)
-                        .addComponent(abenter))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
                         .addGap(118, 118, 118)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(286, Short.MAX_VALUE))
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                                .addComponent(abadd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addComponent(abdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(abenter, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(abdelete)
-                    .addComponent(abenter)
-                    .addComponent(abadd))
-                .addContainerGap(165, Short.MAX_VALUE))
+                    .addComponent(abadd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(abdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(abenter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 985, 714);
+        SubjectFrame.setBounds(0, 0, 787, 587);
 
+        SubjectAddFrame.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         SubjectAddFrame.setVisible(true);
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Subject Name");
 
         AddNewSubject.setColumns(20);
@@ -420,6 +431,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Add Subject");
 
         javax.swing.GroupLayout SubjectAddFrameLayout = new javax.swing.GroupLayout(SubjectAddFrame.getContentPane());
@@ -429,37 +441,41 @@ public class Home extends javax.swing.JFrame {
             .addGroup(SubjectAddFrameLayout.createSequentialGroup()
                 .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                        .addGap(357, 357, 357)
+                        .addGap(220, 220, 220)
                         .addComponent(jLabel2)
-                        .addGap(149, 149, 149)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                        .addGap(682, 682, 682)
-                        .addComponent(jLabel4))
+                        .addGap(400, 400, 400)
+                        .addComponent(abaddnewsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                        .addGap(700, 700, 700)
-                        .addComponent(abaddnewsubject)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(365, 365, 365)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(546, Short.MAX_VALUE))
         );
         SubjectAddFrameLayout.setVerticalGroup(
             SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel4)
-                .addGap(77, 77, 77)
                 .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(145, 145, 145)
-                .addComponent(abaddnewsubject)
-                .addContainerGap(140, Short.MAX_VALUE))
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel2))
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel4)
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addComponent(abaddnewsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 1146, 529);
+        SubjectAddFrame.setBounds(0, 0, 1146, 417);
 
         UserManagementFrame.setVisible(true);
 
+        us_mng_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         us_mng_label.setText("User Management");
 
         user_table.setModel(new javax.swing.table.DefaultTableModel(
@@ -504,10 +520,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        username_label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         username_label.setText("User Name");
 
+        email_label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         email_label.setText("Email");
 
+        password_label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         password_label.setText("Password");
 
         javax.swing.GroupLayout UserManagementFrameLayout = new javax.swing.GroupLayout(UserManagementFrame.getContentPane());
@@ -517,39 +536,41 @@ public class Home extends javax.swing.JFrame {
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(add_user_btn)
-                        .addGap(115, 115, 115)
-                        .addComponent(delete_user_btn)
-                        .addGap(107, 107, 107)
-                        .addComponent(update_user_btn))
+                        .addGap(217, 217, 217)
+                        .addComponent(us_mng_label))
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(43, 43, 43)
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                                .addComponent(username_label)
-                                .addGap(18, 18, 18)
-                                .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(email_label)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(add_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(176, 176, 176)
+                                .addComponent(delete_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(update_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
                                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                                        .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(54, 54, 54)
+                                        .addComponent(username_label)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(email_label)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(password_label)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(us_mng_label))))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                                        .addGap(19, 19, 19)
+                                        .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addComponent(us_mng_label)
-                .addGap(53, 53, 53)
+                .addGap(56, 56, 56)
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -557,17 +578,21 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(email_label)
                     .addComponent(password_label)
                     .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_user_btn)
-                    .addComponent(delete_user_btn)
-                    .addComponent(update_user_btn)))
+                .addGap(64, 64, 64))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(delete_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(add_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(update_user_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         desktopPane.add(UserManagementFrame);
-        UserManagementFrame.setBounds(0, 0, 708, 386);
+        UserManagementFrame.setBounds(0, 0, 708, 389);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
