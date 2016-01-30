@@ -69,9 +69,9 @@ public class Home extends javax.swing.JFrame {
         Add_ls_content_textArea = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         LessonsContent = new javax.swing.JInternalFrame();
-        ablessonlabel = new javax.swing.JLabel();
         lessonContent = new javax.swing.JTextArea();
         Update = new javax.swing.JButton();
+        ablessonlabel = new javax.swing.JLabel();
         SubjectFrame = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -85,6 +85,19 @@ public class Home extends javax.swing.JFrame {
         AddNewSubject = new javax.swing.JTextArea();
         abaddnewsubject = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        UserManagementFrame = new javax.swing.JInternalFrame();
+        us_mng_label = new javax.swing.JLabel();
+        user_textField = new javax.swing.JTextField();
+        email_textField = new javax.swing.JTextField();
+        password_textField = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        user_table = new javax.swing.JTable();
+        add_user_btn = new javax.swing.JButton();
+        delete_user_btn = new javax.swing.JButton();
+        update_user_btn = new javax.swing.JButton();
+        username_label = new javax.swing.JLabel();
+        email_label = new javax.swing.JLabel();
+        password_label = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -177,7 +190,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(LessonsFrame);
-        LessonsFrame.setBounds(0, 0, 605, 454);
+        LessonsFrame.setBounds(0, 0, 497, 402);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setVisible(true);
@@ -255,7 +268,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 623, 446);
+        AddLessonFrame.setBounds(0, 0, 607, 360);
 
         LessonsContent.setVisible(true);
 
@@ -269,6 +282,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        ablessonlabel.setText("jLabel5");
+
         javax.swing.GroupLayout LessonsContentLayout = new javax.swing.GroupLayout(LessonsContent.getContentPane());
         LessonsContent.getContentPane().setLayout(LessonsContentLayout);
         LessonsContentLayout.setHorizontalGroup(
@@ -276,31 +291,26 @@ public class Home extends javax.swing.JFrame {
             .addGroup(LessonsContentLayout.createSequentialGroup()
                 .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsContentLayout.createSequentialGroup()
-                        .addGap(532, 532, 532)
-                        .addComponent(ablessonlabel))
+                        .addGap(317, 317, 317)
+                        .addComponent(Update))
                     .addGroup(LessonsContentLayout.createSequentialGroup()
-                        .addGap(845, 845, 845)
-                        .addComponent(Update)))
-                .addContainerGap(597, Short.MAX_VALUE))
-            .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(LessonsContentLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 1084, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(96, 96, 96)
+                        .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LessonsContentLayout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(ablessonlabel)))
+                .addContainerGap(769, Short.MAX_VALUE))
         );
         LessonsContentLayout.setVerticalGroup(
             LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsContentLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(63, 63, 63)
                 .addComponent(ablessonlabel)
-                .addGap(796, 796, 796)
+                .addGap(75, 75, 75)
+                .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Update)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(LessonsContentLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         desktopPane.add(LessonsContent);
@@ -351,45 +361,43 @@ public class Home extends javax.swing.JFrame {
         SubjectFrameLayout.setHorizontalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(452, 452, 452)
+                        .addGap(189, 189, 189)
                         .addComponent(abadd)
-                        .addGap(164, 164, 164)
+                        .addGap(145, 145, 145)
                         .addComponent(abdelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(abenter)))
-                .addContainerGap(364, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(407, 407, 407))
+                        .addGap(138, 138, 138)
+                        .addComponent(abenter))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(731, Short.MAX_VALUE))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(305, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(abadd)
                             .addComponent(abdelete)
                             .addComponent(abenter))
-                        .addContainerGap(130, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                        .addGap(557, 557, 557)
-                        .addComponent(abadd)
-                        .addGap(117, 117, 117))))
+                        .addGap(205, 205, 205))))
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 1428, 904);
+        SubjectFrame.setBounds(0, 0, 1428, 808);
 
         SubjectAddFrame.setVisible(true);
 
@@ -420,11 +428,11 @@ public class Home extends javax.swing.JFrame {
                         .addGap(149, 149, 149)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                        .addGap(521, 521, 521)
-                        .addComponent(abaddnewsubject))
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
                         .addGap(682, 682, 682)
-                        .addComponent(jLabel4)))
+                        .addComponent(jLabel4))
+                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addGap(700, 700, 700)
+                        .addComponent(abaddnewsubject)))
                 .addContainerGap(850, Short.MAX_VALUE))
         );
         SubjectAddFrameLayout.setVerticalGroup(
@@ -436,13 +444,106 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(152, 152, 152)
+                .addGap(145, 145, 145)
                 .addComponent(abaddnewsubject)
-                .addContainerGap(764, Short.MAX_VALUE))
+                .addContainerGap(775, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 2085, 1230);
+        SubjectAddFrame.setBounds(0, 0, 1986, 1163);
+
+        UserManagementFrame.setVisible(true);
+
+        us_mng_label.setText("User Management");
+
+        user_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "User name", "Email Address", "Password"
+            }
+        ));
+        jScrollPane6.setViewportView(user_table);
+
+        add_user_btn.setText("Add");
+
+        delete_user_btn.setText("delete");
+
+        update_user_btn.setText("update");
+
+        username_label.setText("User Name");
+
+        email_label.setText("Email");
+
+        password_label.setText("Password");
+
+        javax.swing.GroupLayout UserManagementFrameLayout = new javax.swing.GroupLayout(UserManagementFrame.getContentPane());
+        UserManagementFrame.getContentPane().setLayout(UserManagementFrameLayout);
+        UserManagementFrameLayout.setHorizontalGroup(
+            UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(password_label)
+                .addGap(29, 29, 29)
+                .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
+            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(add_user_btn)
+                .addGap(102, 102, 102)
+                .addComponent(delete_user_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(update_user_btn)
+                .addGap(148, 148, 148))
+            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addComponent(username_label)
+                        .addGap(18, 18, 18)
+                        .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(email_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(us_mng_label))))
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+        UserManagementFrameLayout.setVerticalGroup(
+            UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(us_mng_label)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username_label)
+                            .addComponent(email_label)
+                            .addComponent(password_label))
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(173, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(update_user_btn)
+                            .addComponent(delete_user_btn)
+                            .addComponent(add_user_btn))
+                        .addGap(122, 122, 122))))
+        );
+
+        desktopPane.add(UserManagementFrame);
+        UserManagementFrame.setBounds(0, 0, 710, 489);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -584,6 +685,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        AddNewSubject.setText("");
         Populate_Subject();
         SubjectFrame.setVisible(true);
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
@@ -619,9 +721,10 @@ public class Home extends javax.swing.JFrame {
 
     private void Ls_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnActionPerformed
         String lessonscontent="";
-       
+        
         try {
-            selectedlesson=jTable1.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
+            selectedlesson=Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
+            
             lessonscontent="select lesson_name,lesson_content from lessons where lesson_id="+selectedlesson;
            
               pst = con.prepareStatement(lessonscontent); 
@@ -635,7 +738,7 @@ public class Home extends javax.swing.JFrame {
                 
              LessonsFrame.setVisible(false);
              LessonsContent.setVisible(true);
-              System.out.println(lessonscontent);
+              
         }
       
             catch (SQLException ex) {
@@ -644,7 +747,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Ls_Enter_BtnActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-        String updatelessoncontent = "Update lessons set lesson_content=?";
+
+        String updatelessoncontent = "Update lessons set lesson_content=? where lesson_id="+selectedlesson;
         try {
         pst = con.prepareStatement(updatelessoncontent);
         pst.setString(1, lessonContent.getText());
@@ -765,18 +869,23 @@ String selected = model.getValueAt(row, 0).toString();
     private javax.swing.JInternalFrame SubjectAddFrame;
     private javax.swing.JInternalFrame SubjectFrame;
     private javax.swing.JButton Update;
+    private javax.swing.JInternalFrame UserManagementFrame;
     private javax.swing.JButton abadd;
     private javax.swing.JButton abaddnewsubject;
     private javax.swing.JButton abdelete;
     private javax.swing.JButton abenter;
     private javax.swing.JLabel ablessonlabel;
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton add_user_btn;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JButton delete_user_btn;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JLabel email_label;
+    private javax.swing.JTextField email_textField;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -789,13 +898,21 @@ String selected = model.getValueAt(row, 0).toString();
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea lessonContent;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JLabel password_label;
+    private javax.swing.JTextField password_textField;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JButton update_user_btn;
+    private javax.swing.JLabel us_mng_label;
+    private javax.swing.JTable user_table;
+    private javax.swing.JTextField user_textField;
+    private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
 
 }
