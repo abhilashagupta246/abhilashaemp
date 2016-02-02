@@ -1049,7 +1049,6 @@ public class Home extends javax.swing.JFrame {
             {
                 if(emailCheck.equalsIgnoreCase(emailList.get(a)))
                 {
-                    System.out.println("Hii");
                     userEmailCheck=true;
                 }
                 
