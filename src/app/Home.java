@@ -6,6 +6,7 @@
 package app;
 
 import java.awt.Font;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -132,6 +133,7 @@ public class Home extends javax.swing.JFrame {
         opt3_btn = new javax.swing.JRadioButton();
         add_ques_btn = new javax.swing.JButton();
         qst_back_btn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         UserLogin = new javax.swing.JInternalFrame();
         usr_label = new javax.swing.JLabel();
         usr_name = new javax.swing.JLabel();
@@ -734,6 +736,14 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout QuestionsFrameLayout = new javax.swing.GroupLayout(QuestionsFrame.getContentPane());
         QuestionsFrame.getContentPane().setLayout(QuestionsFrameLayout);
         QuestionsFrameLayout.setHorizontalGroup(
@@ -743,30 +753,31 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
                         .addComponent(qst_back_btn)
                         .addGap(261, 261, 261)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(QuestionsFrameLayout.createSequentialGroup()
                         .addGap(262, 262, 262)
-                        .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opt1_btn)
+                            .addComponent(opt3_btn)
+                            .addComponent(opt2_btn))
+                        .addGap(18, 18, 18)
+                        .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opt2_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt3_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt1_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(QuestionsFrameLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(QuestionsFrameLayout.createSequentialGroup()
                                 .addComponent(Update_questBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(add_ques_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(QuestionsFrameLayout.createSequentialGroup()
-                                .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opt1_btn)
-                                    .addComponent(opt3_btn)
-                                    .addComponent(opt2_btn))
-                                .addGap(18, 18, 18)
-                                .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opt2_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(opt3_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(opt1_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(76, 76, 76)
+                                .addComponent(add_ques_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(jButton2))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         QuestionsFrameLayout.setVerticalGroup(
@@ -795,7 +806,8 @@ public class Home extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Update_questBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_ques_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_ques_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -868,7 +880,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pwd_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usr_pwd))
-                .addGap(76, 172, Short.MAX_VALUE))
+                .addGap(76, 156, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1010,10 +1022,12 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Subject() {
         try {
-            pst = con.prepareStatement("select subject_id as Id ,subject as Subject from subject");
+            pst = con.prepareStatement("select subject_id as Id,subjectNO as SNo ,subject as Subject from subject");
             rs = pst.executeQuery();
             subjects_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
             subjects_table.setModel(DbUtils.resultSetToTableModel(rs));
+            subjects_table.getColumnModel().getColumn(0).setMinWidth(0);
+            subjects_table.getColumnModel().getColumn(0).setMaxWidth(0);
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -1021,16 +1035,81 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Lessons() {
         try {
-            pst = con.prepareStatement("select lesson_id as Id,lesson_name as Lesson from lessons where subject_id=" + subject);
+            pst = con.prepareStatement("select lesson_id as Id,lessonNo as SNo ,lesson_name as Lesson from lessons where subject_id=" + subject);
             rs = pst.executeQuery();
             Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));  
             Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            Ls_Table.getColumnModel().getColumn(0).setMinWidth(0);
+            Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
         } catch (SQLException e)
         {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
+    private void updateSubjectIndex()
+    {
+        String str="Select * from subject";
+        String index="";
+        int i=1;
+        try{
+            pst=con.prepareStatement(str);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                 index=rs.getString("subject_id");
+                 pstchild=con.prepareStatement("Update subject set subjectNo="+i+" where subject_id="+index);
+                 pstchild.executeUpdate();
+                 i++;
+            }
+        }
+        catch(Exception e)
+        {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    private void updateLessonIndex()
+    {
+        String str="Select * from lessons where subject_id="+subject;
+        String index="";
+        int i=1;
+        try{
+            pst=con.prepareStatement(str);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                 index=rs.getString("lesson_id");
+                 pstchild=con.prepareStatement("Update lessons set lessonNo="+i+" where lesson_id="+index);
+                 pstchild.executeUpdate();
+                 i++;
+            }
+        }
+        catch(Exception e)
+        {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+     private void updateQuestionsIndex()
+    {
+        String str="Select * from questions where lesson_id="+selectedlesson;
+        String index="";
+        int i=1;
+        try{
+            pst=con.prepareStatement(str);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                 index=rs.getString("id");
+                 pstchild=con.prepareStatement("Update questions set questionNo="+i+" where id="+index);
+                 pstchild.executeUpdate();
+                 i++;
+            }
+        }
+        catch(Exception e)
+        {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+     
     private Boolean userCheck(String emailCheck)
     {
         userEmailCheck=false;
@@ -1043,8 +1122,7 @@ public class Home extends javax.swing.JFrame {
             while(rs.next()){
                  int i=1; 
                  emailList.add(rs.getString(i++));
-                
-            }
+             }
             for(int a=1;a<emailList.size();a++)
             {
                 if(emailCheck.equalsIgnoreCase(emailList.get(a)))
@@ -1092,10 +1170,13 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Questions() {
         try {
-            pst = con.prepareStatement("select * from questions where lesson_id=" + selectedlesson);
+            pst = con.prepareStatement("select id as Id,questionNo as SNo, question as Question, option1 as Option1, option2 as Option2,option3 as Option3,answer as Anwser from questions where lesson_id=" + selectedlesson);
             rs = pst.executeQuery();
             questions_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
             questions_table.setModel(DbUtils.resultSetToTableModel(rs));
+            questions_table.getColumnModel().getColumn(0).setMinWidth(0);
+            questions_table.getColumnModel().getColumn(0).setMaxWidth(0);
+            
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -1103,39 +1184,57 @@ public class Home extends javax.swing.JFrame {
   
      private void Delete_Lesson(String selected) 
      {  
-        try {
-            System.out.println("Hi......"+selected);
-            pst= con.prepareStatement("delete from lessons where subject_id='"+ selected + "' ");
-            pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-     
-     private void Delete_Questions(String selectedlesson) 
-     {  
-        String lessonIds[]=null;
+        List results = new List();
         String lessonquery="";
         int i=0;
         try{
-        lessonquery = "select lesson_id from lessons where subject_id=" + selectedlesson;
+        lessonquery = "select lesson_id from lessons where subject_id=" + selected;
 
-                pst = con.prepareStatement(lessonquery); 
-
+                pst = con.prepareStatement(lessonquery);
                 rs = pst.executeQuery(lessonquery);
                 while(rs.next())
                 {
-                    System.out.println("Hi......"+rs.getString(1));
-                  lessonIds[i]= rs.getString(1);
-                  pstchild= con.prepareStatement("delete from questions where lesson_id='"+ lessonIds[i] + "' ");
-                  pstchild.executeUpdate();
-                  i++; 
+                  results.add(rs.getString("lesson_id"));
+                  i++;
                 }  
+                for(int a=0;a<results.getItemCount();a++)
+                {
+                    Delete_Questions(results.getItem(a));
+                  pstchild= con.prepareStatement("delete from lessons where lesson_id="+ results.getItem(a));
+                  pstchild.executeUpdate();
+                }
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(this, "Connection Error!");
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+     
+     private void Delete_Questions(String lessonStr) 
+     {  
+        List results = new List();
+        String lessonquery="";
+        int j=0;
+        try{
+        lessonquery = "select id from questions where lesson_id=" + lessonStr;
+
+                pst = con.prepareStatement(lessonquery);
+                rs = pst.executeQuery(lessonquery);
+                while(rs.next())
+                {
+                  results.add(rs.getString("id"));
+                  j++;
+                }  
+                for(int b=0;b<results.getItemCount();b++)
+                {
+                    System.out.println("delete from questions where id="+ results.getItem(b));
+                  pstchild= con.prepareStatement("delete from questions where id="+ results.getItem(b));
+                  pstchild.executeUpdate();
+                } 
+        }
+        catch(Exception e)
+        {
+           Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
      
@@ -1158,13 +1257,13 @@ public class Home extends javax.swing.JFrame {
 
                 model.removeRow(viewIndex);
                 try {
-                    
+                    Delete_Lesson(selected);
                     pst = con.prepareStatement("delete from subject where subject_id='" + selected + "' ");
                     pst.executeUpdate();
-                   // Delete_Lesson(selected);
-                   // Delete_Questions(selected);
+                    updateSubjectIndex();
+                    Populate_Subject();
                 } catch (Exception w) {
-                    JOptionPane.showMessageDialog(this, "Connection Error!");
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, w);
                 }
 
             }
@@ -1175,16 +1274,18 @@ public class Home extends javax.swing.JFrame {
     private void abaddnewsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddnewsubjectActionPerformed
             if(!AddNewSubject.getText().equalsIgnoreCase(""))
             {
-        String insertsubject = "INSERT INTO Subject( subject) VALUES(?)";
+        String insertsubject = "INSERT INTO Subject(subject,subjectNo) VALUES(?,?)";
         try {
             pst = con.prepareStatement(insertsubject);
             pst.setString(1, AddNewSubject.getText());
+            pst.setString(2, "0");
             pst.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         AddNewSubject.setText("");
+        updateSubjectIndex();
         Populate_Subject();
         closeAllFrames();
         SubjectFrame.setVisible(true);
@@ -1197,7 +1298,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_abaddnewsubjectActionPerformed
 
     private void subjects_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjects_tableMouseClicked
-
+            subject = subjects_table.getModel().getValueAt(subjects_table.getSelectedRow(), 0).toString();
     }//GEN-LAST:event_subjects_tableMouseClicked
 
     private void abenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abenterActionPerformed
@@ -1210,14 +1311,15 @@ public class Home extends javax.swing.JFrame {
 
             try {
                 subject = subjects_table.getModel().getValueAt(subjects_table.getSelectedRow(), 0).toString();
-                lessonsid = "select lesson_id  as Id,lesson_name as Lesson from lessons where subject_id=" + subject;
+                lessonsid = "select lesson_id  as Id,lessonNo as SNo,lesson_name as Lesson from lessons where subject_id=" + subject;
 
                 pst = con.prepareStatement(lessonsid); // create a statement
 
                 rs = pst.executeQuery(lessonsid);
                 Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
                 Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
-
+                Ls_Table.getColumnModel().getColumn(0).setMinWidth(0);
+                Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);       
                 closeAllFrames();
                 LessonsFrame.setVisible(true);
               
@@ -1289,6 +1391,8 @@ public class Home extends javax.swing.JFrame {
                 try {
                     pst = con.prepareStatement("delete from lessons where lesson_id='" + selected + "' ");
                     pst.executeUpdate();
+                    updateLessonIndex();
+                    Populate_Lessons();
                 } catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
@@ -1302,7 +1406,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
     private void Add_Ls_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Ls_Submit_BtnActionPerformed
-        String insertsubject = "INSERT INTO Lessons( lesson_name,lesson_content,subject_id) VALUES(?,?,?)";
+        String insertsubject = "INSERT INTO Lessons( lesson_name,lesson_content,subject_id,lessonNo) VALUES(?,?,?,?)";
         if(!Add_Ls_TextArea.getText().equalsIgnoreCase("") && !(Add_ls_content_textArea.getText().equalsIgnoreCase("")))
         {
         try {
@@ -1310,12 +1414,13 @@ public class Home extends javax.swing.JFrame {
             pst.setString(1, Add_Ls_TextArea.getText());
             pst.setString(2, Add_ls_content_textArea.getText());
             pst.setString(3, subject);
+            pst.setString(4, "0");
             pst.executeUpdate();
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        updateLessonIndex();
         Populate_Lessons();
         closeAllFrames();
         LessonsFrame.setVisible(true);
@@ -1491,8 +1596,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         QuestionsFrame.setVisible(true);
         Populate_Questions();
-        
-
+      
     }//GEN-LAST:event_Qstn_btnActionPerformed
 
     private void questions_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_questions_tableMouseClicked
@@ -1569,7 +1673,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Update_questBtnActionPerformed
 
     private void add_ques_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_ques_btnActionPerformed
-        String insertquestion = "INSERT INTO questions(question,option1,option2,option3,answer,lesson_id) VALUES(?,?,?,?,?,?)";
+        String insertquestion = "INSERT INTO questions(question,option1,option2,option3,answer,lesson_id,questionNo) VALUES(?,?,?,?,?,?,?)";
         String correctoption="";
         rowcount = questions_table.getSelectedRowCount();
         try {
@@ -1594,6 +1698,7 @@ public class Home extends javax.swing.JFrame {
             }
             pst.setString(5, correctoption);
             pst.setString(6, selectedlesson);
+            pst.setString(7,"0");
             
             if(buttonGroup1.getSelection()==null)
             {
@@ -1607,6 +1712,7 @@ public class Home extends javax.swing.JFrame {
             opt2_txtField.setText("");
             opt3_txtField.setText("");
             buttonGroup1.clearSelection();
+            updateQuestionsIndex();
             
             }
             }
@@ -1783,6 +1889,39 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = questions_table.getSelectedRow();
+        rowcount = questions_table.getSelectedRowCount();
+        DefaultTableModel model = (DefaultTableModel) questions_table.getModel();
+
+        String selected = model.getValueAt(row, 0).toString();
+        if (rowcount > 1) {
+
+            JOptionPane.showMessageDialog(null, "Please select single question to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            if (row >= 0) {
+
+                model.removeRow(row);
+
+                try {
+                    
+                    pst = con.prepareStatement("delete from questions where id='" + selected + "' ");
+                    pst.executeUpdate();
+                } catch (Exception w) {
+                    JOptionPane.showMessageDialog(this, "Connection Error!");
+                }
+            }
+           updateQuestionsIndex();
+           Populate_Questions();
+           qstn_txtArea.setText("");
+           opt1_txtField.setText("");
+           opt2_txtField.setText("");
+           opt3_txtField.setText("");
+           buttonGroup1.clearSelection();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1862,6 +2001,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel email_label;
     private javax.swing.JTextField email_textField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
