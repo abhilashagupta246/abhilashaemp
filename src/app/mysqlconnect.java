@@ -16,7 +16,7 @@ public class mysqlconnect {
     public static Connection ConnectDb(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gdfra_smart_learning", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gdfra_smart_learning?useUnicode=yes&characterEncoding=UTF-8", "root", "");
             return con;
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
