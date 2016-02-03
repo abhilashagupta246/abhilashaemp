@@ -7,6 +7,7 @@ package app;
 
 import java.awt.Font;
 import java.awt.List;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,10 +39,11 @@ public class Home extends javax.swing.JFrame {
     String selectedUserid = null;
     String selectedQuestionId = null;
     int rowcount = 0;
-    Boolean login=false;
-    String userLoginName="";
-    String EMAIL_PATTERN="";
-    Boolean userEmailCheck=false;
+    Boolean login = false;
+    String userLoginName = "";
+    String EMAIL_PATTERN = "";
+    Boolean userEmailCheck = false;
+
     /**
      * Creates new form Home
      */
@@ -52,8 +54,9 @@ public class Home extends javax.swing.JFrame {
         Populate_Users();
         closeAllFrames();
         disableMenus();
-        UserLogin.setVisible(true);
-             
+        UserLoginFrame.setLocation(250, 200);
+        UserLoginFrame.setVisible(true);
+
     }
 
     /**
@@ -76,79 +79,86 @@ public class Home extends javax.swing.JFrame {
         Ls_Add_Btn = new javax.swing.JButton();
         Ls_Delete_Btn = new javax.swing.JButton();
         Ls_Enter_Btn = new javax.swing.JButton();
-        lesson_back_btn = new javax.swing.JButton();
+        Ls_Back_Btn = new javax.swing.JButton();
+        Ls_Marks_Btn = new javax.swing.JButton();
         AddLessonFrame = new javax.swing.JInternalFrame();
-        Add_Ls_Label = new javax.swing.JLabel();
-        Add_Ls_Submit_Btn = new javax.swing.JButton();
+        AddLs_Name_Label = new javax.swing.JLabel();
+        AddLs_Submit_Btn = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        Add_Ls_TextArea = new javax.swing.JTextArea();
-        Add_ls_content_Label = new javax.swing.JLabel();
+        AddLs_Name_TextArea = new javax.swing.JTextArea();
+        AddLs_Content_Label = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        Add_ls_content_textArea = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        back_btn = new javax.swing.JButton();
-        LessonsContent = new javax.swing.JInternalFrame();
-        lessonContent = new javax.swing.JTextArea();
-        Update = new javax.swing.JButton();
-        ablessonlabel = new javax.swing.JLabel();
-        Qstn_btn = new javax.swing.JButton();
+        AddLs_Content_TextArea = new javax.swing.JTextArea();
+        AddLs_Label = new javax.swing.JLabel();
+        AddLs_Back_Btn = new javax.swing.JButton();
+        LessonsContentFrame = new javax.swing.JInternalFrame();
+        LsContent_TextArea = new javax.swing.JTextArea();
+        LsContent_Update_Btn = new javax.swing.JButton();
+        LsContent_label = new javax.swing.JLabel();
+        LsContent_Questions_Btn = new javax.swing.JButton();
+        Ls_Content_Back_Btn = new javax.swing.JButton();
         SubjectFrame = new javax.swing.JInternalFrame();
-        jLabel1 = new javax.swing.JLabel();
+        Sub_Label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        subjects_table = new javax.swing.JTable();
-        abadd = new javax.swing.JButton();
-        abdelete = new javax.swing.JButton();
-        abenter = new javax.swing.JButton();
-        SubjectAddFrame = new javax.swing.JInternalFrame();
-        jLabel2 = new javax.swing.JLabel();
+        Sub_Table = new javax.swing.JTable();
+        Sub_Add_Btn = new javax.swing.JButton();
+        Sub_Delete_Btn = new javax.swing.JButton();
+        Sub_Enter_Btn = new javax.swing.JButton();
+        AddSubjectFrame = new javax.swing.JInternalFrame();
+        AddSub_Name_Label = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        AddNewSubject = new javax.swing.JTextArea();
-        abaddnewsubject = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        AddSub_Name_Textarea = new javax.swing.JTextArea();
+        AddSub_Add_Btn = new javax.swing.JButton();
+        AddSub_Label = new javax.swing.JLabel();
         UserManagementFrame = new javax.swing.JInternalFrame();
-        us_mng_label = new javax.swing.JLabel();
-        user_textField = new javax.swing.JTextField();
-        email_textField = new javax.swing.JTextField();
+        UsMng_label = new javax.swing.JLabel();
+        UsMng_Name_Textfield = new javax.swing.JTextField();
+        UsMng_Email_Textfield = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        user_table = new javax.swing.JTable();
-        add_user_btn = new javax.swing.JButton();
-        delete_user_btn = new javax.swing.JButton();
-        update_user_btn = new javax.swing.JButton();
-        username_label = new javax.swing.JLabel();
-        email_label = new javax.swing.JLabel();
-        password_label = new javax.swing.JLabel();
-        password_textField = new javax.swing.JTextField();
+        User_Table = new javax.swing.JTable();
+        UsMng_Add_Btn = new javax.swing.JButton();
+        UsMng_Delete_Btn = new javax.swing.JButton();
+        UsMng_Update_Btn = new javax.swing.JButton();
+        UsMng_Name_Label = new javax.swing.JLabel();
+        UsMng_Email_Label = new javax.swing.JLabel();
+        UsMng_Password_Label = new javax.swing.JLabel();
+        UsMng_Password_Textfield = new javax.swing.JTextField();
         QuestionsFrame = new javax.swing.JInternalFrame();
-        jLabel5 = new javax.swing.JLabel();
+        Qst_Label = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        questions_table = new javax.swing.JTable();
+        Qst_Table = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
-        qstn_txtArea = new javax.swing.JTextArea();
-        opt1_txtField = new javax.swing.JTextField();
-        opt2_txtField = new javax.swing.JTextField();
-        opt3_txtField = new javax.swing.JTextField();
-        Update_questBtn = new javax.swing.JButton();
-        opt1_btn = new javax.swing.JRadioButton();
-        opt2_btn = new javax.swing.JRadioButton();
-        opt3_btn = new javax.swing.JRadioButton();
-        add_ques_btn = new javax.swing.JButton();
-        qst_back_btn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        UserLogin = new javax.swing.JInternalFrame();
-        usr_label = new javax.swing.JLabel();
-        usr_name = new javax.swing.JLabel();
-        usr_pwd = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        user_text = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        pwd_field = new javax.swing.JTextField();
+        Qst_Textarea = new javax.swing.JTextArea();
+        Qst_Opt1_Textfield = new javax.swing.JTextField();
+        Qst_Opt2_Textfield = new javax.swing.JTextField();
+        Qst_Opt3_Textfield = new javax.swing.JTextField();
+        Qst_Update_Btn = new javax.swing.JButton();
+        Qst_Opt1_Btn = new javax.swing.JRadioButton();
+        Qst_Opt2_Btn = new javax.swing.JRadioButton();
+        Qst_Opt3_Btn = new javax.swing.JRadioButton();
+        Qst_Add_Btn = new javax.swing.JButton();
+        Qst_Back_Btn = new javax.swing.JButton();
+        Qst_Delete_Btn = new javax.swing.JButton();
+        UserLoginFrame = new javax.swing.JInternalFrame();
+        UserLogin_Label = new javax.swing.JLabel();
+        UserLogin_Name_Label = new javax.swing.JLabel();
+        UserLogin_Password_Label = new javax.swing.JLabel();
+        UserLogin_Login_Btn = new javax.swing.JButton();
+        UserLogin_Name_Textfield = new javax.swing.JTextField();
+        UserLogin_ForgetPwd_Btn = new javax.swing.JButton();
+        UserLogin_Password_Textfield = new javax.swing.JTextField();
         ChangePasswordFrame = new javax.swing.JInternalFrame();
-        changePasswordlabel = new javax.swing.JLabel();
-        pwdfield = new javax.swing.JLabel();
-        confirmPwdField = new javax.swing.JLabel();
-        pwdTxtField = new javax.swing.JTextField();
-        pwdConTxtField = new javax.swing.JTextField();
-        ChangePwdButton = new javax.swing.JButton();
+        ChangePwd_Label = new javax.swing.JLabel();
+        ChangePwd_NewPwd_Label = new javax.swing.JLabel();
+        ChangePwd_ConfPwd_Label = new javax.swing.JLabel();
+        ChangePwd_NewPwd_Textfield = new javax.swing.JTextField();
+        ChangePwd_ConfPwd_Textfield = new javax.swing.JTextField();
+        ChangePwd_Submit_Btn = new javax.swing.JButton();
+        StudentManagementFrame = new javax.swing.JInternalFrame();
+        StDetails_Label = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        St_Table = new javax.swing.JTable();
+        StDetails_Back_Btn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         subject_menu = new javax.swing.JMenu();
         userMngtMenu = new javax.swing.JMenu();
@@ -175,8 +185,13 @@ public class Home extends javax.swing.JFrame {
             }
         ));
         Ls_Table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Ls_TableMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Ls_TableMouseClicked(evt);
+            }
+        });
+        Ls_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_TableKeyReleased(evt);
             }
         });
         jScrollPane3.setViewportView(Ls_Table);
@@ -205,10 +220,18 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        lesson_back_btn.setText("Back");
-        lesson_back_btn.addActionListener(new java.awt.event.ActionListener() {
+        Ls_Back_Btn.setText("Back");
+        Ls_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lesson_back_btnActionPerformed(evt);
+                Ls_Back_BtnActionPerformed(evt);
+            }
+        });
+
+        Ls_Marks_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Ls_Marks_Btn.setText("Students Marks");
+        Ls_Marks_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ls_Marks_BtnActionPerformed(evt);
             }
         });
 
@@ -219,7 +242,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(LessonsFrameLayout.createSequentialGroup()
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
-                        .addComponent(lesson_back_btn)
+                        .addComponent(Ls_Back_Btn)
                         .addGap(161, 161, 161)
                         .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(LessonsFrameLayout.createSequentialGroup()
@@ -229,17 +252,19 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(LessonsFrameLayout.createSequentialGroup()
                                 .addComponent(Ls_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(Ls_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Ls_Marks_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Ls_Delete_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(45, 45, 45)
                                 .addComponent(Ls_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         LessonsFrameLayout.setVerticalGroup(
             LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsFrameLayout.createSequentialGroup()
                 .addGroup(LessonsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lesson_back_btn))
+                    .addComponent(Ls_Back_Btn))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -247,7 +272,9 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Ls_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Ls_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Ls_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Ls_Marks_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         desktopPane.add(LessonsFrame);
@@ -257,35 +284,35 @@ public class Home extends javax.swing.JFrame {
         AddLessonFrame.setPreferredSize(new java.awt.Dimension(500, 400));
         AddLessonFrame.setVisible(true);
 
-        Add_Ls_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        Add_Ls_Label.setText("Lesson Name");
+        AddLs_Name_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        AddLs_Name_Label.setText("Lesson Name");
 
-        Add_Ls_Submit_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Add_Ls_Submit_Btn.setText("Submit");
-        Add_Ls_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
+        AddLs_Submit_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddLs_Submit_Btn.setText("Submit");
+        AddLs_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Add_Ls_Submit_BtnActionPerformed(evt);
+                AddLs_Submit_BtnActionPerformed(evt);
             }
         });
 
-        Add_Ls_TextArea.setColumns(20);
-        Add_Ls_TextArea.setRows(5);
-        jScrollPane4.setViewportView(Add_Ls_TextArea);
+        AddLs_Name_TextArea.setColumns(20);
+        AddLs_Name_TextArea.setRows(5);
+        jScrollPane4.setViewportView(AddLs_Name_TextArea);
 
-        Add_ls_content_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        Add_ls_content_Label.setText("Lesson Content");
+        AddLs_Content_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        AddLs_Content_Label.setText("Lesson Content");
 
-        Add_ls_content_textArea.setColumns(20);
-        Add_ls_content_textArea.setRows(5);
-        jScrollPane5.setViewportView(Add_ls_content_textArea);
+        AddLs_Content_TextArea.setColumns(20);
+        AddLs_Content_TextArea.setRows(5);
+        jScrollPane5.setViewportView(AddLs_Content_TextArea);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel3.setText("Add Lesson");
+        AddLs_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        AddLs_Label.setText("Add Lesson");
 
-        back_btn.setText("Back");
-        back_btn.addActionListener(new java.awt.event.ActionListener() {
+        AddLs_Back_Btn.setText("Back");
+        AddLs_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back_btnActionPerformed(evt);
+                AddLs_Back_BtnActionPerformed(evt);
             }
         });
 
@@ -296,17 +323,17 @@ public class Home extends javax.swing.JFrame {
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addComponent(back_btn)
+                        .addComponent(AddLs_Back_Btn)
                         .addGap(84, 84, 84)
-                        .addComponent(jLabel3))
+                        .addComponent(AddLs_Label))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Add_ls_content_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Add_Ls_Label))
+                            .addComponent(AddLs_Content_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddLs_Name_Label))
                         .addGap(37, 37, 37)
                         .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Add_Ls_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                                 .addComponent(jScrollPane4)))))
@@ -316,99 +343,112 @@ public class Home extends javax.swing.JFrame {
             AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLessonFrameLayout.createSequentialGroup()
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AddLs_Label)
+                    .addComponent(AddLs_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(Add_Ls_Label)))
+                        .addComponent(AddLs_Name_Label)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonFrameLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
-                        .addComponent(Add_Ls_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonFrameLayout.createSequentialGroup()
-                        .addComponent(Add_ls_content_Label)
+                        .addComponent(AddLs_Content_Label)
                         .addGap(107, 107, 107))))
         );
 
         desktopPane.add(AddLessonFrame);
         AddLessonFrame.setBounds(0, 0, 500, 400);
 
-        LessonsContent.setPreferredSize(new java.awt.Dimension(600, 400));
-        LessonsContent.setVisible(true);
+        LessonsContentFrame.setPreferredSize(new java.awt.Dimension(600, 400));
+        LessonsContentFrame.setVisible(true);
 
-        lessonContent.setColumns(20);
-        lessonContent.setRows(5);
+        LsContent_TextArea.setColumns(20);
+        LsContent_TextArea.setRows(5);
 
-        Update.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Update.setText("Update");
-        Update.addActionListener(new java.awt.event.ActionListener() {
+        LsContent_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsContent_Update_Btn.setText("Update");
+        LsContent_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateActionPerformed(evt);
+                LsContent_Update_BtnActionPerformed(evt);
             }
         });
 
-        ablessonlabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        ablessonlabel.setText("jLabel5");
+        LsContent_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        LsContent_label.setText("jLabel5");
 
-        Qstn_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Qstn_btn.setText("Questions");
-        Qstn_btn.addActionListener(new java.awt.event.ActionListener() {
+        LsContent_Questions_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsContent_Questions_Btn.setText("Questions");
+        LsContent_Questions_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Qstn_btnActionPerformed(evt);
+                LsContent_Questions_BtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout LessonsContentLayout = new javax.swing.GroupLayout(LessonsContent.getContentPane());
-        LessonsContent.getContentPane().setLayout(LessonsContentLayout);
-        LessonsContentLayout.setHorizontalGroup(
-            LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LessonsContentLayout.createSequentialGroup()
-                .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LessonsContentLayout.createSequentialGroup()
+        Ls_Content_Back_Btn.setText("Back");
+        Ls_Content_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ls_Content_Back_BtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LessonsContentFrameLayout = new javax.swing.GroupLayout(LessonsContentFrame.getContentPane());
+        LessonsContentFrame.getContentPane().setLayout(LessonsContentFrameLayout);
+        LessonsContentFrameLayout.setHorizontalGroup(
+            LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                         .addGap(199, 199, 199)
-                        .addComponent(ablessonlabel))
-                    .addGroup(LessonsContentLayout.createSequentialGroup()
+                        .addComponent(LsContent_label))
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LessonsContentLayout.createSequentialGroup()
+                        .addComponent(LsContent_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                         .addGap(201, 201, 201)
-                        .addGroup(LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Update, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                            .addComponent(Qstn_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Ls_Content_Back_Btn)))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
-        LessonsContentLayout.setVerticalGroup(
-            LessonsContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LessonsContentLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(ablessonlabel)
+        LessonsContentFrameLayout.setVerticalGroup(
+            LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Ls_Content_Back_Btn)
+                .addGap(21, 21, 21)
+                .addComponent(LsContent_label)
                 .addGap(26, 26, 26)
-                .addComponent(lessonContent, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LsContent_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Qstn_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        desktopPane.add(LessonsContent);
-        LessonsContent.setBounds(0, 0, 600, 400);
+        desktopPane.add(LessonsContentFrame);
+        LessonsContentFrame.setBounds(0, 0, 600, 400);
 
+        SubjectFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 800, 550));
         SubjectFrame.setPreferredSize(new java.awt.Dimension(800, 600));
         SubjectFrame.setVisible(true);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Subjects");
+        Sub_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Sub_Label.setText("Subjects");
 
-        subjects_table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        subjects_table.setModel(new javax.swing.table.DefaultTableModel(
+        Sub_Table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Sub_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -416,41 +456,62 @@ public class Home extends javax.swing.JFrame {
                 "S. no.", "Subject Name"
             }
         ));
-        subjects_table.addMouseListener(new java.awt.event.MouseAdapter() {
+        Sub_Table.setNextFocusableComponent(Sub_Add_Btn);
+        Sub_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                subjects_tableMouseClicked(evt);
+                Sub_TableMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                subjects_tableMousePressed(evt);
+                Sub_TableMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(subjects_table);
+        Sub_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Sub_TableKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Sub_Table);
 
-        abadd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        abadd.setText("Add");
-        abadd.setMaximumSize(new java.awt.Dimension(75, 50));
-        abadd.setPreferredSize(new java.awt.Dimension(57, 23));
-        abadd.addActionListener(new java.awt.event.ActionListener() {
+        Sub_Add_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Sub_Add_Btn.setText("Add");
+        Sub_Add_Btn.setMaximumSize(new java.awt.Dimension(75, 50));
+        Sub_Add_Btn.setPreferredSize(new java.awt.Dimension(57, 23));
+        Sub_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abaddActionPerformed(evt);
+                Sub_Add_BtnActionPerformed(evt);
+            }
+        });
+        Sub_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Sub_Add_BtnKeyReleased(evt);
             }
         });
 
-        abdelete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        abdelete.setText("Delete");
-        abdelete.setPreferredSize(new java.awt.Dimension(73, 23));
-        abdelete.addActionListener(new java.awt.event.ActionListener() {
+        Sub_Delete_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Sub_Delete_Btn.setText("Delete");
+        Sub_Delete_Btn.setPreferredSize(new java.awt.Dimension(73, 23));
+        Sub_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abdeleteActionPerformed(evt);
+                Sub_Delete_BtnActionPerformed(evt);
+            }
+        });
+        Sub_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Sub_Delete_BtnKeyReleased(evt);
             }
         });
 
-        abenter.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        abenter.setText("Enter");
-        abenter.setPreferredSize(new java.awt.Dimension(67, 23));
-        abenter.addActionListener(new java.awt.event.ActionListener() {
+        Sub_Enter_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Sub_Enter_Btn.setText("Enter");
+        Sub_Enter_Btn.setPreferredSize(new java.awt.Dimension(67, 23));
+        Sub_Enter_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abenterActionPerformed(evt);
+                Sub_Enter_BtnActionPerformed(evt);
+            }
+        });
+        Sub_Enter_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Sub_Enter_BtnKeyReleased(evt);
             }
         });
 
@@ -459,107 +520,116 @@ public class Home extends javax.swing.JFrame {
         SubjectFrameLayout.setHorizontalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(118, 118, 118)
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(SubjectFrameLayout.createSequentialGroup()
-                                .addComponent(abadd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(77, 77, 77)
-                                .addComponent(abdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(abenter, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(101, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(335, 335, 335))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(abadd, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(abdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(abenter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectFrame);
         SubjectFrame.setBounds(0, 0, 800, 600);
 
-        SubjectAddFrame.setPreferredSize(new java.awt.Dimension(500, 300));
-        SubjectAddFrame.setVisible(true);
+        AddSubjectFrame.setPreferredSize(new java.awt.Dimension(500, 300));
+        AddSubjectFrame.setVisible(true);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setText("Subject Name");
+        AddSub_Name_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        AddSub_Name_Label.setText("Subject Name");
 
-        AddNewSubject.setColumns(20);
-        AddNewSubject.setRows(5);
-        jScrollPane2.setViewportView(AddNewSubject);
+        AddSub_Name_Textarea.setColumns(20);
+        AddSub_Name_Textarea.setRows(5);
+        AddSub_Name_Textarea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddSub_Name_TextareaKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(AddSub_Name_Textarea);
 
-        abaddnewsubject.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        abaddnewsubject.setText("Add");
-        abaddnewsubject.addActionListener(new java.awt.event.ActionListener() {
+        AddSub_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddSub_Add_Btn.setText("Add");
+        AddSub_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abaddnewsubjectActionPerformed(evt);
+                AddSub_Add_BtnActionPerformed(evt);
+            }
+        });
+        AddSub_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddSub_Add_BtnKeyReleased(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel4.setText("Add Subject");
+        AddSub_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        AddSub_Label.setText("Add Subject");
 
-        javax.swing.GroupLayout SubjectAddFrameLayout = new javax.swing.GroupLayout(SubjectAddFrame.getContentPane());
-        SubjectAddFrame.getContentPane().setLayout(SubjectAddFrameLayout);
-        SubjectAddFrameLayout.setHorizontalGroup(
-            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+        javax.swing.GroupLayout AddSubjectFrameLayout = new javax.swing.GroupLayout(AddSubjectFrame.getContentPane());
+        AddSubjectFrame.getContentPane().setLayout(AddSubjectFrameLayout);
+        AddSubjectFrameLayout.setHorizontalGroup(
+            AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddSubjectFrameLayout.createSequentialGroup()
+                .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                        .addComponent(AddSub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jLabel2)
+                        .addComponent(AddSub_Name_Label)
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                    .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addGap(192, 192, 192)
-                        .addComponent(abaddnewsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AddSub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
-        SubjectAddFrameLayout.setVerticalGroup(
-            SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SubjectAddFrameLayout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGroup(SubjectAddFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+        AddSubjectFrameLayout.setVerticalGroup(
+            AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddSubjectFrameLayout.createSequentialGroup()
+                .addComponent(AddSub_Label)
+                .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
-                        .addComponent(abaddnewsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AddSub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
-                    .addGroup(SubjectAddFrameLayout.createSequentialGroup()
+                    .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jLabel2)
+                        .addComponent(AddSub_Name_Label)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        desktopPane.add(SubjectAddFrame);
-        SubjectAddFrame.setBounds(0, 0, 500, 300);
+        desktopPane.add(AddSubjectFrame);
+        AddSubjectFrame.setBounds(0, 0, 500, 300);
 
         UserManagementFrame.setPreferredSize(new java.awt.Dimension(700, 500));
         UserManagementFrame.setVisible(true);
 
-        us_mng_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        us_mng_label.setText("User Management");
+        UsMng_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        UsMng_label.setText("User Management");
 
-        user_table.setModel(new javax.swing.table.DefaultTableModel(
+        User_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -570,48 +640,48 @@ public class Home extends javax.swing.JFrame {
                 "User name", "Email Address", "Password"
             }
         ));
-        user_table.addMouseListener(new java.awt.event.MouseAdapter() {
+        User_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                user_tableMouseClicked(evt);
+                User_TableMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                user_tableMousePressed(evt);
+                User_TableMousePressed(evt);
             }
         });
-        jScrollPane6.setViewportView(user_table);
+        jScrollPane6.setViewportView(User_Table);
 
-        add_user_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        add_user_btn.setText("Add");
-        add_user_btn.addActionListener(new java.awt.event.ActionListener() {
+        UsMng_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UsMng_Add_Btn.setText("Add");
+        UsMng_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_user_btnActionPerformed(evt);
+                UsMng_Add_BtnActionPerformed(evt);
             }
         });
 
-        delete_user_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        delete_user_btn.setText("Delete");
-        delete_user_btn.addActionListener(new java.awt.event.ActionListener() {
+        UsMng_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UsMng_Delete_Btn.setText("Delete");
+        UsMng_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delete_user_btnActionPerformed(evt);
+                UsMng_Delete_BtnActionPerformed(evt);
             }
         });
 
-        update_user_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        update_user_btn.setText("Update");
-        update_user_btn.addActionListener(new java.awt.event.ActionListener() {
+        UsMng_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UsMng_Update_Btn.setText("Update");
+        UsMng_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update_user_btnActionPerformed(evt);
+                UsMng_Update_BtnActionPerformed(evt);
             }
         });
 
-        username_label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        username_label.setText("User Name");
+        UsMng_Name_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        UsMng_Name_Label.setText("User Name");
 
-        email_label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        email_label.setText("Email");
+        UsMng_Email_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        UsMng_Email_Label.setText("Email");
 
-        password_label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        password_label.setText("Password");
+        UsMng_Password_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        UsMng_Password_Label.setText("Password");
 
         javax.swing.GroupLayout UserManagementFrameLayout = new javax.swing.GroupLayout(UserManagementFrame.getContentPane());
         UserManagementFrame.getContentPane().setLayout(UserManagementFrameLayout);
@@ -622,47 +692,47 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addComponent(username_label)
+                        .addComponent(UsMng_Name_Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(email_label)
+                        .addComponent(UsMng_Email_Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(password_label)
+                        .addComponent(UsMng_Password_Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(UsMng_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addComponent(add_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(162, 162, 162)
-                        .addComponent(delete_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(update_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
                 .addGap(217, 217, 217)
-                .addComponent(us_mng_label))
+                .addComponent(UsMng_label))
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(us_mng_label)
+                .addComponent(UsMng_label)
                 .addGap(56, 56, 56)
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username_label)
-                    .addComponent(email_label)
-                    .addComponent(password_label)
-                    .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsMng_Name_Label)
+                    .addComponent(UsMng_Email_Label)
+                    .addComponent(UsMng_Password_Label)
+                    .addComponent(UsMng_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101)
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delete_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(update_user_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -672,10 +742,10 @@ public class Home extends javax.swing.JFrame {
         QuestionsFrame.setPreferredSize(new java.awt.Dimension(800, 600));
         QuestionsFrame.setVisible(true);
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel5.setText("Questions");
+        Qst_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Qst_Label.setText("Questions");
 
-        questions_table.setModel(new javax.swing.table.DefaultTableModel(
+        Qst_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -686,61 +756,61 @@ public class Home extends javax.swing.JFrame {
                 "Question id", "Lesson Id", "Question", "opt 1", "opt 2", "opt 3", "Answer"
             }
         ));
-        questions_table.addMouseListener(new java.awt.event.MouseAdapter() {
+        Qst_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                questions_tableMouseClicked(evt);
+                Qst_TableMouseClicked(evt);
             }
         });
-        jScrollPane7.setViewportView(questions_table);
+        jScrollPane7.setViewportView(Qst_Table);
 
-        qstn_txtArea.setColumns(20);
-        qstn_txtArea.setRows(5);
-        jScrollPane8.setViewportView(qstn_txtArea);
+        Qst_Textarea.setColumns(20);
+        Qst_Textarea.setRows(5);
+        jScrollPane8.setViewportView(Qst_Textarea);
 
-        Update_questBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Update_questBtn.setText("Update");
-        Update_questBtn.addActionListener(new java.awt.event.ActionListener() {
+        Qst_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Qst_Update_Btn.setText("Update");
+        Qst_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Update_questBtnActionPerformed(evt);
+                Qst_Update_BtnActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(opt1_btn);
+        buttonGroup1.add(Qst_Opt1_Btn);
 
-        buttonGroup1.add(opt2_btn);
-        opt2_btn.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Qst_Opt2_Btn);
+        Qst_Opt2_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opt2_btnActionPerformed(evt);
+                Qst_Opt2_BtnActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(opt3_btn);
+        buttonGroup1.add(Qst_Opt3_Btn);
 
-        add_ques_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        add_ques_btn.setText("Add");
-        add_ques_btn.addActionListener(new java.awt.event.ActionListener() {
+        Qst_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Qst_Add_Btn.setText("Add");
+        Qst_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_ques_btnActionPerformed(evt);
+                Qst_Add_BtnActionPerformed(evt);
             }
         });
 
-        qst_back_btn.setText("Back");
-        qst_back_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+        Qst_Back_Btn.setText("Back");
+        Qst_Back_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                qst_back_btnMouseClicked(evt);
+                Qst_Back_BtnMouseClicked(evt);
             }
         });
-        qst_back_btn.addActionListener(new java.awt.event.ActionListener() {
+        Qst_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                qst_back_btnActionPerformed(evt);
+                Qst_Back_BtnActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Qst_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Qst_Delete_Btn.setText("Delete");
+        Qst_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Qst_Delete_BtnActionPerformed(evt);
             }
         });
 
@@ -751,32 +821,32 @@ public class Home extends javax.swing.JFrame {
             .addGroup(QuestionsFrameLayout.createSequentialGroup()
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
-                        .addComponent(qst_back_btn)
+                        .addComponent(Qst_Back_Btn)
                         .addGap(261, 261, 261)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Qst_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
                         .addGap(262, 262, 262)
                         .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(opt1_btn)
-                            .addComponent(opt3_btn)
-                            .addComponent(opt2_btn))
+                            .addComponent(Qst_Opt1_Btn)
+                            .addComponent(Qst_Opt3_Btn)
+                            .addComponent(Qst_Opt2_Btn))
                         .addGap(18, 18, 18)
                         .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(opt2_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opt3_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opt1_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Qst_Opt2_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Qst_Opt3_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Qst_Opt1_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(QuestionsFrameLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(QuestionsFrameLayout.createSequentialGroup()
-                                .addComponent(Update_questBtn)
+                                .addComponent(Qst_Update_Btn)
                                 .addGap(76, 76, 76)
-                                .addComponent(add_ques_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Qst_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(58, 58, 58)
-                                .addComponent(jButton2))
+                                .addComponent(Qst_Delete_Btn))
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
@@ -785,130 +855,137 @@ public class Home extends javax.swing.JFrame {
             .addGroup(QuestionsFrameLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(qst_back_btn)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Qst_Back_Btn)
+                    .addComponent(Qst_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(opt1_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt1_btn))
+                    .addComponent(Qst_Opt1_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Qst_Opt1_Btn))
                 .addGap(25, 25, 25)
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opt2_txtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt2_btn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(Qst_Opt2_Textfield, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Qst_Opt2_Btn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(27, 27, 27)
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opt3_btn)
-                    .addComponent(opt3_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Qst_Opt3_Btn)
+                    .addComponent(Qst_Opt3_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(QuestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Update_questBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_ques_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Qst_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Qst_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Qst_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
         desktopPane.add(QuestionsFrame);
         QuestionsFrame.setBounds(0, 0, 800, 600);
 
-        UserLogin.setVisible(true);
+        UserLoginFrame.setVisible(true);
 
-        usr_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        usr_label.setText("User Login");
+        UserLogin_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        UserLogin_Label.setText("User Login");
 
-        usr_name.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        usr_name.setText("User Name");
+        UserLogin_Name_Label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UserLogin_Name_Label.setText("User Name");
 
-        usr_pwd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        usr_pwd.setText("Password");
+        UserLogin_Password_Label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UserLogin_Password_Label.setText("Password");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        UserLogin_Login_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UserLogin_Login_Btn.setText("Login");
+        UserLogin_Login_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        UserLogin_Login_Btn.setNextFocusableComponent(subject_menu);
+        UserLogin_Login_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UserLogin_Login_BtnActionPerformed(evt);
+            }
+        });
+        UserLogin_Login_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UserLogin_Login_BtnKeyReleased(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("Forget Password");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        UserLogin_ForgetPwd_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UserLogin_ForgetPwd_Btn.setText("Forget Password");
+        UserLogin_ForgetPwd_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                UserLogin_ForgetPwd_BtnActionPerformed(evt);
+            }
+        });
+        UserLogin_ForgetPwd_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UserLogin_ForgetPwd_BtnKeyReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout UserLoginLayout = new javax.swing.GroupLayout(UserLogin.getContentPane());
-        UserLogin.getContentPane().setLayout(UserLoginLayout);
-        UserLoginLayout.setHorizontalGroup(
-            UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UserLoginLayout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addComponent(jButton3)
-                .addGap(105, 105, 105))
-            .addGroup(UserLoginLayout.createSequentialGroup()
-                .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(UserLoginLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usr_name)
-                            .addComponent(usr_pwd))
-                        .addGap(120, 120, 120)
-                        .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(user_text)
-                            .addComponent(pwd_field, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
-                    .addGroup(UserLoginLayout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(usr_label)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout UserLoginFrameLayout = new javax.swing.GroupLayout(UserLoginFrame.getContentPane());
+        UserLoginFrame.getContentPane().setLayout(UserLoginFrameLayout);
+        UserLoginFrameLayout.setHorizontalGroup(
+            UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UserLoginFrameLayout.createSequentialGroup()
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UserLogin_Name_Label)
+                            .addComponent(UserLogin_Password_Label))
+                        .addGap(72, 72, 72)
+                        .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(UserLogin_Name_Textfield)
+                                .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                            .addComponent(UserLogin_ForgetPwd_Btn)
+                            .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(UserLogin_Label)))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
-        UserLoginLayout.setVerticalGroup(
-            UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UserLoginLayout.createSequentialGroup()
+        UserLoginFrameLayout.setVerticalGroup(
+            UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UserLoginFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(usr_label)
+                .addComponent(UserLogin_Label)
                 .addGap(41, 41, 41)
-                .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usr_name)
-                    .addComponent(user_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserLogin_Name_Label)
+                    .addComponent(UserLogin_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pwd_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usr_pwd))
-                .addGap(76, 156, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserLoginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(UserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
-                .addGap(86, 86, 86))
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserLogin_Password_Label))
+                .addGap(34, 34, 34)
+                .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UserLogin_ForgetPwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        desktopPane.add(UserLogin);
-        UserLogin.setBounds(0, 0, 620, 330);
+        desktopPane.add(UserLoginFrame);
+        UserLoginFrame.setBounds(0, 0, 620, 330);
 
         ChangePasswordFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         ChangePasswordFrame.setVisible(true);
 
-        changePasswordlabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        changePasswordlabel.setText("Change Password");
+        ChangePwd_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        ChangePwd_Label.setText("Change Password");
 
-        pwdfield.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        pwdfield.setText("New Password");
+        ChangePwd_NewPwd_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        ChangePwd_NewPwd_Label.setText("New Password");
 
-        confirmPwdField.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        confirmPwdField.setText("Confirm Password");
+        ChangePwd_ConfPwd_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        ChangePwd_ConfPwd_Label.setText("Confirm Password");
 
-        ChangePwdButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChangePwdButton.setText("Submit");
-        ChangePwdButton.addActionListener(new java.awt.event.ActionListener() {
+        ChangePwd_Submit_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChangePwd_Submit_Btn.setText("Submit");
+        ChangePwd_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangePwdButtonActionPerformed(evt);
+                ChangePwd_Submit_BtnActionPerformed(evt);
             }
         });
 
@@ -920,43 +997,98 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
                         .addGap(145, 145, 145)
-                        .addComponent(changePasswordlabel))
+                        .addComponent(ChangePwd_Label))
                     .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
-                                .addComponent(pwdfield)
+                                .addComponent(ChangePwd_NewPwd_Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pwdTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ChangePwd_NewPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
-                                .addComponent(confirmPwdField)
+                                .addComponent(ChangePwd_ConfPwd_Label)
                                 .addGap(75, 75, 75)
-                                .addComponent(pwdConTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(ChangePwd_ConfPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
                         .addGap(185, 185, 185)
-                        .addComponent(ChangePwdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ChangePwd_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(270, 270, 270))
         );
         ChangePasswordFrameLayout.setVerticalGroup(
             ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(changePasswordlabel)
+                .addComponent(ChangePwd_Label)
                 .addGap(35, 35, 35)
                 .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pwdfield)
-                    .addComponent(pwdTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ChangePwd_NewPwd_Label)
+                    .addComponent(ChangePwd_NewPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmPwdField)
-                    .addComponent(pwdConTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ChangePwd_ConfPwd_Label)
+                    .addComponent(ChangePwd_ConfPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(ChangePwdButton)
+                .addComponent(ChangePwd_Submit_Btn)
                 .addGap(56, 56, 56))
         );
 
         desktopPane.add(ChangePasswordFrame);
         ChangePasswordFrame.setBounds(0, 0, 500, 300);
+
+        StudentManagementFrame.setVisible(true);
+
+        StDetails_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        StDetails_Label.setText("Students Details");
+
+        St_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane9.setViewportView(St_Table);
+
+        StDetails_Back_Btn.setText("Back");
+        StDetails_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StDetails_Back_BtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout StudentManagementFrameLayout = new javax.swing.GroupLayout(StudentManagementFrame.getContentPane());
+        StudentManagementFrame.getContentPane().setLayout(StudentManagementFrameLayout);
+        StudentManagementFrameLayout.setHorizontalGroup(
+            StudentManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StudentManagementFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(StudentManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(StudentManagementFrameLayout.createSequentialGroup()
+                        .addComponent(StDetails_Back_Btn)
+                        .addGap(129, 129, 129)
+                        .addComponent(StDetails_Label)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        StudentManagementFrameLayout.setVerticalGroup(
+            StudentManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StudentManagementFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(StudentManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StDetails_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StDetails_Back_Btn))
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(StudentManagementFrame);
+        StudentManagementFrame.setBounds(0, 0, 683, 400);
 
         subject_menu.setMnemonic('f');
         subject_menu.setText("Subject");
@@ -969,6 +1101,11 @@ public class Home extends javax.swing.JFrame {
         subject_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subject_menuActionPerformed(evt);
+            }
+        });
+        subject_menu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                subject_menuKeyReleased(evt);
             }
         });
         menuBar.add(subject_menu);
@@ -1022,12 +1159,12 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Subject() {
         try {
-            pst = con.prepareStatement("select subject_id as Id,subjectNO as SNo ,subject as Subject from subject");
+            pst = con.prepareStatement("select subject_id as Id,subject_no as 'S No' ,subject_name as Subject from subjects");
             rs = pst.executeQuery();
-            subjects_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
-            subjects_table.setModel(DbUtils.resultSetToTableModel(rs));
-            subjects_table.getColumnModel().getColumn(0).setMinWidth(0);
-            subjects_table.getColumnModel().getColumn(0).setMaxWidth(0);
+            Sub_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+            Sub_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            Sub_Table.getColumnModel().getColumn(0).setMinWidth(0);
+            Sub_Table.getColumnModel().getColumn(0).setMaxWidth(0);
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -1035,134 +1172,156 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Lessons() {
         try {
-            pst = con.prepareStatement("select lesson_id as Id,lessonNo as SNo ,lesson_name as Lesson from lessons where subject_id=" + subject);
+            pst = con.prepareStatement("select lesson_id as Id,lesson_no as 'S No' ,lesson_name as Lessons from lessons where subject_id=" + subject);
             rs = pst.executeQuery();
-            Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));  
+            Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
             Ls_Table.getColumnModel().getColumn(0).setMinWidth(0);
             Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    private void updateSubjectIndex()
-    {
-        String str="Select * from subject";
-        String index="";
-        int i=1;
-        try{
-            pst=con.prepareStatement(str);
-            rs=pst.executeQuery();
-            while(rs.next()){
-                 index=rs.getString("subject_id");
-                 pstchild=con.prepareStatement("Update subject set subjectNo="+i+" where subject_id="+index);
-                 pstchild.executeUpdate();
-                 i++;
-            }
-        }
-        catch(Exception e)
-        {
+    private void Populate_Students() {
+        try {
+
+            pst = con.prepareStatement("select st.student_name as 'Student Name' ,sub.subject_name as Subject, ls.lesson_name as Lesson ,stdt.marks as 'Marks Optained' from studentmarkdetails stdt INNER JOIN students st ON stdt.student_id=st.student_id INNER JOIN subjects sub ON stdt.subject_id=sub.subject_id INNER JOIN lessons ls ON stdt.lesson_id=ls.lesson_id where stdt.subject_id=" + subject + " and stdt.lesson_id=" + selectedlesson);
+            rs = pst.executeQuery();
+            St_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+            St_Table.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-    private void updateLessonIndex()
-    {
-        String str="Select * from lessons where subject_id="+subject;
-        String index="";
-        int i=1;
-        try{
-            pst=con.prepareStatement(str);
-            rs=pst.executeQuery();
-            while(rs.next()){
-                 index=rs.getString("lesson_id");
-                 pstchild=con.prepareStatement("Update lessons set lessonNo="+i+" where lesson_id="+index);
-                 pstchild.executeUpdate();
-                 i++;
+
+    private void updateSubjectIndex() {
+        String str = "Select * from subjects";
+        String index = "";
+        int i = 1;
+        try {
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                index = rs.getString("subject_id");
+                pstchild = con.prepareStatement("Update subjects set subject_no=" + i + " where subject_id=" + index);
+                pstchild.executeUpdate();
+                i++;
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-     private void updateQuestionsIndex()
-    {
-        String str="Select * from questions where lesson_id="+selectedlesson;
-        String index="";
-        int i=1;
-        try{
-            pst=con.prepareStatement(str);
-            rs=pst.executeQuery();
-            while(rs.next()){
-                 index=rs.getString("id");
-                 pstchild=con.prepareStatement("Update questions set questionNo="+i+" where id="+index);
-                 pstchild.executeUpdate();
-                 i++;
+
+    private void updateLessonIndex() {
+        String str = "Select * from lessons where subject_id=" + subject;
+        String index = "";
+        int i = 1;
+        try {
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                index = rs.getString("lesson_id");
+                pstchild = con.prepareStatement("Update lessons set lesson_no=" + i + " where lesson_id=" + index);
+                pstchild.executeUpdate();
+                i++;
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-     
-    private Boolean userCheck(String emailCheck)
-    {
-        userEmailCheck=false;
-        ArrayList<String> emailList = new ArrayList<String>(); 
-        String str="Select email_id from users";
-        
-        try{
-            pst=con.prepareStatement(str);
-            rs=pst.executeQuery();
-            while(rs.next()){
-                 int i=1; 
-                 emailList.add(rs.getString(i++));
-             }
-            for(int a=1;a<emailList.size();a++)
-            {
-                if(emailCheck.equalsIgnoreCase(emailList.get(a)))
-                {
-                    userEmailCheck=true;
+
+    private void updateQuestionsIndex() {
+        String str = "Select * from questions where lesson_id=" + selectedlesson;
+        String index = "";
+        int i = 1;
+        try {
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                index = rs.getString("id");
+                pstchild = con.prepareStatement("Update questions set question_no=" + i + " where id=" + index);
+                pstchild.executeUpdate();
+                i++;
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private void updateUsersIndex() {
+        String str = "Select * from users";
+        String index = "";
+        int i = 1;
+        try {
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                index = rs.getString("user_id");
+                pstchild = con.prepareStatement("Update users set user_no=" + i + " where user_id=" + index);
+                pstchild.executeUpdate();
+                i++;
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private Boolean userCheck(String emailCheck) {
+        userEmailCheck = false;
+        ArrayList<String> emailList = new ArrayList<String>();
+        String str = "Select user_email from users";
+
+        try {
+            pst = con.prepareStatement(str);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                int i = 1;
+                emailList.add(rs.getString(i++));
+            }
+            for (int a = 1; a < emailList.size(); a++) {
+                if (emailCheck.equalsIgnoreCase(emailList.get(a))) {
+                    userEmailCheck = true;
                 }
-                
+
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
         return userEmailCheck;
     }
+
     private void closeAllFrames() {
         SubjectFrame.setVisible(false);
-        SubjectAddFrame.setVisible(false);
+        AddSubjectFrame.setVisible(false);
         LessonsFrame.setVisible(false);
         AddLessonFrame.setVisible(false);
-        LessonsContent.setVisible(false);
+        LessonsContentFrame.setVisible(false);
         UserManagementFrame.setVisible(false);
         QuestionsFrame.setVisible(false);
-        UserLogin.setVisible(false);
+        UserLoginFrame.setVisible(false);
         ChangePasswordFrame.setVisible(false);
+        StudentManagementFrame.setVisible(false);
     }
 
-    private void disableMenus()
-    {
+    private void disableMenus() {
         subject_menu.setEnabled(false);
         userMngtMenu.setEnabled(false);
         changePwd.setEnabled(false);
         logoutMenu.setEnabled(false);
+        //studentsDetail.setEnabled(false);
     }
+
     private void Populate_Users() {
         try {
-            pst = con.prepareStatement("select user_id as Id,user_name as Name, email_id as Email, user_password as Password from users");
+            pst = con.prepareStatement("select user_id as Id,user_no as 'S No',user_name as 'User Name', user_email as 'Email Id',user_password as Password from users");
             rs = pst.executeQuery();
-            user_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
-            user_table.setModel(DbUtils.resultSetToTableModel(rs));
+            User_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+            User_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            User_Table.getColumnModel().getColumn(0).setMinWidth(0);
+            User_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -1170,95 +1329,85 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Questions() {
         try {
-            pst = con.prepareStatement("select id as Id,questionNo as SNo, question as Question, option1 as Option1, option2 as Option2,option3 as Option3,answer as Anwser from questions where lesson_id=" + selectedlesson);
+            pst = con.prepareStatement("select id as Id,question_no as 'S No', question as Question, option1 as 'First Option', option2 as 'Second Option',option3 as 'Third Option',answer as Anwser from questions where lesson_id=" + selectedlesson);
             rs = pst.executeQuery();
-            questions_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
-            questions_table.setModel(DbUtils.resultSetToTableModel(rs));
-            questions_table.getColumnModel().getColumn(0).setMinWidth(0);
-            questions_table.getColumnModel().getColumn(0).setMaxWidth(0);
-            
+            Qst_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+            Qst_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            Qst_Table.getColumnModel().getColumn(0).setMinWidth(0);
+            Qst_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-  
-     private void Delete_Lesson(String selected) 
-     {  
-        List results = new List();
-        String lessonquery="";
-        int i=0;
-        try{
-        lessonquery = "select lesson_id from lessons where subject_id=" + selected;
 
-                pst = con.prepareStatement(lessonquery);
-                rs = pst.executeQuery(lessonquery);
-                while(rs.next())
-                {
-                  results.add(rs.getString("lesson_id"));
-                  i++;
-                }  
-                for(int a=0;a<results.getItemCount();a++)
-                {
-                    Delete_Questions(results.getItem(a));
-                  pstchild= con.prepareStatement("delete from lessons where lesson_id="+ results.getItem(a));
-                  pstchild.executeUpdate();
-                }
-        }
-        catch(Exception e)
-        {
+    private void Delete_Lesson(String selected) {
+        List results = new List();
+        String lessonquery = "";
+        int i = 0;
+        try {
+            lessonquery = "select lesson_id from lessons where subject_id=" + selected;
+
+            pst = con.prepareStatement(lessonquery);
+            rs = pst.executeQuery(lessonquery);
+            while (rs.next()) {
+                results.add(rs.getString("lesson_id"));
+                i++;
+            }
+            for (int a = 0; a < results.getItemCount(); a++) {
+                Delete_Questions(results.getItem(a));
+                pstchild = con.prepareStatement("delete from lessons where lesson_id=" + results.getItem(a));
+                pstchild.executeUpdate();
+            }
+        } catch (Exception e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-     
-     private void Delete_Questions(String lessonStr) 
-     {  
-        List results = new List();
-        String lessonquery="";
-        int j=0;
-        try{
-        lessonquery = "select id from questions where lesson_id=" + lessonStr;
 
-                pst = con.prepareStatement(lessonquery);
-                rs = pst.executeQuery(lessonquery);
-                while(rs.next())
-                {
-                  results.add(rs.getString("id"));
-                  j++;
-                }  
-                for(int b=0;b<results.getItemCount();b++)
-                {
-                    System.out.println("delete from questions where id="+ results.getItem(b));
-                  pstchild= con.prepareStatement("delete from questions where id="+ results.getItem(b));
-                  pstchild.executeUpdate();
-                } 
-        }
-        catch(Exception e)
-        {
-           Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+    private void Delete_Questions(String lessonStr) {
+        List results = new List();
+        String lessonquery = "";
+        int j = 0;
+        try {
+            lessonquery = "select id from questions where lesson_id=" + lessonStr;
+
+            pst = con.prepareStatement(lessonquery);
+            rs = pst.executeQuery(lessonquery);
+            while (rs.next()) {
+                results.add(rs.getString("id"));
+                j++;
+            }
+            for (int b = 0; b < results.getItemCount(); b++) {
+                System.out.println("delete from questions where id=" + results.getItem(b));
+                pstchild = con.prepareStatement("delete from questions where id=" + results.getItem(b));
+                pstchild.executeUpdate();
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-     
-    private void abaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddActionPerformed
-        closeAllFrames();
-        SubjectAddFrame.setVisible(true);
-    }//GEN-LAST:event_abaddActionPerformed
 
-    private void abdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abdeleteActionPerformed
-        int viewIndex = subjects_table.getSelectedRow();
-        rowcount = subjects_table.getSelectedRowCount();
+    private void Sub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Add_BtnActionPerformed
+        closeAllFrames();
+        AddSubjectFrame.setVisible(true);
+    }//GEN-LAST:event_Sub_Add_BtnActionPerformed
+
+    private void subject_delete_fn() {
+        int viewIndex = Sub_Table.getSelectedRow();
+        rowcount = Sub_Table.getSelectedRowCount();
         if (rowcount > 1) {
             JOptionPane.showMessageDialog(null, "Please select a single subject to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
-            
-            DefaultTableModel model = (DefaultTableModel) subjects_table.getModel();
+
+            DefaultTableModel model = (DefaultTableModel) Sub_Table.getModel();
             String selected = model.getValueAt(viewIndex, 0).toString();
-            
+
             if (viewIndex != -1) {
 
                 model.removeRow(viewIndex);
                 try {
                     Delete_Lesson(selected);
-                    pst = con.prepareStatement("delete from subject where subject_id='" + selected + "' ");
+                    pst = con.prepareStatement("delete from subjects where subject_id='" + selected + "' ");
                     pst.executeUpdate();
                     updateSubjectIndex();
                     Populate_Subject();
@@ -1268,66 +1417,76 @@ public class Home extends javax.swing.JFrame {
 
             }
         }
+    }
+    private void Sub_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnActionPerformed
+        subject_delete_fn();
+    }//GEN-LAST:event_Sub_Delete_BtnActionPerformed
 
-    }//GEN-LAST:event_abdeleteActionPerformed
+    private void AddSub_Add_Btn_fun()
+    {
+        if (!AddSub_Name_Textarea.getText().equalsIgnoreCase("")) {
+            String insertsubject = "INSERT INTO Subjects(subject_name,subject_no) VALUES(?,?)";
+            try {
+                pst = con.prepareStatement(insertsubject);
+                pst.setString(1, AddSub_Name_Textarea.getText());
+                pst.setString(2, "0");
+                pst.executeUpdate();
 
-    private void abaddnewsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abaddnewsubjectActionPerformed
-            if(!AddNewSubject.getText().equalsIgnoreCase(""))
-            {
-        String insertsubject = "INSERT INTO Subject(subject,subjectNo) VALUES(?,?)";
-        try {
-            pst = con.prepareStatement(insertsubject);
-            pst.setString(1, AddNewSubject.getText());
-            pst.setString(2, "0");
-            pst.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            AddSub_Name_Textarea.setText("");
+            updateSubjectIndex();
+            Populate_Subject();
+            closeAllFrames();
+            SubjectFrame.setVisible(true);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter a Subject", "Alert", JOptionPane.ERROR_MESSAGE);
         }
-        AddNewSubject.setText("");
-        updateSubjectIndex();
-        Populate_Subject();
-        closeAllFrames();
-        SubjectFrame.setVisible(true);
-        
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Please enter a Subject", "Alert", JOptionPane.ERROR_MESSAGE);
-            }
-    }//GEN-LAST:event_abaddnewsubjectActionPerformed
+    }
+    private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
+        AddSub_Add_Btn_fun();
+    }//GEN-LAST:event_AddSub_Add_BtnActionPerformed
 
-    private void subjects_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjects_tableMouseClicked
-            subject = subjects_table.getModel().getValueAt(subjects_table.getSelectedRow(), 0).toString();
-    }//GEN-LAST:event_subjects_tableMouseClicked
+    private void Sub_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_TableMouseClicked
+       if(Sub_Table.getSelectedRow()>0)
+       {
+        subject = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 0).toString();
+       }
+    }//GEN-LAST:event_Sub_TableMouseClicked
 
-    private void abenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abenterActionPerformed
-        String lessonsid = "";
+    private void Sub_Enter_Btn_fun()
+    {
+         String lessonsid = "";
         String lessonsname = "";
-        rowcount = subjects_table.getSelectedRowCount();
+        rowcount = Sub_Table.getSelectedRowCount();
         if (rowcount > 1) {
             JOptionPane.showMessageDialog(null, "Please select a single subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
 
             try {
-                subject = subjects_table.getModel().getValueAt(subjects_table.getSelectedRow(), 0).toString();
-                lessonsid = "select lesson_id  as Id,lessonNo as SNo,lesson_name as Lesson from lessons where subject_id=" + subject;
+                subject = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 0).toString();
+                lessonsid = "select lesson_id  as Id,lesson_no as 'S No',lesson_name as Lesson from lessons where subject_id=" + subject;
 
-                pst = con.prepareStatement(lessonsid); // create a statement
+                pst = con.prepareStatement(lessonsid);
 
                 rs = pst.executeQuery(lessonsid);
-                Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12)); 
+                Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
                 Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
                 Ls_Table.getColumnModel().getColumn(0).setMinWidth(0);
-                Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);       
+                Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
                 closeAllFrames();
                 LessonsFrame.setVisible(true);
-              
+
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_abenterActionPerformed
+    }
+    private void Sub_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Enter_BtnActionPerformed
+       Sub_Enter_Btn_fun();
+    }//GEN-LAST:event_Sub_Enter_BtnActionPerformed
 
     private void Ls_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnActionPerformed
         String lessonscontent = "";
@@ -1345,11 +1504,11 @@ public class Home extends javax.swing.JFrame {
                 rs = pst.executeQuery(lessonscontent);
 
                 while (rs.next()) {
-                    ablessonlabel.setText(rs.getString(1));
-                    lessonContent.setText(rs.getString(2));
+                    LsContent_label.setText(rs.getString(1));
+                    LsContent_TextArea.setText(rs.getString(2));
                 }
                 closeAllFrames();
-                LessonsContent.setVisible(true);
+                LessonsContentFrame.setVisible(true);
 
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -1357,12 +1516,12 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Ls_Enter_BtnActionPerformed
 
-    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+    private void LsContent_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnActionPerformed
 
         String updatelessoncontent = "Update lessons set lesson_content=? where lesson_id=" + selectedlesson;
         try {
             pst = con.prepareStatement(updatelessoncontent);
-            pst.setString(1, lessonContent.getText());
+            pst.setString(1, LsContent_TextArea.getText());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -1370,8 +1529,8 @@ public class Home extends javax.swing.JFrame {
         }
         closeAllFrames();
         LessonsFrame.setVisible(true);
-        
-    }//GEN-LAST:event_UpdateActionPerformed
+
+    }//GEN-LAST:event_LsContent_Update_BtnActionPerformed
 
     private void Ls_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnActionPerformed
 
@@ -1405,40 +1564,37 @@ public class Home extends javax.swing.JFrame {
         AddLessonFrame.setVisible(true);
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
-    private void Add_Ls_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_Ls_Submit_BtnActionPerformed
-        String insertsubject = "INSERT INTO Lessons( lesson_name,lesson_content,subject_id,lessonNo) VALUES(?,?,?,?)";
-        if(!Add_Ls_TextArea.getText().equalsIgnoreCase("") && !(Add_ls_content_textArea.getText().equalsIgnoreCase("")))
-        {
-        try {
-            pst = con.prepareStatement(insertsubject);
-            pst.setString(1, Add_Ls_TextArea.getText());
-            pst.setString(2, Add_ls_content_textArea.getText());
-            pst.setString(3, subject);
-            pst.setString(4, "0");
-            pst.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        updateLessonIndex();
-        Populate_Lessons();
-        closeAllFrames();
-        LessonsFrame.setVisible(true);
-        Add_Ls_TextArea.setText("");
-        Add_ls_content_textArea.setText("");
-       
-        }
-        else
-        {
+    private void AddLs_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLs_Submit_BtnActionPerformed
+        String insertsubject = "INSERT INTO lessons( lesson_name,lesson_content,subject_id,lesson_no) VALUES(?,?,?,?)";
+        if (!AddLs_Name_TextArea.getText().equalsIgnoreCase("") && !(AddLs_Content_TextArea.getText().equalsIgnoreCase(""))) {
+            try {
+                pst = con.prepareStatement(insertsubject);
+                pst.setString(1, AddLs_Name_TextArea.getText());
+                pst.setString(2, AddLs_Content_TextArea.getText());
+                pst.setString(3, subject);
+                pst.setString(4, "0");
+                pst.executeUpdate();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            updateLessonIndex();
+            Populate_Lessons();
+            closeAllFrames();
+            LessonsFrame.setVisible(true);
+            AddLs_Name_TextArea.setText("");
+            AddLs_Content_TextArea.setText("");
+
+        } else {
             JOptionPane.showMessageDialog(null, "Please enter the lesson information", "Alert", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_Add_Ls_Submit_BtnActionPerformed
+    }//GEN-LAST:event_AddLs_Submit_BtnActionPerformed
 
-    private void delete_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_user_btnActionPerformed
-        int row = user_table.getSelectedRow();
-        rowcount = user_table.getSelectedRowCount();
-        DefaultTableModel model = (DefaultTableModel) user_table.getModel();
+    private void UsMng_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnActionPerformed
+        int row = User_Table.getSelectedRow();
+        rowcount = User_Table.getSelectedRowCount();
+        DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
 
         String selected = model.getValueAt(row, 0).toString();
         if (rowcount > 1) {
@@ -1458,15 +1614,17 @@ public class Home extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
             }
-            user_textField.setText("");
-            email_textField.setText("");
-            password_textField.setText("");
+            UsMng_Name_Textfield.setText("");
+            UsMng_Email_Textfield.setText("");
+            UsMng_Password_Textfield.setText("");
+            updateUsersIndex();
+            Populate_Users();
         }
-    }//GEN-LAST:event_delete_user_btnActionPerformed
+    }//GEN-LAST:event_UsMng_Delete_BtnActionPerformed
 
-    private void user_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_tableMouseClicked
-        int row = user_table.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) user_table.getModel();
+    private void User_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TableMouseClicked
+        int row = User_Table.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
 
         selectedUserid = model.getValueAt(row, 0).toString();
         String selectedUsername = model.getValueAt(row, 1).toString();
@@ -1474,139 +1632,122 @@ public class Home extends javax.swing.JFrame {
         String selectedPassword = model.getValueAt(row, 3).toString();
 
         if (row >= 0) {
-            user_textField.setText(selectedUsername);
-            email_textField.setText(selectedEmail);
-            password_textField.setText(selectedPassword);
+            UsMng_Name_Textfield.setText(selectedUsername);
+            UsMng_Email_Textfield.setText(selectedEmail);
+            UsMng_Password_Textfield.setText(selectedPassword);
 
         }
 
-    }//GEN-LAST:event_user_tableMouseClicked
-    
-    private Boolean EmailValidator(String emailIdString)
-    {
+    }//GEN-LAST:event_User_TableMouseClicked
+
+    private Boolean EmailValidator(String emailIdString) {
         Pattern patternString;
         Matcher matcherString;
-        Boolean ValidEmailId=false;
-        EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        
-         patternString=Pattern.compile(EMAIL_PATTERN);
-          matcherString = patternString.matcher(emailIdString);
-                
-        if(!matcherString.matches())
-        {
-            ValidEmailId=false;
-         }
-        else
-        {
-            ValidEmailId=true;
+        Boolean ValidEmailId = false;
+        EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        patternString = Pattern.compile(EMAIL_PATTERN);
+        matcherString = patternString.matcher(emailIdString);
+
+        if (!matcherString.matches()) {
+            ValidEmailId = false;
+        } else {
+            ValidEmailId = true;
         }
         return ValidEmailId;
     }
-    private void add_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_user_btnActionPerformed
+    private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
 
-        if (!user_textField.getText().equalsIgnoreCase("") || !email_textField.getText().equalsIgnoreCase("") || !password_textField.getText().equalsIgnoreCase("")) 
-        {
-            if(userCheck(email_textField.getText()))
-            {
+        if (!UsMng_Name_Textfield.getText().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("")) {
+            if (userCheck(UsMng_Email_Textfield.getText())) {
                 JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
-                email_textField.setText("");
-            }
-            else
-            {
-            String insertuser = "INSERT INTO users( user_name,email_id,user_password) VALUES(?,?,?)";
-            try {
-               
-                if(!EmailValidator(email_textField.getText().trim()))
-                {
-                    JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
-                    email_textField.setText("");
+                UsMng_Email_Textfield.setText("");
+            } else {
+                String insertuser = "INSERT INTO users( user_name,user_email,user_password,user_no) VALUES(?,?,?,?)";
+                try {
+
+                    if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
+                        JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
+                        UsMng_Email_Textfield.setText("");
+                    } else {
+                        pst = con.prepareStatement(insertuser);
+                        pst.setString(1, UsMng_Name_Textfield.getText());
+                        pst.setString(2, UsMng_Email_Textfield.getText());
+                        pst.setString(3, UsMng_Password_Textfield.getText());
+                        pst.setString(4, "0");
+                        pst.executeUpdate();
+                        UsMng_Name_Textfield.setText("");
+                        UsMng_Email_Textfield.setText("");
+                        UsMng_Password_Textfield.setText("");
+                        updateUsersIndex();
+
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                else
-                {
-                pst = con.prepareStatement(insertuser);
-                pst.setString(1, user_textField.getText());
-                pst.setString(2, email_textField.getText());
-                pst.setString(3, password_textField.getText());
-                pst.executeUpdate();
-                user_textField.setText("");
-                email_textField.setText("");
-                password_textField.setText("");
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-    }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Please enter correct user information", "Alert", JOptionPane.ERROR_MESSAGE);
+
         }
 
         Populate_Users();
 
-    }//GEN-LAST:event_add_user_btnActionPerformed
+    }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
 
-    private void update_user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_user_btnActionPerformed
+    private void UsMng_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Update_BtnActionPerformed
 
-        rowcount = user_table.getSelectedRowCount();
+        rowcount = User_Table.getSelectedRowCount();
         if (rowcount > 1) {
 
             JOptionPane.showMessageDialog(null, "Please select single user to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
 
         } else {
             try {
-                if(!EmailValidator(email_textField.getText().trim()))
-                {
+                if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
                     JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
-                    email_textField.setText("");
-                }
-                else
-                {
-                pst = con.prepareStatement("Update users set user_name=?,email_id=?,user_password=? where user_id=" + selectedUserid);
-                pst.setString(1, user_textField.getText());
-                pst.setString(2, email_textField.getText());
-                pst.setString(3, password_textField.getText());
-                pst.executeUpdate();
-                user_textField.setText("");
-                email_textField.setText("");
-                password_textField.setText("");
+                    UsMng_Email_Textfield.setText("");
+                } else {
+                    pst = con.prepareStatement("Update users set user_name=?,user_email=?,user_password=? where user_id=" + selectedUserid);
+                    pst.setString(1, UsMng_Name_Textfield.getText());
+                    pst.setString(2, UsMng_Email_Textfield.getText());
+                    pst.setString(3, UsMng_Password_Textfield.getText());
+                    pst.executeUpdate();
+                    UsMng_Name_Textfield.setText("");
+                    UsMng_Email_Textfield.setText("");
+                    UsMng_Password_Textfield.setText("");
                 }
             } catch (Exception w) {
                 JOptionPane.showMessageDialog(this, "Connection Error!");
             }
             Populate_Users();
         }
-    }//GEN-LAST:event_update_user_btnActionPerformed
+    }//GEN-LAST:event_UsMng_Update_BtnActionPerformed
 
-    private void Ls_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_TableMousePressed
-
-
-    }//GEN-LAST:event_Ls_TableMousePressed
-
-    private void subjects_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjects_tableMousePressed
+    private void Sub_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_TableMousePressed
 
 
-    }//GEN-LAST:event_subjects_tableMousePressed
+    }//GEN-LAST:event_Sub_TableMousePressed
 
-    private void user_tableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_tableMousePressed
+    private void User_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TableMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_user_tableMousePressed
+    }//GEN-LAST:event_User_TableMousePressed
 
-    private void Qstn_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qstn_btnActionPerformed
+    private void LsContent_Questions_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Questions_BtnActionPerformed
         closeAllFrames();
         QuestionsFrame.setVisible(true);
         Populate_Questions();
-      
-    }//GEN-LAST:event_Qstn_btnActionPerformed
 
-    private void questions_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_questions_tableMouseClicked
-        rowcount = questions_table.getSelectedRowCount();
-        int row = questions_table.getSelectedRow();
+    }//GEN-LAST:event_LsContent_Questions_BtnActionPerformed
+
+    private void Qst_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_TableMouseClicked
+        rowcount = Qst_Table.getSelectedRowCount();
+        int row = Qst_Table.getSelectedRow();
         if (rowcount > 1) {
             JOptionPane.showMessageDialog(null, "Please select a single question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
 
-            DefaultTableModel model = (DefaultTableModel) questions_table.getModel();
+            DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
 
             selectedQuestionId = model.getValueAt(row, 0).toString();
             String selectedQuestion = model.getValueAt(row, 2).toString();
@@ -1616,33 +1757,33 @@ public class Home extends javax.swing.JFrame {
             String correctanswer = model.getValueAt(row, 6).toString();
 
             if (row >= 0) {
-                qstn_txtArea.setText(selectedQuestion);
-                opt1_txtField.setText(option1);
-                opt2_txtField.setText(option2);
-                opt3_txtField.setText(option3);
+                Qst_Textarea.setText(selectedQuestion);
+                Qst_Opt1_Textfield.setText(option1);
+                Qst_Opt2_Textfield.setText(option2);
+                Qst_Opt3_Textfield.setText(option3);
                 if (correctanswer.equalsIgnoreCase("option1")) {
-                    opt1_btn.setSelected(true);
+                    Qst_Opt1_Btn.setSelected(true);
                 } else if (correctanswer.equalsIgnoreCase("option2")) {
-                    opt2_btn.setSelected(true);
+                    Qst_Opt2_Btn.setSelected(true);
                 } else {
-                    opt3_btn.setSelected(true);
+                    Qst_Opt3_Btn.setSelected(true);
 
                 }
             }
 
         }
-    }//GEN-LAST:event_questions_tableMouseClicked
+    }//GEN-LAST:event_Qst_TableMouseClicked
 
-    private void Update_questBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_questBtnActionPerformed
-        rowcount = questions_table.getSelectedRowCount();
+    private void Qst_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Update_BtnActionPerformed
+        rowcount = Qst_Table.getSelectedRowCount();
         if (rowcount > 1) {
             JOptionPane.showMessageDialog(null, "Please select single question to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
             String option = null;
-            if (opt1_btn.isSelected()) {
+            if (Qst_Opt1_Btn.isSelected()) {
                 option = "option1";
 
-            } else if (opt2_btn.isSelected()) {
+            } else if (Qst_Opt2_Btn.isSelected()) {
 
                 option = "option2";
 
@@ -1653,16 +1794,16 @@ public class Home extends javax.swing.JFrame {
             try {
 
                 pst = con.prepareStatement("Update questions set question=?,option1=?,option2=?,option3=? ,answer=? where id=" + selectedQuestionId);
-                pst.setString(1, qstn_txtArea.getText());
-                pst.setString(2, opt1_txtField.getText());
-                pst.setString(3, opt2_txtField.getText());
-                pst.setString(4, opt3_txtField.getText());
+                pst.setString(1, Qst_Textarea.getText());
+                pst.setString(2, Qst_Opt1_Textfield.getText());
+                pst.setString(3, Qst_Opt2_Textfield.getText());
+                pst.setString(4, Qst_Opt3_Textfield.getText());
                 pst.setString(5, option);
                 pst.executeUpdate();
-                qstn_txtArea.setText("");
-                opt1_txtField.setText("");
-                opt2_txtField.setText("");
-                opt3_txtField.setText("");
+                Qst_Textarea.setText("");
+                Qst_Opt1_Textfield.setText("");
+                Qst_Opt2_Textfield.setText("");
+                Qst_Opt3_Textfield.setText("");
                 buttonGroup1.clearSelection();
 
             } catch (Exception w) {
@@ -1670,159 +1811,142 @@ public class Home extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_Update_questBtnActionPerformed
+    }//GEN-LAST:event_Qst_Update_BtnActionPerformed
 
-    private void add_ques_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_ques_btnActionPerformed
-        String insertquestion = "INSERT INTO questions(question,option1,option2,option3,answer,lesson_id,questionNo) VALUES(?,?,?,?,?,?,?)";
-        String correctoption="";
-        rowcount = questions_table.getSelectedRowCount();
+    private void Qst_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Add_BtnActionPerformed
+        String insertquestion = "INSERT INTO questions(question,option1,option2,option3,answer,lesson_id,question_no) VALUES(?,?,?,?,?,?,?)";
+        String correctoption = "";
+        rowcount = Qst_Table.getSelectedRowCount();
         try {
-            if(!qstn_txtArea.getText().equalsIgnoreCase("") && rowcount==0)
-            {
-            pst = con.prepareStatement(insertquestion);
-            pst.setString(1, qstn_txtArea.getText());
-            pst.setString(2, opt1_txtField.getText());
-            pst.setString(3, opt2_txtField.getText());
-            pst.setString(4, opt3_txtField.getText());
-            if(opt1_btn.isSelected())
-            {
-                correctoption="option1";
-            }
-            else if(opt2_btn.isSelected())   
-            {
-                correctoption="option2";
-            }  
-            else
-            {
-                correctoption="option3";
-            }
-            pst.setString(5, correctoption);
-            pst.setString(6, selectedlesson);
-            pst.setString(7,"0");
-            
-            if(buttonGroup1.getSelection()==null)
-            {
-                JOptionPane.showMessageDialog(null, "Please select an answer", "Alert", JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-            pst.execute();
-            qstn_txtArea.setText("");
-            opt1_txtField.setText("");
-            opt2_txtField.setText("");
-            opt3_txtField.setText("");
-            buttonGroup1.clearSelection();
-            updateQuestionsIndex();
-            
-            }
-            }
-            else
-            {
+            if (!Qst_Textarea.getText().equalsIgnoreCase("") && rowcount == 0) {
+                pst = con.prepareStatement(insertquestion);
+                pst.setString(1, Qst_Textarea.getText());
+                pst.setString(2, Qst_Opt1_Textfield.getText());
+                pst.setString(3, Qst_Opt2_Textfield.getText());
+                pst.setString(4, Qst_Opt3_Textfield.getText());
+                if (Qst_Opt1_Btn.isSelected()) {
+                    correctoption = "option1";
+                } else if (Qst_Opt2_Btn.isSelected()) {
+                    correctoption = "option2";
+                } else {
+                    correctoption = "option3";
+                }
+                pst.setString(5, correctoption);
+                pst.setString(6, selectedlesson);
+                pst.setString(7, "0");
+
+                if (buttonGroup1.getSelection() == null) {
+                    JOptionPane.showMessageDialog(null, "Please select an answer", "Alert", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    pst.execute();
+                    Qst_Textarea.setText("");
+                    Qst_Opt1_Textfield.setText("");
+                    Qst_Opt2_Textfield.setText("");
+                    Qst_Opt3_Textfield.setText("");
+                    buttonGroup1.clearSelection();
+                    updateQuestionsIndex();
+
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Please enter a new question", "Alert", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         Populate_Questions();
-    }//GEN-LAST:event_add_ques_btnActionPerformed
+    }//GEN-LAST:event_Qst_Add_BtnActionPerformed
 
     private void subject_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subject_menuMouseClicked
         closeAllFrames();
-        if(login==true)
-        {
+        if (login == true) {
             SubjectFrame.setVisible(true);
+        } else {
+            UserLoginFrame.setVisible(true);
         }
-        else
-        {
-           UserLogin.setVisible(true);
-        }
-        
+
     }//GEN-LAST:event_subject_menuMouseClicked
 
     private void userMngtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMngtMenuMouseClicked
         closeAllFrames();
-        if(login==true)
-        {
-        UserManagementFrame.setVisible(true);
+        if (login == true) {
+            UserManagementFrame.setVisible(true);
+        } else {
+            UserLoginFrame.setVisible(true);
         }
-        else
-        {
-           UserLogin.setVisible(true);
-        }
-       
+
     }//GEN-LAST:event_userMngtMenuMouseClicked
 
-    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+    private void AddLs_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLs_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
-    }//GEN-LAST:event_back_btnActionPerformed
+    }//GEN-LAST:event_AddLs_Back_BtnActionPerformed
 
-    private void qst_back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qst_back_btnActionPerformed
+    private void Qst_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
-    }//GEN-LAST:event_qst_back_btnActionPerformed
+    }//GEN-LAST:event_Qst_Back_BtnActionPerformed
 
-    private void qst_back_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qst_back_btnMouseClicked
-      
-    }//GEN-LAST:event_qst_back_btnMouseClicked
+    private void Qst_Back_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_Back_BtnMouseClicked
 
-    private void opt2_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt2_btnActionPerformed
+    }//GEN-LAST:event_Qst_Back_BtnMouseClicked
+
+    private void Qst_Opt2_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Opt2_BtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_opt2_btnActionPerformed
+    }//GEN-LAST:event_Qst_Opt2_BtnActionPerformed
 
-    private void lesson_back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lesson_back_btnActionPerformed
+    private void Ls_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Back_BtnActionPerformed
         closeAllFrames();
         SubjectFrame.setVisible(true);
-    }//GEN-LAST:event_lesson_back_btnActionPerformed
+    }//GEN-LAST:event_Ls_Back_BtnActionPerformed
+    
+    private void UserLogin_fun()
+    {
+        String sql = "Select * from users where user_name=? and user_password=?";
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String sql="Select * from users where user_name=? and user_password=?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, UserLogin_Name_Textfield.getText());
+            pst.setString(2, UserLogin_Password_Textfield.getText());
 
-        try{
-            pst=con.prepareStatement(sql);
-            pst.setString(1,user_text.getText());
-            pst.setString(2,pwd_field.getText());
+            rs = pst.executeQuery();
 
-            rs=pst.executeQuery();
+            if (rs.next()) {
 
-            if(rs.next()){
-                
-            subject_menu.setEnabled(true);
-            userMngtMenu.setEnabled(true);
-            changePwd.setEnabled(true);
-            logoutMenu.setEnabled(true);
-            UserLogin.setVisible(false);
-            JOptionPane.showMessageDialog(null,"Logged in successfully..");
-            login=true;
-            userLoginName=rs.getString("user_name");
-                
+                subject_menu.setEnabled(true);
+                userMngtMenu.setEnabled(true);
+                changePwd.setEnabled(true);
+                logoutMenu.setEnabled(true);
+                UserLoginFrame.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Logged in successfully..");
+                login = true;
+                userLoginName = rs.getString("user_name");
+                subject_menu.requestFocus();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Password or Username is incorrect");
+                login = false;
             }
-            else{
-                
-               JOptionPane.showMessageDialog(null,"Password or Username is incorrect"); 
-               login=false;
-            }
-            user_text.setText("");
-            pwd_field.setText("");
-        }
-        catch(SQLException e){
+            UserLogin_Name_Textfield.setText("");
+            UserLogin_Password_Textfield.setText("");
+            
+        } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
+    private void UserLogin_Login_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_Login_BtnActionPerformed
+        UserLogin_fun();
+    }//GEN-LAST:event_UserLogin_Login_BtnActionPerformed
 
     private void subject_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subject_menuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_subject_menuActionPerformed
 
     private void changePwdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePwdMouseClicked
-         closeAllFrames();
-        if(login==true)
-        {
-        ChangePasswordFrame.setVisible(true);
-        }
-        else
-        {
-           UserLogin.setVisible(true);
+        closeAllFrames();
+        if (login == true) {
+            ChangePasswordFrame.setVisible(true);
+        } else {
+            UserLoginFrame.setVisible(true);
         }
     }//GEN-LAST:event_changePwdMouseClicked
 
@@ -1830,69 +1954,65 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_changePwdActionPerformed
 
-    private void ChangePwdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwdButtonActionPerformed
-         try {
-                pst = con.prepareStatement("Update users set user_password=? where user_name='" + userLoginName+"'");
-                System.out.println(userLoginName);
-                if((pwdTxtField.getText()).equals(pwdConTxtField.getText()))
-                {
-                    pst.setString(1, pwdTxtField.getText());
-                    pst.executeUpdate();
-                    ChangePasswordFrame.setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Password Changed Successfully", "Alert", JOptionPane.ERROR_MESSAGE);
-                }
-                else
-                {
-                      ChangePasswordFrame.setVisible(true); 
-                      JOptionPane.showMessageDialog(null, "Password and Confirm Password Mismatched", "Alert", JOptionPane.ERROR_MESSAGE);
-                }
-                pwdTxtField.setText("");
-                pwdConTxtField.setText("");
-                
-            } catch (Exception w) {
-                JOptionPane.showMessageDialog(this, "Connection Error!");
-               
+    private void ChangePwd_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwd_Submit_BtnActionPerformed
+        try {
+            pst = con.prepareStatement("Update users set user_password=? where user_name='" + userLoginName + "'");
+            System.out.println(userLoginName);
+            if ((ChangePwd_NewPwd_Textfield.getText()).equals(ChangePwd_ConfPwd_Textfield.getText())) {
+                pst.setString(1, ChangePwd_NewPwd_Textfield.getText());
+                pst.executeUpdate();
+                ChangePasswordFrame.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Password Changed Successfully", "Alert", JOptionPane.ERROR_MESSAGE);
+            } else {
+                ChangePasswordFrame.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Password and Confirm Password Mismatched", "Alert", JOptionPane.ERROR_MESSAGE);
             }
-    }//GEN-LAST:event_ChangePwdButtonActionPerformed
+            ChangePwd_NewPwd_Textfield.setText("");
+            ChangePwd_ConfPwd_Textfield.setText("");
+
+        } catch (Exception w) {
+            JOptionPane.showMessageDialog(this, "Connection Error!");
+
+        }
+    }//GEN-LAST:event_ChangePwd_Submit_BtnActionPerformed
 
     private void logoutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseClicked
         closeAllFrames();
         disableMenus();
-        login=false;
-        UserLogin.setVisible(true);
-        
+        login = false;
+        UserLoginFrame.setVisible(true);
+
     }//GEN-LAST:event_logoutMenuMouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         
-        String sql="Select email_id from users where user_name=?";
-           String loggedUserEmailId="";
-        try{
-            if(user_text.getText().equalsIgnoreCase(""))
-            {
+    private void UserLogin_ForgetPwd()
+    {
+     String sql = "Select user_email from users where user_name=?";
+        String loggedUserEmailId = "";
+        try {
+            if (UserLogin_Name_Textfield.getText().equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(null, "Please enter User Name", "Alert", JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-            pst=con.prepareStatement(sql);
-            pst.setString(1,user_text.getText());
-            rs=pst.executeQuery();
-            while(rs.next())
-            {
-                loggedUserEmailId=rs.getString(1);
-            }
-            
-            }
-        }
-        catch(SQLException e){
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+            } else {
+                pst = con.prepareStatement(sql);
+                pst.setString(1, UserLogin_Name_Textfield.getText());
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    loggedUserEmailId = rs.getString(1);
+                }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int row = questions_table.getSelectedRow();
-        rowcount = questions_table.getSelectedRowCount();
-        DefaultTableModel model = (DefaultTableModel) questions_table.getModel();
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }    
+    }
+    
+    private void UserLogin_ForgetPwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnActionPerformed
+
+       UserLogin_ForgetPwd();
+    }//GEN-LAST:event_UserLogin_ForgetPwd_BtnActionPerformed
+
+    private void Qst_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnActionPerformed
+        int row = Qst_Table.getSelectedRow();
+        rowcount = Qst_Table.getSelectedRowCount();
+        DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
 
         String selected = model.getValueAt(row, 0).toString();
         if (rowcount > 1) {
@@ -1905,22 +2025,118 @@ public class Home extends javax.swing.JFrame {
                 model.removeRow(row);
 
                 try {
-                    
+
                     pst = con.prepareStatement("delete from questions where id='" + selected + "' ");
                     pst.executeUpdate();
                 } catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
             }
-           updateQuestionsIndex();
-           Populate_Questions();
-           qstn_txtArea.setText("");
-           opt1_txtField.setText("");
-           opt2_txtField.setText("");
-           opt3_txtField.setText("");
-           buttonGroup1.clearSelection();
+            updateQuestionsIndex();
+            Populate_Questions();
+            Qst_Textarea.setText("");
+            Qst_Opt1_Textfield.setText("");
+            Qst_Opt2_Textfield.setText("");
+            Qst_Opt3_Textfield.setText("");
+            buttonGroup1.clearSelection();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Qst_Delete_BtnActionPerformed
+
+    private void Ls_Marks_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Marks_BtnActionPerformed
+        if (Ls_Table.getSelectedRowCount() > 0) {
+            closeAllFrames();
+            Populate_Students();
+            StudentManagementFrame.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a lesson to check the students marks", "Alert", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Ls_Marks_BtnActionPerformed
+
+    private void Ls_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_TableMouseClicked
+      if(Ls_Table.getSelectedRow()>0){
+      selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
+      }
+       
+    }//GEN-LAST:event_Ls_TableMouseClicked
+
+    private void Ls_Content_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Content_Back_BtnActionPerformed
+        closeAllFrames();
+        LessonsFrame.setVisible(true);
+        Populate_Lessons();
+    }//GEN-LAST:event_Ls_Content_Back_BtnActionPerformed
+
+    private void StDetails_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StDetails_Back_BtnActionPerformed
+        closeAllFrames();
+        LessonsFrame.setVisible(true);
+        Populate_Lessons();
+    }//GEN-LAST:event_StDetails_Back_BtnActionPerformed
+
+    private void Sub_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnKeyReleased
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            subject_delete_fn();
+        }
+    }//GEN-LAST:event_Sub_Delete_BtnKeyReleased
+
+    private void UserLogin_Login_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_Login_BtnKeyReleased
+       
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            UserLogin_fun();
+        }
+    }//GEN-LAST:event_UserLogin_Login_BtnKeyReleased
+
+    private void UserLogin_ForgetPwd_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnKeyReleased
+       
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             UserLogin_ForgetPwd();
+        }
+    }//GEN-LAST:event_UserLogin_ForgetPwd_BtnKeyReleased
+
+    private void Sub_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Add_BtnKeyReleased
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        closeAllFrames();
+        AddSubjectFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_Sub_Add_BtnKeyReleased
+
+    private void Sub_Enter_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Enter_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_TAB)
+        {
+            Sub_Add_Btn.requestFocus();
+        }
+            
+    }//GEN-LAST:event_Sub_Enter_BtnKeyReleased
+
+    private void Sub_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_TableKeyReleased
+         if(evt.getKeyCode()==KeyEvent.VK_TAB){
+            Sub_Add_Btn.requestFocus();
+     }
+    }//GEN-LAST:event_Sub_TableKeyReleased
+
+    private void Ls_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_TableKeyReleased
+         if(evt.getKeyCode()==KeyEvent.VK_TAB){
+            Ls_Add_Btn.requestFocus();
+     }
+    }//GEN-LAST:event_Ls_TableKeyReleased
+
+    private void AddSub_Name_TextareaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddSub_Name_TextareaKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_TAB){
+            AddSub_Add_Btn.requestFocus();
+        }
+    }//GEN-LAST:event_AddSub_Name_TextareaKeyReleased
+
+    private void AddSub_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            AddSub_Add_Btn_fun();
+        }
+    }//GEN-LAST:event_AddSub_Add_BtnKeyReleased
+
+    private void subject_menuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_subject_menuKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            userMngtMenu.requestFocus();
+        }
+    }//GEN-LAST:event_subject_menuKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1959,55 +2175,88 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame AddLessonFrame;
-    private javax.swing.JTextArea AddNewSubject;
-    private javax.swing.JLabel Add_Ls_Label;
-    private javax.swing.JButton Add_Ls_Submit_Btn;
-    private javax.swing.JTextArea Add_Ls_TextArea;
-    private javax.swing.JLabel Add_ls_content_Label;
-    private javax.swing.JTextArea Add_ls_content_textArea;
+    private javax.swing.JButton AddLs_Back_Btn;
+    private javax.swing.JLabel AddLs_Content_Label;
+    private javax.swing.JTextArea AddLs_Content_TextArea;
+    private javax.swing.JLabel AddLs_Label;
+    private javax.swing.JLabel AddLs_Name_Label;
+    private javax.swing.JTextArea AddLs_Name_TextArea;
+    private javax.swing.JButton AddLs_Submit_Btn;
+    private javax.swing.JButton AddSub_Add_Btn;
+    private javax.swing.JLabel AddSub_Label;
+    private javax.swing.JLabel AddSub_Name_Label;
+    private javax.swing.JTextArea AddSub_Name_Textarea;
+    private javax.swing.JInternalFrame AddSubjectFrame;
     private javax.swing.JInternalFrame ChangePasswordFrame;
-    private javax.swing.JButton ChangePwdButton;
-    private javax.swing.JInternalFrame LessonsContent;
+    private javax.swing.JLabel ChangePwd_ConfPwd_Label;
+    private javax.swing.JTextField ChangePwd_ConfPwd_Textfield;
+    private javax.swing.JLabel ChangePwd_Label;
+    private javax.swing.JLabel ChangePwd_NewPwd_Label;
+    private javax.swing.JTextField ChangePwd_NewPwd_Textfield;
+    private javax.swing.JButton ChangePwd_Submit_Btn;
+    private javax.swing.JInternalFrame LessonsContentFrame;
     private javax.swing.JInternalFrame LessonsFrame;
+    private javax.swing.JButton LsContent_Questions_Btn;
+    private javax.swing.JTextArea LsContent_TextArea;
+    private javax.swing.JButton LsContent_Update_Btn;
+    private javax.swing.JLabel LsContent_label;
     private javax.swing.JButton Ls_Add_Btn;
+    private javax.swing.JButton Ls_Back_Btn;
+    private javax.swing.JButton Ls_Content_Back_Btn;
     private javax.swing.JButton Ls_Delete_Btn;
     private javax.swing.JButton Ls_Enter_Btn;
     private javax.swing.JLabel Ls_Label;
+    private javax.swing.JButton Ls_Marks_Btn;
     private javax.swing.JTable Ls_Table;
-    private javax.swing.JButton Qstn_btn;
+    private javax.swing.JButton Qst_Add_Btn;
+    private javax.swing.JButton Qst_Back_Btn;
+    private javax.swing.JButton Qst_Delete_Btn;
+    private javax.swing.JLabel Qst_Label;
+    private javax.swing.JRadioButton Qst_Opt1_Btn;
+    private javax.swing.JTextField Qst_Opt1_Textfield;
+    private javax.swing.JRadioButton Qst_Opt2_Btn;
+    private javax.swing.JTextField Qst_Opt2_Textfield;
+    private javax.swing.JRadioButton Qst_Opt3_Btn;
+    private javax.swing.JTextField Qst_Opt3_Textfield;
+    private javax.swing.JTable Qst_Table;
+    private javax.swing.JTextArea Qst_Textarea;
+    private javax.swing.JButton Qst_Update_Btn;
     private javax.swing.JInternalFrame QuestionsFrame;
-    private javax.swing.JInternalFrame SubjectAddFrame;
+    private javax.swing.JButton StDetails_Back_Btn;
+    private javax.swing.JLabel StDetails_Label;
+    private javax.swing.JTable St_Table;
+    private javax.swing.JInternalFrame StudentManagementFrame;
+    private javax.swing.JButton Sub_Add_Btn;
+    private javax.swing.JButton Sub_Delete_Btn;
+    private javax.swing.JButton Sub_Enter_Btn;
+    private javax.swing.JLabel Sub_Label;
+    private javax.swing.JTable Sub_Table;
     private javax.swing.JInternalFrame SubjectFrame;
-    private javax.swing.JButton Update;
-    private javax.swing.JButton Update_questBtn;
-    private javax.swing.JInternalFrame UserLogin;
+    private javax.swing.JButton UsMng_Add_Btn;
+    private javax.swing.JButton UsMng_Delete_Btn;
+    private javax.swing.JLabel UsMng_Email_Label;
+    private javax.swing.JTextField UsMng_Email_Textfield;
+    private javax.swing.JLabel UsMng_Name_Label;
+    private javax.swing.JTextField UsMng_Name_Textfield;
+    private javax.swing.JLabel UsMng_Password_Label;
+    private javax.swing.JTextField UsMng_Password_Textfield;
+    private javax.swing.JButton UsMng_Update_Btn;
+    private javax.swing.JLabel UsMng_label;
+    private javax.swing.JInternalFrame UserLoginFrame;
+    private javax.swing.JButton UserLogin_ForgetPwd_Btn;
+    private javax.swing.JLabel UserLogin_Label;
+    private javax.swing.JButton UserLogin_Login_Btn;
+    private javax.swing.JLabel UserLogin_Name_Label;
+    private javax.swing.JTextField UserLogin_Name_Textfield;
+    private javax.swing.JLabel UserLogin_Password_Label;
+    private javax.swing.JTextField UserLogin_Password_Textfield;
     private javax.swing.JInternalFrame UserManagementFrame;
-    private javax.swing.JButton abadd;
-    private javax.swing.JButton abaddnewsubject;
-    private javax.swing.JButton abdelete;
-    private javax.swing.JButton abenter;
-    private javax.swing.JLabel ablessonlabel;
-    private javax.swing.JButton add_ques_btn;
-    private javax.swing.JButton add_user_btn;
-    private javax.swing.JButton back_btn;
+    private javax.swing.JTable User_Table;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JLabel changePasswordlabel;
     private javax.swing.JMenu changePwd;
-    private javax.swing.JLabel confirmPwdField;
-    private javax.swing.JButton delete_user_btn;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JLabel email_label;
-    private javax.swing.JTextField email_textField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2016,37 +2265,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextArea lessonContent;
-    private javax.swing.JButton lesson_back_btn;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JMenu logoutMenu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JRadioButton opt1_btn;
-    private javax.swing.JTextField opt1_txtField;
-    private javax.swing.JRadioButton opt2_btn;
-    private javax.swing.JTextField opt2_txtField;
-    private javax.swing.JRadioButton opt3_btn;
-    private javax.swing.JTextField opt3_txtField;
-    private javax.swing.JLabel password_label;
-    private javax.swing.JTextField password_textField;
-    private javax.swing.JTextField pwdConTxtField;
-    private javax.swing.JTextField pwdTxtField;
-    private javax.swing.JTextField pwd_field;
-    private javax.swing.JLabel pwdfield;
-    private javax.swing.JButton qst_back_btn;
-    private javax.swing.JTextArea qstn_txtArea;
-    private javax.swing.JTable questions_table;
     private javax.swing.JMenu subject_menu;
-    private javax.swing.JTable subjects_table;
-    private javax.swing.JButton update_user_btn;
-    private javax.swing.JLabel us_mng_label;
     private javax.swing.JMenu userMngtMenu;
-    private javax.swing.JTable user_table;
-    private javax.swing.JTextField user_text;
-    private javax.swing.JTextField user_textField;
-    private javax.swing.JLabel username_label;
-    private javax.swing.JLabel usr_label;
-    private javax.swing.JLabel usr_name;
-    private javax.swing.JLabel usr_pwd;
     // End of variables declaration//GEN-END:variables
 
 }
