@@ -38,6 +38,7 @@ public class Home extends javax.swing.JFrame {
     String selectedlesson = null;
     String selectedUserid = null;
     String selectedQuestionId = null;
+    String selectedQuestion = null;
     int rowcount = 0;
     Boolean login = false;
     String userLoginName = "";
@@ -50,13 +51,12 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         con = mysqlconnect.ConnectDb();
-        Populate_Subject();
-        Populate_Users();
+        //Populate_Subject();
+        //Populate_Users();
         closeAllFrames();
         disableMenus();
         UserLoginFrame.setLocation(250, 200);
         UserLoginFrame.setVisible(true);
-
     }
 
     /**
@@ -110,6 +110,7 @@ public class Home extends javax.swing.JFrame {
         AddSub_Name_Textarea = new javax.swing.JTextArea();
         AddSub_Add_Btn = new javax.swing.JButton();
         AddSub_Label = new javax.swing.JLabel();
+        AddSub_Back_Btn = new javax.swing.JButton();
         UserManagementFrame = new javax.swing.JInternalFrame();
         UsMng_label = new javax.swing.JLabel();
         UsMng_Name_Textfield = new javax.swing.JTextField();
@@ -203,12 +204,22 @@ public class Home extends javax.swing.JFrame {
                 Ls_Add_BtnActionPerformed(evt);
             }
         });
+        Ls_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_Add_BtnKeyReleased(evt);
+            }
+        });
 
         Ls_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Ls_Delete_Btn.setText("Delete");
         Ls_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ls_Delete_BtnActionPerformed(evt);
+            }
+        });
+        Ls_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_Delete_BtnKeyReleased(evt);
             }
         });
 
@@ -219,11 +230,21 @@ public class Home extends javax.swing.JFrame {
                 Ls_Enter_BtnActionPerformed(evt);
             }
         });
+        Ls_Enter_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_Enter_BtnKeyReleased(evt);
+            }
+        });
 
         Ls_Back_Btn.setText("Back");
         Ls_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ls_Back_BtnActionPerformed(evt);
+            }
+        });
+        Ls_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_Back_BtnKeyReleased(evt);
             }
         });
 
@@ -232,6 +253,11 @@ public class Home extends javax.swing.JFrame {
         Ls_Marks_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ls_Marks_BtnActionPerformed(evt);
+            }
+        });
+        Ls_Marks_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_Marks_BtnKeyReleased(evt);
             }
         });
 
@@ -294,9 +320,19 @@ public class Home extends javax.swing.JFrame {
                 AddLs_Submit_BtnActionPerformed(evt);
             }
         });
+        AddLs_Submit_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLs_Submit_BtnKeyReleased(evt);
+            }
+        });
 
         AddLs_Name_TextArea.setColumns(20);
         AddLs_Name_TextArea.setRows(5);
+        AddLs_Name_TextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLs_Name_TextAreaKeyReleased(evt);
+            }
+        });
         jScrollPane4.setViewportView(AddLs_Name_TextArea);
 
         AddLs_Content_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -304,15 +340,26 @@ public class Home extends javax.swing.JFrame {
 
         AddLs_Content_TextArea.setColumns(20);
         AddLs_Content_TextArea.setRows(5);
+        AddLs_Content_TextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLs_Content_TextAreaKeyReleased(evt);
+            }
+        });
         jScrollPane5.setViewportView(AddLs_Content_TextArea);
 
         AddLs_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         AddLs_Label.setText("Add Lesson");
 
+        AddLs_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddLs_Back_Btn.setText("Back");
         AddLs_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLs_Back_BtnActionPerformed(evt);
+            }
+        });
+        AddLs_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLs_Back_BtnKeyReleased(evt);
             }
         });
 
@@ -372,12 +419,22 @@ public class Home extends javax.swing.JFrame {
 
         LsContent_TextArea.setColumns(20);
         LsContent_TextArea.setRows(5);
+        LsContent_TextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                LsContent_TextAreaKeyReleased(evt);
+            }
+        });
 
         LsContent_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         LsContent_Update_Btn.setText("Update");
         LsContent_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LsContent_Update_BtnActionPerformed(evt);
+            }
+        });
+        LsContent_Update_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                LsContent_Update_BtnKeyReleased(evt);
             }
         });
 
@@ -391,11 +448,22 @@ public class Home extends javax.swing.JFrame {
                 LsContent_Questions_BtnActionPerformed(evt);
             }
         });
+        LsContent_Questions_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                LsContent_Questions_BtnKeyReleased(evt);
+            }
+        });
 
+        Ls_Content_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Ls_Content_Back_Btn.setText("Back");
         Ls_Content_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ls_Content_Back_BtnActionPerformed(evt);
+            }
+        });
+        Ls_Content_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Ls_Content_Back_BtnKeyReleased(evt);
             }
         });
 
@@ -456,7 +524,6 @@ public class Home extends javax.swing.JFrame {
                 "S. no.", "Subject Name"
             }
         ));
-        Sub_Table.setNextFocusableComponent(Sub_Add_Btn);
         Sub_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Sub_TableMouseClicked(evt);
@@ -466,6 +533,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
         Sub_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Sub_TableKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 Sub_TableKeyReleased(evt);
             }
@@ -503,6 +573,7 @@ public class Home extends javax.swing.JFrame {
 
         Sub_Enter_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Sub_Enter_Btn.setText("Enter");
+        Sub_Enter_Btn.setNextFocusableComponent(Sub_Table);
         Sub_Enter_Btn.setPreferredSize(new java.awt.Dimension(67, 23));
         Sub_Enter_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -584,6 +655,19 @@ public class Home extends javax.swing.JFrame {
         AddSub_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         AddSub_Label.setText("Add Subject");
 
+        AddSub_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddSub_Back_Btn.setText("Back");
+        AddSub_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddSub_Back_BtnActionPerformed(evt);
+            }
+        });
+        AddSub_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddSub_Back_BtnKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddSubjectFrameLayout = new javax.swing.GroupLayout(AddSubjectFrame.getContentPane());
         AddSubjectFrame.getContentPane().setLayout(AddSubjectFrameLayout);
         AddSubjectFrameLayout.setHorizontalGroup(
@@ -591,7 +675,8 @@ public class Home extends javax.swing.JFrame {
             .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                 .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddSubjectFrameLayout.createSequentialGroup()
-                        .addGap(169, 169, 169)
+                        .addComponent(AddSub_Back_Btn)
+                        .addGap(96, 96, 96)
                         .addComponent(AddSub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -606,7 +691,9 @@ public class Home extends javax.swing.JFrame {
         AddSubjectFrameLayout.setVerticalGroup(
             AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddSubjectFrameLayout.createSequentialGroup()
-                .addComponent(AddSub_Label)
+                .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddSub_Label)
+                    .addComponent(AddSub_Back_Btn))
                 .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
@@ -648,6 +735,11 @@ public class Home extends javax.swing.JFrame {
                 User_TableMousePressed(evt);
             }
         });
+        User_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                User_TableKeyReleased(evt);
+            }
+        });
         jScrollPane6.setViewportView(User_Table);
 
         UsMng_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -655,6 +747,11 @@ public class Home extends javax.swing.JFrame {
         UsMng_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsMng_Add_BtnActionPerformed(evt);
+            }
+        });
+        UsMng_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UsMng_Add_BtnKeyReleased(evt);
             }
         });
 
@@ -665,12 +762,22 @@ public class Home extends javax.swing.JFrame {
                 UsMng_Delete_BtnActionPerformed(evt);
             }
         });
+        UsMng_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UsMng_Delete_BtnKeyReleased(evt);
+            }
+        });
 
         UsMng_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         UsMng_Update_Btn.setText("Update");
         UsMng_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsMng_Update_BtnActionPerformed(evt);
+            }
+        });
+        UsMng_Update_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UsMng_Update_BtnKeyReleased(evt);
             }
         });
 
@@ -761,17 +868,33 @@ public class Home extends javax.swing.JFrame {
                 Qst_TableMouseClicked(evt);
             }
         });
+        Qst_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Qst_TableKeyReleased(evt);
+            }
+        });
         jScrollPane7.setViewportView(Qst_Table);
 
         Qst_Textarea.setColumns(20);
         Qst_Textarea.setRows(5);
         jScrollPane8.setViewportView(Qst_Textarea);
 
+        Qst_Opt3_Textfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Qst_Opt3_TextfieldKeyReleased(evt);
+            }
+        });
+
         Qst_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Qst_Update_Btn.setText("Update");
         Qst_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Qst_Update_BtnActionPerformed(evt);
+            }
+        });
+        Qst_Update_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Qst_Update_BtnKeyReleased(evt);
             }
         });
 
@@ -793,6 +916,11 @@ public class Home extends javax.swing.JFrame {
                 Qst_Add_BtnActionPerformed(evt);
             }
         });
+        Qst_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Qst_Add_BtnKeyReleased(evt);
+            }
+        });
 
         Qst_Back_Btn.setText("Back");
         Qst_Back_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -805,12 +933,22 @@ public class Home extends javax.swing.JFrame {
                 Qst_Back_BtnActionPerformed(evt);
             }
         });
+        Qst_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Qst_Back_BtnKeyReleased(evt);
+            }
+        });
 
         Qst_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Qst_Delete_Btn.setText("Delete");
         Qst_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Qst_Delete_BtnActionPerformed(evt);
+            }
+        });
+        Qst_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Qst_Delete_BtnKeyReleased(evt);
             }
         });
 
@@ -963,7 +1101,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(UserLogin_ForgetPwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         desktopPane.add(UserLoginFrame);
@@ -981,11 +1119,22 @@ public class Home extends javax.swing.JFrame {
         ChangePwd_ConfPwd_Label.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         ChangePwd_ConfPwd_Label.setText("Confirm Password");
 
+        ChangePwd_ConfPwd_Textfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ChangePwd_ConfPwd_TextfieldKeyReleased(evt);
+            }
+        });
+
         ChangePwd_Submit_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ChangePwd_Submit_Btn.setText("Submit");
         ChangePwd_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChangePwd_Submit_BtnActionPerformed(evt);
+            }
+        });
+        ChangePwd_Submit_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ChangePwd_Submit_BtnKeyReleased(evt);
             }
         });
 
@@ -1057,6 +1206,11 @@ public class Home extends javax.swing.JFrame {
         StDetails_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StDetails_Back_BtnActionPerformed(evt);
+            }
+        });
+        StDetails_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                StDetails_Back_BtnKeyReleased(evt);
             }
         });
 
@@ -1310,8 +1464,7 @@ public class Home extends javax.swing.JFrame {
         userMngtMenu.setEnabled(false);
         changePwd.setEnabled(false);
         logoutMenu.setEnabled(false);
-        //studentsDetail.setEnabled(false);
-    }
+          }
 
     private void Populate_Users() {
         try {
@@ -1395,7 +1548,7 @@ public class Home extends javax.swing.JFrame {
     private void subject_delete_fn() {
         int viewIndex = Sub_Table.getSelectedRow();
         rowcount = Sub_Table.getSelectedRowCount();
-        if (rowcount > 1) {
+        if (rowcount > 1 || rowcount==0) {
             JOptionPane.showMessageDialog(null, "Please select a single subject to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
 
@@ -1424,11 +1577,11 @@ public class Home extends javax.swing.JFrame {
 
     private void AddSub_Add_Btn_fun()
     {
-        if (!AddSub_Name_Textarea.getText().equalsIgnoreCase("")) {
+        if (!(AddSub_Name_Textarea.getText().trim()).equals("")) {
             String insertsubject = "INSERT INTO Subjects(subject_name,subject_no) VALUES(?,?)";
             try {
                 pst = con.prepareStatement(insertsubject);
-                pst.setString(1, AddSub_Name_Textarea.getText());
+                pst.setString(1, AddSub_Name_Textarea.getText().trim());
                 pst.setString(2, "0");
                 pst.executeUpdate();
 
@@ -1443,7 +1596,8 @@ public class Home extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(null, "Please enter a Subject", "Alert", JOptionPane.ERROR_MESSAGE);
-        }
+            AddSubjectFrame.setVisible(true);
+               }
     }
     private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
         AddSub_Add_Btn_fun();
@@ -1478,6 +1632,7 @@ public class Home extends javax.swing.JFrame {
                 Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
                 closeAllFrames();
                 LessonsFrame.setVisible(true);
+                Populate_Lessons();
 
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -1485,14 +1640,27 @@ public class Home extends javax.swing.JFrame {
         }
     }
     private void Sub_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Enter_BtnActionPerformed
-       Sub_Enter_Btn_fun();
+       if(Sub_Table.getSelectedRowCount()==1)
+       {
+           Sub_Enter_Btn_fun();
+       }
+       else if(Sub_Table.getSelectedRowCount()>1)
+       {
+           JOptionPane.showMessageDialog(null, "Please select a single subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(null, "Please select a subject", "Alert", JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_Sub_Enter_BtnActionPerformed
 
-    private void Ls_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnActionPerformed
+    private void Ls_Enter_Btn_fun()
+    {
         String lessonscontent = "";
         rowcount = Ls_Table.getSelectedRowCount();
-        if (rowcount > 1) {
+        if (rowcount > 1 || rowcount ==0) {
             JOptionPane.showMessageDialog(null, "Please select a single lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            LessonsFrame.requestFocus();
         } else {
             try {
                 selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
@@ -1514,10 +1682,13 @@ public class Home extends javax.swing.JFrame {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    private void Ls_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnActionPerformed
+        Ls_Enter_Btn_fun();
     }//GEN-LAST:event_Ls_Enter_BtnActionPerformed
 
-    private void LsContent_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnActionPerformed
-
+    private void LsContent_Update_Btn_fun()
+    {
         String updatelessoncontent = "Update lessons set lesson_content=? where lesson_id=" + selectedlesson;
         try {
             pst = con.prepareStatement(updatelessoncontent);
@@ -1529,15 +1700,21 @@ public class Home extends javax.swing.JFrame {
         }
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        Populate_Lessons();
 
+    }
+    private void LsContent_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnActionPerformed
+        LsContent_Update_Btn_fun();
+        
     }//GEN-LAST:event_LsContent_Update_BtnActionPerformed
 
-    private void Ls_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnActionPerformed
-
+    private void Ls_Delete_Btn_fun()
+    {
         int row = Ls_Table.getSelectedRow();
         rowcount = Ls_Table.getSelectedRowCount();
-        if (rowcount > 1) {
+        if (rowcount > 1 || rowcount==0) {
             JOptionPane.showMessageDialog(null, "Please select a single lesson to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            LessonsFrame.requestFocus();
         } else {
             DefaultTableModel model = (DefaultTableModel) Ls_Table.getModel();
 
@@ -1557,6 +1734,10 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    private void Ls_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnActionPerformed
+
+        Ls_Delete_Btn_fun();
     }//GEN-LAST:event_Ls_Delete_BtnActionPerformed
 
     private void Ls_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Add_BtnActionPerformed
@@ -1564,7 +1745,8 @@ public class Home extends javax.swing.JFrame {
         AddLessonFrame.setVisible(true);
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
-    private void AddLs_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLs_Submit_BtnActionPerformed
+    private void AddLs_Submit_Btn_fun()
+    {
         String insertsubject = "INSERT INTO lessons( lesson_name,lesson_content,subject_id,lesson_no) VALUES(?,?,?,?)";
         if (!AddLs_Name_TextArea.getText().equalsIgnoreCase("") && !(AddLs_Content_TextArea.getText().equalsIgnoreCase(""))) {
             try {
@@ -1586,40 +1768,47 @@ public class Home extends javax.swing.JFrame {
             AddLs_Content_TextArea.setText("");
 
         } else {
+            
             JOptionPane.showMessageDialog(null, "Please enter the lesson information", "Alert", JOptionPane.ERROR_MESSAGE);
+            AddLessonFrame.requestFocus();
         }
+    }
+    private void AddLs_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLs_Submit_BtnActionPerformed
+        AddLs_Submit_Btn_fun();
 
     }//GEN-LAST:event_AddLs_Submit_BtnActionPerformed
 
-    private void UsMng_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnActionPerformed
+    private void UsMng_Delete_Btn_fun()
+    {
         int row = User_Table.getSelectedRow();
         rowcount = User_Table.getSelectedRowCount();
-        DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
+        
+        if (rowcount > 1 || rowcount==0) {
 
-        String selected = model.getValueAt(row, 0).toString();
-        if (rowcount > 1) {
-
-            JOptionPane.showMessageDialog(null, "Please select single user to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Please select a user to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            UserManagementFrame.requestFocus();
         } else {
-            if (row >= 0) {
-
+                DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
+                String selected = model.getValueAt(row, 0).toString();
                 model.removeRow(row);
 
                 try {
-                    //Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "root", "hey");
                     pst = con.prepareStatement("delete from users where user_id='" + selected + "' ");
                     pst.executeUpdate();
                 } catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
-            }
+            
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
             UsMng_Password_Textfield.setText("");
             updateUsersIndex();
             Populate_Users();
         }
+    }
+    
+    private void UsMng_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnActionPerformed
+        UsMng_Delete_Btn_fun();
     }//GEN-LAST:event_UsMng_Delete_BtnActionPerformed
 
     private void User_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TableMouseClicked
@@ -1627,17 +1816,15 @@ public class Home extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
 
         selectedUserid = model.getValueAt(row, 0).toString();
-        String selectedUsername = model.getValueAt(row, 1).toString();
-        String selectedEmail = model.getValueAt(row, 2).toString();
-        String selectedPassword = model.getValueAt(row, 3).toString();
+        String selectedUsername = model.getValueAt(row, 2).toString();
+        String selectedEmail = model.getValueAt(row, 3).toString();
+        String selectedPassword = model.getValueAt(row, 4).toString();
 
         if (row >= 0) {
             UsMng_Name_Textfield.setText(selectedUsername);
             UsMng_Email_Textfield.setText(selectedEmail);
             UsMng_Password_Textfield.setText(selectedPassword);
-
         }
-
     }//GEN-LAST:event_User_TableMouseClicked
 
     private Boolean EmailValidator(String emailIdString) {
@@ -1656,20 +1843,26 @@ public class Home extends javax.swing.JFrame {
         }
         return ValidEmailId;
     }
-    private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
-
-        if (!UsMng_Name_Textfield.getText().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("")) {
-            if (userCheck(UsMng_Email_Textfield.getText())) {
+    
+    private void UsMng_Add_Btn_fun()
+    {
+        rowcount=User_Table.getSelectedRowCount();
+      if (!UsMng_Name_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("") && rowcount==0) 
+        {
+            if (userCheck(UsMng_Email_Textfield.getText()))
+            {
                 JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
                 UsMng_Email_Textfield.setText("");
-            } else {
-                String insertuser = "INSERT INTO users( user_name,user_email,user_password,user_no) VALUES(?,?,?,?)";
-                try {
-
-                    if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
+            } 
+            else {
+                if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) 
+                    {
                         JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
                         UsMng_Email_Textfield.setText("");
-                    } else {
+                    } 
+                    else {
+                        try {
+                        String insertuser = "INSERT INTO users( user_name,user_email,user_password,user_no) VALUES(?,?,?,?)";
                         pst = con.prepareStatement(insertuser);
                         pst.setString(1, UsMng_Name_Textfield.getText());
                         pst.setString(2, UsMng_Email_Textfield.getText());
@@ -1680,33 +1873,41 @@ public class Home extends javax.swing.JFrame {
                         UsMng_Email_Textfield.setText("");
                         UsMng_Password_Textfield.setText("");
                         updateUsersIndex();
-
+                        }
+                        catch (SQLException ex) {
+                                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please enter correct user information", "Alert", JOptionPane.ERROR_MESSAGE);
-
         }
-
+         else {
+            JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
+            UserManagementFrame.requestFocus();
+            UsMng_Name_Textfield.setText("");
+            UsMng_Email_Textfield.setText("");
+            UsMng_Password_Textfield.setText("");
+        }
         Populate_Users();
+    }
+    
+    private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
 
+        UsMng_Add_Btn_fun();
     }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
 
-    private void UsMng_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Update_BtnActionPerformed
+    private void UsMng_Update_Btn_fun()
+    {
+         rowcount = User_Table.getSelectedRowCount();
+        if (rowcount > 1 || rowcount==0) {
 
-        rowcount = User_Table.getSelectedRowCount();
-        if (rowcount > 1) {
-
-            JOptionPane.showMessageDialog(null, "Please select single user to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Please select a user to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            UserManagementFrame.requestFocus();
         } else {
             try {
                 if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
                     JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
                     UsMng_Email_Textfield.setText("");
+                    UserManagementFrame.requestFocus();
                 } else {
                     pst = con.prepareStatement("Update users set user_name=?,user_email=?,user_password=? where user_id=" + selectedUserid);
                     pst.setString(1, UsMng_Name_Textfield.getText());
@@ -1722,6 +1923,10 @@ public class Home extends javax.swing.JFrame {
             }
             Populate_Users();
         }
+    }
+    
+    private void UsMng_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Update_BtnActionPerformed
+        UsMng_Update_Btn_fun();
     }//GEN-LAST:event_UsMng_Update_BtnActionPerformed
 
     private void Sub_TableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_TableMousePressed
@@ -1743,14 +1948,15 @@ public class Home extends javax.swing.JFrame {
     private void Qst_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_TableMouseClicked
         rowcount = Qst_Table.getSelectedRowCount();
         int row = Qst_Table.getSelectedRow();
-        if (rowcount > 1) {
+        
+        if (rowcount > 1 || rowcount==0) {
             JOptionPane.showMessageDialog(null, "Please select a single question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            QuestionsFrame.requestFocus();
         } else {
-
+            
             DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
-
             selectedQuestionId = model.getValueAt(row, 0).toString();
-            String selectedQuestion = model.getValueAt(row, 2).toString();
+            selectedQuestion = model.getValueAt(row, 2).toString();
             String option1 = model.getValueAt(row, 3).toString();
             String option2 = model.getValueAt(row, 4).toString();
             String option3 = model.getValueAt(row, 5).toString();
@@ -1774,10 +1980,12 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Qst_TableMouseClicked
 
-    private void Qst_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Update_BtnActionPerformed
-        rowcount = Qst_Table.getSelectedRowCount();
-        if (rowcount > 1) {
+    private void Qst_Update_Btn_fun()
+    {
+         rowcount = Qst_Table.getSelectedRowCount();
+        if (rowcount > 1 || rowcount==0) {
             JOptionPane.showMessageDialog(null, "Please select single question to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            QuestionsFrame.requestFocus();
         } else {
             String option = null;
             if (Qst_Opt1_Btn.isSelected()) {
@@ -1811,14 +2019,18 @@ public class Home extends javax.swing.JFrame {
             }
 
         }
+    }
+    private void Qst_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Update_BtnActionPerformed
+       Qst_Update_Btn_fun();
     }//GEN-LAST:event_Qst_Update_BtnActionPerformed
 
-    private void Qst_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Add_BtnActionPerformed
+    private void Qst_Add_Btn_fun()
+    {
         String insertquestion = "INSERT INTO questions(question,option1,option2,option3,answer,lesson_id,question_no) VALUES(?,?,?,?,?,?,?)";
         String correctoption = "";
         rowcount = Qst_Table.getSelectedRowCount();
         try {
-            if (!Qst_Textarea.getText().equalsIgnoreCase("") && rowcount == 0) {
+            if ((!Qst_Textarea.getText().trim().equals("") && rowcount == 0) || !Qst_Textarea.getText().trim().equals(selectedQuestion)) {
                 pst = con.prepareStatement(insertquestion);
                 pst.setString(1, Qst_Textarea.getText());
                 pst.setString(2, Qst_Opt1_Textfield.getText());
@@ -1837,6 +2049,7 @@ public class Home extends javax.swing.JFrame {
 
                 if (buttonGroup1.getSelection() == null) {
                     JOptionPane.showMessageDialog(null, "Please select an answer", "Alert", JOptionPane.ERROR_MESSAGE);
+                    QuestionsFrame.requestFocus();
                 } else {
                     pst.execute();
                     Qst_Textarea.setText("");
@@ -1848,28 +2061,40 @@ public class Home extends javax.swing.JFrame {
 
                 }
             } else {
+               
                 JOptionPane.showMessageDialog(null, "Please enter a new question", "Alert", JOptionPane.ERROR_MESSAGE);
+                QuestionsFrame.requestFocus();
+                Qst_Textarea.setText("");
+                Qst_Opt1_Textfield.setText("");
+                Qst_Opt2_Textfield.setText("");
+                Qst_Opt3_Textfield.setText("");
+                buttonGroup1.clearSelection();
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         Populate_Questions();
+    }
+    private void Qst_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Add_BtnActionPerformed
+        Qst_Add_Btn_fun();
     }//GEN-LAST:event_Qst_Add_BtnActionPerformed
 
     private void subject_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subject_menuMouseClicked
         closeAllFrames();
         if (login == true) {
             SubjectFrame.setVisible(true);
+            Populate_Subject();
         } else {
             UserLoginFrame.setVisible(true);
         }
-
     }//GEN-LAST:event_subject_menuMouseClicked
 
     private void userMngtMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMngtMenuMouseClicked
         closeAllFrames();
         if (login == true) {
             UserManagementFrame.setVisible(true);
+            Populate_Users();
         } else {
             UserLoginFrame.setVisible(true);
         }
@@ -1879,11 +2104,13 @@ public class Home extends javax.swing.JFrame {
     private void AddLs_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLs_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        Populate_Lessons();
     }//GEN-LAST:event_AddLs_Back_BtnActionPerformed
 
     private void Qst_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        Populate_Lessons();
     }//GEN-LAST:event_Qst_Back_BtnActionPerformed
 
     private void Qst_Back_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_Back_BtnMouseClicked
@@ -1897,6 +2124,7 @@ public class Home extends javax.swing.JFrame {
     private void Ls_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Back_BtnActionPerformed
         closeAllFrames();
         SubjectFrame.setVisible(true);
+        Populate_Subject();
     }//GEN-LAST:event_Ls_Back_BtnActionPerformed
     
     private void UserLogin_fun()
@@ -1925,7 +2153,8 @@ public class Home extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Password or Username is incorrect");
                 login = false;
-            }
+                UserLoginFrame.requestFocus();
+                   }
             UserLogin_Name_Textfield.setText("");
             UserLogin_Password_Textfield.setText("");
             
@@ -1954,18 +2183,23 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_changePwdActionPerformed
 
-    private void ChangePwd_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwd_Submit_BtnActionPerformed
+    private void ChangedPwd_Submit_Btn_fun()
+    {
         try {
             pst = con.prepareStatement("Update users set user_password=? where user_name='" + userLoginName + "'");
-            System.out.println(userLoginName);
-            if ((ChangePwd_NewPwd_Textfield.getText()).equals(ChangePwd_ConfPwd_Textfield.getText())) {
+            
+            if ((ChangePwd_NewPwd_Textfield.getText()).equals(ChangePwd_ConfPwd_Textfield.getText()) &&
+                   !ChangePwd_NewPwd_Textfield.getText().trim().equals("") && !ChangePwd_ConfPwd_Textfield.getText().trim().equals("")) 
+            {
                 pst.setString(1, ChangePwd_NewPwd_Textfield.getText());
                 pst.executeUpdate();
                 ChangePasswordFrame.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Password Changed Successfully", "Alert", JOptionPane.ERROR_MESSAGE);
+                
             } else {
                 ChangePasswordFrame.setVisible(true);
                 JOptionPane.showMessageDialog(null, "Password and Confirm Password Mismatched", "Alert", JOptionPane.ERROR_MESSAGE);
+                ChangePasswordFrame.requestFocus();
             }
             ChangePwd_NewPwd_Textfield.setText("");
             ChangePwd_ConfPwd_Textfield.setText("");
@@ -1974,6 +2208,9 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Connection Error!");
 
         }
+    }
+    private void ChangePwd_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwd_Submit_BtnActionPerformed
+        ChangedPwd_Submit_Btn_fun();
     }//GEN-LAST:event_ChangePwd_Submit_BtnActionPerformed
 
     private void logoutMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMenuMouseClicked
@@ -2009,29 +2246,27 @@ public class Home extends javax.swing.JFrame {
        UserLogin_ForgetPwd();
     }//GEN-LAST:event_UserLogin_ForgetPwd_BtnActionPerformed
 
-    private void Qst_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnActionPerformed
+    private void Qst_Delete_Btn_fun()
+    {
         int row = Qst_Table.getSelectedRow();
         rowcount = Qst_Table.getSelectedRowCount();
-        DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
-
-        String selected = model.getValueAt(row, 0).toString();
-        if (rowcount > 1) {
+         
+        if (rowcount > 1 || rowcount==0) {
 
             JOptionPane.showMessageDialog(null, "Please select single question to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-
+            QuestionsFrame.requestFocus();
         } else {
-            if (row >= 0) {
-
-                model.removeRow(row);
+            DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
+                String selected = model.getValueAt(row, 0).toString();
+              model.removeRow(row);
 
                 try {
-
                     pst = con.prepareStatement("delete from questions where id='" + selected + "' ");
                     pst.executeUpdate();
                 } catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
-            }
+            
             updateQuestionsIndex();
             Populate_Questions();
             Qst_Textarea.setText("");
@@ -2040,16 +2275,24 @@ public class Home extends javax.swing.JFrame {
             Qst_Opt3_Textfield.setText("");
             buttonGroup1.clearSelection();
         }
+    }
+    private void Qst_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnActionPerformed
+        Qst_Delete_Btn_fun();
     }//GEN-LAST:event_Qst_Delete_BtnActionPerformed
 
-    private void Ls_Marks_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Marks_BtnActionPerformed
+    private void Ls_Marks_Btn_fun()
+    {
         if (Ls_Table.getSelectedRowCount() > 0) {
             closeAllFrames();
             Populate_Students();
             StudentManagementFrame.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a lesson to check the students marks", "Alert", JOptionPane.ERROR_MESSAGE);
+            LessonsFrame.requestFocus();
         }
+    }
+    private void Ls_Marks_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Marks_BtnActionPerformed
+        Ls_Marks_Btn_fun();
     }//GEN-LAST:event_Ls_Marks_BtnActionPerformed
 
     private void Ls_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_TableMouseClicked
@@ -2073,16 +2316,35 @@ public class Home extends javax.swing.JFrame {
 
     private void Sub_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnKeyReleased
         
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            subject_delete_fn();
+        rowcount=Sub_Table.getSelectedRowCount();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount==1)
+        {
+         subject_delete_fn();
         }
+       else if(evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount>1)
+       {
+           //JOptionPane.showMessageDialog(null, "Please select a single subject to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a single subject to delete at a time");
+            Sub_Table.requestFocus();
+       }
+       else if(evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount==0)
+       {
+           //JOptionPane.showMessageDialog(null, "Please select a subject to delete", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a single subject to delete");
+            Sub_Table.requestFocus();
+       }
+      
     }//GEN-LAST:event_Sub_Delete_BtnKeyReleased
 
     private void UserLogin_Login_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_Login_BtnKeyReleased
        
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             UserLogin_fun();
-        }
+            }
+         else
+         {
+             UserLoginFrame.requestFocus();
+         }
     }//GEN-LAST:event_UserLogin_Login_BtnKeyReleased
 
     private void UserLogin_ForgetPwd_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnKeyReleased
@@ -2097,19 +2359,40 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
         closeAllFrames();
         AddSubjectFrame.setVisible(true);
+        AddSub_Name_Textarea.requestFocus();
         }
     }//GEN-LAST:event_Sub_Add_BtnKeyReleased
 
     private void Sub_Enter_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Enter_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_TAB)
         {
-            Sub_Add_Btn.requestFocus();
+            SubjectFrame.requestFocus();
         }
-            
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+         
+         if(Sub_Table.getSelectedRowCount()==1)
+            {
+                Sub_Enter_Btn_fun();
+            }
+       else if(Sub_Table.getSelectedRowCount()>1)
+            {
+           JOptionPane.showMessageDialog(null, "Please select a single subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+           Sub_Table.requestFocus();
+             }
+       else
+            {
+           JOptionPane.showMessageDialog(null, "Please select a subject", "Alert", JOptionPane.ERROR_MESSAGE);
+           Sub_Table.requestFocus();
+            }
+        }
+        
     }//GEN-LAST:event_Sub_Enter_BtnKeyReleased
 
     private void Sub_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_TableKeyReleased
          if(evt.getKeyCode()==KeyEvent.VK_TAB){
+            
             Sub_Add_Btn.requestFocus();
      }
     }//GEN-LAST:event_Sub_TableKeyReleased
@@ -2137,6 +2420,231 @@ public class Home extends javax.swing.JFrame {
             userMngtMenu.requestFocus();
         }
     }//GEN-LAST:event_subject_menuKeyReleased
+
+    private void AddSub_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Back_BtnActionPerformed
+        AddSub_Name_Textarea.setText("");
+        closeAllFrames();
+        SubjectFrame.setVisible(true);
+        Populate_Subject();
+        
+    }//GEN-LAST:event_AddSub_Back_BtnActionPerformed
+
+    private void AddSub_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddSub_Back_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        SubjectFrame.setVisible(true);
+        Populate_Subject();
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+         AddSub_Name_Textarea.requestFocus();
+        }
+        
+    }//GEN-LAST:event_AddSub_Back_BtnKeyReleased
+
+    private void Sub_TableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_TableKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Sub_TableKeyPressed
+
+    private void Ls_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Back_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        SubjectFrame.setVisible(true);
+        Populate_Subject();
+        }
+    }//GEN-LAST:event_Ls_Back_BtnKeyReleased
+
+    private void Ls_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Add_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        AddLessonFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_Ls_Add_BtnKeyReleased
+
+    private void Ls_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        Ls_Delete_Btn_fun();
+        LessonsFrame.setVisible(true);
+        Populate_Lessons();
+        }
+    }//GEN-LAST:event_Ls_Delete_BtnKeyReleased
+
+    private void Ls_Enter_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        Ls_Enter_Btn_fun (); 
+        }
+    }//GEN-LAST:event_Ls_Enter_BtnKeyReleased
+
+    private void AddLs_Name_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Name_TextAreaKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+        AddLs_Content_TextArea.requestFocus(); 
+        }
+    }//GEN-LAST:event_AddLs_Name_TextAreaKeyReleased
+
+    private void AddLs_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Back_BtnKeyReleased
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        LessonsFrame.setVisible(true);
+        Populate_Lessons();
+        }
+    }//GEN-LAST:event_AddLs_Back_BtnKeyReleased
+
+    private void AddLs_Content_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Content_TextAreaKeyReleased
+         if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+        AddLs_Submit_Btn.requestFocus();
+        }
+    }//GEN-LAST:event_AddLs_Content_TextAreaKeyReleased
+
+    private void AddLs_Submit_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Submit_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+                 AddLs_Submit_Btn_fun();
+        }
+    }//GEN-LAST:event_AddLs_Submit_BtnKeyReleased
+
+    private void Ls_Content_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Content_Back_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        LessonsFrame.setVisible(true);
+        Populate_Lessons();
+        }
+    }//GEN-LAST:event_Ls_Content_Back_BtnKeyReleased
+
+    private void LsContent_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_TextAreaKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+            LsContent_Update_Btn.requestFocus();
+        }
+    }//GEN-LAST:event_LsContent_TextAreaKeyReleased
+
+    private void LsContent_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        { 
+        LsContent_Update_Btn_fun();   
+        }
+    }//GEN-LAST:event_LsContent_Update_BtnKeyReleased
+
+    private void LsContent_Questions_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Questions_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        QuestionsFrame.setVisible(true);
+        Populate_Questions();
+        }
+    }//GEN-LAST:event_LsContent_Questions_BtnKeyReleased
+
+    private void Qst_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Back_BtnKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        closeAllFrames();
+        LessonsFrame.setVisible(true);
+        Populate_Lessons();
+        }
+    }//GEN-LAST:event_Qst_Back_BtnKeyReleased
+
+    private void Qst_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Update_BtnKeyReleased
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            Qst_Update_Btn_fun();
+        }
+    }//GEN-LAST:event_Qst_Update_BtnKeyReleased
+
+    private void Qst_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Add_BtnKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        { 
+            Qst_Add_Btn_fun();
+        }
+    }//GEN-LAST:event_Qst_Add_BtnKeyReleased
+
+    private void Qst_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        { 
+        Qst_Delete_Btn_fun();
+        }
+    }//GEN-LAST:event_Qst_Delete_BtnKeyReleased
+
+    private void Qst_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_TableKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        { 
+            Qst_Textarea.requestFocus();
+        }
+    }//GEN-LAST:event_Qst_TableKeyReleased
+
+    private void Qst_Opt3_TextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Opt3_TextfieldKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        { 
+            Qst_Update_Btn.requestFocus();
+        }
+    }//GEN-LAST:event_Qst_Opt3_TextfieldKeyReleased
+
+    private void Ls_Marks_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Marks_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            Ls_Marks_Btn_fun();
+        }
+    }//GEN-LAST:event_Ls_Marks_BtnKeyReleased
+
+    private void StDetails_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_StDetails_Back_BtnKeyReleased
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            closeAllFrames();
+            LessonsFrame.setVisible(true);
+            Populate_Lessons();
+        }
+    }//GEN-LAST:event_StDetails_Back_BtnKeyReleased
+
+    private void ChangePwd_ConfPwd_TextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_ConfPwd_TextfieldKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+            ChangePwd_Submit_Btn.requestFocus();
+        }
+    }//GEN-LAST:event_ChangePwd_ConfPwd_TextfieldKeyReleased
+
+    private void ChangePwd_Submit_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_Submit_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            ChangedPwd_Submit_Btn_fun();
+        }
+    }//GEN-LAST:event_ChangePwd_Submit_BtnKeyReleased
+
+    private void UsMng_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            UsMng_Add_Btn_fun();
+        }
+    }//GEN-LAST:event_UsMng_Add_BtnKeyReleased
+
+    private void UsMng_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            UsMng_Delete_Btn_fun();
+        }
+    }//GEN-LAST:event_UsMng_Delete_BtnKeyReleased
+
+    private void UsMng_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Update_BtnKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            UsMng_Update_Btn_fun();
+        }
+    }//GEN-LAST:event_UsMng_Update_BtnKeyReleased
+
+    private void User_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_User_TableKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+            UsMng_Add_Btn.requestFocus();
+        }
+    }//GEN-LAST:event_User_TableKeyReleased
 
     /**
      * @param args the command line arguments
@@ -2183,6 +2691,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextArea AddLs_Name_TextArea;
     private javax.swing.JButton AddLs_Submit_Btn;
     private javax.swing.JButton AddSub_Add_Btn;
+    private javax.swing.JButton AddSub_Back_Btn;
     private javax.swing.JLabel AddSub_Label;
     private javax.swing.JLabel AddSub_Name_Label;
     private javax.swing.JTextArea AddSub_Name_Textarea;
