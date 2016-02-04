@@ -14,10 +14,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -1036,7 +1043,6 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Login_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         UserLogin_Login_Btn.setText("Login");
         UserLogin_Login_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        UserLogin_Login_Btn.setNextFocusableComponent(subject_menu);
         UserLogin_Login_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserLogin_Login_BtnActionPerformed(evt);
@@ -1101,7 +1107,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(UserLogin_ForgetPwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         desktopPane.add(UserLoginFrame);
@@ -2222,8 +2228,22 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutMenuMouseClicked
     private void UserLogin_ForgetPwd()
     {
-     String sql = "Select user_email from users where user_name=?";
+        String[] recipients = new String[]{"bcd@gmail.com"};  
+        String[] bccRecipients = new String[]{"abc@gmail.com"};  
+        String subject = "Hi this is test Mail";  
+        String messageBody = "Test Mail from codesstore.blogspot.com";  
+  
+        new MailUtil().sendMail(recipients, bccRecipients , subject, messageBody); 
+    /* String sql = "Select user_email from users where user_name=?";
         String loggedUserEmailId = "";
+        String from="abhilasha@mait.ae";
+        Properties props = new Properties();
+        props.setProperty("mail.smtp.host", "mait.ae");  
+        props.setProperty("mail.smtp.port", "2096");
+        
+        Session sess=Session.getDefaultInstance(props);
+        MimeMessage message=new MimeMessage(sess); 
+                 
         try {
             if (UserLogin_Name_Textfield.getText().equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(null, "Please enter User Name", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -2233,12 +2253,23 @@ public class Home extends javax.swing.JFrame {
                 rs = pst.executeQuery();
                 while (rs.next()) {
                     loggedUserEmailId = rs.getString(1);
+                    
+                    //System.out.println(loggedUserEmailId);
+                    try {  
+                        message.setFrom(new InternetAddress(from));
+                        message.addRecipient(Message.RecipientType.TO,new InternetAddress(loggedUserEmailId));  
+                    message.setSubject("Forget Password Mail");  
+                    message.setText("Hello, this is example of sending email  ");
+                    Transport.send(message);
+                    } catch (MessagingException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                 }
-
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-        }    
+        }  */  
     }
     
     private void UserLogin_ForgetPwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnActionPerformed
@@ -2343,7 +2374,8 @@ public class Home extends javax.swing.JFrame {
             }
          else
          {
-             UserLoginFrame.requestFocus();
+             //UserLoginFrame.requestFocus();
+             UserLogin_ForgetPwd_Btn.requestFocus();
          }
     }//GEN-LAST:event_UserLogin_Login_BtnKeyReleased
 
