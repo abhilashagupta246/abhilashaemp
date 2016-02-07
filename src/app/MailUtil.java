@@ -25,9 +25,9 @@ import javax.mail.internet.MimeMessage;
 public class MailUtil {  
   
     private String SMTP_HOST = "smtp.gmail.com";  
-    private String FROM_ADDRESS = "abc@gmail.com";  
-    private String PASSWORD = "";  
-    private String FROM_NAME = "";  
+    private String FROM_ADDRESS = "abhilashagupta246@gmail.com";  
+    private String PASSWORD = "atul@1986";  
+    private String FROM_NAME = "abhilasha";  
   
     public boolean sendMail(String[] recipients, String[] bccRecipients, String subject, String message) {  
         try {  
