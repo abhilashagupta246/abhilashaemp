@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMessage;
 public class MailUtil {  
   
     private String SMTP_HOST = "smtp.gmail.com";  
-    private String FROM_ADDRESS = "abhilashagupta246@gmail.com";  
+    private String FROM_ADDRESS = "";  
     private String PASSWORD = "";  
     private String FROM_NAME = "";  
   

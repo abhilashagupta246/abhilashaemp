@@ -3422,30 +3422,46 @@ public class Home extends javax.swing.JFrame {
     
     private void UserLogin_ForgetPwd()
     {
+        if(!UserLogin_Name_Textfield.getText().trim().equals(""))
+        {
+        String messageBody="";
         String[] recipients = new String[1];  
-        String[] bccRecipients = new String[]{"abhilashagupta246@gmail.com"};  
-        String subject = "Forget Password Change Mail"; 
-        String messageBody ="";
+        String[] bccRecipients = new String[]{""};  
+        String subject = "Forget Password Mail"; 
+        StringBuffer messageBodyBuffer= new StringBuffer();
         String user=UserLogin_Name_Textfield.getText();
-        System.out.println(user);
+       
         String sql="select user_password,user_email from users where user_name='"+user+"'";
-        messageBody = "Hi "+user;
+        messageBodyBuffer.append("Hi "+user);
         try {
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
-            System.out.println(rs.getString("user_password"));
-//            messageBody.concat("\n Your password is "+rs.getString("user_password"));
-//            messageBody.concat("\n \n");
-//            messageBody.concat("Regards,");
-//            messageBody.concat("\n");
-//            messageBody.concat("Team");
-            System.out.println(rs.getString("user_email"));
-            recipients[1]=rs.getString("user_email");
-            System.out.println(recipients[1]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            if(rs.next()){
+                recipients[0]=rs.getString("user_email");
+                messageBodyBuffer.append("</br>");
+                messageBodyBuffer.append("</br>");
+                messageBodyBuffer.append("Your password is " + rs.getString("user_password"));
+                messageBodyBuffer.append("</br>");
+                messageBodyBuffer.append("</br>");
+                messageBodyBuffer.append("Regards,");
+                messageBodyBuffer.append("</br>");
+                messageBodyBuffer.append("Team");
+                messageBody = messageBodyBuffer.toString();
+            
+                new MailUtil().sendMail(recipients, bccRecipients, subject, messageBody);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "User does not exist", "Alert", JOptionPane.ERROR_MESSAGE);
+                UserLoginFrame.requestFocus();
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter your User Name", "Alert", JOptionPane.ERROR_MESSAGE);
+            UserLoginFrame.requestFocus();
         }
-          new MailUtil().sendMail(recipients, bccRecipients , subject, messageBody); 
     }
     
     private void UserLogin_ForgetPwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnActionPerformed
