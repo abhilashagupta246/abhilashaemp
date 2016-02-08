@@ -2805,7 +2805,7 @@ public class Home extends javax.swing.JFrame {
         int viewIndex = Sub_Table.getSelectedRow();
         rowcount = Sub_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount==0) {
-            JOptionPane.showMessageDialog(null, "Please select a single subject to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) Sub_Table.getModel();
             String selected = model.getValueAt(viewIndex, 0).toString();
@@ -2865,7 +2865,7 @@ public class Home extends javax.swing.JFrame {
          String lessonsid = "";
         rowcount = Sub_Table.getSelectedRowCount();
         if (rowcount > 1) {
-            JOptionPane.showMessageDialog(null, "Please select a single subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
 
             try {
@@ -2895,11 +2895,11 @@ public class Home extends javax.swing.JFrame {
        }
        else if(Sub_Table.getSelectedRowCount()>1)
        {
-           JOptionPane.showMessageDialog(null, "Please select a single subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
        }
        else
        {
-           JOptionPane.showMessageDialog(null, "Please select a subject", "Alert", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Please select one subject", "Alert", JOptionPane.ERROR_MESSAGE);
        }
     }//GEN-LAST:event_Sub_Enter_BtnActionPerformed
 
@@ -2908,7 +2908,7 @@ public class Home extends javax.swing.JFrame {
         String lessonscontent = "";
         rowcount = Ls_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount ==0) {
-            JOptionPane.showMessageDialog(null, "Please select a single lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
         } else {
             try {
@@ -2962,7 +2962,7 @@ public class Home extends javax.swing.JFrame {
         int row = Ls_Table.getSelectedRow();
         rowcount = Ls_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount==0) {
-            JOptionPane.showMessageDialog(null, "Please select a single lesson to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
         } else {
             DefaultTableModel model = (DefaultTableModel) Ls_Table.getModel();
@@ -3199,7 +3199,7 @@ public class Home extends javax.swing.JFrame {
         int row = Qst_Table.getSelectedRow();
         
         if (rowcount > 1 || rowcount==0) {
-            JOptionPane.showMessageDialog(null, "Please select a single question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
         } else {
             
@@ -3233,7 +3233,7 @@ public class Home extends javax.swing.JFrame {
     {
          rowcount = Qst_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount==0) {
-            JOptionPane.showMessageDialog(null, "Please select single question to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select a question to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
         } else {
             String option = null;
@@ -3466,7 +3466,7 @@ public class Home extends javax.swing.JFrame {
     
     private void UserLogin_ForgetPwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnActionPerformed
 
-       UserLogin_ForgetPwd();
+        UserLogin_ForgetPwd();
     }//GEN-LAST:event_UserLogin_ForgetPwd_BtnActionPerformed
 
     private void Qst_Delete_Btn_fun()
@@ -3476,7 +3476,7 @@ public class Home extends javax.swing.JFrame {
          
         if (rowcount > 1 || rowcount==0) {
 
-            JOptionPane.showMessageDialog(null, "Please select single question to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
         } else {
             DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
@@ -3544,19 +3544,15 @@ public class Home extends javax.swing.JFrame {
         {
          subject_delete_fn();
         }
-       else if(evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount>1)
-       {
-           //JOptionPane.showMessageDialog(null, "Please select a single subject to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(this, "Please select a single subject to delete at a time");
+        else if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount > 1) {
+
+            JOptionPane.showMessageDialog(this, "Please select one subject to delete");
             Sub_Table.requestFocus();
-       }
-       else if(evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount==0)
-       {
-           //JOptionPane.showMessageDialog(null, "Please select a subject to delete", "Alert", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(this, "Please select a single subject to delete");
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount == 0) {
+
+            JOptionPane.showMessageDialog(this, "Please select one subject to delete");
             Sub_Table.requestFocus();
-       }
-      
+        }
     }//GEN-LAST:event_Sub_Delete_BtnKeyReleased
 
     private void UserLogin_Login_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_Login_BtnKeyReleased
@@ -3602,7 +3598,7 @@ public class Home extends javax.swing.JFrame {
             }
        else if(Sub_Table.getSelectedRowCount()>1)
             {
-           JOptionPane.showMessageDialog(null, "Please select a single subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
            Sub_Table.requestFocus();
              }
        else
@@ -4108,7 +4104,7 @@ public class Home extends javax.swing.JFrame {
         if(rowcount>1 || rowcount==0)
         {
             ViewSug_Suggestion_Textarea.setText("");
-            JOptionPane.showMessageDialog(null, "Please select a single suggestion", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one suggestion to view", "Alert", JOptionPane.ERROR_MESSAGE);
             ViewSuggestionsFrame.requestFocus();
         }
         else
@@ -4148,7 +4144,7 @@ public class Home extends javax.swing.JFrame {
 
         if(rowcount>1 || rowcount==0)
         {
-            JOptionPane.showMessageDialog(null, "Please select a single question", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select one question", "Alert", JOptionPane.ERROR_MESSAGE);
             EmployeeTableFrame.requestFocus();
         }
         else
