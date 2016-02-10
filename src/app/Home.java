@@ -606,6 +606,11 @@ public class Home extends javax.swing.JFrame {
                 LsContent_Next_BtnActionPerformed(evt);
             }
         });
+        LsContent_Next_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                LsContent_Next_BtnKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout LessonsContentFrameLayout = new javax.swing.GroupLayout(LessonsContentFrame.getContentPane());
         LessonsContentFrame.getContentPane().setLayout(LessonsContentFrameLayout);
@@ -2502,12 +2507,12 @@ public class Home extends javax.swing.JFrame {
         AddLessonPictureFrameLayout.setHorizontalGroup(
             AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonPictureFrameLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(AddLessonPicture_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(AddLessonPicture_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -2527,7 +2532,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(AddLessonPicture_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonPictureFrameLayout.createSequentialGroup()
-                .addContainerGap(549, Short.MAX_VALUE)
+                .addContainerGap(553, Short.MAX_VALUE)
                 .addGroup(AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddLessonPicture_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddLessonPicture_Upload_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2535,7 +2540,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(AddLessonPictureFrame);
-        AddLessonPictureFrame.setBounds(0, 0, 636, 623);
+        AddLessonPictureFrame.setBounds(0, 0, 636, 627);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -3742,6 +3747,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             Populate_Lessons();
+            LsContent_PictureLabel.setIcon(null);
         }
     }//GEN-LAST:event_Ls_Content_Back_BtnKeyReleased
 
@@ -4347,8 +4353,8 @@ public class Home extends javax.swing.JFrame {
     private void AddLessonPicture_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLessonPicture_Back_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-            AddLessonFrame.setVisible(true);
-            
+            LessonsContentFrame.setVisible(true);
+        Populate_LessonPictures();
         }
     }//GEN-LAST:event_AddLessonPicture_Back_BtnKeyReleased
     
@@ -4459,6 +4465,12 @@ public class Home extends javax.swing.JFrame {
     private void LsContent_Next_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Next_BtnActionPerformed
         LsContent_Next_Btn_fun();
     }//GEN-LAST:event_LsContent_Next_BtnActionPerformed
+
+    private void LsContent_Next_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Next_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            LsContent_Next_Btn_fun();
+        }
+    }//GEN-LAST:event_LsContent_Next_BtnKeyReleased
 
     /**
      * @param args the command line arguments
