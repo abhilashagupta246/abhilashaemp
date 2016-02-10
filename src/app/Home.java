@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -23,9 +25,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Ashraf Hameed
@@ -34,8 +38,8 @@ public class Home extends javax.swing.JFrame {
 
     Connection con;
     Statement stmt;
-    ResultSet rs,rs1,rs2;
-    PreparedStatement pst,pst1,pst2;
+    ResultSet rs, rs1, rs2;
+    PreparedStatement pst, pst1, pst2;
     String nm = null;
     String subject = null;
     String selectedlesson = null;
@@ -50,7 +54,11 @@ public class Home extends javax.swing.JFrame {
     String userLoginName = "";
     String EMAIL_PATTERN = "";
     Boolean userEmailCheck = false;
-
+    String lessonImage = null;
+    String LessonImageUrl = null;
+     int pictureIndex;
+     int checkIndex=1;
+     ArrayList<String> pictureList = new ArrayList<String>();
     /**
      * Creates new form Home
      */
@@ -60,7 +68,8 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         UserLoginFrame.setLocation(250, 200);
         UserLoginFrame.setVisible(true);
-         }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,11 +109,12 @@ public class Home extends javax.swing.JFrame {
         AddLs_Label = new javax.swing.JLabel();
         AddLs_Back_Btn = new javax.swing.JButton();
         LessonsContentFrame = new javax.swing.JInternalFrame();
-        LsContent_TextArea = new javax.swing.JTextArea();
         LsContent_Update_Btn = new javax.swing.JButton();
         LsContent_label = new javax.swing.JLabel();
         LsContent_Questions_Btn = new javax.swing.JButton();
         Ls_Content_Back_Btn = new javax.swing.JButton();
+        LsContent_PictureLabel = new javax.swing.JLabel();
+        LsContent_Next_Btn = new javax.swing.JButton();
         SubjectFrame = new javax.swing.JInternalFrame();
         Sub_Label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -271,6 +281,11 @@ public class Home extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        AddLessonPictureFrame = new javax.swing.JInternalFrame();
+        AddLessonPicture_Label = new javax.swing.JLabel();
+        AddLessonPicture_Add_Btn = new javax.swing.JButton();
+        AddLessonPicture_Back_Btn = new javax.swing.JButton();
+        AddLessonPicture_Upload_Btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -433,7 +448,7 @@ public class Home extends javax.swing.JFrame {
 
         AddLs_Submit_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddLs_Submit_Btn.setText("Submit");
-        AddLs_Submit_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        AddLs_Submit_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
         AddLs_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLs_Submit_BtnActionPerformed(evt);
@@ -471,7 +486,7 @@ public class Home extends javax.swing.JFrame {
 
         AddLs_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddLs_Back_Btn.setText("Back");
-        AddLs_Back_Btn.setPreferredSize(new java.awt.Dimension(70, 30));
+        AddLs_Back_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
         AddLs_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLs_Back_BtnActionPerformed(evt);
@@ -499,11 +514,10 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(AddLs_Name_Label)
                             .addComponent(AddLs_Content_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                .addComponent(jScrollPane4)))))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         AddLessonFrameLayout.setVerticalGroup(
@@ -534,19 +548,11 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddLessonFrame);
         AddLessonFrame.setBounds(0, 0, 500, 400);
 
-        LessonsContentFrame.setPreferredSize(new java.awt.Dimension(600, 400));
+        LessonsContentFrame.setPreferredSize(new java.awt.Dimension(700, 600));
         LessonsContentFrame.setVisible(true);
 
-        LsContent_TextArea.setColumns(20);
-        LsContent_TextArea.setRows(5);
-        LsContent_TextArea.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                LsContent_TextAreaKeyReleased(evt);
-            }
-        });
-
         LsContent_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        LsContent_Update_Btn.setText("Update");
+        LsContent_Update_Btn.setText("Add Picture");
         LsContent_Update_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
         LsContent_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,26 +596,43 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        LsContent_PictureLabel.setPreferredSize(new java.awt.Dimension(500, 300));
+
+        LsContent_Next_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsContent_Next_Btn.setText("Next");
+        LsContent_Next_Btn.setPreferredSize(new java.awt.Dimension(60, 30));
+        LsContent_Next_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LsContent_Next_BtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout LessonsContentFrameLayout = new javax.swing.GroupLayout(LessonsContentFrame.getContentPane());
         LessonsContentFrame.getContentPane().setLayout(LessonsContentFrameLayout);
         LessonsContentFrameLayout.setHorizontalGroup(
             LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(153, 153, 153)
-                        .addComponent(LsContent_label))
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(LsContent_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                        .addComponent(LsContent_label)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LessonsContentFrameLayout.createSequentialGroup()
+                        .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                                .addGap(164, 164, 164)
+                                .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(151, 151, 151)
+                                .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 42, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35)
+                        .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
         LessonsContentFrameLayout.setVerticalGroup(
             LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,17 +641,23 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LsContent_label))
-                .addGap(41, 41, 41)
-                .addComponent(LsContent_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(167, 167, 167))
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)))
+                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         desktopPane.add(LessonsContentFrame);
-        LessonsContentFrame.setBounds(0, 0, 600, 400);
+        LessonsContentFrame.setBounds(0, 0, 700, 600);
 
         SubjectFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 800, 550));
         SubjectFrame.setPreferredSize(new java.awt.Dimension(760, 400));
@@ -2421,6 +2450,93 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(ResultFrame);
         ResultFrame.setBounds(0, 0, 1000, 400);
 
+        AddLessonPictureFrame.setVisible(true);
+
+        AddLessonPicture_Label.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        AddLessonPicture_Label.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        AddLessonPicture_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddLessonPicture_Add_Btn.setText("Add");
+        AddLessonPicture_Add_Btn.setPreferredSize(new java.awt.Dimension(70, 30));
+        AddLessonPicture_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddLessonPicture_Add_BtnActionPerformed(evt);
+            }
+        });
+        AddLessonPicture_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLessonPicture_Add_BtnKeyReleased(evt);
+            }
+        });
+
+        AddLessonPicture_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddLessonPicture_Back_Btn.setText("Back");
+        AddLessonPicture_Back_Btn.setPreferredSize(new java.awt.Dimension(70, 30));
+        AddLessonPicture_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddLessonPicture_Back_BtnActionPerformed(evt);
+            }
+        });
+        AddLessonPicture_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLessonPicture_Back_BtnKeyReleased(evt);
+            }
+        });
+
+        AddLessonPicture_Upload_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddLessonPicture_Upload_Btn.setText("Upload");
+        AddLessonPicture_Upload_Btn.setPreferredSize(new java.awt.Dimension(71, 30));
+        AddLessonPicture_Upload_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddLessonPicture_Upload_BtnActionPerformed(evt);
+            }
+        });
+        AddLessonPicture_Upload_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddLessonPicture_Upload_BtnKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddLessonPictureFrameLayout = new javax.swing.GroupLayout(AddLessonPictureFrame.getContentPane());
+        AddLessonPictureFrame.getContentPane().setLayout(AddLessonPictureFrameLayout);
+        AddLessonPictureFrameLayout.setHorizontalGroup(
+            AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
+                .addGroup(AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonPictureFrameLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AddLessonPicture_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AddLessonPicture_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(AddLessonPicture_Upload_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddLessonPicture_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
+        );
+        AddLessonPictureFrameLayout.setVerticalGroup(
+            AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AddLessonPicture_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(AddLessonPicture_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonPictureFrameLayout.createSequentialGroup()
+                .addContainerGap(549, Short.MAX_VALUE)
+                .addGroup(AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddLessonPicture_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddLessonPicture_Upload_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        desktopPane.add(AddLessonPictureFrame);
+        AddLessonPictureFrame.setBounds(0, 0, 636, 623);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -2441,10 +2557,9 @@ public class Home extends javax.swing.JFrame {
             pst = con.prepareStatement("select employee_id as ID,employee_name as 'Employee Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
             rs = pst.executeQuery();
             feedbackTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
-           
+
             feedbackTable.setModel(DbUtils.resultSetToTableModel(rs));
-            for(int a=2;a<=10;a++)
-            {
+            for (int a = 2; a <= 10; a++) {
                 feedbackTable.getColumnModel().getColumn(a).setMinWidth(0);
                 feedbackTable.getColumnModel().getColumn(a).setMaxWidth(0);
             }
@@ -2452,51 +2567,68 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    private void Populate_Checkboxes()
-    {
-        String sqlStudent="select student_name from students";
-        String sqlSubject="select subject_name from subject";
+    
+    private void Populate_LessonPictures() {
+        try {
+            pictureIndex=0;
+            
+            pst = con.prepareStatement("select image from lesson_image where lesson_id="+selectedlesson);
+            rs = pst.executeQuery();
+                       ImageIcon icon;
+                    try {
+                        while(rs.next())
+                        {   
+                            pictureList.add(rs.getString("image"));
+                            icon = new ImageIcon(ImageIO.read(new URL(pictureList.get(0))));
+                        Image resizeImage = icon.getImage();
+                        Image newimg = resizeImage.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
+                        ImageIcon newIcon = new ImageIcon(newimg);
+                        LsContent_PictureLabel.setIcon(newIcon);
+                        pictureIndex++;
+                    }} catch (IOException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        } catch (SQLException e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private void Populate_Checkboxes() {
+        String sqlStudent = "select student_name from students";
+        String sqlSubject = "select subject_name from subject";
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
         jComboBox1.addItem("");
         jComboBox2.addItem("");
-       try {
+        try {
             pst = con.prepareStatement(sqlStudent);
             rs = pst.executeQuery(sqlStudent);
-            while(rs.next())
-            {
+            while (rs.next()) {
                 jComboBox1.addItem(rs.getString("student_name"));
             }
-            pst1=con.prepareStatement(sqlSubject);
-            rs1=pst1.executeQuery(sqlSubject);
-            while(rs1.next())
-            {
-                 jComboBox2.addItem(rs1.getString("subject_name"));
+            pst1 = con.prepareStatement(sqlSubject);
+            rs1 = pst1.executeQuery(sqlSubject);
+            while (rs1.next()) {
+                jComboBox2.addItem(rs1.getString("subject_name"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
-     private void Populate_Results() {
+
+    private void Populate_Results() {
         try {
-            String wquery="";
-                if(jComboBox1.getSelectedItem()!=null && jComboBox1.getSelectedItem()!="") 
-                {
-                    if(jComboBox2.getSelectedItem()!=null && jComboBox2.getSelectedItem()!="")
-                    {
-                         wquery=" where student_name='"+jComboBox1.getSelectedItem()+"' and subject_name='"+jComboBox2.getSelectedItem()+"'"; 
-                    }
-                    else
-                    {
-                        wquery=" where student_name='"+jComboBox1.getSelectedItem()+"'";
-                    }
+            String wquery = "";
+            if (jComboBox1.getSelectedItem() != null && jComboBox1.getSelectedItem() != "") {
+                if (jComboBox2.getSelectedItem() != null && jComboBox2.getSelectedItem() != "") {
+                    wquery = " where student_name='" + jComboBox1.getSelectedItem() + "' and subject_name='" + jComboBox2.getSelectedItem() + "'";
+                } else {
+                    wquery = " where student_name='" + jComboBox1.getSelectedItem() + "'";
                 }
-                else if(jComboBox2.getSelectedItem()!=null && jComboBox2.getSelectedItem()!="") 
-                {
-                    wquery=" where subject_name='"+jComboBox2.getSelectedItem()+"'";
-                }
-         String sql="select student_name as 'Student Name',subject_name as Subject, lesson_name as Lesson,marks as Marks, passing_date as Date, result as Result from results"+wquery;
+            } else if (jComboBox2.getSelectedItem() != null && jComboBox2.getSelectedItem() != "") {
+                wquery = " where subject_name='" + jComboBox2.getSelectedItem() + "'";
+            }
+            String sql = "select student_name as 'Student Name',subject_name as Subject, lesson_name as Lesson,marks as Marks, passing_date as Date, result as Result from results" + wquery;
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             Result_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -2506,7 +2638,7 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-     
+
     private void Populate_Subject() {
         try {
             pst = con.prepareStatement("select subject_id as Id,subject_no as 'S No' ,subject_name as Subject from subject");
@@ -2522,7 +2654,7 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Lessons() {
         try {
-            pst = con.prepareStatement("select lesson_id as Id,lesson_no as 'S No' ,lesson_name as Lessons from lessons where subject_id=" + subject);
+            pst = con.prepareStatement("select lesson_id as Id,lesson_name as Lessons from lessons where subject_id=" + subject);
             rs = pst.executeQuery();
             Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -2545,7 +2677,7 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-     private void Populate_Suggestions() {
+    private void Populate_Suggestions() {
         try {
             pst = con.prepareStatement("select id as Id ,username as 'User Name', subject as Subject ,message  as Suggestions from suggestions");
             rs = pst.executeQuery();
@@ -2555,7 +2687,7 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-     
+
     private void updateSubjectIndex() {
         String str = "Select * from subject";
         String index = "";
@@ -2574,24 +2706,23 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void updateLessonIndex() {
-        String str = "Select * from lessons where subject_id=" + subject;
-        String index = "";
-        int i = 1;
-        try {
-            pst = con.prepareStatement(str);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                index = rs.getString("lesson_id");
-                pst2 = con.prepareStatement("Update lessons set lesson_no=" + i + " where lesson_id=" + index);
-                pst2.executeUpdate();
-                i++;
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
+//    private void updateLessonIndex() {
+//        String str = "Select * from lessons where subject_id=" + subject;
+//        String index = "";
+//        int i = 1;
+//        try {
+//            pst = con.prepareStatement(str);
+//            rs = pst.executeQuery();
+//            while (rs.next()) {
+//                index = rs.getString("lesson_id");
+//                pst2 = con.prepareStatement("Update lessons set lesson_no=" + i + " where lesson_id=" + index);
+//                pst2.executeUpdate();
+//                i++;
+//            }
+//        } catch (Exception e) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//    }
 //    private void updateQuestionsIndex() {
 //        String str = "Select * from questions where lesson_id=" + selectedlesson;
 //        String index = "";
@@ -2609,7 +2740,6 @@ public class Home extends javax.swing.JFrame {
 //            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
 //        }
 //    }
-
 //    private void updateUsersIndex() {
 //        String str = "Select * from users";
 //        String index = "";
@@ -2627,7 +2757,6 @@ public class Home extends javax.swing.JFrame {
 //            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
 //        }
 //    }
-
     private Boolean userCheck(String emailCheck) {
         userEmailCheck = false;
         ArrayList<String> emailList = new ArrayList<String>();
@@ -2667,9 +2796,9 @@ public class Home extends javax.swing.JFrame {
         ViewSuggestionsFrame.setVisible(false);
         FeedbackFrame.setVisible(false);
         ResultFrame.setVisible(false);
+        AddLessonPictureFrame.setVisible(false);
     }
 
-   
     private void Populate_Users() {
         try {
             pst = con.prepareStatement("select id as Id,username as 'User Name', email as 'Email Id',password as Password from user");
@@ -2749,7 +2878,7 @@ public class Home extends javax.swing.JFrame {
     private void subject_delete_fn() {
         int viewIndex = Sub_Table.getSelectedRow();
         rowcount = Sub_Table.getSelectedRowCount();
-        if (rowcount > 1 || rowcount==0) {
+        if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) Sub_Table.getModel();
@@ -2772,8 +2901,7 @@ public class Home extends javax.swing.JFrame {
         subject_delete_fn();
     }//GEN-LAST:event_Sub_Delete_BtnActionPerformed
 
-    private void AddSub_Add_Btn_fun()
-    {
+    private void AddSub_Add_Btn_fun() {
         if (!(AddSub_Name_Textfield.getText().trim()).equals("")) {
             String insertsubject = "INSERT INTO Subject(subject_name,subject_no) VALUES(?,?)";
             try {
@@ -2792,29 +2920,27 @@ public class Home extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Please enter a Subject", "Alert", JOptionPane.ERROR_MESSAGE);
             AddSubjectFrame.setVisible(true);
-               }
+        }
     }
     private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
         AddSub_Add_Btn_fun();
     }//GEN-LAST:event_AddSub_Add_BtnActionPerformed
 
     private void Sub_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_TableMouseClicked
-       if(Sub_Table.getSelectedRow()>0)
-       {
-        subject = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 0).toString();
-       }
+        if (Sub_Table.getSelectedRow() > 0) {
+            subject = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 0).toString();
+        }
     }//GEN-LAST:event_Sub_TableMouseClicked
 
-    private void Sub_Enter_Btn_fun()
-    {
-         String lessonsid = "";
+    private void Sub_Enter_Btn_fun() {
+        String lessonsid = "";
         rowcount = Sub_Table.getSelectedRowCount();
         if (rowcount > 1) {
             JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 subject = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 0).toString();
-                lessonsid = "select lesson_id  as Id,lesson_no as 'S No',lesson_name as Lesson from lessons where subject_id=" + subject;
+                lessonsid = "select lesson_id  as Id,lesson_name as Lesson from lessons where subject_id=" + subject;
                 pst = con.prepareStatement(lessonsid);
                 rs = pst.executeQuery(lessonsid);
                 Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -2831,45 +2957,40 @@ public class Home extends javax.swing.JFrame {
         }
     }
     private void Sub_Enter_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Enter_BtnActionPerformed
-       if(Sub_Table.getSelectedRowCount()==1)
-       {
-           Sub_Enter_Btn_fun();
-       }
-       else if(Sub_Table.getSelectedRowCount()>1)
-       {
-           JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-       }
-       else
-       {
-           JOptionPane.showMessageDialog(null, "Please select one subject", "Alert", JOptionPane.ERROR_MESSAGE);
-       }
+        if (Sub_Table.getSelectedRowCount() == 1) {
+            Sub_Enter_Btn_fun();
+        } else if (Sub_Table.getSelectedRowCount() > 1) {
+            JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select one subject", "Alert", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_Sub_Enter_BtnActionPerformed
 
-    private void Ls_Enter_Btn_fun()
-    {
-        String lessonscontent = "";
+    private void Ls_Enter_Btn_fun() {
+        String lessonsLabel = "";
+        //String lessonsPicture="";
+        //String LessonImage= "";
         rowcount = Ls_Table.getSelectedRowCount();
-        if (rowcount > 1 || rowcount ==0) {
+        if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
         } else {
             try {
                 selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
 
-                lessonscontent = "select lesson_name,lesson_content from lessons where lesson_id=" + selectedlesson;
-
-                pst = con.prepareStatement(lessonscontent);
-
-                rs = pst.executeQuery(lessonscontent);
-
+                lessonsLabel = "select lesson_name from lessons where lesson_id=" + selectedlesson;
+                //lessonsPicture ="select image from lesson_image where lesson_id=" + selectedlesson;
+                pst = con.prepareStatement(lessonsLabel);
+                //pst1 = con.prepareStatement(lessonsPicture);
+                rs = pst.executeQuery(lessonsLabel);
+                //rs1= pst1.executeQuery(lessonsPicture);
                 while (rs.next()) {
                     LsContent_label.setText(rs.getString(1));
-                    LsContent_TextArea.setText(rs.getString(2));
                 }
+                Populate_LessonPictures();
                 closeAllFrames();
                 LessonsContentFrame.setVisible(true);
-
-            } catch (SQLException ex) {
+                  } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -2878,12 +2999,11 @@ public class Home extends javax.swing.JFrame {
         Ls_Enter_Btn_fun();
     }//GEN-LAST:event_Ls_Enter_BtnActionPerformed
 
-    private void LsContent_Update_Btn_fun()
-    {
-        String updatelessoncontent = "Update lessons set lesson_content=? where lesson_id=" + selectedlesson;
+    private void LsContent_Update_Btn_fun() {
+        String updatelessoncontent = "Update lessons set lesson_picture=? where lesson_id=" + selectedlesson;
         try {
             pst = con.prepareStatement(updatelessoncontent);
-            pst.setString(1, LsContent_TextArea.getText());
+            //pst.setString(1, LsContent_PictureLabel.get());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -2895,15 +3015,14 @@ public class Home extends javax.swing.JFrame {
 
     }
     private void LsContent_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnActionPerformed
-        LsContent_Update_Btn_fun();
-        
+        closeAllFrames();
+      AddLessonPictureFrame.setVisible(true);
     }//GEN-LAST:event_LsContent_Update_BtnActionPerformed
 
-    private void Ls_Delete_Btn_fun()
-    {
+    private void Ls_Delete_Btn_fun() {
         int row = Ls_Table.getSelectedRow();
         rowcount = Ls_Table.getSelectedRowCount();
-        if (rowcount > 1 || rowcount==0) {
+        if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
         } else {
@@ -2918,7 +3037,7 @@ public class Home extends javax.swing.JFrame {
                 try {
                     pst = con.prepareStatement("delete from lessons where lesson_id='" + selected + "' ");
                     pst.executeUpdate();
-                    updateLessonIndex();
+                    // updateLessonIndex();
                     Populate_Lessons();
                 } catch (Exception w) {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
@@ -2936,22 +3055,19 @@ public class Home extends javax.swing.JFrame {
         AddLessonFrame.setVisible(true);
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
-    private void AddLs_Submit_Btn_fun()
-    {
-        String insertsubject = "INSERT INTO lessons( lesson_name,lesson_content,subject_id,lesson_no) VALUES(?,?,?,?)";
+    private void AddLs_Submit_Btn_fun() {
+        String insertlesson = "INSERT INTO lessons( lesson_name,lesson_content,subject_id) VALUES(?,?,?)";
         if (!AddLs_Name_TextArea.getText().equalsIgnoreCase("") && !(AddLs_Content_TextArea.getText().equalsIgnoreCase(""))) {
             try {
-                pst = con.prepareStatement(insertsubject);
+                pst = con.prepareStatement(insertlesson);
                 pst.setString(1, AddLs_Name_TextArea.getText());
                 pst.setString(2, AddLs_Content_TextArea.getText());
                 pst.setString(3, subject);
-                pst.setString(4, "0");
                 pst.executeUpdate();
-
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-            updateLessonIndex();
+            //updateLessonIndex();
             Populate_Lessons();
             closeAllFrames();
             LessonsFrame.setVisible(true);
@@ -2959,7 +3075,7 @@ public class Home extends javax.swing.JFrame {
             AddLs_Content_TextArea.setText("");
 
         } else {
-            
+
             JOptionPane.showMessageDialog(null, "Please enter the lesson information", "Alert", JOptionPane.ERROR_MESSAGE);
             AddLessonFrame.requestFocus();
         }
@@ -2969,27 +3085,26 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AddLs_Submit_BtnActionPerformed
 
-    private void UsMng_Delete_Btn_fun()
-    {
+    private void UsMng_Delete_Btn_fun() {
         int row = User_Table.getSelectedRow();
         rowcount = User_Table.getSelectedRowCount();
-        
-        if (rowcount > 1 || rowcount==0) {
+
+        if (rowcount > 1 || rowcount == 0) {
 
             JOptionPane.showMessageDialog(null, "Please select a user to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             UserManagementFrame.requestFocus();
         } else {
-                DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
-                String selected = model.getValueAt(row, 0).toString();
-                model.removeRow(row);
+            DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
+            String selected = model.getValueAt(row, 0).toString();
+            model.removeRow(row);
 
-                try {
-                    pst = con.prepareStatement("delete from user where id='" + selected + "' ");
-                    pst.executeUpdate();
-                } catch (Exception w) {
-                    JOptionPane.showMessageDialog(this, "Connection Error!");
-                }
-            
+            try {
+                pst = con.prepareStatement("delete from user where id='" + selected + "' ");
+                pst.executeUpdate();
+            } catch (Exception w) {
+                JOptionPane.showMessageDialog(this, "Connection Error!");
+            }
+
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
             UsMng_Password_Textfield.setText("");
@@ -2997,7 +3112,7 @@ public class Home extends javax.swing.JFrame {
             Populate_Users();
         }
     }
-    
+
     private void UsMng_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnActionPerformed
         UsMng_Delete_Btn_fun();
     }//GEN-LAST:event_UsMng_Delete_BtnActionPerformed
@@ -3010,7 +3125,7 @@ public class Home extends javax.swing.JFrame {
         selectedUsername = model.getValueAt(row, 1).toString();
         selectedUserEmail = model.getValueAt(row, 2).toString();
         selectedUserPassword = model.getValueAt(row, 3).toString();
-       
+
         if (row >= 0) {
             UsMng_Name_Textfield.setText(selectedUsername);
             UsMng_Email_Textfield.setText(selectedUserEmail);
@@ -3034,45 +3149,35 @@ public class Home extends javax.swing.JFrame {
         }
         return ValidEmailId;
     }
-    
-    private void UsMng_Add_Btn_fun()
-    {
-        rowcount=User_Table.getSelectedRowCount();
-      if (!UsMng_Name_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("") && rowcount==0) 
-        {
-            if (userCheck(UsMng_Email_Textfield.getText()))
-            {
+
+    private void UsMng_Add_Btn_fun() {
+        rowcount = User_Table.getSelectedRowCount();
+        if (!UsMng_Name_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("") && rowcount == 0) {
+            if (userCheck(UsMng_Email_Textfield.getText())) {
                 JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
                 UsMng_Email_Textfield.setText("");
-            } 
-            else {
-                if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) 
-                    {
-                        JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
-                        UsMng_Email_Textfield.setText("");
-                    } 
-                    else {
-                        try {
-                        String insertuser = "INSERT INTO user(username,email,password,gender,image) VALUES(?,?,?,?,?)";
-                        pst = con.prepareStatement(insertuser);
-                        pst.setString(1, UsMng_Name_Textfield.getText());
-                        pst.setString(2, UsMng_Email_Textfield.getText());
-                        pst.setString(3, UsMng_Password_Textfield.getText());
-                        pst.setString(4, "None");
-                        pst.setString(5, "http://www.research.cmru.ac.th/2014/ris/researcher/blank-person.jpg");
-                        pst.executeUpdate();
-                        UsMng_Name_Textfield.setText("");
-                        UsMng_Email_Textfield.setText("");
-                        UsMng_Password_Textfield.setText("");
-                        //updateUsersIndex();
-                        }
-                        catch (SQLException ex) {
-                                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                    }
+            } else if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
+                JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
+                UsMng_Email_Textfield.setText("");
+            } else {
+                try {
+                    String insertuser = "INSERT INTO user(username,email,password,gender,image) VALUES(?,?,?,?,?)";
+                    pst = con.prepareStatement(insertuser);
+                    pst.setString(1, UsMng_Name_Textfield.getText());
+                    pst.setString(2, UsMng_Email_Textfield.getText());
+                    pst.setString(3, UsMng_Password_Textfield.getText());
+                    pst.setString(4, "None");
+                    pst.setString(5, "http://www.research.cmru.ac.th/2014/ris/researcher/blank-person.jpg");
+                    pst.executeUpdate();
+                    UsMng_Name_Textfield.setText("");
+                    UsMng_Email_Textfield.setText("");
+                    UsMng_Password_Textfield.setText("");
+                    //updateUsersIndex();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        }
-         else {
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
             UserManagementFrame.requestFocus();
             UsMng_Name_Textfield.setText("");
@@ -3081,15 +3186,14 @@ public class Home extends javax.swing.JFrame {
         }
         Populate_Users();
     }
-    
+
     private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
         UsMng_Add_Btn_fun();
     }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
 
-    private void UsMng_Update_Btn_fun()
-    {
-         rowcount = User_Table.getSelectedRowCount();
-        if (rowcount > 1 || rowcount==0) {
+    private void UsMng_Update_Btn_fun() {
+        rowcount = User_Table.getSelectedRowCount();
+        if (rowcount > 1 || rowcount == 0) {
 
             JOptionPane.showMessageDialog(null, "Please select a user to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             UserManagementFrame.requestFocus();
@@ -3100,12 +3204,12 @@ public class Home extends javax.swing.JFrame {
                     UsMng_Email_Textfield.setText("");
                     UserManagementFrame.requestFocus();
                 } else {
-                    System.out.println("hello");
+                   
                     pst = con.prepareStatement("Update user set username=?,email=?,password=? where id=" + selectedUserid);
                     pst.setString(1, UsMng_Name_Textfield.getText());
                     pst.setString(2, UsMng_Email_Textfield.getText());
                     pst.setString(3, UsMng_Password_Textfield.getText());
-                    System.out.println(UsMng_Password_Textfield.getText());
+                   
                     pst.executeUpdate();
                     UsMng_Name_Textfield.setText("");
                     UsMng_Email_Textfield.setText("");
@@ -3117,7 +3221,7 @@ public class Home extends javax.swing.JFrame {
             Populate_Users();
         }
     }
-    
+
     private void UsMng_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Update_BtnActionPerformed
         UsMng_Update_Btn_fun();
     }//GEN-LAST:event_UsMng_Update_BtnActionPerformed
@@ -3141,12 +3245,12 @@ public class Home extends javax.swing.JFrame {
     private void Qst_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_TableMouseClicked
         rowcount = Qst_Table.getSelectedRowCount();
         int row = Qst_Table.getSelectedRow();
-        
-        if (rowcount > 1 || rowcount==0) {
+
+        if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
         } else {
-            
+
             DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
             selectedQuestionId = model.getValueAt(row, 0).toString();
             selectedQuestion = model.getValueAt(row, 1).toString();
@@ -3173,10 +3277,9 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Qst_TableMouseClicked
 
-    private void Qst_Update_Btn_fun()
-    {
-         rowcount = Qst_Table.getSelectedRowCount();
-        if (rowcount > 1 || rowcount==0) {
+    private void Qst_Update_Btn_fun() {
+        rowcount = Qst_Table.getSelectedRowCount();
+        if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select a question to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
         } else {
@@ -3215,11 +3318,10 @@ public class Home extends javax.swing.JFrame {
         }
     }
     private void Qst_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Update_BtnActionPerformed
-       Qst_Update_Btn_fun();
+        Qst_Update_Btn_fun();
     }//GEN-LAST:event_Qst_Update_BtnActionPerformed
 
-    private void Qst_Add_Btn_fun()
-    {
+    private void Qst_Add_Btn_fun() {
         String insertquestion = "INSERT INTO questions(questions,option1,option2,option3,answer,lesson_id) VALUES(?,?,?,?,?,?)";
         String correctoption = "";
         rowcount = Qst_Table.getSelectedRowCount();
@@ -3239,7 +3341,6 @@ public class Home extends javax.swing.JFrame {
                 }
                 pst.setString(5, correctoption);
                 pst.setString(6, selectedlesson);
-               
 
                 if (buttonGroup1.getSelection() == null) {
                     JOptionPane.showMessageDialog(null, "Please select an answer", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -3255,7 +3356,7 @@ public class Home extends javax.swing.JFrame {
 
                 }
             } else {
-               
+
                 JOptionPane.showMessageDialog(null, "Please enter a new question", "Alert", JOptionPane.ERROR_MESSAGE);
                 QuestionsFrame.requestFocus();
                 Qst_Textarea.setText("");
@@ -3263,7 +3364,7 @@ public class Home extends javax.swing.JFrame {
                 Qst_Opt2_Textfield.setText("");
                 Qst_Opt3_Textfield.setText("");
                 buttonGroup1.clearSelection();
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -3299,9 +3400,8 @@ public class Home extends javax.swing.JFrame {
         SubjectFrame.setVisible(true);
         Populate_Subject();
     }//GEN-LAST:event_Ls_Back_BtnActionPerformed
-    
-    private void UserLogin_fun()
-    {
+
+    private void UserLogin_fun() {
         String sql = "Select * from user where username=? and password=?";
 
         try {
@@ -3309,7 +3409,7 @@ public class Home extends javax.swing.JFrame {
             pst.setString(1, UserLogin_Name_Textfield.getText());
             pst.setString(2, UserLogin_Password_Textfield.getText());
             rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 UserLoginFrame.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Logged in successfully..");
@@ -3322,10 +3422,10 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Username or Password is incorrect");
                 login = false;
                 UserLoginFrame.requestFocus();
-                   }
+            }
             UserLogin_Name_Textfield.setText("");
             UserLogin_Password_Textfield.setText("");
-            
+
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -3334,14 +3434,12 @@ public class Home extends javax.swing.JFrame {
         UserLogin_fun();
     }//GEN-LAST:event_UserLogin_Login_BtnActionPerformed
 
-    private void ChangedPwd_Submit_Btn_fun()
-    {
+    private void ChangedPwd_Submit_Btn_fun() {
         try {
             pst = con.prepareStatement("Update user set password=? where username='" + userLoginName + "'");
-            
-            if ((ChangePwd_NewPwd_Textfield.getText()).equals(ChangePwd_ConfPwd_Textfield.getText()) &&
-                   !ChangePwd_NewPwd_Textfield.getText().trim().equals("") && !ChangePwd_ConfPwd_Textfield.getText().trim().equals("")) 
-            {
+
+            if ((ChangePwd_NewPwd_Textfield.getText()).equals(ChangePwd_ConfPwd_Textfield.getText())
+                    && !ChangePwd_NewPwd_Textfield.getText().trim().equals("") && !ChangePwd_ConfPwd_Textfield.getText().trim().equals("")) {
                 pst.setString(1, ChangePwd_NewPwd_Textfield.getText());
                 pst.executeUpdate();
                 ChangePasswordFrame.setVisible(false);
@@ -3364,41 +3462,39 @@ public class Home extends javax.swing.JFrame {
     private void ChangePwd_Submit_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwd_Submit_BtnActionPerformed
         ChangedPwd_Submit_Btn_fun();
     }//GEN-LAST:event_ChangePwd_Submit_BtnActionPerformed
-    
-    private void UserLogin_ForgetPwd()
-    {
-        if(!UserLogin_Name_Textfield.getText().trim().equals(""))
-        {
-        String messageBody=null;
-        String[] recipients = new String[1];  
-        String[] bccRecipients = new String[]{""};  
-        String subject = "Forget Password Mail"; 
-        StringBuffer messageBodyBuffer= new StringBuffer();
-        String user=UserLogin_Name_Textfield.getText();
-       
-        String sql="select password,email from user where username='"+user+"'";
-        messageBodyBuffer.append("Hi ").append(user);
-        try {
-            pst=con.prepareStatement(sql);
-            rs=pst.executeQuery();
-            if(rs.next()){
-                recipients[0]=rs.getString("email");
-                messageBodyBuffer.append("</br>");
-                messageBodyBuffer.append("</br>");
-                messageBodyBuffer.append("Your password is ").append(rs.getString("password"));
-                messageBodyBuffer.append("</br>");
-                messageBodyBuffer.append("</br>");
-                messageBodyBuffer.append("Regards,");
-                messageBodyBuffer.append("</br>");
-                messageBodyBuffer.append("Team");
-                messageBody = messageBodyBuffer.toString();
-            
-                new MailUtil().sendMail(recipients, bccRecipients, subject, messageBody);
 
-            } else {
-                JOptionPane.showMessageDialog(null, "User does not exist", "Alert", JOptionPane.ERROR_MESSAGE);
-                UserLoginFrame.requestFocus();
-            }
+    private void UserLogin_ForgetPwd() {
+        if (!UserLogin_Name_Textfield.getText().trim().equals("")) {
+            String messageBody = null;
+            String[] recipients = new String[1];
+            String[] bccRecipients = new String[]{""};
+            String subject = "Forget Password Mail";
+            StringBuffer messageBodyBuffer = new StringBuffer();
+            String user = UserLogin_Name_Textfield.getText();
+
+            String sql = "select password,email from user where username='" + user + "'";
+            messageBodyBuffer.append("Hi ").append(user);
+            try {
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    recipients[0] = rs.getString("email");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Your password is ").append(rs.getString("password"));
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Regards,");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Team");
+                    messageBody = messageBodyBuffer.toString();
+
+                    new MailUtil().sendMail(recipients, bccRecipients, subject, messageBody);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "User does not exist", "Alert", JOptionPane.ERROR_MESSAGE);
+                    UserLoginFrame.requestFocus();
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -3408,33 +3504,32 @@ public class Home extends javax.swing.JFrame {
             UserLoginFrame.requestFocus();
         }
     }
-    
+
     private void UserLogin_ForgetPwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnActionPerformed
 
         UserLogin_ForgetPwd();
     }//GEN-LAST:event_UserLogin_ForgetPwd_BtnActionPerformed
 
-    private void Qst_Delete_Btn_fun()
-    {
+    private void Qst_Delete_Btn_fun() {
         int row = Qst_Table.getSelectedRow();
         rowcount = Qst_Table.getSelectedRowCount();
-         
-        if (rowcount > 1 || rowcount==0) {
+
+        if (rowcount > 1 || rowcount == 0) {
 
             JOptionPane.showMessageDialog(null, "Please select one question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
         } else {
             DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
-                String selected = model.getValueAt(row, 0).toString();
-              model.removeRow(row);
+            String selected = model.getValueAt(row, 0).toString();
+            model.removeRow(row);
 
-                try {
-                    pst = con.prepareStatement("delete from questions where id='" + selected + "' ");
-                    pst.executeUpdate();
-                } catch (Exception w) {
-                    JOptionPane.showMessageDialog(this, "Connection Error!");
-                }
-            
+            try {
+                pst = con.prepareStatement("delete from questions where id='" + selected + "' ");
+                pst.executeUpdate();
+            } catch (Exception w) {
+                JOptionPane.showMessageDialog(this, "Connection Error!");
+            }
+
             //updateQuestionsIndex();
             Populate_Questions();
             Qst_Textarea.setText("");
@@ -3448,8 +3543,7 @@ public class Home extends javax.swing.JFrame {
         Qst_Delete_Btn_fun();
     }//GEN-LAST:event_Qst_Delete_BtnActionPerformed
 
-    private void Ls_Marks_Btn_fun()
-    {
+    private void Ls_Marks_Btn_fun() {
         if (Ls_Table.getSelectedRowCount() > 0) {
             closeAllFrames();
             Populate_Students();
@@ -3464,16 +3558,17 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Ls_Marks_BtnActionPerformed
 
     private void Ls_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_TableMouseClicked
-      if(Ls_Table.getSelectedRow()>0){
-      selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
-      }
-       
+        if (Ls_Table.getSelectedRow() > 0) {
+            selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
+        }
+
     }//GEN-LAST:event_Ls_TableMouseClicked
 
     private void Ls_Content_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Content_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
         Populate_Lessons();
+        LsContent_PictureLabel.setIcon(null);
     }//GEN-LAST:event_Ls_Content_Back_BtnActionPerformed
 
     private void StDetails_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StDetails_Back_BtnActionPerformed
@@ -3483,13 +3578,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_StDetails_Back_BtnActionPerformed
 
     private void Sub_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnKeyReleased
-        
-        rowcount=Sub_Table.getSelectedRowCount();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount==1)
-        {
-         subject_delete_fn();
-        }
-        else if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount > 1) {
+
+        rowcount = Sub_Table.getSelectedRowCount();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount == 1) {
+            subject_delete_fn();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER && rowcount > 1) {
 
             JOptionPane.showMessageDialog(this, "Please select one subject to delete");
             Sub_Table.requestFocus();
@@ -3501,75 +3594,66 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Sub_Delete_BtnKeyReleased
 
     private void UserLogin_Login_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_Login_BtnKeyReleased
-       
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             UserLogin_fun();
-            }
-         else
-         {
-             //UserLoginFrame.requestFocus();
-             UserLogin_ForgetPwd_Btn.requestFocus();
-         }
+        } else {
+            //UserLoginFrame.requestFocus();
+            UserLogin_ForgetPwd_Btn.requestFocus();
+        }
     }//GEN-LAST:event_UserLogin_Login_BtnKeyReleased
 
     private void UserLogin_ForgetPwd_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnKeyReleased
-       
+
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-             UserLogin_ForgetPwd();
+            UserLogin_ForgetPwd();
         }
     }//GEN-LAST:event_UserLogin_ForgetPwd_BtnKeyReleased
 
     private void Sub_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Add_BtnKeyReleased
-        
+
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        closeAllFrames();
-        AddSubjectFrame.setVisible(true);
-        AddSub_Name_Textfield.requestFocus();
+            closeAllFrames();
+            AddSubjectFrame.setVisible(true);
+            AddSub_Name_Textfield.requestFocus();
         }
     }//GEN-LAST:event_Sub_Add_BtnKeyReleased
 
     private void Sub_Enter_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Enter_BtnKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_TAB)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             SubjectFrame.requestFocus();
         }
-        
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
-         
-         if(Sub_Table.getSelectedRowCount()==1)
-            {
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (Sub_Table.getSelectedRowCount() == 1) {
                 Sub_Enter_Btn_fun();
-            }
-       else if(Sub_Table.getSelectedRowCount()>1)
-            {
-           JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-           Sub_Table.requestFocus();
-             }
-       else
-            {
-           JOptionPane.showMessageDialog(null, "Please select a subject", "Alert", JOptionPane.ERROR_MESSAGE);
-           Sub_Table.requestFocus();
+            } else if (Sub_Table.getSelectedRowCount() > 1) {
+                JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+                Sub_Table.requestFocus();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a subject", "Alert", JOptionPane.ERROR_MESSAGE);
+                Sub_Table.requestFocus();
             }
         }
-        
+
     }//GEN-LAST:event_Sub_Enter_BtnKeyReleased
 
     private void Sub_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_TableKeyReleased
-         if(evt.getKeyCode()==KeyEvent.VK_TAB){
-            
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+
             Sub_Add_Btn.requestFocus();
-     }
+        }
     }//GEN-LAST:event_Sub_TableKeyReleased
 
     private void Ls_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_TableKeyReleased
-         if(evt.getKeyCode()==KeyEvent.VK_TAB){
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Ls_Add_Btn.requestFocus();
-     }
+        }
     }//GEN-LAST:event_Ls_TableKeyReleased
 
     private void AddSub_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             AddSub_Add_Btn_fun();
         }
     }//GEN-LAST:event_AddSub_Add_BtnKeyReleased
@@ -3579,21 +3663,19 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         SubjectFrame.setVisible(true);
         Populate_Subject();
-        
+
     }//GEN-LAST:event_AddSub_Back_BtnActionPerformed
 
     private void AddSub_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddSub_Back_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        SubjectFrame.setVisible(true);
-        Populate_Subject();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            SubjectFrame.setVisible(true);
+            Populate_Subject();
         }
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
-         AddSub_Name_Textfield.requestFocus();
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            AddSub_Name_Textfield.requestFocus();
         }
-        
+
     }//GEN-LAST:event_AddSub_Back_BtnKeyReleased
 
     private void Sub_TableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_TableKeyPressed
@@ -3601,156 +3683,132 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Sub_TableKeyPressed
 
     private void Ls_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Back_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        SubjectFrame.setVisible(true);
-        Populate_Subject();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            SubjectFrame.setVisible(true);
+            Populate_Subject();
         }
     }//GEN-LAST:event_Ls_Back_BtnKeyReleased
 
     private void Ls_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Add_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        AddLessonFrame.setVisible(true);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            AddLessonFrame.setVisible(true);
         }
     }//GEN-LAST:event_Ls_Add_BtnKeyReleased
 
     private void Ls_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        Ls_Delete_Btn_fun();
-        LessonsFrame.setVisible(true);
-        Populate_Lessons();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Ls_Delete_Btn_fun();
+            LessonsFrame.setVisible(true);
+            Populate_Lessons();
         }
     }//GEN-LAST:event_Ls_Delete_BtnKeyReleased
 
     private void Ls_Enter_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Enter_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        Ls_Enter_Btn_fun (); 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Ls_Enter_Btn_fun();
         }
     }//GEN-LAST:event_Ls_Enter_BtnKeyReleased
 
     private void AddLs_Name_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Name_TextAreaKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
-        AddLs_Content_TextArea.requestFocus(); 
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            AddLs_Content_TextArea.requestFocus();
         }
     }//GEN-LAST:event_AddLs_Name_TextAreaKeyReleased
 
     private void AddLs_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Back_BtnKeyReleased
-         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        LessonsFrame.setVisible(true);
-        Populate_Lessons();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            LessonsFrame.setVisible(true);
+            Populate_Lessons();
         }
     }//GEN-LAST:event_AddLs_Back_BtnKeyReleased
 
     private void AddLs_Content_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Content_TextAreaKeyReleased
-         if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
-        AddLs_Submit_Btn.requestFocus();
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            AddLs_Submit_Btn.requestFocus();
         }
     }//GEN-LAST:event_AddLs_Content_TextAreaKeyReleased
 
     private void AddLs_Submit_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Submit_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-                 AddLs_Submit_Btn_fun();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            AddLs_Submit_Btn_fun();
         }
     }//GEN-LAST:event_AddLs_Submit_BtnKeyReleased
 
     private void Ls_Content_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Content_Back_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        LessonsFrame.setVisible(true);
-        Populate_Lessons();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            LessonsFrame.setVisible(true);
+            Populate_Lessons();
         }
     }//GEN-LAST:event_Ls_Content_Back_BtnKeyReleased
 
-    private void LsContent_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_TextAreaKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
-            LsContent_Update_Btn.requestFocus();
-        }
-    }//GEN-LAST:event_LsContent_TextAreaKeyReleased
-
     private void LsContent_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        { 
-        LsContent_Update_Btn_fun();   
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            //LsContent_Update_Btn_fun();
+            closeAllFrames();
+            AddLessonPictureFrame.setVisible(true);
         }
     }//GEN-LAST:event_LsContent_Update_BtnKeyReleased
 
     private void LsContent_Questions_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Questions_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        QuestionsFrame.setVisible(true);
-        Populate_Questions();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            QuestionsFrame.setVisible(true);
+            Populate_Questions();
         }
     }//GEN-LAST:event_LsContent_Questions_BtnKeyReleased
 
     private void Qst_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Back_BtnKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        LessonsFrame.setVisible(true);
-        Populate_Lessons();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            LessonsFrame.setVisible(true);
+            Populate_Lessons();
         }
     }//GEN-LAST:event_Qst_Back_BtnKeyReleased
 
     private void Qst_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Update_BtnKeyReleased
-        
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Qst_Update_Btn_fun();
         }
     }//GEN-LAST:event_Qst_Update_BtnKeyReleased
 
     private void Qst_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Add_BtnKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        { 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Qst_Add_Btn_fun();
         }
     }//GEN-LAST:event_Qst_Add_BtnKeyReleased
 
     private void Qst_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        { 
-        Qst_Delete_Btn_fun();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Qst_Delete_Btn_fun();
         }
     }//GEN-LAST:event_Qst_Delete_BtnKeyReleased
 
     private void Qst_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_TableKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        { 
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Qst_Textarea.requestFocus();
         }
     }//GEN-LAST:event_Qst_TableKeyReleased
 
     private void Qst_Opt3_TextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Opt3_TextfieldKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        { 
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Qst_Update_Btn.requestFocus();
         }
     }//GEN-LAST:event_Qst_Opt3_TextfieldKeyReleased
 
     private void Ls_Marks_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Marks_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Ls_Marks_Btn_fun();
         }
     }//GEN-LAST:event_Ls_Marks_BtnKeyReleased
 
     private void StDetails_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_StDetails_Back_BtnKeyReleased
-        
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             Populate_Lessons();
@@ -3758,92 +3816,86 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_StDetails_Back_BtnKeyReleased
 
     private void ChangePwd_ConfPwd_TextfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_ConfPwd_TextfieldKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             ChangePwd_Submit_Btn.requestFocus();
         }
     }//GEN-LAST:event_ChangePwd_ConfPwd_TextfieldKeyReleased
 
     private void ChangePwd_Submit_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_Submit_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ChangedPwd_Submit_Btn_fun();
         }
     }//GEN-LAST:event_ChangePwd_Submit_BtnKeyReleased
 
     private void UsMng_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             UsMng_Add_Btn_fun();
         }
     }//GEN-LAST:event_UsMng_Add_BtnKeyReleased
 
     private void UsMng_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             UsMng_Delete_Btn_fun();
         }
     }//GEN-LAST:event_UsMng_Delete_BtnKeyReleased
 
     private void UsMng_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Update_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             UsMng_Update_Btn_fun();
         }
     }//GEN-LAST:event_UsMng_Update_BtnKeyReleased
 
     private void User_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_User_TableKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             UsMng_Add_Btn.requestFocus();
         }
     }//GEN-LAST:event_User_TableKeyReleased
 
     private void Home_UsrMngt_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnMouseClicked
-             closeAllFrames();
-             UserManagementFrame.setVisible(true);
-             Populate_Users();
-             UsMng_Name_Textfield.setText("");
-             UsMng_Email_Textfield.setText("");
-             UsMng_Password_Textfield.setText("");
-        
+        closeAllFrames();
+        UserManagementFrame.setVisible(true);
+        Populate_Users();
+        UsMng_Name_Textfield.setText("");
+        UsMng_Email_Textfield.setText("");
+        UsMng_Password_Textfield.setText("");
+
     }//GEN-LAST:event_Home_UsrMngt_BtnMouseClicked
 
     private void Home_UsrMngt_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnActionPerformed
-             closeAllFrames();
-             UserManagementFrame.setVisible(true);
-             Populate_Users();
-             UsMng_Name_Textfield.setText("");
-             UsMng_Email_Textfield.setText("");
-             UsMng_Password_Textfield.setText("");
+        closeAllFrames();
+        UserManagementFrame.setVisible(true);
+        Populate_Users();
+        UsMng_Name_Textfield.setText("");
+        UsMng_Email_Textfield.setText("");
+        UsMng_Password_Textfield.setText("");
     }//GEN-LAST:event_Home_UsrMngt_BtnActionPerformed
 
     private void Home_UsrMngt_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnKeyReleased
-        
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             UserManagementFrame.setVisible(true);
             Populate_Users();
             UsMng_Name_Textfield.setText("");
-             UsMng_Email_Textfield.setText("");
-             UsMng_Password_Textfield.setText("");
-               }
+            UsMng_Email_Textfield.setText("");
+            UsMng_Password_Textfield.setText("");
+        }
     }//GEN-LAST:event_Home_UsrMngt_BtnKeyReleased
 
     private void Home_Subject_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_Subject_BtnMouseClicked
-       
+
         closeAllFrames();
         SubjectFrame.setVisible(true);
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnMouseClicked
 
     private void Home_Subject_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Subject_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-             SubjectFrame.setVisible(true);
-        Populate_Subject();
+            SubjectFrame.setVisible(true);
+            Populate_Subject();
         }
-       
+
     }//GEN-LAST:event_Home_Subject_BtnKeyReleased
 
     private void Home_ChangePwd_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnMouseClicked
@@ -3852,9 +3904,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_ChangePwd_BtnMouseClicked
 
     private void Home_ChangePwd_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-        ChangePasswordFrame.setVisible(true);
+            ChangePasswordFrame.setVisible(true);
         }
     }//GEN-LAST:event_Home_ChangePwd_BtnKeyReleased
 
@@ -3871,12 +3923,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_Logout_BtnActionPerformed
 
     private void Home_Logout_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Logout_BtnKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           closeAllFrames();
-           login = false;
-        UserLoginFrame.setVisible(true);
-       }
-        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            login = false;
+            UserLoginFrame.setVisible(true);
+        }
+
     }//GEN-LAST:event_Home_Logout_BtnKeyReleased
 
     private void UsMng_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnActionPerformed
@@ -3890,7 +3942,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_UsMng_Home_BtnMouseClicked
 
     private void UsMng_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
         }
@@ -3902,67 +3954,63 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Sub_Home_BtnActionPerformed
 
     private void Sub_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_Home_BtnMouseClicked
-       closeAllFrames();
+        closeAllFrames();
         HomeFrame.setVisible(true);
     }//GEN-LAST:event_Sub_Home_BtnMouseClicked
 
     private void Sub_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Home_BtnKeyReleased
-         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-             closeAllFrames();
-             HomeFrame.setVisible(true);
-    }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            HomeFrame.setVisible(true);
+        }
     }//GEN-LAST:event_Sub_Home_BtnKeyReleased
 
     private void ChangePwd_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnActionPerformed
-         closeAllFrames();
-         HomeFrame.setVisible(true);
+        closeAllFrames();
+        HomeFrame.setVisible(true);
     }//GEN-LAST:event_ChangePwd_Home_BtnActionPerformed
 
     private void ChangePwd_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
         }
     }//GEN-LAST:event_ChangePwd_Home_BtnKeyReleased
 
     private void ChangePwd_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnMouseClicked
-         closeAllFrames();
-         HomeFrame.setVisible(true);
-        
+        closeAllFrames();
+        HomeFrame.setVisible(true);
+
     }//GEN-LAST:event_ChangePwd_Home_BtnMouseClicked
 
-    private void UsMng_ViewProfile_Btn_fun()
-    {
-        String sql="";
-        String userimage="";
-        
-         rowcount = User_Table.getSelectedRowCount();
-         
-        if (rowcount > 1 || rowcount==0) {
+    private void UsMng_ViewProfile_Btn_fun() {
+        String sql = "";
+        String userimage = "";
+
+        rowcount = User_Table.getSelectedRowCount();
+
+        if (rowcount > 1 || rowcount == 0) {
 
             JOptionPane.showMessageDialog(null, "Please select a user", "Alert", JOptionPane.ERROR_MESSAGE);
             UserManagementFrame.requestFocus();
-        } 
-        else 
-        {
+        } else {
             closeAllFrames();
             UsersProfileFrame.setVisible(true);
-             
+
             try {
-                sql= "SELECT image FROM user where id="+selectedUserid;
+                sql = "SELECT image FROM user where id=" + selectedUserid;
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
-                
-            UserProfile_Name_Textfield.setText(selectedUsername);
-            UserProfile_Email_Textfield.setText(selectedUserEmail);
-            UserProfile_Pwd_Textfield.setText(selectedUserPassword);
-            
-                if(rs.next())
-                {
-                     userimage= rs.getString("image");
+
+                UserProfile_Name_Textfield.setText(selectedUsername);
+                UserProfile_Email_Textfield.setText(selectedUserEmail);
+                UserProfile_Pwd_Textfield.setText(selectedUserPassword);
+
+                if (rs.next()) {
+                    userimage = rs.getString("image");
                     try {
                         ImageIcon icon = new ImageIcon(ImageIO.read(new URL(userimage)));
-                        Image resizeImage= icon.getImage();
+                        Image resizeImage = icon.getImage();
                         Image newimg = resizeImage.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
                         ImageIcon newIcon = new ImageIcon(newimg);
                         UserProfile_Picture_Label.setIcon(newIcon);
@@ -3975,9 +4023,9 @@ public class Home extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void UsMng_ViewProfile_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_ViewProfile_BtnActionPerformed
-         UsMng_ViewProfile_Btn_fun();
+        UsMng_ViewProfile_Btn_fun();
     }//GEN-LAST:event_UsMng_ViewProfile_BtnActionPerformed
 
     private void Home_ChangePwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnActionPerformed
@@ -3996,9 +4044,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_UsMng_ViewProfile_BtnMouseClicked
 
     private void UsMng_ViewProfile_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_ViewProfile_BtnKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           UsMng_ViewProfile_Btn_fun();
-       }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            UsMng_ViewProfile_Btn_fun();
+        }
     }//GEN-LAST:event_UsMng_ViewProfile_BtnKeyReleased
 
     private void Home_ViewSugg_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_ViewSugg_BtnActionPerformed
@@ -4008,7 +4056,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_ViewSugg_BtnActionPerformed
 
     private void Home_ViewSugg_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_ViewSugg_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             ViewSuggestionsFrame.setVisible(true);
             Populate_Suggestions();
@@ -4016,30 +4064,30 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_ViewSugg_BtnKeyReleased
 
     private void Home_ViewSugg_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_ViewSugg_BtnMouseClicked
-         closeAllFrames();
-         ViewSuggestionsFrame.setVisible(true);
-         Populate_Suggestions();
+        closeAllFrames();
+        ViewSuggestionsFrame.setVisible(true);
+        Populate_Suggestions();
     }//GEN-LAST:event_Home_ViewSugg_BtnMouseClicked
 
     private void ViewSug_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSug_Back_BtnActionPerformed
-       closeAllFrames();
-       ViewSug_Suggestion_Textarea.setText("");
-       HomeFrame.setVisible(true);
+        closeAllFrames();
+        ViewSug_Suggestion_Textarea.setText("");
+        HomeFrame.setVisible(true);
     }//GEN-LAST:event_ViewSug_Back_BtnActionPerformed
 
     private void ViewSug_Back_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewSug_Back_BtnMouseClicked
         closeAllFrames();
         ViewSug_Suggestion_Textarea.setText("");
-       HomeFrame.setVisible(true);
-       
+        HomeFrame.setVisible(true);
+
     }//GEN-LAST:event_ViewSug_Back_BtnMouseClicked
 
     private void ViewSug_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ViewSug_Back_BtnKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           closeAllFrames();
-           ViewSug_Suggestion_Textarea.setText("");
-       HomeFrame.setVisible(true);
-       }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            ViewSug_Suggestion_Textarea.setText("");
+            HomeFrame.setVisible(true);
+        }
     }//GEN-LAST:event_ViewSug_Back_BtnKeyReleased
 
     private void UserProfile_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserProfile_Back_BtnActionPerformed
@@ -4053,245 +4101,166 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_UserProfile_Back_BtnMouseClicked
 
     private void UserProfile_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserProfile_Back_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-        UserManagementFrame.setVisible(true);
+            UserManagementFrame.setVisible(true);
         }
     }//GEN-LAST:event_UserProfile_Back_BtnKeyReleased
 
-    private void Suggestions_table_selection()
-    {
+    private void Suggestions_table_selection() {
         String selectedSuggestion = "";
-        int row=0;
+        int row = 0;
         ViewSug_Suggestion_Textarea.setText("");
-        row=Suggestions_Table.getSelectedRow();
-            DefaultTableModel model = (DefaultTableModel) Suggestions_Table.getModel();
-            selectedSuggestion = model.getValueAt(row, 3).toString();
-            ViewSug_Suggestion_Textarea.setText(selectedSuggestion);
-           
+        row = Suggestions_Table.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) Suggestions_Table.getModel();
+        selectedSuggestion = model.getValueAt(row, 3).toString();
+        ViewSug_Suggestion_Textarea.setText(selectedSuggestion);
+
     }
     private void Suggestions_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Suggestions_TableMouseClicked
-            Suggestions_table_selection();
+        Suggestions_table_selection();
     }//GEN-LAST:event_Suggestions_TableMouseClicked
 
     private void Suggestions_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Suggestions_TableKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB){
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Suggestions_table_selection();
         }
     }//GEN-LAST:event_Suggestions_TableKeyReleased
-    private void buttonGroupClearSelection()
-    {
-         buttonGroup2.clearSelection();
-         buttonGroup3.clearSelection();
-         buttonGroup4.clearSelection();
-         buttonGroup5.clearSelection();
-         buttonGroup6.clearSelection();
-         buttonGroup7.clearSelection();
-         buttonGroup8.clearSelection();
-         buttonGroup9.clearSelection();
+    private void buttonGroupClearSelection() {
+        buttonGroup2.clearSelection();
+        buttonGroup3.clearSelection();
+        buttonGroup4.clearSelection();
+        buttonGroup5.clearSelection();
+        buttonGroup6.clearSelection();
+        buttonGroup7.clearSelection();
+        buttonGroup8.clearSelection();
+        buttonGroup9.clearSelection();
     }
-    private void feedbackTable_fun()
-    {
-         int row=0;
-         buttonGroupClearSelection();
-        String selectedFirstAns,selectedSecondAns,selectedThirdAns,selectedFourthAns,selectedFifthAns,selectedSixthAns,selectedSeventhAns,selectedEigthAns;
-        rowcount=feedbackTable.getSelectedRowCount();
 
-        if(rowcount>1 || rowcount==0)
-        {
+    private void feedbackTable_fun() {
+        int row = 0;
+        buttonGroupClearSelection();
+        String selectedFirstAns, selectedSecondAns, selectedThirdAns, selectedFourthAns, selectedFifthAns, selectedSixthAns, selectedSeventhAns, selectedEigthAns;
+        rowcount = feedbackTable.getSelectedRowCount();
+
+        if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one question", "Alert", JOptionPane.ERROR_MESSAGE);
             FeedbackFrame.requestFocus();
-        }
-        else
-        {
-            row=feedbackTable.getSelectedRow();
+        } else {
+            row = feedbackTable.getSelectedRow();
             DefaultTableModel model = (DefaultTableModel) feedbackTable.getModel();
-            selectedFirstAns=model.getValueAt(row, 3).toString();
-            selectedSecondAns=model.getValueAt(row, 4).toString();
-            selectedThirdAns=model.getValueAt(row, 5).toString();
-            selectedFourthAns=model.getValueAt(row, 6).toString();
-            selectedFifthAns=model.getValueAt(row, 7).toString();
-            selectedSixthAns=model.getValueAt(row, 8).toString();
-            selectedSeventhAns=model.getValueAt(row, 9).toString();
-            selectedEigthAns=model.getValueAt(row, 10).toString();
-            
-            if(selectedFirstAns.equals("1"))
-                    {
-                        jRadioButton1.setSelected(true);
-                    }
-            else if(selectedFirstAns.equals("2"))
-                    {
-                        jRadioButton2.setSelected(true);
-                    }
-            else if(selectedFirstAns.equals("3"))
-                    {
-                        jRadioButton3.setSelected(true);
-                    }
-            else if(selectedFirstAns.equals("4"))
-                    {
-                        jRadioButton4.setSelected(true);
-                    }
-            else if(selectedFirstAns.equals("5"))
-            {
+            selectedFirstAns = model.getValueAt(row, 3).toString();
+            selectedSecondAns = model.getValueAt(row, 4).toString();
+            selectedThirdAns = model.getValueAt(row, 5).toString();
+            selectedFourthAns = model.getValueAt(row, 6).toString();
+            selectedFifthAns = model.getValueAt(row, 7).toString();
+            selectedSixthAns = model.getValueAt(row, 8).toString();
+            selectedSeventhAns = model.getValueAt(row, 9).toString();
+            selectedEigthAns = model.getValueAt(row, 10).toString();
+
+            if (selectedFirstAns.equals("1")) {
+                jRadioButton1.setSelected(true);
+            } else if (selectedFirstAns.equals("2")) {
+                jRadioButton2.setSelected(true);
+            } else if (selectedFirstAns.equals("3")) {
+                jRadioButton3.setSelected(true);
+            } else if (selectedFirstAns.equals("4")) {
+                jRadioButton4.setSelected(true);
+            } else if (selectedFirstAns.equals("5")) {
                 jRadioButton5.setSelected(true);
             }
-          
-            
-            if(selectedSecondAns.equals("1"))
-                    {
-                        jRadioButton6.setSelected(true);
-                    }
-            else if(selectedSecondAns.equals("2"))
-                    {
-                        jRadioButton7.setSelected(true);
-                    }
-            else if(selectedSecondAns.equals("3"))
-                    {
-                        jRadioButton8.setSelected(true);
-                    }
-            else if(selectedSecondAns.equals("4"))
-                    {
-                        jRadioButton9.setSelected(true);
-                    }
-            else if(selectedSecondAns.equals("5"))
-            {
+
+            if (selectedSecondAns.equals("1")) {
+                jRadioButton6.setSelected(true);
+            } else if (selectedSecondAns.equals("2")) {
+                jRadioButton7.setSelected(true);
+            } else if (selectedSecondAns.equals("3")) {
+                jRadioButton8.setSelected(true);
+            } else if (selectedSecondAns.equals("4")) {
+                jRadioButton9.setSelected(true);
+            } else if (selectedSecondAns.equals("5")) {
                 jRadioButton10.setSelected(true);
             }
-            
-             if(selectedThirdAns.equals("1"))
-                    {
-                        jRadioButton11.setSelected(true);
-                    }
-            else if(selectedThirdAns.equals("2"))
-                    {
-                        jRadioButton12.setSelected(true);
-                    }
-            else if(selectedThirdAns.equals("3"))
-                    {
-                        jRadioButton13.setSelected(true);
-                    }
-            else if(selectedThirdAns.equals("4"))
-                    {
-                        jRadioButton14.setSelected(true);
-                    }
-            else if(selectedThirdAns.equals("5"))
-            {
+
+            if (selectedThirdAns.equals("1")) {
+                jRadioButton11.setSelected(true);
+            } else if (selectedThirdAns.equals("2")) {
+                jRadioButton12.setSelected(true);
+            } else if (selectedThirdAns.equals("3")) {
+                jRadioButton13.setSelected(true);
+            } else if (selectedThirdAns.equals("4")) {
+                jRadioButton14.setSelected(true);
+            } else if (selectedThirdAns.equals("5")) {
                 jRadioButton15.setSelected(true);
             }
-             
-             
-             if(selectedFourthAns.equals("1"))
-                    {
-                        jRadioButton16.setSelected(true);
-                    }
-            else if(selectedFourthAns.equals("2"))
-                    {
-                        jRadioButton17.setSelected(true);
-                    }
-            else if(selectedFourthAns.equals("3"))
-                    {
-                        jRadioButton18.setSelected(true);
-                    }
-            else if(selectedFourthAns.equals("4"))
-                    {
-                        jRadioButton19.setSelected(true);
-                    }
-            else if(selectedFourthAns.equals("5"))
-            {
+
+            if (selectedFourthAns.equals("1")) {
+                jRadioButton16.setSelected(true);
+            } else if (selectedFourthAns.equals("2")) {
+                jRadioButton17.setSelected(true);
+            } else if (selectedFourthAns.equals("3")) {
+                jRadioButton18.setSelected(true);
+            } else if (selectedFourthAns.equals("4")) {
+                jRadioButton19.setSelected(true);
+            } else if (selectedFourthAns.equals("5")) {
                 jRadioButton20.setSelected(true);
             }
-             
-             if(selectedFifthAns.equals("1"))
-                    {
-                        jRadioButton21.setSelected(true);
-                    }
-            else if(selectedFifthAns.equals("2"))
-                    {
-                        jRadioButton22.setSelected(true);
-                    }
-            else if(selectedFifthAns.equals("3"))
-                    {
-                        jRadioButton23.setSelected(true);
-                    }
-            else if(selectedFifthAns.equals("4"))
-                    {
-                        jRadioButton24.setSelected(true);
-                    }
-            else if(selectedFifthAns.equals("5"))
-            {
+
+            if (selectedFifthAns.equals("1")) {
+                jRadioButton21.setSelected(true);
+            } else if (selectedFifthAns.equals("2")) {
+                jRadioButton22.setSelected(true);
+            } else if (selectedFifthAns.equals("3")) {
+                jRadioButton23.setSelected(true);
+            } else if (selectedFifthAns.equals("4")) {
+                jRadioButton24.setSelected(true);
+            } else if (selectedFifthAns.equals("5")) {
                 jRadioButton25.setSelected(true);
             }
-             
-              if(selectedSixthAns.equals("1"))
-                    {
-                        jRadioButton26.setSelected(true);
-                    }
-            else if(selectedSixthAns.equals("2"))
-                    {
-                        jRadioButton27.setSelected(true);
-                    }
-            else if(selectedSixthAns.equals("3"))
-                    {
-                        jRadioButton28.setSelected(true);
-                    }
-            else if(selectedSixthAns.equals("4"))
-                    {
-                        jRadioButton29.setSelected(true);
-                    }
-            else if(selectedSixthAns.equals("5"))
-            {
+
+            if (selectedSixthAns.equals("1")) {
+                jRadioButton26.setSelected(true);
+            } else if (selectedSixthAns.equals("2")) {
+                jRadioButton27.setSelected(true);
+            } else if (selectedSixthAns.equals("3")) {
+                jRadioButton28.setSelected(true);
+            } else if (selectedSixthAns.equals("4")) {
+                jRadioButton29.setSelected(true);
+            } else if (selectedSixthAns.equals("5")) {
                 jRadioButton30.setSelected(true);
             }
-              
-              if(selectedSeventhAns.equals("1"))
-                    {
-                        jRadioButton31.setSelected(true);
-                    }
-            else if(selectedSeventhAns.equals("2"))
-                    {
-                        jRadioButton32.setSelected(true);
-                    }
-            else if(selectedSeventhAns.equals("3"))
-                    {
-                        jRadioButton33.setSelected(true);
-                    }
-            else if(selectedSeventhAns.equals("4"))
-                    {
-                        jRadioButton34.setSelected(true);
-                    }
-            else if(selectedSeventhAns.equals("5"))
-            {
+
+            if (selectedSeventhAns.equals("1")) {
+                jRadioButton31.setSelected(true);
+            } else if (selectedSeventhAns.equals("2")) {
+                jRadioButton32.setSelected(true);
+            } else if (selectedSeventhAns.equals("3")) {
+                jRadioButton33.setSelected(true);
+            } else if (selectedSeventhAns.equals("4")) {
+                jRadioButton34.setSelected(true);
+            } else if (selectedSeventhAns.equals("5")) {
                 jRadioButton35.setSelected(true);
             }
-              
-               if(selectedEigthAns.equals("1"))
-                    {
-                        jRadioButton36.setSelected(true);
-                    }
-            else if(selectedEigthAns.equals("2"))
-                    {
-                        jRadioButton37.setSelected(true);
-                    }
-            else if(selectedEigthAns.equals("3"))
-                    {
-                        jRadioButton38.setSelected(true);
-                    }
-            else if(selectedEigthAns.equals("4"))
-                    {
-                        jRadioButton39.setSelected(true);
-                    }
-            else if(selectedEigthAns.equals("5"))
-            {
+
+            if (selectedEigthAns.equals("1")) {
+                jRadioButton36.setSelected(true);
+            } else if (selectedEigthAns.equals("2")) {
+                jRadioButton37.setSelected(true);
+            } else if (selectedEigthAns.equals("3")) {
+                jRadioButton38.setSelected(true);
+            } else if (selectedEigthAns.equals("4")) {
+                jRadioButton39.setSelected(true);
+            } else if (selectedEigthAns.equals("5")) {
                 jRadioButton40.setSelected(true);
             }
         }
     }
     private void feedbackTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_feedbackTableMouseClicked
-       feedbackTable_fun();
+        feedbackTable_fun();
     }//GEN-LAST:event_feedbackTableMouseClicked
 
     private void feedbackTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_feedbackTableKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_TAB ||evt.getKeyCode()==KeyEvent.VK_UP ||evt.getKeyCode()==KeyEvent.VK_DOWN){
+        if (evt.getKeyCode() == KeyEvent.VK_TAB || evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
             feedbackTable_fun();
         }
     }//GEN-LAST:event_feedbackTableKeyReleased
@@ -4304,11 +4273,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnActionPerformed
 
     private void Home_EmployeeFeedback_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_EmployeeFeedback_BtnKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        closeAllFrames();
-        FeedbackFrame.setVisible(true);
-        Populate_FeedbackDetails();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            FeedbackFrame.setVisible(true);
+            Populate_FeedbackDetails();
         }
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnKeyReleased
 
@@ -4319,13 +4287,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       closeAllFrames();
-       HomeFrame.setVisible(true);
+        closeAllFrames();
+        HomeFrame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
         }
@@ -4338,41 +4305,160 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       closeAllFrames();
+        closeAllFrames();
         HomeFrame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-        HomeFrame.setVisible(true);
+            HomeFrame.setVisible(true);
         }
     }//GEN-LAST:event_jButton3KeyReleased
 
     private void jButton2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-        ResultFrame.setVisible(true);
-        Populate_Results();
+            ResultFrame.setVisible(true);
+            Populate_Results();
         }
     }//GEN-LAST:event_jButton2KeyReleased
-        
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       Populate_Results();
+        Populate_Results();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-        
+
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jButton4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-        Populate_Results();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Populate_Results();
         }
     }//GEN-LAST:event_jButton4KeyReleased
+
+    private void AddLessonPicture_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonPicture_Back_BtnActionPerformed
+        closeAllFrames();
+        LessonsContentFrame.setVisible(true);
+        Populate_LessonPictures();
+    }//GEN-LAST:event_AddLessonPicture_Back_BtnActionPerformed
+
+    private void AddLessonPicture_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLessonPicture_Back_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            AddLessonFrame.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_AddLessonPicture_Back_BtnKeyReleased
+    
+    private void AddLessonPicture_Add_Btn_fun()
+    {   String sql="insert into lesson_image(lesson_id,image) values (?,?)";
+         if (lessonImage==null) {
+            JOptionPane.showMessageDialog(null, "No picture is selected", "Alert", JOptionPane.ERROR_MESSAGE);
+        } else {
+             LessonImageUrl = "http://localhost//images/" +selectedlesson+"_"+ lessonImage;
+              AddLessonPicture_Label.setIcon(null);
+        try {
+             pst = con.prepareStatement(sql);
+            pst.setString(1, selectedlesson);
+            pst.setString(2, LessonImageUrl);
+            pst.executeUpdate();
+            AddLessonPictureFrame.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }
+    private void AddLessonPicture_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonPicture_Add_BtnActionPerformed
+            AddLessonPicture_Add_Btn_fun();
+       
+    }//GEN-LAST:event_AddLessonPicture_Add_BtnActionPerformed
+
+    private void AddLessonPicture_Upload_Btn_fun()
+    {
+        JFileChooser filechooser = new JFileChooser();
+        filechooser.setDialogTitle("Choose the File to upload");
+        filechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int returnval = filechooser.showOpenDialog(this);
+        if (returnval == JFileChooser.APPROVE_OPTION) {
+            File file = filechooser.getSelectedFile();
+            BufferedImage bi;
+            try {
+                
+                bi = ImageIO.read(file);
+                bi=scale(bi,600,400);
+                AddLessonPicture_Label.setIcon(new ImageIcon(bi));
+                lessonImage = file.getName();
+                
+                File f = new File("\\wamp\\www\\images\\" + selectedlesson+"_"+lessonImage);
+                ImageIO.write(bi, "png", f);
+                
+                } catch (Exception e) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
+    
+    private BufferedImage scale(BufferedImage src, int w, int h)
+        {
+    BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+     int x, y;
+     int ww = src.getWidth();
+    int hh = src.getHeight();
+    for (x = 0; x < w; x++) {
+        for (y = 0; y < h; y++) {
+      int col = src.getRGB(x * ww / w, y * hh / h);
+      img.setRGB(x, y, col);
+    }
+     }
+     return img;
+    }
+    
+    private void AddLessonPicture_Upload_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonPicture_Upload_BtnActionPerformed
+        AddLessonPicture_Upload_Btn_fun();
+    }//GEN-LAST:event_AddLessonPicture_Upload_BtnActionPerformed
+
+    private void AddLessonPicture_Upload_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLessonPicture_Upload_BtnKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             AddLessonPicture_Upload_Btn_fun();
+         }
+    }//GEN-LAST:event_AddLessonPicture_Upload_BtnKeyReleased
+
+    private void AddLessonPicture_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLessonPicture_Add_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            AddLessonPicture_Add_Btn_fun();
+        }
+    }//GEN-LAST:event_AddLessonPicture_Add_BtnKeyReleased
+    
+    private void LsContent_Next_Btn_fun()
+    {
+        String lessonsPicture="";
+          ImageIcon icon;
+        try { 
+            if(checkIndex<pictureIndex)
+            {
+                   lessonsPicture=pictureList.get(checkIndex);
+                        icon = new ImageIcon(ImageIO.read(new URL(lessonsPicture)));
+                        Image resizeImage = icon.getImage();
+                        Image newimg = resizeImage.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
+                        ImageIcon newIcon = new ImageIcon(newimg);
+                        LsContent_PictureLabel.setIcon(newIcon);
+                        checkIndex++;  
+            }
+            else
+            {
+                checkIndex=1;
+            }
+            } catch (IOException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+    }
+    
+    private void LsContent_Next_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Next_BtnActionPerformed
+        LsContent_Next_Btn_fun();
+    }//GEN-LAST:event_LsContent_Next_BtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4411,6 +4497,11 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame AddLessonFrame;
+    private javax.swing.JInternalFrame AddLessonPictureFrame;
+    private javax.swing.JButton AddLessonPicture_Add_Btn;
+    private javax.swing.JButton AddLessonPicture_Back_Btn;
+    private javax.swing.JLabel AddLessonPicture_Label;
+    private javax.swing.JButton AddLessonPicture_Upload_Btn;
     private javax.swing.JButton AddLs_Back_Btn;
     private javax.swing.JLabel AddLs_Content_Label;
     private javax.swing.JTextArea AddLs_Content_TextArea;
@@ -4443,8 +4534,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Home_label;
     private javax.swing.JInternalFrame LessonsContentFrame;
     private javax.swing.JInternalFrame LessonsFrame;
+    private javax.swing.JButton LsContent_Next_Btn;
+    private javax.swing.JLabel LsContent_PictureLabel;
     private javax.swing.JButton LsContent_Questions_Btn;
-    private javax.swing.JTextArea LsContent_TextArea;
     private javax.swing.JButton LsContent_Update_Btn;
     private javax.swing.JLabel LsContent_label;
     private javax.swing.JButton Ls_Add_Btn;
