@@ -2600,7 +2600,7 @@ public class Home extends javax.swing.JFrame {
     private void Populate_LessonPictures() {
         try {
             String path="";
-            pst = con.prepareStatement("select id as Id,lesson_id as 'Lesson Id' ,image as Image from lesson_image where lesson_id="+selectedlesson);
+            pst = con.prepareStatement("select id as Id,lesson_id as 'Lesson Id' ,image as Images from lesson_image where lesson_id="+selectedlesson);
             rs = pst.executeQuery();
                     try {
                         Ls_Content_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
