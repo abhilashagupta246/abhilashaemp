@@ -4451,6 +4451,7 @@ public class Home extends javax.swing.JFrame {
             else
             {
                 checkIndex=0;
+                LsContent_Next_Btn_fun();
             }
             
             } catch (IOException ex) {
