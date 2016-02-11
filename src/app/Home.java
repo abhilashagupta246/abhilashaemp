@@ -49,6 +49,7 @@ public class Home extends javax.swing.JFrame {
     String selectedUserPassword = null;
     String selectedQuestionId = null;
     String selectedQuestion = null;
+    String selectedlessonPicture = null;
     int rowcount = 0;
     Boolean login = false;
     String userLoginName = "";
@@ -114,7 +115,9 @@ public class Home extends javax.swing.JFrame {
         LsContent_Questions_Btn = new javax.swing.JButton();
         Ls_Content_Back_Btn = new javax.swing.JButton();
         LsContent_PictureLabel = new javax.swing.JLabel();
-        LsContent_Next_Btn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Ls_Content_Table = new javax.swing.JTable();
+        LsContent_Delete_Btn = new javax.swing.JButton();
         SubjectFrame = new javax.swing.JInternalFrame();
         Sub_Label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -548,12 +551,12 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddLessonFrame);
         AddLessonFrame.setBounds(0, 0, 500, 400);
 
-        LessonsContentFrame.setPreferredSize(new java.awt.Dimension(700, 600));
+        LessonsContentFrame.setPreferredSize(new java.awt.Dimension(1000, 600));
         LessonsContentFrame.setVisible(true);
 
         LsContent_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         LsContent_Update_Btn.setText("Add Picture");
-        LsContent_Update_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        LsContent_Update_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
         LsContent_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LsContent_Update_BtnActionPerformed(evt);
@@ -570,7 +573,7 @@ public class Home extends javax.swing.JFrame {
 
         LsContent_Questions_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         LsContent_Questions_Btn.setText("Questions");
-        LsContent_Questions_Btn.setPreferredSize(new java.awt.Dimension(90, 30));
+        LsContent_Questions_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
         LsContent_Questions_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LsContent_Questions_BtnActionPerformed(evt);
@@ -596,19 +599,48 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        LsContent_PictureLabel.setPreferredSize(new java.awt.Dimension(500, 300));
+        LsContent_PictureLabel.setPreferredSize(new java.awt.Dimension(525, 350));
 
-        LsContent_Next_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        LsContent_Next_Btn.setText("Next");
-        LsContent_Next_Btn.setPreferredSize(new java.awt.Dimension(60, 30));
-        LsContent_Next_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LsContent_Next_BtnActionPerformed(evt);
+        Ls_Content_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        Ls_Content_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Ls_Content_TableMouseClicked(evt);
             }
         });
-        LsContent_Next_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+        Ls_Content_Table.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                LsContent_Next_BtnKeyReleased(evt);
+                Ls_Content_TableKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Ls_Content_Table);
+
+        LsContent_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsContent_Delete_Btn.setText("Delete Picture");
+        LsContent_Delete_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        LsContent_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LsContent_Delete_BtnActionPerformed(evt);
+            }
+        });
+        LsContent_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                LsContent_Delete_BtnKeyReleased(evt);
             }
         });
 
@@ -617,27 +649,24 @@ public class Home extends javax.swing.JFrame {
         LessonsContentFrameLayout.setHorizontalGroup(
             LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                         .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(209, 209, 209)
-                        .addComponent(LsContent_label)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LessonsContentFrameLayout.createSequentialGroup()
-                        .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(326, 326, 326)
+                        .addComponent(LsContent_label))
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                                .addGap(0, 52, Short.MAX_VALUE)
-                                .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(171, 171, 171)
-                                .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(34, 34, 34)
-                        .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                                .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(107, 107, 107)
+                                .addComponent(LsContent_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LessonsContentFrameLayout.setVerticalGroup(
             LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -646,22 +675,20 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LsContent_label))
+                .addGap(18, 18, 18)
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LsContent_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
         desktopPane.add(LessonsContentFrame);
-        LessonsContentFrame.setBounds(0, 0, 700, 600);
+        LessonsContentFrame.setBounds(0, 0, 1000, 600);
 
         SubjectFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 800, 550));
         SubjectFrame.setPreferredSize(new java.awt.Dimension(760, 400));
@@ -2572,22 +2599,19 @@ public class Home extends javax.swing.JFrame {
     
     private void Populate_LessonPictures() {
         try {
-            pictureIndex=0;
-            pictureList.clear();
-            pst = con.prepareStatement("select image from lesson_image where lesson_id="+selectedlesson);
+            String path="";
+            pst = con.prepareStatement("select id as Id,lesson_id as 'Lesson Id' ,image as Image from lesson_image where lesson_id="+selectedlesson);
             rs = pst.executeQuery();
-                       ImageIcon icon;
                     try {
-                        while(rs.next())
-                        {   
-                            pictureList.add(rs.getString("image"));
-                            icon = new ImageIcon(ImageIO.read(new URL(pictureList.get(0))));
-                        Image resizeImage = icon.getImage();
-                        Image newimg = resizeImage.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
-                        ImageIcon newIcon = new ImageIcon(newimg);
-                        LsContent_PictureLabel.setIcon(newIcon);
-                        pictureIndex++;
-                    }} catch (IOException ex) {
+                        Ls_Content_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+                        Ls_Content_Table.setModel(DbUtils.resultSetToTableModel(rs));
+                        
+                        Ls_Content_Table.getColumnModel().getColumn(0).setMinWidth(0);
+                        Ls_Content_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+                        Ls_Content_Table.getColumnModel().getColumn(1).setMinWidth(0);
+                        Ls_Content_Table.getColumnModel().getColumn(1).setMaxWidth(0);
+                   
+                    } catch (Exception ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                     }
         } catch (SQLException e) {
@@ -2970,8 +2994,6 @@ public class Home extends javax.swing.JFrame {
 
     private void Ls_Enter_Btn_fun() {
         String lessonsLabel = "";
-        //String lessonsPicture="";
-        //String LessonImage= "";
         rowcount = Ls_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -2979,16 +3001,16 @@ public class Home extends javax.swing.JFrame {
         } else {
             try {
                 selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
-
                 lessonsLabel = "select lesson_name from lessons where lesson_id=" + selectedlesson;
                 pst = con.prepareStatement(lessonsLabel);
                 rs = pst.executeQuery(lessonsLabel);
                 while (rs.next()) {
                     LsContent_label.setText(rs.getString(1));
                 }
-                Populate_LessonPictures();
+                
                 closeAllFrames();
                 LessonsContentFrame.setVisible(true);
+                Populate_LessonPictures();
                   } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -4144,7 +4166,7 @@ public class Home extends javax.swing.JFrame {
         rowcount = feedbackTable.getSelectedRowCount();
 
         if (rowcount > 1 || rowcount == 0) {
-            JOptionPane.showMessageDialog(null, "Please select one question", "Alert", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Please select one question", "Alert", JOptionPane.ERROR_MESSAGE);
             FeedbackFrame.requestFocus();
         } else {
             row = feedbackTable.getSelectedRow();
@@ -4353,11 +4375,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_AddLessonPicture_Back_BtnKeyReleased
     
     private void AddLessonPicture_Add_Btn_fun()
-    {   String sql="insert into lesson_image(lesson_id,image) values (?,?)";
+    {   
+        String sql="insert into lesson_image(lesson_id,image) values (?,?)";
          if (lessonImage==null) {
             JOptionPane.showMessageDialog(null, "No picture is selected", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
-             LessonImageUrl = "http://localhost//images/" +selectedlesson+"_"+ lessonImage;
+             LessonImageUrl=new File( "C:/wamp/www/images/" +selectedlesson+"_"+ lessonImage).toURI().toString();
               AddLessonPicture_Label.setIcon(null);
         try {
              pst = con.prepareStatement(sql);
@@ -4429,45 +4452,80 @@ public class Home extends javax.swing.JFrame {
     private void AddLessonPicture_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLessonPicture_Add_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             AddLessonPicture_Add_Btn_fun();
+            AddLessonPictureFrame.requestFocus();
         }
     }//GEN-LAST:event_AddLessonPicture_Add_BtnKeyReleased
     
-    private void LsContent_Next_Btn_fun()
+    private void Ls_Content_Table_fun()
     {
-        String lessonsPicture="";
-          ImageIcon icon;
-        try { 
-            
-            if(checkIndex<pictureIndex)
-            {
-                   lessonsPicture=pictureList.get(checkIndex);
-                        icon = new ImageIcon(ImageIO.read(new URL(lessonsPicture)));
-                        Image resizeImage = icon.getImage();
-                        Image newimg = resizeImage.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
-                        ImageIcon newIcon = new ImageIcon(newimg);
-                        LsContent_PictureLabel.setIcon(newIcon);
-                        checkIndex++;  
-            }
-            else
-            {
-                checkIndex=0;
-                LsContent_Next_Btn_fun();
-            }
-            
+        rowcount = Ls_Content_Table.getSelectedRowCount();
+        int row;
+        if (rowcount > 1 || rowcount == 0) {
+            AddLessonPictureFrame.requestFocus();
+        } else {
+            row = Ls_Content_Table.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) Ls_Content_Table.getModel();
+            selectedlessonPicture = model.getValueAt(row, 2).toString();
+            ImageIcon icon;
+            try {
+                icon = new ImageIcon(ImageIO.read(new URL(selectedlessonPicture)));
+                Image resizeImage = icon.getImage();
+                Image newimg = resizeImage.getScaledInstance(525, 350, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon newIcon = new ImageIcon(newimg);
+                LsContent_PictureLabel.setIcon(newIcon);
             } catch (IOException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
     }
     
-    private void LsContent_Next_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Next_BtnActionPerformed
-        LsContent_Next_Btn_fun();
-    }//GEN-LAST:event_LsContent_Next_BtnActionPerformed
+    private void Ls_Content_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_Content_TableMouseClicked
+        Ls_Content_Table_fun();
+    }//GEN-LAST:event_Ls_Content_TableMouseClicked
 
-    private void LsContent_Next_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Next_BtnKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            LsContent_Next_Btn_fun();
+    private void Ls_Content_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Content_TableKeyReleased
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           Ls_Content_Table_fun();
+      }
+       if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+           LsContent_Update_Btn.requestFocus();
+      }       
+    }//GEN-LAST:event_Ls_Content_TableKeyReleased
+    
+    private void LsContent_Delete_Btn_fun()
+    {
+        int row = Ls_Content_Table.getSelectedRow();
+        rowcount = Ls_Content_Table.getSelectedRowCount();
+
+        if (rowcount > 1 || rowcount == 0) {
+
+            JOptionPane.showMessageDialog(null, "Please select a picture to delete", "Alert", JOptionPane.ERROR_MESSAGE);
+            AddLessonPictureFrame.requestFocus();
+        } else {
+            DefaultTableModel model = (DefaultTableModel) Ls_Content_Table.getModel();
+            String selected = model.getValueAt(row, 0).toString();
+            model.removeRow(row);
+
+            try {
+                pst = con.prepareStatement("delete from lesson_image where id='" + selected + "'");
+                pst.executeUpdate();
+            } catch (Exception w) {
+                JOptionPane.showMessageDialog(this, "Connection Error!");
+            }
+             Populate_LessonPictures();
+             LsContent_PictureLabel.setIcon(null);
         }
-    }//GEN-LAST:event_LsContent_Next_BtnKeyReleased
+    }
+    
+    private void LsContent_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Delete_BtnActionPerformed
+         LsContent_Delete_Btn_fun();
+    }//GEN-LAST:event_LsContent_Delete_BtnActionPerformed
+
+    private void LsContent_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Delete_BtnKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             LsContent_Delete_Btn_fun();
+         }
+    }//GEN-LAST:event_LsContent_Delete_BtnKeyReleased
 
     /**
      * @param args the command line arguments
@@ -4543,7 +4601,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Home_label;
     private javax.swing.JInternalFrame LessonsContentFrame;
     private javax.swing.JInternalFrame LessonsFrame;
-    private javax.swing.JButton LsContent_Next_Btn;
+    private javax.swing.JButton LsContent_Delete_Btn;
     private javax.swing.JLabel LsContent_PictureLabel;
     private javax.swing.JButton LsContent_Questions_Btn;
     private javax.swing.JButton LsContent_Update_Btn;
@@ -4551,6 +4609,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Ls_Add_Btn;
     private javax.swing.JButton Ls_Back_Btn;
     private javax.swing.JButton Ls_Content_Back_Btn;
+    private javax.swing.JTable Ls_Content_Table;
     private javax.swing.JButton Ls_Delete_Btn;
     private javax.swing.JButton Ls_Enter_Btn;
     private javax.swing.JLabel Ls_Label;
@@ -4705,6 +4764,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
