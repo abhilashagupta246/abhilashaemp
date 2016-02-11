@@ -621,40 +621,39 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                         .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(153, 153, 153)
+                        .addGap(209, 209, 209)
                         .addComponent(LsContent_label)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LessonsContentFrameLayout.createSequentialGroup()
                         .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 52, Short.MAX_VALUE)
                                 .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                                .addGap(164, 164, 164)
+                                .addGap(136, 136, 136)
                                 .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(151, 151, 151)
+                                .addGap(171, 171, 171)
                                 .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 42, Short.MAX_VALUE)))
-                        .addGap(35, 35, 35)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(34, 34, 34)
                         .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
+                        .addGap(28, 28, 28))))
         );
         LessonsContentFrameLayout.setVerticalGroup(
             LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LsContent_label))
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167))
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)))
+                        .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(LsContent_Next_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2517,11 +2516,11 @@ public class Home extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(AddLessonPictureFrameLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(140, 140, 140)
                 .addComponent(AddLessonPicture_Upload_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(AddLessonPicture_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addGap(113, 113, 113))
         );
         AddLessonPictureFrameLayout.setVerticalGroup(
             AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2530,17 +2529,15 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(AddLessonPicture_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(AddLessonPicture_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddLessonPictureFrameLayout.createSequentialGroup()
-                .addContainerGap(553, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addGroup(AddLessonPictureFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddLessonPicture_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddLessonPicture_Upload_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(AddLessonPicture_Upload_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddLessonPicture_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         desktopPane.add(AddLessonPictureFrame);
-        AddLessonPictureFrame.setBounds(0, 0, 636, 627);
+        AddLessonPictureFrame.setBounds(0, 0, 636, 631);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2576,7 +2573,7 @@ public class Home extends javax.swing.JFrame {
     private void Populate_LessonPictures() {
         try {
             pictureIndex=0;
-            
+            pictureList.clear();
             pst = con.prepareStatement("select image from lesson_image where lesson_id="+selectedlesson);
             rs = pst.executeQuery();
                        ImageIcon icon;
@@ -2984,11 +2981,8 @@ public class Home extends javax.swing.JFrame {
                 selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
 
                 lessonsLabel = "select lesson_name from lessons where lesson_id=" + selectedlesson;
-                //lessonsPicture ="select image from lesson_image where lesson_id=" + selectedlesson;
                 pst = con.prepareStatement(lessonsLabel);
-                //pst1 = con.prepareStatement(lessonsPicture);
                 rs = pst.executeQuery(lessonsLabel);
-                //rs1= pst1.executeQuery(lessonsPicture);
                 while (rs.next()) {
                     LsContent_label.setText(rs.getString(1));
                 }
@@ -4443,6 +4437,7 @@ public class Home extends javax.swing.JFrame {
         String lessonsPicture="";
           ImageIcon icon;
         try { 
+            
             if(checkIndex<pictureIndex)
             {
                    lessonsPicture=pictureList.get(checkIndex);
@@ -4455,8 +4450,9 @@ public class Home extends javax.swing.JFrame {
             }
             else
             {
-                checkIndex=1;
+                checkIndex=0;
             }
+            
             } catch (IOException ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                     }
