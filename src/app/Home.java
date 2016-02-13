@@ -1,5 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+/* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -34,6 +33,7 @@ import net.proteanit.sql.DbUtils;
  *
  * @author Ashraf Hameed
  */
+
 public class Home extends javax.swing.JFrame {
 
     Connection con;
@@ -50,19 +50,23 @@ public class Home extends javax.swing.JFrame {
     String selectedQuestionId = null;
     String selectedQuestion = null;
     String selectedlessonPicture = null;
-    int rowcount = 0;
     Boolean login = false;
     String userLoginName = "";
     String EMAIL_PATTERN = "";
     Boolean userEmailCheck = false;
     String lessonImage = null;
     String LessonImageUrl = null;
-     int pictureIndex;
-     int checkIndex=1;
-     ArrayList<String> pictureList = new ArrayList<String>();
-    /**
+    String selectedId = null;
+    int pictureIndex;
+    int checkIndex=1;
+    int pictureId=0;
+    int rowcount = 0;
+    ArrayList<String> wordList = new ArrayList<String>();
+    
+     /**
      * Creates new form Home
      */
+     
     public Home() {
         initComponents();
         con = mysqlconnect.ConnectDb();
@@ -102,22 +106,18 @@ public class Home extends javax.swing.JFrame {
         AddLessonFrame = new javax.swing.JInternalFrame();
         AddLs_Name_Label = new javax.swing.JLabel();
         AddLs_Submit_Btn = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        AddLs_Name_TextArea = new javax.swing.JTextArea();
-        AddLs_Content_Label = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        AddLs_Content_TextArea = new javax.swing.JTextArea();
         AddLs_Label = new javax.swing.JLabel();
         AddLs_Back_Btn = new javax.swing.JButton();
-        LessonsContentFrame = new javax.swing.JInternalFrame();
-        LsContent_Update_Btn = new javax.swing.JButton();
-        LsContent_label = new javax.swing.JLabel();
-        LsContent_Questions_Btn = new javax.swing.JButton();
-        Ls_Content_Back_Btn = new javax.swing.JButton();
-        LsContent_PictureLabel = new javax.swing.JLabel();
+        AddLs_Name_TextArea = new javax.swing.JTextField();
+        LessonsImageFrame = new javax.swing.JInternalFrame();
+        LsImage_AddImage_Btn = new javax.swing.JButton();
+        LsImage_label = new javax.swing.JLabel();
+        LsImage_Questions_Btn = new javax.swing.JButton();
+        Ls_Image_Back_Btn = new javax.swing.JButton();
+        LsImage_PictureLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Ls_Content_Table = new javax.swing.JTable();
-        LsContent_Delete_Btn = new javax.swing.JButton();
+        Ls_Image_Table = new javax.swing.JTable();
+        LsImage_Delete_Btn = new javax.swing.JButton();
         SubjectFrame = new javax.swing.JInternalFrame();
         Sub_Label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -193,6 +193,7 @@ public class Home extends javax.swing.JFrame {
         Home_ViewSugg_Btn = new javax.swing.JButton();
         Home_EmployeeFeedback_Btn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Home_Dictionary_Btn = new javax.swing.JButton();
         UsersProfileFrame = new javax.swing.JInternalFrame();
         UserProfile_Label = new javax.swing.JLabel();
         UserProfile_Name_Label = new javax.swing.JLabel();
@@ -289,6 +290,19 @@ public class Home extends javax.swing.JFrame {
         AddLessonPicture_Add_Btn = new javax.swing.JButton();
         AddLessonPicture_Back_Btn = new javax.swing.JButton();
         AddLessonPicture_Upload_Btn = new javax.swing.JButton();
+        DictionaryFrame = new javax.swing.JInternalFrame();
+        Dictionary_Word_Label = new javax.swing.JLabel();
+        Dictionary_Word_Textfield = new javax.swing.JTextField();
+        Dictionary_Meaning_Label = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Dictionary_Meaning_Textarea = new javax.swing.JTextArea();
+        Dictionary_Add_Btn = new javax.swing.JButton();
+        Dictionary_Update_Btn = new javax.swing.JButton();
+        Dictionary_Delete_Btn = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        Dictionary_Table = new javax.swing.JTable();
+        Dictionary_Label = new javax.swing.JLabel();
+        Dictionary_Home_Btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -451,7 +465,7 @@ public class Home extends javax.swing.JFrame {
 
         AddLs_Submit_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddLs_Submit_Btn.setText("Submit");
-        AddLs_Submit_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        AddLs_Submit_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
         AddLs_Submit_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLs_Submit_BtnActionPerformed(evt);
@@ -463,33 +477,12 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        AddLs_Name_TextArea.setColumns(20);
-        AddLs_Name_TextArea.setRows(5);
-        AddLs_Name_TextArea.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                AddLs_Name_TextAreaKeyReleased(evt);
-            }
-        });
-        jScrollPane4.setViewportView(AddLs_Name_TextArea);
-
-        AddLs_Content_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        AddLs_Content_Label.setText("LESSON CONTENT");
-
-        AddLs_Content_TextArea.setColumns(20);
-        AddLs_Content_TextArea.setRows(5);
-        AddLs_Content_TextArea.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                AddLs_Content_TextAreaKeyReleased(evt);
-            }
-        });
-        jScrollPane5.setViewportView(AddLs_Content_TextArea);
-
         AddLs_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         AddLs_Label.setText("ADD LESSON");
 
         AddLs_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddLs_Back_Btn.setText("Back");
-        AddLs_Back_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        AddLs_Back_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
         AddLs_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLs_Back_BtnActionPerformed(evt);
@@ -513,15 +506,12 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(AddLs_Label))
                     .addGroup(AddLessonFrameLayout.createSequentialGroup()
                         .addGap(69, 69, 69)
+                        .addComponent(AddLs_Name_Label)
+                        .addGap(65, 65, 65)
                         .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddLs_Name_Label)
-                            .addComponent(AddLs_Content_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addComponent(AddLs_Name_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         AddLessonFrameLayout.setVerticalGroup(
             AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,79 +519,69 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddLs_Label)
                     .addComponent(AddLs_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(AddLs_Name_Label)))
-                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(AddLs_Content_Label))
-                    .addGroup(AddLessonFrameLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
+                .addGroup(AddLessonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddLs_Name_Label)
+                    .addComponent(AddLs_Name_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
                 .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         desktopPane.add(AddLessonFrame);
         AddLessonFrame.setBounds(0, 0, 500, 400);
 
-        LessonsContentFrame.setPreferredSize(new java.awt.Dimension(1000, 600));
-        LessonsContentFrame.setVisible(true);
+        LessonsImageFrame.setPreferredSize(new java.awt.Dimension(1000, 600));
+        LessonsImageFrame.setVisible(true);
 
-        LsContent_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        LsContent_Update_Btn.setText("Add Picture");
-        LsContent_Update_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
-        LsContent_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
+        LsImage_AddImage_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsImage_AddImage_Btn.setText("Add Image");
+        LsImage_AddImage_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        LsImage_AddImage_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LsContent_Update_BtnActionPerformed(evt);
+                LsImage_AddImage_BtnActionPerformed(evt);
             }
         });
-        LsContent_Update_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+        LsImage_AddImage_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                LsContent_Update_BtnKeyReleased(evt);
+                LsImage_AddImage_BtnKeyReleased(evt);
             }
         });
 
-        LsContent_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        LsContent_label.setText("jLabel5");
+        LsImage_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        LsImage_label.setText("jLabel5");
 
-        LsContent_Questions_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        LsContent_Questions_Btn.setText("Questions");
-        LsContent_Questions_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
-        LsContent_Questions_Btn.addActionListener(new java.awt.event.ActionListener() {
+        LsImage_Questions_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsImage_Questions_Btn.setText("Questions");
+        LsImage_Questions_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        LsImage_Questions_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LsContent_Questions_BtnActionPerformed(evt);
+                LsImage_Questions_BtnActionPerformed(evt);
             }
         });
-        LsContent_Questions_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+        LsImage_Questions_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                LsContent_Questions_BtnKeyReleased(evt);
+                LsImage_Questions_BtnKeyReleased(evt);
             }
         });
 
-        Ls_Content_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Ls_Content_Back_Btn.setText("Back");
-        Ls_Content_Back_Btn.setPreferredSize(new java.awt.Dimension(60, 30));
-        Ls_Content_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
+        Ls_Image_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Ls_Image_Back_Btn.setText("Back");
+        Ls_Image_Back_Btn.setPreferredSize(new java.awt.Dimension(60, 30));
+        Ls_Image_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ls_Content_Back_BtnActionPerformed(evt);
+                Ls_Image_Back_BtnActionPerformed(evt);
             }
         });
-        Ls_Content_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+        Ls_Image_Back_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                Ls_Content_Back_BtnKeyReleased(evt);
+                Ls_Image_Back_BtnKeyReleased(evt);
             }
         });
 
-        LsContent_PictureLabel.setPreferredSize(new java.awt.Dimension(525, 350));
+        LsImage_PictureLabel.setPreferredSize(new java.awt.Dimension(525, 350));
 
-        Ls_Content_Table.setModel(new javax.swing.table.DefaultTableModel(
+        Ls_Image_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -618,77 +598,77 @@ public class Home extends javax.swing.JFrame {
                 "Title 1"
             }
         ));
-        Ls_Content_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+        Ls_Image_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Ls_Content_TableMouseClicked(evt);
+                Ls_Image_TableMouseClicked(evt);
             }
         });
-        Ls_Content_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+        Ls_Image_Table.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                Ls_Content_TableKeyReleased(evt);
+                Ls_Image_TableKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(Ls_Content_Table);
+        jScrollPane2.setViewportView(Ls_Image_Table);
 
-        LsContent_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        LsContent_Delete_Btn.setText("Delete Picture");
-        LsContent_Delete_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
-        LsContent_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
+        LsImage_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        LsImage_Delete_Btn.setText("Delete Image");
+        LsImage_Delete_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        LsImage_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LsContent_Delete_BtnActionPerformed(evt);
+                LsImage_Delete_BtnActionPerformed(evt);
             }
         });
-        LsContent_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+        LsImage_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                LsContent_Delete_BtnKeyReleased(evt);
+                LsImage_Delete_BtnKeyReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout LessonsContentFrameLayout = new javax.swing.GroupLayout(LessonsContentFrame.getContentPane());
-        LessonsContentFrame.getContentPane().setLayout(LessonsContentFrameLayout);
-        LessonsContentFrameLayout.setHorizontalGroup(
-            LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+        javax.swing.GroupLayout LessonsImageFrameLayout = new javax.swing.GroupLayout(LessonsImageFrame.getContentPane());
+        LessonsImageFrame.getContentPane().setLayout(LessonsImageFrameLayout);
+        LessonsImageFrameLayout.setHorizontalGroup(
+            LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LessonsImageFrameLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                        .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LessonsImageFrameLayout.createSequentialGroup()
+                        .addComponent(Ls_Image_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(326, 326, 326)
-                        .addComponent(LsContent_label))
-                    .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+                        .addComponent(LsImage_label))
+                    .addGroup(LessonsImageFrameLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
-                        .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
-                                .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LsImage_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(LessonsImageFrameLayout.createSequentialGroup()
+                                .addComponent(LsImage_AddImage_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(107, 107, 107)
-                                .addComponent(LsContent_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LsImage_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(LsImage_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        LessonsContentFrameLayout.setVerticalGroup(
-            LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LessonsContentFrameLayout.createSequentialGroup()
+        LessonsImageFrameLayout.setVerticalGroup(
+            LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LessonsImageFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ls_Content_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LsContent_label))
+                .addGroup(LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Ls_Image_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LsImage_label))
                 .addGap(18, 18, 18)
-                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LsContent_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addGroup(LessonsContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LsContent_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LsContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LsContent_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LsImage_PictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(LessonsImageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LsImage_AddImage_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LsImage_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LsImage_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
-        desktopPane.add(LessonsContentFrame);
-        LessonsContentFrame.setBounds(0, 0, 1000, 600);
+        desktopPane.add(LessonsImageFrame);
+        LessonsImageFrame.setBounds(0, 0, 1000, 600);
 
         SubjectFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 800, 550));
         SubjectFrame.setPreferredSize(new java.awt.Dimension(760, 400));
@@ -1561,7 +1541,7 @@ public class Home extends javax.swing.JFrame {
 
         Home_Subject_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Home_Subject_Btn.setText("SUBJECTS");
-        Home_Subject_Btn.setPreferredSize(new java.awt.Dimension(137, 30));
+        Home_Subject_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
         Home_Subject_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_Subject_BtnMouseClicked(evt);
@@ -1580,7 +1560,7 @@ public class Home extends javax.swing.JFrame {
 
         Home_UsrMngt_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Home_UsrMngt_Btn.setText("USER MANAGEMENT");
-        Home_UsrMngt_Btn.setPreferredSize(new java.awt.Dimension(137, 30));
+        Home_UsrMngt_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
         Home_UsrMngt_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_UsrMngt_BtnMouseClicked(evt);
@@ -1599,7 +1579,7 @@ public class Home extends javax.swing.JFrame {
 
         Home_ChangePwd_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Home_ChangePwd_Btn.setText("CHANGE PASSWORD");
-        Home_ChangePwd_Btn.setPreferredSize(new java.awt.Dimension(137, 30));
+        Home_ChangePwd_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
         Home_ChangePwd_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_ChangePwd_BtnMouseClicked(evt);
@@ -1618,7 +1598,7 @@ public class Home extends javax.swing.JFrame {
 
         Home_Logout_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Home_Logout_Btn.setText("LOGOUT");
-        Home_Logout_Btn.setPreferredSize(new java.awt.Dimension(137, 30));
+        Home_Logout_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
         Home_Logout_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_Logout_BtnMouseClicked(evt);
@@ -1641,7 +1621,7 @@ public class Home extends javax.swing.JFrame {
 
         Home_ViewSugg_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Home_ViewSugg_Btn.setText("VIEW SUGGESTIONS");
-        Home_ViewSugg_Btn.setPreferredSize(new java.awt.Dimension(137, 30));
+        Home_ViewSugg_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
         Home_ViewSugg_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_ViewSugg_BtnMouseClicked(evt);
@@ -1660,7 +1640,7 @@ public class Home extends javax.swing.JFrame {
 
         Home_EmployeeFeedback_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Home_EmployeeFeedback_Btn.setText("EMPLOYEE FEEDBACK");
-        Home_EmployeeFeedback_Btn.setPreferredSize(new java.awt.Dimension(145, 30));
+        Home_EmployeeFeedback_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
         Home_EmployeeFeedback_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_EmployeeFeedback_BtnMouseClicked(evt);
@@ -1679,7 +1659,7 @@ public class Home extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("RESULTS");
-        jButton2.setPreferredSize(new java.awt.Dimension(90, 30));
+        jButton2.setPreferredSize(new java.awt.Dimension(160, 30));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -1691,31 +1671,43 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Home_Dictionary_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Home_Dictionary_Btn.setText("DICTIONARY");
+        Home_Dictionary_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
+        Home_Dictionary_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home_Dictionary_BtnActionPerformed(evt);
+            }
+        });
+        Home_Dictionary_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Home_Dictionary_BtnKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout HomeFrameLayout = new javax.swing.GroupLayout(HomeFrame.getContentPane());
         HomeFrame.getContentPane().setLayout(HomeFrameLayout);
         HomeFrameLayout.setHorizontalGroup(
             HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HomeFrameLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
+                .addContainerGap(265, Short.MAX_VALUE)
+                .addComponent(Home_label, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(227, 227, 227))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(90, 90, 90))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
-                        .addComponent(Home_label, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(227, 227, 227))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
-                        .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(194, 194, 194))))
+                    .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(90, 90, 90))
         );
         HomeFrameLayout.setVerticalGroup(
             HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1729,14 +1721,16 @@ public class Home extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         desktopPane.add(HomeFrame);
@@ -2566,6 +2560,185 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddLessonPictureFrame);
         AddLessonPictureFrame.setBounds(0, 0, 636, 631);
 
+        DictionaryFrame.setPreferredSize(new java.awt.Dimension(780, 470));
+        DictionaryFrame.setVisible(true);
+
+        Dictionary_Word_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Dictionary_Word_Label.setText("WORD");
+
+        Dictionary_Meaning_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Dictionary_Meaning_Label.setText("MEANING");
+
+        Dictionary_Meaning_Textarea.setColumns(20);
+        Dictionary_Meaning_Textarea.setRows(5);
+        Dictionary_Meaning_Textarea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Dictionary_Meaning_TextareaKeyReleased(evt);
+            }
+        });
+        jScrollPane4.setViewportView(Dictionary_Meaning_Textarea);
+
+        Dictionary_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Dictionary_Add_Btn.setText("Add");
+        Dictionary_Add_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        Dictionary_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dictionary_Add_BtnActionPerformed(evt);
+            }
+        });
+        Dictionary_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Dictionary_Add_BtnKeyReleased(evt);
+            }
+        });
+
+        Dictionary_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Dictionary_Update_Btn.setText("Update");
+        Dictionary_Update_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        Dictionary_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dictionary_Update_BtnActionPerformed(evt);
+            }
+        });
+        Dictionary_Update_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Dictionary_Update_BtnKeyReleased(evt);
+            }
+        });
+
+        Dictionary_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Dictionary_Delete_Btn.setText("Delete");
+        Dictionary_Delete_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        Dictionary_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dictionary_Delete_BtnActionPerformed(evt);
+            }
+        });
+        Dictionary_Delete_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Dictionary_Delete_BtnKeyReleased(evt);
+            }
+        });
+
+        Dictionary_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        Dictionary_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Dictionary_TableMouseClicked(evt);
+            }
+        });
+        Dictionary_Table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Dictionary_TableKeyReleased(evt);
+            }
+        });
+        jScrollPane5.setViewportView(Dictionary_Table);
+
+        Dictionary_Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Dictionary_Label.setText("DICTIONARY");
+
+        Dictionary_Home_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Dictionary_Home_Btn.setText("Home");
+        Dictionary_Home_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        Dictionary_Home_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dictionary_Home_BtnActionPerformed(evt);
+            }
+        });
+        Dictionary_Home_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Dictionary_Home_BtnKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DictionaryFrameLayout = new javax.swing.GroupLayout(DictionaryFrame.getContentPane());
+        DictionaryFrame.getContentPane().setLayout(DictionaryFrameLayout);
+        DictionaryFrameLayout.setHorizontalGroup(
+            DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                .addGroup(DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                                .addComponent(Dictionary_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(Dictionary_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Dictionary_Word_Label)
+                            .addComponent(Dictionary_Meaning_Label)
+                            .addComponent(Dictionary_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4)
+                            .addComponent(Dictionary_Word_Textfield)))
+                    .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(Dictionary_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DictionaryFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DictionaryFrameLayout.createSequentialGroup()
+                        .addComponent(Dictionary_Label)
+                        .addGap(185, 185, 185))))
+        );
+        DictionaryFrameLayout.setVerticalGroup(
+            DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Dictionary_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Dictionary_Label))
+                .addGap(26, 26, 26)
+                .addGroup(DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 4, Short.MAX_VALUE))
+                    .addGroup(DictionaryFrameLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(Dictionary_Word_Label)
+                        .addGap(18, 18, 18)
+                        .addComponent(Dictionary_Word_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Dictionary_Meaning_Label)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addGroup(DictionaryFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Dictionary_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Dictionary_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(Dictionary_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        desktopPane.add(DictionaryFrame);
+        DictionaryFrame.setBounds(0, 0, 780, 470);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -2599,17 +2772,18 @@ public class Home extends javax.swing.JFrame {
     
     private void Populate_LessonPictures() {
         try {
-            String path="";
             pst = con.prepareStatement("select id as Id,lesson_id as 'Lesson Id' ,image as Images from lesson_image where lesson_id="+selectedlesson);
             rs = pst.executeQuery();
                     try {
-                        Ls_Content_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
-                        Ls_Content_Table.setModel(DbUtils.resultSetToTableModel(rs));
                         
-                        Ls_Content_Table.getColumnModel().getColumn(0).setMinWidth(0);
-                        Ls_Content_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-                        Ls_Content_Table.getColumnModel().getColumn(1).setMinWidth(0);
-                        Ls_Content_Table.getColumnModel().getColumn(1).setMaxWidth(0);
+                        Ls_Image_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+                        Ls_Image_Table.setModel(DbUtils.resultSetToTableModel(rs));
+                        
+                        for(int i=0;i<2;i++)
+                        {
+                        Ls_Image_Table.getColumnModel().getColumn(i).setMinWidth(0);
+                        Ls_Image_Table.getColumnModel().getColumn(i).setMaxWidth(0);
+                        }
                    
                     } catch (Exception ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -2665,6 +2839,29 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
+    private void Populate_Dictionary() {
+        try {
+            wordList.clear();
+            pst = con.prepareStatement("select id as Id ,word as Word,meaning as Meaning from worddictionary");
+            pst1 = con.prepareStatement("select word from worddictionary");
+            rs = pst.executeQuery();
+            
+            Dictionary_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+            Dictionary_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            Dictionary_Table.getColumnModel().getColumn(0).setMinWidth(0);
+            Dictionary_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+            rs.close();
+            rs1=pst.executeQuery();
+            while(rs1.next())
+            {
+                wordList.add(rs1.getString("word"));
+            }
+            rs1.close();
+        } catch (SQLException e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
     private void Populate_Subject() {
         try {
             pst = con.prepareStatement("select subject_id as Id,subject_no as 'S No' ,subject_name as Subject from subject");
@@ -2811,7 +3008,7 @@ public class Home extends javax.swing.JFrame {
         AddSubjectFrame.setVisible(false);
         LessonsFrame.setVisible(false);
         AddLessonFrame.setVisible(false);
-        LessonsContentFrame.setVisible(false);
+        LessonsImageFrame.setVisible(false);
         UserManagementFrame.setVisible(false);
         QuestionsFrame.setVisible(false);
         UserLoginFrame.setVisible(false);
@@ -2823,6 +3020,7 @@ public class Home extends javax.swing.JFrame {
         FeedbackFrame.setVisible(false);
         ResultFrame.setVisible(false);
         AddLessonPictureFrame.setVisible(false);
+        DictionaryFrame.setVisible(false);
     }
 
     private void Populate_Users() {
@@ -3005,11 +3203,11 @@ public class Home extends javax.swing.JFrame {
                 pst = con.prepareStatement(lessonsLabel);
                 rs = pst.executeQuery(lessonsLabel);
                 while (rs.next()) {
-                    LsContent_label.setText(rs.getString(1));
+                    LsImage_label.setText(rs.getString(1));
                 }
                 
                 closeAllFrames();
-                LessonsContentFrame.setVisible(true);
+                LessonsImageFrame.setVisible(true);
                 Populate_LessonPictures();
                   } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -3035,10 +3233,10 @@ public class Home extends javax.swing.JFrame {
         Populate_Lessons();
 
     }
-    private void LsContent_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnActionPerformed
+    private void LsImage_AddImage_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsImage_AddImage_BtnActionPerformed
         closeAllFrames();
       AddLessonPictureFrame.setVisible(true);
-    }//GEN-LAST:event_LsContent_Update_BtnActionPerformed
+    }//GEN-LAST:event_LsImage_AddImage_BtnActionPerformed
 
     private void Ls_Delete_Btn_fun() {
         int row = Ls_Table.getSelectedRow();
@@ -3077,13 +3275,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
     private void AddLs_Submit_Btn_fun() {
-        String insertlesson = "INSERT INTO lessons( lesson_name,lesson_content,subject_id) VALUES(?,?,?)";
-        if (!AddLs_Name_TextArea.getText().equalsIgnoreCase("") && !(AddLs_Content_TextArea.getText().equalsIgnoreCase(""))) {
+        String insertlesson = "INSERT INTO lessons(lesson_name,subject_id) VALUES(?,?)";
+        if (!AddLs_Name_TextArea.getText().equalsIgnoreCase("")) {
             try {
                 pst = con.prepareStatement(insertlesson);
                 pst.setString(1, AddLs_Name_TextArea.getText());
-                pst.setString(2, AddLs_Content_TextArea.getText());
-                pst.setString(3, subject);
+                pst.setString(2, subject);
                 pst.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -3093,8 +3290,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             AddLs_Name_TextArea.setText("");
-            AddLs_Content_TextArea.setText("");
-
+            
         } else {
 
             JOptionPane.showMessageDialog(null, "Please enter the lesson information", "Alert", JOptionPane.ERROR_MESSAGE);
@@ -3256,12 +3452,12 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_User_TableMousePressed
 
-    private void LsContent_Questions_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Questions_BtnActionPerformed
+    private void LsImage_Questions_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsImage_Questions_BtnActionPerformed
         closeAllFrames();
         QuestionsFrame.setVisible(true);
         Populate_Questions();
 
-    }//GEN-LAST:event_LsContent_Questions_BtnActionPerformed
+    }//GEN-LAST:event_LsImage_Questions_BtnActionPerformed
 
     private void Qst_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_TableMouseClicked
         rowcount = Qst_Table.getSelectedRowCount();
@@ -3585,12 +3781,12 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Ls_TableMouseClicked
 
-    private void Ls_Content_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Content_Back_BtnActionPerformed
+    private void Ls_Image_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Image_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
         Populate_Lessons();
-        LsContent_PictureLabel.setIcon(null);
-    }//GEN-LAST:event_Ls_Content_Back_BtnActionPerformed
+        LsImage_PictureLabel.setIcon(null);
+    }//GEN-LAST:event_Ls_Image_Back_BtnActionPerformed
 
     private void StDetails_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StDetails_Back_BtnActionPerformed
         closeAllFrames();
@@ -3732,12 +3928,6 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Ls_Enter_BtnKeyReleased
 
-    private void AddLs_Name_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Name_TextAreaKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            AddLs_Content_TextArea.requestFocus();
-        }
-    }//GEN-LAST:event_AddLs_Name_TextAreaKeyReleased
-
     private void AddLs_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Back_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
@@ -3746,42 +3936,36 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AddLs_Back_BtnKeyReleased
 
-    private void AddLs_Content_TextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Content_TextAreaKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            AddLs_Submit_Btn.requestFocus();
-        }
-    }//GEN-LAST:event_AddLs_Content_TextAreaKeyReleased
-
     private void AddLs_Submit_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLs_Submit_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             AddLs_Submit_Btn_fun();
         }
     }//GEN-LAST:event_AddLs_Submit_BtnKeyReleased
 
-    private void Ls_Content_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Content_Back_BtnKeyReleased
+    private void Ls_Image_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Image_Back_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             Populate_Lessons();
-            LsContent_PictureLabel.setIcon(null);
+            LsImage_PictureLabel.setIcon(null);
         }
-    }//GEN-LAST:event_Ls_Content_Back_BtnKeyReleased
+    }//GEN-LAST:event_Ls_Image_Back_BtnKeyReleased
 
-    private void LsContent_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Update_BtnKeyReleased
+    private void LsImage_AddImage_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsImage_AddImage_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             //LsContent_Update_Btn_fun();
             closeAllFrames();
             AddLessonPictureFrame.setVisible(true);
         }
-    }//GEN-LAST:event_LsContent_Update_BtnKeyReleased
+    }//GEN-LAST:event_LsImage_AddImage_BtnKeyReleased
 
-    private void LsContent_Questions_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Questions_BtnKeyReleased
+    private void LsImage_Questions_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsImage_Questions_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             QuestionsFrame.setVisible(true);
             Populate_Questions();
         }
-    }//GEN-LAST:event_LsContent_Questions_BtnKeyReleased
+    }//GEN-LAST:event_LsImage_Questions_BtnKeyReleased
 
     private void Qst_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Qst_Back_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -4362,25 +4546,26 @@ public class Home extends javax.swing.JFrame {
 
     private void AddLessonPicture_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonPicture_Back_BtnActionPerformed
         closeAllFrames();
-        LessonsContentFrame.setVisible(true);
+        LessonsImageFrame.setVisible(true);
         Populate_LessonPictures();
     }//GEN-LAST:event_AddLessonPicture_Back_BtnActionPerformed
 
     private void AddLessonPicture_Back_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddLessonPicture_Back_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
-            LessonsContentFrame.setVisible(true);
+            LessonsImageFrame.setVisible(true);
         Populate_LessonPictures();
         }
     }//GEN-LAST:event_AddLessonPicture_Back_BtnKeyReleased
     
     private void AddLessonPicture_Add_Btn_fun()
     {   
+        String str="";
         String sql="insert into lesson_image(lesson_id,image) values (?,?)";
          if (lessonImage==null) {
             JOptionPane.showMessageDialog(null, "No picture is selected", "Alert", JOptionPane.ERROR_MESSAGE);
         } else {
-             LessonImageUrl=new File( "C:/wamp/www/images/" +selectedlesson+"_"+ lessonImage).toURI().toString();
+             LessonImageUrl=selectedlesson+"_"+ pictureId+"_"+lessonImage;
               AddLessonPicture_Label.setIcon(null);
         try {
              pst = con.prepareStatement(sql);
@@ -4400,6 +4585,8 @@ public class Home extends javax.swing.JFrame {
 
     private void AddLessonPicture_Upload_Btn_fun()
     {
+        String sql="Select id from lesson_image order by id desc";
+        
         JFileChooser filechooser = new JFileChooser();
         filechooser.setDialogTitle("Choose the File to upload");
         filechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -4414,11 +4601,20 @@ public class Home extends javax.swing.JFrame {
                 bi=scale(bi,600,400);
                 AddLessonPicture_Label.setIcon(new ImageIcon(bi));
                 lessonImage = file.getName();
+                if(!lessonImage.endsWith("jpg"))
+                {
+                    lessonImage=lessonImage.substring(0,lessonImage.lastIndexOf(".") + 1).concat("jpg");
+                }
+                pst=con.prepareStatement(sql);
+                rs=pst.executeQuery(sql);
+                if(rs.next())
+                {
+                   pictureId++; 
+                }
                 
-                File f = new File("\\wamp\\www\\images\\" + selectedlesson+"_"+lessonImage);
-                ImageIO.write(bi, "png", f);
-                
-                } catch (Exception e) {
+                File f = new File("\\wamp\\www\\images\\" + selectedlesson+"_"+pictureId+"_"+lessonImage);
+                 ImageIO.write(bi, "jpg", f);
+                 } catch (Exception e) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
             }
         }
@@ -4458,51 +4654,51 @@ public class Home extends javax.swing.JFrame {
     
     private void Ls_Content_Table_fun()
     {
-        rowcount = Ls_Content_Table.getSelectedRowCount();
+        rowcount = Ls_Image_Table.getSelectedRowCount();
         int row;
         if (rowcount > 1 || rowcount == 0) {
             AddLessonPictureFrame.requestFocus();
         } else {
-            row = Ls_Content_Table.getSelectedRow();
-            DefaultTableModel model = (DefaultTableModel) Ls_Content_Table.getModel();
+            row = Ls_Image_Table.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) Ls_Image_Table.getModel();
             selectedlessonPicture = model.getValueAt(row, 2).toString();
             ImageIcon icon;
             try {
-                icon = new ImageIcon(ImageIO.read(new URL(selectedlessonPicture)));
+                icon = new ImageIcon(ImageIO.read(new URL("file:/C:/wamp/www/images/"+selectedlessonPicture)));
                 Image resizeImage = icon.getImage();
                 Image newimg = resizeImage.getScaledInstance(525, 350, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon newIcon = new ImageIcon(newimg);
-                LsContent_PictureLabel.setIcon(newIcon);
+                LsImage_PictureLabel.setIcon(newIcon);
             } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }
     
-    private void Ls_Content_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_Content_TableMouseClicked
+    private void Ls_Image_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_Image_TableMouseClicked
         Ls_Content_Table_fun();
-    }//GEN-LAST:event_Ls_Content_TableMouseClicked
+    }//GEN-LAST:event_Ls_Image_TableMouseClicked
 
-    private void Ls_Content_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Content_TableKeyReleased
+    private void Ls_Image_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ls_Image_TableKeyReleased
       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
            Ls_Content_Table_fun();
       }
        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-           LsContent_Update_Btn.requestFocus();
+           LsImage_AddImage_Btn.requestFocus();
       }       
-    }//GEN-LAST:event_Ls_Content_TableKeyReleased
+    }//GEN-LAST:event_Ls_Image_TableKeyReleased
     
     private void LsContent_Delete_Btn_fun()
     {
-        int row = Ls_Content_Table.getSelectedRow();
-        rowcount = Ls_Content_Table.getSelectedRowCount();
+        int row = Ls_Image_Table.getSelectedRow();
+        rowcount = Ls_Image_Table.getSelectedRowCount();
 
         if (rowcount > 1 || rowcount == 0) {
 
             JOptionPane.showMessageDialog(null, "Please select a picture to delete", "Alert", JOptionPane.ERROR_MESSAGE);
             AddLessonPictureFrame.requestFocus();
         } else {
-            DefaultTableModel model = (DefaultTableModel) Ls_Content_Table.getModel();
+            DefaultTableModel model = (DefaultTableModel) Ls_Image_Table.getModel();
             String selected = model.getValueAt(row, 0).toString();
             model.removeRow(row);
 
@@ -4513,19 +4709,192 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Connection Error!");
             }
              Populate_LessonPictures();
-             LsContent_PictureLabel.setIcon(null);
+             LsImage_PictureLabel.setIcon(null);
         }
     }
     
-    private void LsContent_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsContent_Delete_BtnActionPerformed
+    private void LsImage_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsImage_Delete_BtnActionPerformed
          LsContent_Delete_Btn_fun();
-    }//GEN-LAST:event_LsContent_Delete_BtnActionPerformed
+    }//GEN-LAST:event_LsImage_Delete_BtnActionPerformed
 
-    private void LsContent_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsContent_Delete_BtnKeyReleased
+    private void LsImage_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LsImage_Delete_BtnKeyReleased
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
              LsContent_Delete_Btn_fun();
          }
-    }//GEN-LAST:event_LsContent_Delete_BtnKeyReleased
+    }//GEN-LAST:event_LsImage_Delete_BtnKeyReleased
+
+    private void Home_Dictionary_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_Dictionary_BtnActionPerformed
+        closeAllFrames();
+        DictionaryFrame.setVisible(true);
+        Populate_Dictionary();
+    }//GEN-LAST:event_Home_Dictionary_BtnActionPerformed
+
+    private void Home_Dictionary_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Dictionary_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+        DictionaryFrame.setVisible(true);
+        Populate_Dictionary();
+        }
+    }//GEN-LAST:event_Home_Dictionary_BtnKeyReleased
+
+    private void Dictionary_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dictionary_Home_BtnActionPerformed
+        closeAllFrames();
+        HomeFrame.setVisible(true);
+    }//GEN-LAST:event_Dictionary_Home_BtnActionPerformed
+
+    private void Dictionary_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Dictionary_Home_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        closeAllFrames();
+        HomeFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_Dictionary_Home_BtnKeyReleased
+
+    private void Dictionary_Add_Btn_fun()
+    {
+        Boolean sameword=false;
+        String selectdWord="";
+        if(!(Dictionary_Word_Textfield.getText().trim()).equals("") && !(Dictionary_Meaning_Textarea.getText()).equals(""))
+            {
+            String insertword = "INSERT INTO worddictionary(word,meaning) VALUES(?,?)";
+            selectdWord=Dictionary_Word_Textfield.getText().trim();
+            try {
+                    if(wordList.contains(selectdWord))
+                    {
+                    sameword=true;
+                    }
+                if(sameword)
+                {
+                    JOptionPane.showMessageDialog(null, "The word already exists", "Alert", JOptionPane.ERROR_MESSAGE);
+                    DictionaryFrame.requestFocus();
+                }
+                else
+                {
+                pst = con.prepareStatement(insertword);
+                pst.setString(1, Dictionary_Word_Textfield.getText().trim());
+                pst.setString(2, Dictionary_Meaning_Textarea.getText());
+                pst.executeUpdate();
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Dictionary_Word_Textfield.setText("");
+            Dictionary_Meaning_Textarea.setText("");
+            Populate_Dictionary();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter a Word", "Alert", JOptionPane.ERROR_MESSAGE);
+            DictionaryFrame.requestFocus();
+        }
+        
+    }
+    
+    private void Dictionary_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dictionary_Add_BtnActionPerformed
+        Dictionary_Add_Btn_fun();
+    }//GEN-LAST:event_Dictionary_Add_BtnActionPerformed
+
+    private void Dictionary_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Dictionary_Add_BtnKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Dictionary_Add_Btn_fun();
+        }
+    }//GEN-LAST:event_Dictionary_Add_BtnKeyReleased
+    
+    private void Dictionary_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Dictionary_TableMouseClicked
+        
+        int row=Dictionary_Table.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) Dictionary_Table.getModel();
+            if (row >= 0) {
+                Dictionary_Word_Textfield.setText(model.getValueAt(row, 1).toString());
+                Dictionary_Meaning_Textarea.setText(model.getValueAt(row, 2).toString());
+                selectedId=model.getValueAt(row, 0).toString();
+            }
+    }//GEN-LAST:event_Dictionary_TableMouseClicked
+
+    private void Dictionary_Update_Btn_fun()
+    {
+        int row=Dictionary_Table.getSelectedRow();
+        rowcount=Dictionary_Table.getSelectedRowCount();
+        try {
+             if(!(Dictionary_Word_Textfield.getText().trim()).equals("") && !(Dictionary_Meaning_Textarea.getText()).equals("") && wordList.contains(Dictionary_Word_Textfield.getText().trim()))
+            {
+            pst = con.prepareStatement("Update worddictionary set word='" + Dictionary_Word_Textfield.getText() + "', meaning ='"+Dictionary_Meaning_Textarea.getText()+"' where id='"+selectedId+"'");
+            pst.executeUpdate(); 
+            Dictionary_Word_Textfield.setText("");
+            Dictionary_Meaning_Textarea.setText("");
+            Populate_Dictionary();
+            }
+             else
+             {
+                 JOptionPane.showMessageDialog(null, "Please select a Word to Update from the dictionary", "Alert", JOptionPane.ERROR_MESSAGE);
+                 DictionaryFrame.requestFocus();
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
+    
+    private void Dictionary_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dictionary_Update_BtnActionPerformed
+        Dictionary_Update_Btn_fun();
+    }//GEN-LAST:event_Dictionary_Update_BtnActionPerformed
+
+    private void Dictionary_Delete_Btn_fun()
+    {
+        int row = Dictionary_Table.getSelectedRow();
+        rowcount = Dictionary_Table.getSelectedRowCount();
+        if (rowcount > 1 || rowcount == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a word from the table to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            DictionaryFrame.requestFocus();
+        } else {
+            if(wordList.contains(Dictionary_Word_Textfield.getText().trim()))
+            {
+            DefaultTableModel model = (DefaultTableModel) Dictionary_Table.getModel();
+            if (row >= 0) {
+                model.removeRow(row);
+                try {
+                    pst = con.prepareStatement("delete from worddictionary where id='" + selectedId + "'");
+                    pst.executeUpdate();
+                    Populate_Dictionary();
+                    Dictionary_Word_Textfield.setText("");
+                    Dictionary_Meaning_Textarea.setText("");
+                } catch (Exception w) {
+                    JOptionPane.showMessageDialog(this, "Connection Error!");
+                }
+            }
+        }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Please select a word to delete", "Alert", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        DictionaryFrame.requestFocus();
+    }
+    
+    private void Dictionary_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dictionary_Delete_BtnActionPerformed
+        Dictionary_Delete_Btn_fun();
+    }//GEN-LAST:event_Dictionary_Delete_BtnActionPerformed
+
+    private void Dictionary_Update_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Dictionary_Update_BtnKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             Dictionary_Update_Btn_fun();
+         }
+    }//GEN-LAST:event_Dictionary_Update_BtnKeyReleased
+
+    private void Dictionary_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Dictionary_Delete_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Dictionary_Delete_Btn_fun();
+        }
+    }//GEN-LAST:event_Dictionary_Delete_BtnKeyReleased
+
+    private void Dictionary_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Dictionary_TableKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            Dictionary_Word_Textfield.requestFocus();
+        }         
+    }//GEN-LAST:event_Dictionary_TableKeyReleased
+
+    private void Dictionary_Meaning_TextareaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Dictionary_Meaning_TextareaKeyReleased
+         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            Dictionary_Add_Btn.requestFocus();
+        } 
+    }//GEN-LAST:event_Dictionary_Meaning_TextareaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -4570,11 +4939,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel AddLessonPicture_Label;
     private javax.swing.JButton AddLessonPicture_Upload_Btn;
     private javax.swing.JButton AddLs_Back_Btn;
-    private javax.swing.JLabel AddLs_Content_Label;
-    private javax.swing.JTextArea AddLs_Content_TextArea;
     private javax.swing.JLabel AddLs_Label;
     private javax.swing.JLabel AddLs_Name_Label;
-    private javax.swing.JTextArea AddLs_Name_TextArea;
+    private javax.swing.JTextField AddLs_Name_TextArea;
     private javax.swing.JButton AddLs_Submit_Btn;
     private javax.swing.JButton AddSub_Add_Btn;
     private javax.swing.JButton AddSub_Back_Btn;
@@ -4590,28 +4957,40 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel ChangePwd_NewPwd_Label;
     private javax.swing.JTextField ChangePwd_NewPwd_Textfield;
     private javax.swing.JButton ChangePwd_Submit_Btn;
+    private javax.swing.JInternalFrame DictionaryFrame;
+    private javax.swing.JButton Dictionary_Add_Btn;
+    private javax.swing.JButton Dictionary_Delete_Btn;
+    private javax.swing.JButton Dictionary_Home_Btn;
+    private javax.swing.JLabel Dictionary_Label;
+    private javax.swing.JLabel Dictionary_Meaning_Label;
+    private javax.swing.JTextArea Dictionary_Meaning_Textarea;
+    private javax.swing.JTable Dictionary_Table;
+    private javax.swing.JButton Dictionary_Update_Btn;
+    private javax.swing.JLabel Dictionary_Word_Label;
+    private javax.swing.JTextField Dictionary_Word_Textfield;
     private javax.swing.JInternalFrame FeedbackFrame;
     private javax.swing.JInternalFrame HomeFrame;
     private javax.swing.JButton Home_ChangePwd_Btn;
+    private javax.swing.JButton Home_Dictionary_Btn;
     private javax.swing.JButton Home_EmployeeFeedback_Btn;
     private javax.swing.JButton Home_Logout_Btn;
     private javax.swing.JButton Home_Subject_Btn;
     private javax.swing.JButton Home_UsrMngt_Btn;
     private javax.swing.JButton Home_ViewSugg_Btn;
     private javax.swing.JLabel Home_label;
-    private javax.swing.JInternalFrame LessonsContentFrame;
     private javax.swing.JInternalFrame LessonsFrame;
-    private javax.swing.JButton LsContent_Delete_Btn;
-    private javax.swing.JLabel LsContent_PictureLabel;
-    private javax.swing.JButton LsContent_Questions_Btn;
-    private javax.swing.JButton LsContent_Update_Btn;
-    private javax.swing.JLabel LsContent_label;
+    private javax.swing.JInternalFrame LessonsImageFrame;
+    private javax.swing.JButton LsImage_AddImage_Btn;
+    private javax.swing.JButton LsImage_Delete_Btn;
+    private javax.swing.JLabel LsImage_PictureLabel;
+    private javax.swing.JButton LsImage_Questions_Btn;
+    private javax.swing.JLabel LsImage_label;
     private javax.swing.JButton Ls_Add_Btn;
     private javax.swing.JButton Ls_Back_Btn;
-    private javax.swing.JButton Ls_Content_Back_Btn;
-    private javax.swing.JTable Ls_Content_Table;
     private javax.swing.JButton Ls_Delete_Btn;
     private javax.swing.JButton Ls_Enter_Btn;
+    private javax.swing.JButton Ls_Image_Back_Btn;
+    private javax.swing.JTable Ls_Image_Table;
     private javax.swing.JLabel Ls_Label;
     private javax.swing.JButton Ls_Marks_Btn;
     private javax.swing.JTable Ls_Table;
