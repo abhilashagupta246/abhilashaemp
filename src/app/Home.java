@@ -460,7 +460,7 @@ public class Home extends javax.swing.JFrame {
         LessonsFrame.setBounds(0, 0, 600, 400);
 
         AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
-        AddLessonFrame.setPreferredSize(new java.awt.Dimension(500, 400));
+        AddLessonFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         AddLessonFrame.setVisible(true);
 
         AddLs_Name_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -528,11 +528,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(AddLs_Name_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         desktopPane.add(AddLessonFrame);
-        AddLessonFrame.setBounds(0, 0, 500, 400);
+        AddLessonFrame.setBounds(0, 0, 500, 300);
 
         LessonsImageFrame.setPreferredSize(new java.awt.Dimension(1000, 600));
         LessonsImageFrame.setVisible(true);
@@ -683,21 +683,29 @@ public class Home extends javax.swing.JFrame {
         Sub_Table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Sub_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "S. no.", "Subject Name"
+                "Subject"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         Sub_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Sub_TableMouseClicked(evt);
@@ -715,6 +723,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(Sub_Table);
+        if (Sub_Table.getColumnModel().getColumnCount() > 0) {
+            Sub_Table.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         Sub_Add_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Sub_Add_Btn.setText("Add");
@@ -786,21 +797,21 @@ public class Home extends javax.swing.JFrame {
             .addGroup(SubjectFrameLayout.createSequentialGroup()
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Sub_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(244, 244, 244)
+                        .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(SubjectFrameLayout.createSequentialGroup()
                                 .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(151, 151, 151)
                                 .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Sub_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(244, 244, 244)
-                        .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                                .addGap(144, 144, 144)
+                                .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -816,7 +827,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         desktopPane.add(SubjectFrame);
@@ -2876,7 +2887,7 @@ public class Home extends javax.swing.JFrame {
     
     private void Populate_Subject() {
         try {
-            pst = con.prepareStatement("select subject_id as Id,subject_no as 'S No' ,subject_name as Subject from subject");
+            pst = con.prepareStatement("select subject_id as Id,subject_name as Subject from subject");
             rs = pst.executeQuery();
             Sub_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Sub_Table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -2923,23 +2934,23 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void updateSubjectIndex() {
-        String str = "Select * from subject";
-        String index = "";
-        int i = 1;
-        try {
-            pst = con.prepareStatement(str);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                index = rs.getString("subject_id");
-                pst2 = con.prepareStatement("Update subject set subject_no=" + i + " where subject_id=" + index);
-                pst2.executeUpdate();
-                i++;
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
+//    private void updateSubjectIndex() {
+//        String str = "Select * from subject";
+//        String index = "";
+//        int i = 1;
+//        try {
+//            pst = con.prepareStatement(str);
+//            rs = pst.executeQuery();
+//            while (rs.next()) {
+//                index = rs.getString("subject_id");
+//                pst2 = con.prepareStatement("Update subject set subject_no=" + i + " where subject_id=" + index);
+//                pst2.executeUpdate();
+//                i++;
+//            }
+//        } catch (Exception e) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//    }
 
 //    private void updateLessonIndex() {
 //        String str = "Select * from lessons where subject_id=" + subject;
@@ -3125,7 +3136,7 @@ public class Home extends javax.swing.JFrame {
                     Delete_Lesson(selected);
                     pst = con.prepareStatement("delete from subject where subject_id='" + selected + "' ");
                     pst.executeUpdate();
-                    updateSubjectIndex();
+                    //updateSubjectIndex();
                     Populate_Subject();
                 } catch (Exception w) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, w);
@@ -3139,17 +3150,17 @@ public class Home extends javax.swing.JFrame {
 
     private void AddSub_Add_Btn_fun() {
         if (!(AddSub_Name_Textfield.getText().trim()).equals("")) {
-            String insertsubject = "INSERT INTO Subject(subject_name,subject_no) VALUES(?,?)";
+            String insertsubject = "INSERT INTO Subject(subject_name) VALUES(?)";
             try {
                 pst = con.prepareStatement(insertsubject);
                 pst.setString(1, AddSub_Name_Textfield.getText().trim());
-                pst.setString(2, "0");
+                //pst.setString(2, "0");
                 pst.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
             AddSub_Name_Textfield.setText("");
-            updateSubjectIndex();
+            //updateSubjectIndex();
             Populate_Subject();
             closeAllFrames();
             SubjectFrame.setVisible(true);
@@ -4983,7 +4994,8 @@ public class Home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                 new Home().setVisible(true);
+                
             }
         });
     }
