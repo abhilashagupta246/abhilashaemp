@@ -9,8 +9,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,25 +21,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.Timer;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.xml.ws.handler.Handler;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -78,7 +70,7 @@ public class Home extends javax.swing.JFrame {
     int rowcount = 0;
      long StartTime,EndTime;
     ArrayList<String> wordList = new ArrayList<String>();
-    
+    ArrayList<String> subjectList = new ArrayList<String>();
      /**
      * Creates new form Home
      */
@@ -3205,29 +3197,40 @@ public class Home extends javax.swing.JFrame {
 
     private void check_Progress(long StartTime,long EndTime)
     { 
-         JLabel j1 = new JLabel();
-            j1.setText("Processing...");
-                j1.setPreferredSize(new Dimension(300, 200));
-                 int timeTaken = (int)(3000000 - 0);
+         //final JLabel j1 = new JLabel();
+          final  JTextField j1 = new JTextField(20);
+          JPanel pan=new JPanel();
+          j1.setPreferredSize(new Dimension(300, 100));
+          pan.add(j1,BorderLayout.CENTER);
+                
+                 int timeTaken = (int)(30000000 - 0);
                  final JDialog dialog = new JDialog();
                  JProgressBar dpb = new JProgressBar(0,timeTaken);
                     dialog.add(BorderLayout.CENTER, dpb);
-                    dialog.setSize(300, 200);
-                    dialog.add(BorderLayout.NORTH, j1);
+                    dialog.setTitle("Progress Bar");
+                    dialog.add(BorderLayout.CENTER,pan);
+                    
+                    dialog.setSize(300, 300);
+                    dialog.getContentPane().add(j1);
                     dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
                     dialog.setLocationRelativeTo(null);
                     dialog.pack();
+                    JOptionPane jo= new JOptionPane();
+                    
+                    
                 if(timeTaken>2000)
                 {
                     Thread t = new Thread(new Runnable() {
                     public void run() {
+                        j1.setText("Processing...");
+                        //System.out.println(j1.getText());
                         dialog.setVisible(true);
                     }
                 });
                     
                 t.start();
                 for (int i = 0; i <= timeTaken; i++) {
-                    j1.setText("Processing...");
+                    //j1.setText("Processing...");
                     dpb.setValue(i);
                     if (dpb.getValue() == timeTaken) {
                         dialog.setVisible(false);
@@ -3236,18 +3239,34 @@ public class Home extends javax.swing.JFrame {
                }
                 }
     }
-      private void AddSub_Add_Btn_fun() {
+    
+    private void SubjectCheck()
+    {
+        subjectList.clear();
+        try {
+            pst = con.prepareStatement("select subject_name from subject");
+            rs=pst.executeQuery();
+            while(rs.next())
+            {
+                subjectList.add(rs.getString("subject_name"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
          
-        if (!(AddSub_Name_Textfield.getText().trim()).equals("")) {
+    }
+      private void AddSub_Add_Btn_fun() {
+         SubjectCheck();
+        if (!(AddSub_Name_Textfield.getText().trim()).equals("") && !subjectList.contains(AddSub_Name_Textfield.getText().trim())) {
             String insertsubject = "INSERT INTO Subject(subject_name) VALUES(?)";
             try {
                 pst = con.prepareStatement(insertsubject);
                 pst.setString(1, AddSub_Name_Textfield.getText().trim());
                 StartTime = new Date().getTime();
-                System.out.println(StartTime);
+                //System.out.println(StartTime);
                 pst.executeUpdate();
                 EndTime = new Date().getTime();
-                System.out.println(EndTime);
+               // System.out.println(EndTime);
                 check_Progress(StartTime,EndTime);
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -3257,16 +3276,10 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             SubjectFrame.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Please enter a Subject", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter a new Subject", "Alert", JOptionPane.ERROR_MESSAGE);
             AddSubjectFrame.setVisible(true);
+            AddSub_Name_Textfield.setText("");
         }
-    }
-     public void setDefaultCloseOperation(int i) {
-        if (i == 2) {
-            dispose();
-            //and all other things that you want to do. such as file      closing     and list cleanups.etc ,etc.
-        }
-
     }
       
     private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
