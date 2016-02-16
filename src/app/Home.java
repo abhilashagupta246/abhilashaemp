@@ -4,9 +4,13 @@
  */
 package app;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -18,15 +22,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.ws.handler.Handler;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -61,6 +76,7 @@ public class Home extends javax.swing.JFrame {
     int checkIndex=1;
     int pictureId=0;
     int rowcount = 0;
+     long StartTime,EndTime;
     ArrayList<String> wordList = new ArrayList<String>();
     
      /**
@@ -94,6 +110,7 @@ public class Home extends javax.swing.JFrame {
         buttonGroup7 = new javax.swing.ButtonGroup();
         buttonGroup8 = new javax.swing.ButtonGroup();
         buttonGroup9 = new javax.swing.ButtonGroup();
+        buttonGroup10 = new javax.swing.ButtonGroup();
         desktopPane = new javax.swing.JDesktopPane();
         LessonsFrame = new javax.swing.JInternalFrame();
         Ls_Label = new javax.swing.JLabel();
@@ -127,6 +144,9 @@ public class Home extends javax.swing.JFrame {
         Sub_Delete_Btn = new javax.swing.JButton();
         Sub_Enter_Btn = new javax.swing.JButton();
         Sub_Home_Btn = new javax.swing.JButton();
+        Sub_Status_Btn = new javax.swing.JButton();
+        active = new javax.swing.JRadioButton();
+        inactive = new javax.swing.JRadioButton();
         AddSubjectFrame = new javax.swing.JInternalFrame();
         AddSub_Name_Label = new javax.swing.JLabel();
         AddSub_Add_Btn = new javax.swing.JButton();
@@ -674,7 +694,7 @@ public class Home extends javax.swing.JFrame {
         LessonsImageFrame.setBounds(0, 0, 1000, 600);
 
         SubjectFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 800, 550));
-        SubjectFrame.setPreferredSize(new java.awt.Dimension(760, 400));
+        SubjectFrame.setPreferredSize(new java.awt.Dimension(600, 475));
         SubjectFrame.setVisible(true);
 
         Sub_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -790,28 +810,55 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Sub_Status_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Sub_Status_Btn.setText("Update Status");
+        Sub_Status_Btn.setPreferredSize(new java.awt.Dimension(90, 30));
+        Sub_Status_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sub_Status_BtnActionPerformed(evt);
+            }
+        });
+        Sub_Status_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Sub_Status_BtnKeyReleased(evt);
+            }
+        });
+
+        buttonGroup10.add(active);
+        active.setText("Active");
+
+        buttonGroup10.add(inactive);
+        inactive.setText("Inactive");
+
         javax.swing.GroupLayout SubjectFrameLayout = new javax.swing.GroupLayout(SubjectFrame.getContentPane());
         SubjectFrame.getContentPane().setLayout(SubjectFrameLayout);
         SubjectFrameLayout.setHorizontalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SubjectFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Sub_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126)
+                .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                .addGap(0, 67, Short.MAX_VALUE)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Sub_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(244, 244, 244)
-                        .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(SubjectFrameLayout.createSequentialGroup()
                                 .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(151, 151, 151)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                                 .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(144, 144, 144)
-                                .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                                .addGap(70, 70, 70)
+                                .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                                .addComponent(active)
+                                .addGap(66, 66, 66)
+                                .addComponent(inactive)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(113, 113, 113))))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,18 +867,23 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(31, 31, 31)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(active)
+                    .addComponent(inactive)
+                    .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76))
         );
 
         desktopPane.add(SubjectFrame);
-        SubjectFrame.setBounds(0, 0, 760, 400);
+        SubjectFrame.setBounds(0, 0, 600, 475);
 
         AddSubjectFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         AddSubjectFrame.setVisible(true);
@@ -2887,13 +2939,16 @@ public class Home extends javax.swing.JFrame {
     
     private void Populate_Subject() {
         try {
-            pst = con.prepareStatement("select subject_id as Id,subject_name as Subject from subject");
+            pst = con.prepareStatement("select subject_id as Id,subject_name as Subject,status as Status from subject");
             rs = pst.executeQuery();
             Sub_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Sub_Table.setModel(DbUtils.resultSetToTableModel(rs));
             Sub_Table.getColumnModel().getColumn(0).setMinWidth(0);
             Sub_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-        } catch (SQLException e) {
+            Sub_Table.getColumnModel().getColumn(2).setMinWidth(0);
+            Sub_Table.getColumnModel().getColumn(2).setMaxWidth(0);
+            buttonGroup10.clearSelection();
+                    } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -3148,19 +3203,56 @@ public class Home extends javax.swing.JFrame {
         subject_delete_fn();
     }//GEN-LAST:event_Sub_Delete_BtnActionPerformed
 
-    private void AddSub_Add_Btn_fun() {
+    private void check_Progress(long StartTime,long EndTime)
+    { 
+         JLabel j1 = new JLabel();
+            j1.setText("Processing...");
+                j1.setPreferredSize(new Dimension(300, 200));
+                 int timeTaken = (int)(3000000 - 0);
+                 final JDialog dialog = new JDialog();
+                 JProgressBar dpb = new JProgressBar(0,timeTaken);
+                    dialog.add(BorderLayout.CENTER, dpb);
+                    dialog.setSize(300, 200);
+                    dialog.add(BorderLayout.NORTH, j1);
+                    dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+                    dialog.setLocationRelativeTo(null);
+                    dialog.pack();
+                if(timeTaken>2000)
+                {
+                    Thread t = new Thread(new Runnable() {
+                    public void run() {
+                        dialog.setVisible(true);
+                    }
+                });
+                    
+                t.start();
+                for (int i = 0; i <= timeTaken; i++) {
+                    j1.setText("Processing...");
+                    dpb.setValue(i);
+                    if (dpb.getValue() == timeTaken) {
+                        dialog.setVisible(false);
+                        dialog.dispose();
+                    }
+               }
+                }
+    }
+      private void AddSub_Add_Btn_fun() {
+         
         if (!(AddSub_Name_Textfield.getText().trim()).equals("")) {
             String insertsubject = "INSERT INTO Subject(subject_name) VALUES(?)";
             try {
                 pst = con.prepareStatement(insertsubject);
                 pst.setString(1, AddSub_Name_Textfield.getText().trim());
-                //pst.setString(2, "0");
+                StartTime = new Date().getTime();
+                System.out.println(StartTime);
                 pst.executeUpdate();
+                EndTime = new Date().getTime();
+                System.out.println(EndTime);
+                check_Progress(StartTime,EndTime);
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
             AddSub_Name_Textfield.setText("");
-            //updateSubjectIndex();
             Populate_Subject();
             closeAllFrames();
             SubjectFrame.setVisible(true);
@@ -3169,16 +3261,36 @@ public class Home extends javax.swing.JFrame {
             AddSubjectFrame.setVisible(true);
         }
     }
+     public void setDefaultCloseOperation(int i) {
+        if (i == 2) {
+            dispose();
+            //and all other things that you want to do. such as file      closing     and list cleanups.etc ,etc.
+        }
+
+    }
+      
     private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
         AddSub_Add_Btn_fun();
     }//GEN-LAST:event_AddSub_Add_BtnActionPerformed
 
     private void Sub_Table_fun()
     {
-         if (Sub_Table.getSelectedRow() > 0) {
+        String subjectStatus="";
+        buttonGroup10.clearSelection();
+         if (Sub_Table.getSelectedRowCount()> 0) {
             subject = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 0).toString();
+            subjectStatus = Sub_Table.getModel().getValueAt(Sub_Table.getSelectedRow(), 2).toString();
+            if(subjectStatus!="active")
+            {
+                inactive.setSelected(true);
+            }
+            if(subjectStatus.equalsIgnoreCase("active"))
+            {
+                active.setSelected(true);
+            }
         }
     }
+    
     private void Sub_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_TableMouseClicked
        Sub_Table_fun();
     }//GEN-LAST:event_Sub_TableMouseClicked
@@ -3811,7 +3923,7 @@ public class Home extends javax.swing.JFrame {
 
     private void Ls_Table_fun()
     {
-       if (Ls_Table.getSelectedRow() > 0) {
+       if (Ls_Table.getSelectedRowCount() > 0) {
             selectedlesson = Ls_Table.getModel().getValueAt(Ls_Table.getSelectedRow(), 0).toString();
         } 
     }
@@ -4222,6 +4334,9 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            Sub_Status_Btn.requestFocus();
         }
     }//GEN-LAST:event_Sub_Home_BtnKeyReleased
 
@@ -4964,6 +5079,46 @@ public class Home extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_Dictionary_Meaning_TextareaKeyReleased
 
+    private void Sub_Status_Btn_fun()
+    {
+         rowcount=Sub_Table.getSelectedRowCount();
+        if(rowcount==1)
+        {
+        String UpdatedStatus="";
+        if(active.isSelected())
+        {
+            UpdatedStatus="active";
+        }
+        if(inactive.isSelected())
+        {
+            UpdatedStatus="inactive";
+        }
+        String sql="Update subject set status='"+UpdatedStatus+"' where subject_id="+subject;
+        try {
+            pst=con.prepareStatement(sql);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select a single subject to update status", "Alert", JOptionPane.ERROR_MESSAGE);
+        }
+        Populate_Subject();
+    }
+    
+    private void Sub_Status_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Status_BtnActionPerformed
+        Sub_Status_Btn_fun();
+    }//GEN-LAST:event_Sub_Status_BtnActionPerformed
+
+    private void Sub_Status_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Status_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            Sub_Status_Btn_fun();
+        }
+    }//GEN-LAST:event_Sub_Status_BtnKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -5088,6 +5243,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Sub_Enter_Btn;
     private javax.swing.JButton Sub_Home_Btn;
     private javax.swing.JLabel Sub_Label;
+    private javax.swing.JButton Sub_Status_Btn;
     private javax.swing.JTable Sub_Table;
     private javax.swing.JInternalFrame SubjectFrame;
     private javax.swing.JTable Suggestions_Table;
@@ -5130,7 +5286,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel ViewSug_Suggestion_Label;
     private javax.swing.JTextArea ViewSug_Suggestion_Textarea;
     private javax.swing.JInternalFrame ViewSuggestionsFrame;
+    private javax.swing.JRadioButton active;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup10;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
@@ -5141,6 +5299,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup9;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JTable feedbackTable;
+    private javax.swing.JRadioButton inactive;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
