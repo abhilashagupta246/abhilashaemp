@@ -71,8 +71,8 @@ public class Home extends javax.swing.JFrame {
     static JFrame progressFrame;
     JLabel progressLabel;
     static Container pane;
-    int iterations;
-     /**
+    
+    /**
      * Creates new form Home
      */
      
