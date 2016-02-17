@@ -4,8 +4,7 @@
  */
 package app;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
@@ -20,7 +19,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -29,10 +27,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -71,6 +68,10 @@ public class Home extends javax.swing.JFrame {
     long StartTime,EndTime;
     ArrayList<String> wordList = new ArrayList<String>();
     ArrayList<String> subjectList = new ArrayList<String>();
+    static JFrame progressFrame;
+    JLabel progressLabel;
+    static Container pane;
+    int iterations;
      /**
      * Creates new form Home
      */
@@ -151,15 +152,11 @@ public class Home extends javax.swing.JFrame {
         UsMng_Email_Textfield = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         User_Table = new javax.swing.JTable();
-        UsMng_Add_Btn = new javax.swing.JButton();
         UsMng_Delete_Btn = new javax.swing.JButton();
         UsMng_Update_Btn = new javax.swing.JButton();
         UsMng_Name_Label = new javax.swing.JLabel();
         UsMng_Email_Label = new javax.swing.JLabel();
-        UsMng_Password_Label = new javax.swing.JLabel();
-        UsMng_Password_Textfield = new javax.swing.JTextField();
         UsMng_Home_Btn = new javax.swing.JButton();
-        UsMng_ViewProfile_Btn = new javax.swing.JButton();
         QuestionsFrame = new javax.swing.JInternalFrame();
         Qst_Label = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -471,7 +468,6 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(LessonsFrame);
         LessonsFrame.setBounds(0, 0, 600, 400);
 
-        AddLessonFrame.setBackground(new java.awt.Color(204, 204, 204));
         AddLessonFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         AddLessonFrame.setVisible(true);
 
@@ -954,7 +950,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddSubjectFrame);
         AddSubjectFrame.setBounds(0, 0, 500, 300);
 
-        UserManagementFrame.setPreferredSize(new java.awt.Dimension(725, 550));
+        UserManagementFrame.setPreferredSize(new java.awt.Dimension(725, 525));
         UserManagementFrame.setVisible(true);
 
         UsMng_label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -962,19 +958,19 @@ public class Home extends javax.swing.JFrame {
 
         User_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "User name", "Email Address", "Password"
+                "User name", "Email Address"
             }
         ));
         User_Table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -991,20 +987,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane6.setViewportView(User_Table);
-
-        UsMng_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        UsMng_Add_Btn.setText("Add");
-        UsMng_Add_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
-        UsMng_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsMng_Add_BtnActionPerformed(evt);
-            }
-        });
-        UsMng_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                UsMng_Add_BtnKeyReleased(evt);
-            }
-        });
 
         UsMng_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         UsMng_Delete_Btn.setText("Delete");
@@ -1040,9 +1022,6 @@ public class Home extends javax.swing.JFrame {
         UsMng_Email_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         UsMng_Email_Label.setText("EMAIL");
 
-        UsMng_Password_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        UsMng_Password_Label.setText("PASSWORD");
-
         UsMng_Home_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         UsMng_Home_Btn.setText("Home");
         UsMng_Home_Btn.setPreferredSize(new java.awt.Dimension(65, 30));
@@ -1062,67 +1041,36 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        UsMng_ViewProfile_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        UsMng_ViewProfile_Btn.setText("View Profile");
-        UsMng_ViewProfile_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
-        UsMng_ViewProfile_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UsMng_ViewProfile_BtnMouseClicked(evt);
-            }
-        });
-        UsMng_ViewProfile_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsMng_ViewProfile_BtnActionPerformed(evt);
-            }
-        });
-        UsMng_ViewProfile_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                UsMng_ViewProfile_BtnKeyReleased(evt);
-            }
-        });
-
         javax.swing.GroupLayout UserManagementFrameLayout = new javax.swing.GroupLayout(UserManagementFrame.getContentPane());
         UserManagementFrame.getContentPane().setLayout(UserManagementFrameLayout);
         UserManagementFrameLayout.setHorizontalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(UsMng_ViewProfile_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(151, 151, 151)
-                .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UserManagementFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane6))
-                    .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(UsMng_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(156, 156, 156)
-                            .addComponent(UsMng_label, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                            .addGap(15, 15, 15)
-                            .addComponent(UsMng_Name_Label)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(33, 33, 33)
-                            .addComponent(UsMng_Email_Label)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)
-                            .addComponent(UsMng_Password_Label)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(UsMng_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addComponent(UsMng_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(UsMng_label, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                .addComponent(UsMng_Name_Label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(UsMng_Email_Label)
+                                .addGap(26, 26, 26)
+                                .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)))))
+                .addGap(0, 65, Short.MAX_VALUE))
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1136,23 +1084,18 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsMng_Name_Label)
-                    .addComponent(UsMng_Email_Label)
-                    .addComponent(UsMng_Password_Label)
-                    .addComponent(UsMng_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                    .addComponent(UsMng_Email_Label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(UsMng_ViewProfile_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(77, 77, 77))
         );
 
         desktopPane.add(UserManagementFrame);
-        UserManagementFrame.setBounds(0, 0, 725, 550);
+        UserManagementFrame.setBounds(0, 0, 725, 525);
 
         QuestionsFrame.setPreferredSize(new java.awt.Dimension(800, 600));
         QuestionsFrame.setVisible(true);
@@ -2824,6 +2767,7 @@ public class Home extends javax.swing.JFrame {
         try {
 
             pst = con.prepareStatement("select employee_id as ID,employee_name as 'Employee Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
+            createComponents();
             rs = pst.executeQuery();
             feedbackTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
 
@@ -2835,10 +2779,12 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
     
     private void Populate_LessonPictures() {
         try {
+            createComponents();
             pst = con.prepareStatement("select id as Id,lesson_id as 'Lesson Id' ,image as Images from lesson_image where lesson_id="+selectedlesson);
             rs = pst.executeQuery();
                     try {
@@ -2858,6 +2804,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
     private void Populate_Checkboxes() {
@@ -2885,6 +2832,7 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Results() {
         try {
+            createComponents();
             String wquery = "";
             if (jComboBox1.getSelectedItem() != null && jComboBox1.getSelectedItem() != "") {
                 if (jComboBox2.getSelectedItem() != null && jComboBox2.getSelectedItem() != "") {
@@ -2904,6 +2852,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+       killDialog();
     }
 
     private void Populate_Dictionary() {
@@ -2911,8 +2860,8 @@ public class Home extends javax.swing.JFrame {
             wordList.clear();
             pst = con.prepareStatement("select id as Id ,word as Word,meaning as Meaning from worddictionary");
             pst1 = con.prepareStatement("select word from worddictionary");
+            createComponents();
             rs = pst.executeQuery();
-            
             Dictionary_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Dictionary_Table.setModel(DbUtils.resultSetToTableModel(rs));
             Dictionary_Table.getColumnModel().getColumn(0).setMinWidth(0);
@@ -2924,6 +2873,7 @@ public class Home extends javax.swing.JFrame {
                 wordList.add(rs1.getString("word"));
             }
             rs1.close();
+            killDialog();
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -2931,6 +2881,7 @@ public class Home extends javax.swing.JFrame {
     
     private void Populate_Subject() {
         try {
+            createComponents();
             pst = con.prepareStatement("select subject_id as Id,subject_name as Subject,status as Status from subject");
             rs = pst.executeQuery();
             Sub_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -2943,10 +2894,12 @@ public class Home extends javax.swing.JFrame {
                     } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
     private void Populate_Lessons() {
         try {
+            createComponents();
             pst = con.prepareStatement("select lesson_id as Id,lesson_name as Lessons from lessons where subject_id=" + subject);
             rs = pst.executeQuery();
             Ls_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -2956,10 +2909,12 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
     private void Populate_Students() {
         try {
+            createComponents();
             pst = con.prepareStatement("select st.student_name as 'Student Name' ,sub.subject_name as Subject, ls.lesson_name as Lesson ,stdt.marks as 'Marks Optained' from studentmarkdetails stdt INNER JOIN students st ON stdt.student_id=st.student_id INNER JOIN subject sub ON stdt.subject_id=sub.subject_id INNER JOIN lessons ls ON stdt.lesson_id=ls.lesson_id where stdt.subject_id=" + subject + " and stdt.lesson_id=" + selectedlesson);
             rs = pst.executeQuery();
             St_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -2968,10 +2923,12 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
     private void Populate_Suggestions() {
         try {
+            createComponents();
             pst = con.prepareStatement("select id as Id ,username as 'User Name', subject as Subject ,message  as Suggestions from suggestions");
             rs = pst.executeQuery();
             Suggestions_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -2979,6 +2936,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
 //    private void updateSubjectIndex() {
@@ -3095,7 +3053,8 @@ public class Home extends javax.swing.JFrame {
 
     private void Populate_Users() {
         try {
-            pst = con.prepareStatement("select id as Id,username as 'User Name', email as 'Email Id',password as Password from user");
+            createComponents();
+            pst = con.prepareStatement("select id as Id,username as 'User Name', email as 'Email Id' from user");
             rs = pst.executeQuery();
             User_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             User_Table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3105,10 +3064,12 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
     private void Populate_Questions() {
         try {
+            createComponents();
             pst = con.prepareStatement("select id as Id, questions as Questions, option1 as 'First Option', option2 as 'Second Option',option3 as 'Third Option',answer as Anwser from questions where lesson_id=" + selectedlesson);
             rs = pst.executeQuery();
             Qst_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -3119,6 +3080,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
+        killDialog();
     }
 
     private void Delete_Lesson(String selected) {
@@ -3213,13 +3175,15 @@ public class Home extends javax.swing.JFrame {
    
       private void AddSub_Add_Btn_fun() {
          SubjectCheck();
-         final JOptionPane pane =new JOptionPane();
         if (!(AddSub_Name_Textfield.getText().trim()).equals("") && !subjectList.contains(AddSub_Name_Textfield.getText().trim())) {
             String insertsubject = "INSERT INTO Subject(subject_name) VALUES(?)";
             try {
                 pst = con.prepareStatement(insertsubject);
                 pst.setString(1, AddSub_Name_Textfield.getText().trim());
+                createComponents();
                 pst.executeUpdate();
+                killDialog();
+
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -3233,6 +3197,35 @@ public class Home extends javax.swing.JFrame {
             AddSub_Name_Textfield.setText("");
         }
     }
+      
+    public void createComponents() {
+      SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+          //Create all components
+          progressFrame = new JFrame("Progress Status");
+          progressFrame.setSize(300, 100);
+          progressFrame.setBounds(300, 300, 300, 100);
+          pane = progressFrame.getContentPane();
+          pane.setLayout(null);
+          progressFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+          JLabel progressLabel= new JLabel();
+          pane.add(progressLabel);
+          progressLabel.setText("Processing...");
+          progressLabel.setBounds(80, 5, 280, 70);
+          progressFrame.setResizable(false); 
+          progressFrame.setVisible(true);
+       }
+      });
+    }
+     
+       private void killDialog() {
+           SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    progressFrame.setVisible(false);
+                }
+            });
+    } 
+      
       
     private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
         AddSub_Add_Btn_fun();
@@ -3428,8 +3421,6 @@ public class Home extends javax.swing.JFrame {
 
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
-            UsMng_Password_Textfield.setText("");
-            //updateUsersIndex();
             Populate_Users();
         }
     }
@@ -3446,12 +3437,10 @@ public class Home extends javax.swing.JFrame {
         selectedUserid = model.getValueAt(row, 0).toString();
         selectedUsername = model.getValueAt(row, 1).toString();
         selectedUserEmail = model.getValueAt(row, 2).toString();
-        selectedUserPassword = model.getValueAt(row, 3).toString();
 
         if (row >= 0) {
             UsMng_Name_Textfield.setText(selectedUsername);
             UsMng_Email_Textfield.setText(selectedUserEmail);
-            UsMng_Password_Textfield.setText(selectedUserPassword);
         }
     }
     private void User_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TableMouseClicked
@@ -3475,46 +3464,42 @@ public class Home extends javax.swing.JFrame {
         return ValidEmailId;
     }
 
-    private void UsMng_Add_Btn_fun() {
-        rowcount = User_Table.getSelectedRowCount();
-        if (!UsMng_Name_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("") && rowcount == 0) {
-            if (userCheck(UsMng_Email_Textfield.getText())) {
-                JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
-                UsMng_Email_Textfield.setText("");
-            } else if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
-                JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
-                UsMng_Email_Textfield.setText("");
-            } else {
-                try {
-                    String insertuser = "INSERT INTO user(username,email,password,gender,image) VALUES(?,?,?,?,?)";
-                    pst = con.prepareStatement(insertuser);
-                    pst.setString(1, UsMng_Name_Textfield.getText());
-                    pst.setString(2, UsMng_Email_Textfield.getText());
-                    pst.setString(3, UsMng_Password_Textfield.getText());
-                    pst.setString(4, "None");
-                    pst.setString(5, "http://www.research.cmru.ac.th/2014/ris/researcher/blank-person.jpg");
-                    pst.executeUpdate();
-                    UsMng_Name_Textfield.setText("");
-                    UsMng_Email_Textfield.setText("");
-                    UsMng_Password_Textfield.setText("");
-                    //updateUsersIndex();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
-            UserManagementFrame.requestFocus();
-            UsMng_Name_Textfield.setText("");
-            UsMng_Email_Textfield.setText("");
-            UsMng_Password_Textfield.setText("");
-        }
-        Populate_Users();
-    }
-
-    private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
-        UsMng_Add_Btn_fun();
-    }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
+//    private void UsMng_Add_Btn_fun() {
+//        rowcount = User_Table.getSelectedRowCount();
+//        if (!UsMng_Name_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("") && rowcount == 0) {
+//            if (userCheck(UsMng_Email_Textfield.getText())) {
+//                JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
+//                UsMng_Email_Textfield.setText("");
+//            } else if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
+//                JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
+//                UsMng_Email_Textfield.setText("");
+//            } else {
+//                try {
+//                    String insertuser = "INSERT INTO user(username,email,password,gender,image) VALUES(?,?,?,?,?)";
+//                    pst = con.prepareStatement(insertuser);
+//                    pst.setString(1, UsMng_Name_Textfield.getText());
+//                    pst.setString(2, UsMng_Email_Textfield.getText());
+//                    pst.setString(3, UsMng_Password_Textfield.getText());
+//                    pst.setString(4, "None");
+//                    pst.setString(5, "http://www.research.cmru.ac.th/2014/ris/researcher/blank-person.jpg");
+//                    pst.executeUpdate();
+//                    UsMng_Name_Textfield.setText("");
+//                    UsMng_Email_Textfield.setText("");
+//                    UsMng_Password_Textfield.setText("");
+//                    //updateUsersIndex();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
+//            UserManagementFrame.requestFocus();
+//            UsMng_Name_Textfield.setText("");
+//            UsMng_Email_Textfield.setText("");
+//            UsMng_Password_Textfield.setText("");
+//        }
+//        Populate_Users();
+//    }
 
     private void UsMng_Update_Btn_fun() {
         rowcount = User_Table.getSelectedRowCount();
@@ -3530,15 +3515,13 @@ public class Home extends javax.swing.JFrame {
                     UserManagementFrame.requestFocus();
                 } else {
                    
-                    pst = con.prepareStatement("Update user set username=?,email=?,password=? where id=" + selectedUserid);
+                    pst = con.prepareStatement("Update user set username=?,email=? where id=" + selectedUserid);
                     pst.setString(1, UsMng_Name_Textfield.getText());
                     pst.setString(2, UsMng_Email_Textfield.getText());
-                    pst.setString(3, UsMng_Password_Textfield.getText());
                    
                     pst.executeUpdate();
                     UsMng_Name_Textfield.setText("");
                     UsMng_Email_Textfield.setText("");
-                    UsMng_Password_Textfield.setText("");
                 }
             } catch (Exception w) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, w);
@@ -4160,12 +4143,6 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ChangePwd_Submit_BtnKeyReleased
 
-    private void UsMng_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            UsMng_Add_Btn_fun();
-        }
-    }//GEN-LAST:event_UsMng_Add_BtnKeyReleased
-
     private void UsMng_Delete_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             UsMng_Delete_Btn_fun();
@@ -4179,13 +4156,13 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_UsMng_Update_BtnKeyReleased
 
     private void User_TableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_User_TableKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            UsMng_Add_Btn.requestFocus();
-        }
-         if (evt.getKeyCode() == KeyEvent.VK_UP ||  evt.getKeyCode() == KeyEvent.VK_DOWN ) 
-         {
-           UserTable_fun();  
-         }
+//        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+//            UsMng_Add_Btn.requestFocus();
+//        }
+//         if (evt.getKeyCode() == KeyEvent.VK_UP ||  evt.getKeyCode() == KeyEvent.VK_DOWN ) 
+//         {
+//           UserTable_fun();  
+//         }
     }//GEN-LAST:event_User_TableKeyReleased
 
     private void Home_UsrMngt_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnMouseClicked
@@ -4194,8 +4171,6 @@ public class Home extends javax.swing.JFrame {
         Populate_Users();
         UsMng_Name_Textfield.setText("");
         UsMng_Email_Textfield.setText("");
-        UsMng_Password_Textfield.setText("");
-
     }//GEN-LAST:event_Home_UsrMngt_BtnMouseClicked
 
     private void Home_UsrMngt_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnActionPerformed
@@ -4204,7 +4179,6 @@ public class Home extends javax.swing.JFrame {
         Populate_Users();
         UsMng_Name_Textfield.setText("");
         UsMng_Email_Textfield.setText("");
-        UsMng_Password_Textfield.setText("");
     }//GEN-LAST:event_Home_UsrMngt_BtnActionPerformed
 
     private void Home_UsrMngt_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnKeyReleased
@@ -4215,7 +4189,6 @@ public class Home extends javax.swing.JFrame {
             Populate_Users();
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
-            UsMng_Password_Textfield.setText("");
         }
     }//GEN-LAST:event_Home_UsrMngt_BtnKeyReleased
 
@@ -4323,50 +4296,50 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ChangePwd_Home_BtnMouseClicked
 
-    private void UsMng_ViewProfile_Btn_fun() {
-        String sql = "";
-        String userimage = "";
-
-        rowcount = User_Table.getSelectedRowCount();
-
-        if (rowcount > 1 || rowcount == 0) {
-
-            JOptionPane.showMessageDialog(null, "Please select a user", "Alert", JOptionPane.ERROR_MESSAGE);
-            UserManagementFrame.requestFocus();
-        } else {
-            closeAllFrames();
-            UsersProfileFrame.setVisible(true);
-
-            try {
-                sql = "SELECT image FROM user where id=" + selectedUserid;
-                pst = con.prepareStatement(sql);
-                rs = pst.executeQuery();
-
-                UserProfile_Name_Textfield.setText(selectedUsername);
-                UserProfile_Email_Textfield.setText(selectedUserEmail);
-                UserProfile_Pwd_Textfield.setText(selectedUserPassword);
-
-                if (rs.next()) {
-                    userimage = rs.getString("image");
-                    try {
-                        ImageIcon icon = new ImageIcon(ImageIO.read(new URL(userimage)));
-                        Image resizeImage = icon.getImage();
-                        Image newimg = resizeImage.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
-                        ImageIcon newIcon = new ImageIcon(newimg);
-                        UserProfile_Picture_Label.setIcon(newIcon);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    private void UsMng_ViewProfile_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_ViewProfile_BtnActionPerformed
-        UsMng_ViewProfile_Btn_fun();
-    }//GEN-LAST:event_UsMng_ViewProfile_BtnActionPerformed
+//    private void UsMng_ViewProfile_Btn_fun() {
+//        String sql = "";
+//        String userimage = "";
+//        rowcount = User_Table.getSelectedRowCount();
+//        //createComponents(); 
+//        closeAllFrames();
+//        UsersProfileFrame.setVisible(true);
+//        if (rowcount > 1 || rowcount == 0) {
+//            JOptionPane.showMessageDialog(null, "Please select a user", "Alert", JOptionPane.ERROR_MESSAGE);
+//            UserManagementFrame.requestFocus();
+//        } else {
+//            
+//            try {
+//                sql = "SELECT image FROM user where id=" + selectedUserid;
+//                pst = con.prepareStatement(sql);
+//                createComponents();
+//                rs = pst.executeQuery();
+//                //System.out.println("end time"+System.currentTimeMillis());
+//                
+//                UserProfile_Name_Textfield.setText(selectedUsername);
+//                UserProfile_Email_Textfield.setText(selectedUserEmail);
+//                UserProfile_Pwd_Textfield.setText(selectedUserPassword);
+//
+//                if (rs.next()) {
+//                    userimage = rs.getString("image");
+//                    try {
+//                        ImageIcon icon = new ImageIcon(ImageIO.read(new URL(userimage)));
+//                        Image resizeImage = icon.getImage();
+//                        Image newimg = resizeImage.getScaledInstance(180, 150, java.awt.Image.SCALE_SMOOTH);
+//                        ImageIcon newIcon = new ImageIcon(newimg);
+//                        UserProfile_Picture_Label.setIcon(newIcon);
+//                        
+//                        
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//                //killDialog();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        
+//    }
 
     private void Home_ChangePwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnActionPerformed
         closeAllFrames();
@@ -4378,16 +4351,6 @@ public class Home extends javax.swing.JFrame {
         SubjectFrame.setVisible(true);
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnActionPerformed
-
-    private void UsMng_ViewProfile_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsMng_ViewProfile_BtnMouseClicked
-        UsMng_ViewProfile_Btn_fun();
-    }//GEN-LAST:event_UsMng_ViewProfile_BtnMouseClicked
-
-    private void UsMng_ViewProfile_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_ViewProfile_BtnKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            UsMng_ViewProfile_Btn_fun();
-        }
-    }//GEN-LAST:event_UsMng_ViewProfile_BtnKeyReleased
 
     private void Home_ViewSugg_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_ViewSugg_BtnActionPerformed
         closeAllFrames();
@@ -4713,7 +4676,8 @@ public class Home extends javax.swing.JFrame {
             pst.setString(1, selectedlesson);
             pst.setString(2, LessonImageUrl);
             pst.executeUpdate();
-            AddLessonPictureFrame.setVisible(true);
+            LessonsImageFrame.setVisible(true);
+            Populate_LessonPictures();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4752,9 +4716,9 @@ public class Home extends javax.swing.JFrame {
                 {
                    pictureId++; 
                 }
-                
-                File f = new File("\\wamp\\www\\images\\" + selectedlesson+"_"+pictureId+"_"+lessonImage);
+                 File f = new File("c:\\wamp\\www\\images\\" + selectedlesson+"_"+pictureId+"_"+lessonImage);
                  ImageIO.write(bi, "jpg", f);
+                 
                  } catch (Exception e) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -4798,7 +4762,7 @@ public class Home extends javax.swing.JFrame {
         rowcount = Ls_Image_Table.getSelectedRowCount();
         int row;
         if (rowcount > 1 || rowcount == 0) {
-            AddLessonPictureFrame.requestFocus();
+            //AddLessonPictureFrame.requestFocus();
         } else {
             row = Ls_Image_Table.getSelectedRow();
             DefaultTableModel model = (DefaultTableModel) Ls_Image_Table.getModel();
@@ -5212,17 +5176,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable Sub_Table;
     private javax.swing.JInternalFrame SubjectFrame;
     private javax.swing.JTable Suggestions_Table;
-    private javax.swing.JButton UsMng_Add_Btn;
     private javax.swing.JButton UsMng_Delete_Btn;
     private javax.swing.JLabel UsMng_Email_Label;
     private javax.swing.JTextField UsMng_Email_Textfield;
     private javax.swing.JButton UsMng_Home_Btn;
     private javax.swing.JLabel UsMng_Name_Label;
     private javax.swing.JTextField UsMng_Name_Textfield;
-    private javax.swing.JLabel UsMng_Password_Label;
-    private javax.swing.JTextField UsMng_Password_Textfield;
     private javax.swing.JButton UsMng_Update_Btn;
-    private javax.swing.JButton UsMng_ViewProfile_Btn;
     private javax.swing.JLabel UsMng_label;
     private javax.swing.JInternalFrame UserLoginFrame;
     private javax.swing.JButton UserLogin_ForgetPwd_Btn;
