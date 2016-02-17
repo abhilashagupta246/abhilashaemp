@@ -68,7 +68,7 @@ public class Home extends javax.swing.JFrame {
     int checkIndex=1;
     int pictureId=0;
     int rowcount = 0;
-     long StartTime,EndTime;
+    long StartTime,EndTime;
     ArrayList<String> wordList = new ArrayList<String>();
     ArrayList<String> subjectList = new ArrayList<String>();
      /**
@@ -3194,52 +3194,7 @@ public class Home extends javax.swing.JFrame {
     private void Sub_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnActionPerformed
         subject_delete_fn();
     }//GEN-LAST:event_Sub_Delete_BtnActionPerformed
-
-    private void check_Progress(long StartTime,long EndTime)
-    { 
-         //final JLabel j1 = new JLabel();
-          final  JTextField j1 = new JTextField(20);
-          JPanel pan=new JPanel();
-          j1.setPreferredSize(new Dimension(300, 100));
-          pan.add(j1,BorderLayout.CENTER);
-                
-                 int timeTaken = (int)(30000000 - 0);
-                 final JDialog dialog = new JDialog();
-                 JProgressBar dpb = new JProgressBar(0,timeTaken);
-                    dialog.add(BorderLayout.CENTER, dpb);
-                    dialog.setTitle("Progress Bar");
-                    dialog.add(BorderLayout.CENTER,pan);
-                    
-                    dialog.setSize(300, 300);
-                    dialog.getContentPane().add(j1);
-                    dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-                    dialog.setLocationRelativeTo(null);
-                    dialog.pack();
-                    JOptionPane jo= new JOptionPane();
-                    
-                    
-                if(timeTaken>2000)
-                {
-                    Thread t = new Thread(new Runnable() {
-                    public void run() {
-                        j1.setText("Processing...");
-                        //System.out.println(j1.getText());
-                        dialog.setVisible(true);
-                    }
-                });
-                    
-                t.start();
-                for (int i = 0; i <= timeTaken; i++) {
-                    //j1.setText("Processing...");
-                    dpb.setValue(i);
-                    if (dpb.getValue() == timeTaken) {
-                        dialog.setVisible(false);
-                        dialog.dispose();
-                    }
-               }
-                }
-    }
-    
+  
     private void SubjectCheck()
     {
         subjectList.clear();
@@ -3255,19 +3210,16 @@ public class Home extends javax.swing.JFrame {
         }
          
     }
+   
       private void AddSub_Add_Btn_fun() {
          SubjectCheck();
+         final JOptionPane pane =new JOptionPane();
         if (!(AddSub_Name_Textfield.getText().trim()).equals("") && !subjectList.contains(AddSub_Name_Textfield.getText().trim())) {
             String insertsubject = "INSERT INTO Subject(subject_name) VALUES(?)";
             try {
                 pst = con.prepareStatement(insertsubject);
                 pst.setString(1, AddSub_Name_Textfield.getText().trim());
-                StartTime = new Date().getTime();
-                //System.out.println(StartTime);
                 pst.executeUpdate();
-                EndTime = new Date().getTime();
-               // System.out.println(EndTime);
-                check_Progress(StartTime,EndTime);
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
