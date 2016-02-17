@@ -5,6 +5,7 @@
 package app;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -20,7 +21,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -30,9 +30,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -71,6 +74,10 @@ public class Home extends javax.swing.JFrame {
      long StartTime,EndTime;
     ArrayList<String> wordList = new ArrayList<String>();
     ArrayList<String> subjectList = new ArrayList<String>();
+    static JFrame progressFrame;
+    JLabel progressLabel;
+    static Container pane;
+    int iterations;
      /**
      * Creates new form Home
      */
@@ -3257,17 +3264,15 @@ public class Home extends javax.swing.JFrame {
     }
       private void AddSub_Add_Btn_fun() {
          SubjectCheck();
-        if (!(AddSub_Name_Textfield.getText().trim()).equals("") && !subjectList.contains(AddSub_Name_Textfield.getText().trim())) {
+         if (!(AddSub_Name_Textfield.getText().trim()).equals("") && !subjectList.contains(AddSub_Name_Textfield.getText().trim())) {
             String insertsubject = "INSERT INTO Subject(subject_name) VALUES(?)";
             try {
                 pst = con.prepareStatement(insertsubject);
                 pst.setString(1, AddSub_Name_Textfield.getText().trim());
-                StartTime = new Date().getTime();
-                //System.out.println(StartTime);
+                createComponents();
                 pst.executeUpdate();
-                EndTime = new Date().getTime();
-               // System.out.println(EndTime);
-                check_Progress(StartTime,EndTime);
+                killDialog();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -3281,6 +3286,36 @@ public class Home extends javax.swing.JFrame {
             AddSub_Name_Textfield.setText("");
         }
     }
+      
+      public void createComponents () {
+      SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+          //Create all components
+        progressFrame = new JFrame("Progress Status");
+          progressFrame.setSize(300, 100);
+          progressFrame.setBounds(300, 300, 300, 100);
+          pane = progressFrame.getContentPane();
+          pane.setLayout(null);
+          progressFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+          JLabel progressLabel= new JLabel();
+          pane.add(progressLabel);
+          progressLabel.setText("Processing...");
+          progressLabel.setBounds(80, 5, 280, 70);
+          progressFrame.setResizable(false); 
+          progressFrame.setVisible(true);
+       }
+      });
+
+    }
+     
+       private void killDialog() {
+           SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    progressFrame.setVisible(false);
+                }
+            });
+    } 
+      
       
     private void AddSub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSub_Add_BtnActionPerformed
         AddSub_Add_Btn_fun();
@@ -4800,9 +4835,9 @@ public class Home extends javax.swing.JFrame {
                 {
                    pictureId++; 
                 }
-                
-                File f = new File("\\wamp\\www\\images\\" + selectedlesson+"_"+pictureId+"_"+lessonImage);
+                 File f = new File("c:\\wamp\\www\\images\\" + selectedlesson+"_"+pictureId+"_"+lessonImage);
                  ImageIO.write(bi, "jpg", f);
+                 
                  } catch (Exception e) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
             }
