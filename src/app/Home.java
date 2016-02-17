@@ -3273,6 +3273,7 @@ public class Home extends javax.swing.JFrame {
                 pst.executeUpdate();
                 killDialog();
                 
+                
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
