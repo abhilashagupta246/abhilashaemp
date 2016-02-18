@@ -2836,14 +2836,18 @@ public class Home extends javax.swing.JFrame {
             String wquery = "";
             if (jComboBox1.getSelectedItem() != null && jComboBox1.getSelectedItem() != "") {
                 if (jComboBox2.getSelectedItem() != null && jComboBox2.getSelectedItem() != "") {
-                    wquery = " where student_name='" + jComboBox1.getSelectedItem() + "' and subject_name='" + jComboBox2.getSelectedItem() + "'";
+                    wquery = " where st.student_name='" + jComboBox1.getSelectedItem() + "' and sub.subject_name='" + jComboBox2.getSelectedItem() + "'";
                 } else {
-                    wquery = " where student_name='" + jComboBox1.getSelectedItem() + "'";
+                    wquery = " where st.student_name='" + jComboBox1.getSelectedItem() + "'";
                 }
             } else if (jComboBox2.getSelectedItem() != null && jComboBox2.getSelectedItem() != "") {
-                wquery = " where subject_name='" + jComboBox2.getSelectedItem() + "'";
+                wquery = " where sub.subject_name='" + jComboBox2.getSelectedItem() + "'";
             }
-            String sql = "select student_name as 'Student Name',subject_name as Subject, lesson_name as Lesson,marks as Marks, passing_date as Date, result as Result from results" + wquery;
+            //String sql = "select student_name as 'Student Name',subject_name as Subject, lesson_name as Lesson,marks as Marks, passing_date as Date, result as Result from results" + wquery;
+            String sql = "select st.student_name as 'Student Name',sub.subject_name as Subject, ls.lesson_name as Lesson,rlt.marks as Marks, rlt.passing_date as Date, rlt.result as Result from results rlt "+
+                    "INNER JOIN students st ON rlt.student_id=st.student_id "+ 
+                    "INNER JOIN subject sub ON rlt.subject_id=sub.subject_id "+
+                    "INNER JOIN lessons ls ON rlt.lesson_id=ls.lesson_id "+wquery;
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             Result_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
