@@ -2843,7 +2843,6 @@ public class Home extends javax.swing.JFrame {
             } else if (jComboBox2.getSelectedItem() != null && jComboBox2.getSelectedItem() != "") {
                 wquery = " where sub.subject_name='" + jComboBox2.getSelectedItem() + "'";
             }
-            //String sql = "select student_name as 'Student Name',subject_name as Subject, lesson_name as Lesson,marks as Marks, passing_date as Date, result as Result from results" + wquery;
             String sql = "select st.student_name as 'Student Name',sub.subject_name as Subject, ls.lesson_name as Lesson,rlt.marks as Marks, rlt.passing_date as Date, rlt.result as Result from results rlt "+
                     "INNER JOIN students st ON rlt.student_id=st.student_id "+ 
                     "INNER JOIN subject sub ON rlt.subject_id=sub.subject_id "+
@@ -2852,11 +2851,11 @@ public class Home extends javax.swing.JFrame {
             rs = pst.executeQuery(sql);
             Result_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Result_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            killDialog();
             Populate_Checkboxes();
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
-       killDialog();
     }
 
     private void Populate_Dictionary() {
