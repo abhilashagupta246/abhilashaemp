@@ -2732,7 +2732,7 @@ public class Home extends javax.swing.JFrame {
         Home_EmployeeFeedback_Btn.setText("");
         Home_Logout_Btn.setText("");
         //User Management screen
-        UsMng_label.setText("إ");
+        UsMng_label.setText("");
         UsMng_Home_Btn.setText("");
         UsMng_Name_Label.setText("");
         UsMng_Email_Label.setText("");
@@ -2862,7 +2862,7 @@ public class Home extends javax.swing.JFrame {
         AddLs_Label.setText("ADD LESSONS");
         AddLs_Back_Btn.setText("Back");
         AddLs_Name_Label.setText("LESSON NAME");
-        AddLs_Submit_Btn.setText("Add");
+        AddLs_Submit_Btn.setText("Submit");
         //Marks details screen
         StDetails_Label.setText("STUDENT DETAILS");
         StDetails_Back_Btn.setText("Back");
