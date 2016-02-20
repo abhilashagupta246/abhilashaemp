@@ -896,38 +896,39 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="UsMng_Home_Btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                              <Component id="UsMng_label" min="-2" pref="268" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="UsMng_Name_Label" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="UsMng_Name_Textfield" min="-2" pref="118" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Component id="UsMng_Email_Label" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="UsMng_Email_Textfield" min="-2" pref="137" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane6" min="-2" pref="473" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                                       <Component id="UsMng_Delete_Btn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                                       <Component id="UsMng_Update_Btn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="UsMng_Name_Label" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="UsMng_Name_Textfield" min="-2" pref="118" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="UsMng_Email_Label" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="UsMng_Email_Textfield" min="-2" pref="137" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jScrollPane6" min="-2" pref="570" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="UsMng_Home_Btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="UsMng_label" min="-2" pref="268" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="74" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -946,14 +947,14 @@
                           <Component id="UsMng_Name_Label" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="UsMng_Email_Label" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="188" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="UsMng_Delete_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="UsMng_Update_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="UsMng_Delete_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1376,36 +1377,43 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="UserLogin_Label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="English_lang" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Arabic_lang" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="UserLogin_Login_Btn" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="UserLogin_Login_Btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="UserLogin_ForgetPwd_Btn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="UserLogin_Name_Label" min="-2" max="-2" attributes="0"/>
                                   <Component id="UserLogin_Password_Label" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="UserLogin_Name_Textfield" alignment="0" max="32767" attributes="0"/>
                                   <Component id="UserLogin_Password_Textfield" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                                  <Component id="UserLogin_ForgetPwd_Btn" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="124" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="UserLogin_Label" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="English_lang" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="Arabic_lang" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1413,31 +1421,32 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="UserLogin_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="English_lang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Arabic_lang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="UserLogin_Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="UserLogin_Name_Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="UserLogin_Password_Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="English_lang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Arabic_lang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="UserLogin_Login_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="UserLogin_ForgetPwd_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="UserLogin_Name_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="UserLogin_Name_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="UserLogin_Password_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="UserLogin_Password_Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="UserLogin_Login_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="UserLogin_ForgetPwd_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="UserLogin_Name_Textfield" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="UserLogin_Password_Textfield" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
@@ -1523,6 +1532,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="English_langActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="English_langKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="Arabic_lang">
@@ -1534,6 +1544,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Arabic_langActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Arabic_langKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>
@@ -2017,7 +2028,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ViewSug_Back_Btn" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="ViewSug_Home_Btn" min="-2" pref="78" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                               <Component id="ViewSug_Label" min="-2" pref="185" max="-2" attributes="0"/>
                           </Group>
@@ -2049,7 +2060,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ViewSug_Label" min="-2" max="-2" attributes="0"/>
-                          <Component id="ViewSug_Back_Btn" min="-2" max="-2" attributes="0"/>
+                          <Component id="ViewSug_Home_Btn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Component id="jScrollPane10" min="-2" pref="191" max="-2" attributes="0"/>
@@ -2137,7 +2148,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="ViewSug_Back_Btn">
+            <Component class="javax.swing.JButton" name="ViewSug_Home_Btn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -2148,9 +2159,9 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ViewSug_Back_BtnMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSug_Back_BtnActionPerformed"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ViewSug_Back_BtnKeyReleased"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ViewSug_Home_BtnMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSug_Home_BtnActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ViewSug_Home_BtnKeyReleased"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane11">
