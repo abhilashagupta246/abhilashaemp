@@ -1376,30 +1376,8 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="UserLogin_Login_Btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="UserLogin_ForgetPwd_Btn" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="UserLogin_Name_Label" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UserLogin_Password_Label" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="UserLogin_Name_Textfield" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="UserLogin_Password_Textfield" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="124" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="218" max="32767" attributes="0"/>
                       <Component id="UserLogin_Label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1414,6 +1392,28 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="UserLogin_Login_Btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="UserLogin_ForgetPwd_Btn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="UserLogin_Name_Label" min="-2" max="-2" attributes="0"/>
+                                  <Component id="UserLogin_Password_Label" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="UserLogin_Name_Textfield" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="UserLogin_Password_Textfield" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1430,9 +1430,9 @@
                           <Component id="English_lang" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Arabic_lang" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="UserLogin_Name_Label" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="UserLogin_Password_Label" min="-2" max="-2" attributes="0"/>
@@ -1442,13 +1442,13 @@
                                   <Component id="UserLogin_ForgetPwd_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="UserLogin_Name_Textfield" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="UserLogin_Password_Textfield" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

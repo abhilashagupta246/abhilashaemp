@@ -1353,8 +1353,21 @@ public class Home extends javax.swing.JFrame {
         UserLoginFrame.getContentPane().setLayout(UserLoginFrameLayout);
         UserLoginFrameLayout.setHorizontalGroup(
             UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserLoginFrameLayout.createSequentialGroup()
+                .addContainerGap(218, Short.MAX_VALUE)
+                .addComponent(UserLogin_Label)
+                .addGap(136, 136, 136)
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
+                        .addComponent(English_lang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Arabic_lang)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserLoginFrameLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22))))
             .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(97, 97, 97)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1368,20 +1381,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(UserLogin_Name_Textfield)
                             .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 124, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserLoginFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(UserLogin_Label)
-                .addGap(136, 136, 136)
-                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                        .addComponent(English_lang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Arabic_lang)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserLoginFrameLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(22, 22, 22))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         UserLoginFrameLayout.setVerticalGroup(
             UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1394,7 +1394,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(English_lang)
                     .addComponent(Arabic_lang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Name_Label)
@@ -1408,11 +1408,11 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(UserLogin_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
                         .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+                .addGap(52, 52, 52))
         );
 
         desktopPane.add(UserLoginFrame);
-        UserLoginFrame.setBounds(0, 0, 572, 336);
+        UserLoginFrame.setBounds(0, 0, 572, 340);
 
         ChangePasswordFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         ChangePasswordFrame.setVisible(true);
@@ -2951,7 +2951,7 @@ public class Home extends javax.swing.JFrame {
                     Ls_Image_Table.getColumnModel().getColumn(i).setMaxWidth(0);
                 }
                 if (Arabic_lang.isSelected()) {
-                    Ls_Image_Table.getColumnModel().getColumn(2).setHeaderValue("Images");
+                    Ls_Image_Table.getColumnModel().getColumn(2).setHeaderValue("");
                 }
             } catch (Exception ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
