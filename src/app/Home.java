@@ -236,7 +236,7 @@ public class Home extends javax.swing.JFrame {
         Home_EmployeeFeedback_Btn = new javax.swing.JButton();
         Home_Results_Btn = new javax.swing.JButton();
         Home_Dictionary_Btn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Home_Settings_Btn = new javax.swing.JButton();
         ViewSuggestionsFrame = new javax.swing.JInternalFrame();
         ViewSug_Label = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -1771,17 +1771,17 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("SETTINGS");
-        jButton1.setPreferredSize(new java.awt.Dimension(160, 30));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Home_Settings_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Home_Settings_Btn.setText("SETTINGS");
+        Home_Settings_Btn.setPreferredSize(new java.awt.Dimension(160, 30));
+        Home_Settings_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Home_Settings_BtnActionPerformed(evt);
             }
         });
-        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+        Home_Settings_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jButton1KeyReleased(evt);
+                Home_Settings_BtnKeyReleased(evt);
             }
         });
 
@@ -1802,7 +1802,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Home_Results_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Home_Settings_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1834,7 +1834,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Home_Settings_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
@@ -2906,7 +2906,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SettingsFrame);
-        SettingsFrame.setBounds(0, 0, 465, 488);
+        SettingsFrame.setBounds(0, 0, 476, 488);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2938,6 +2938,7 @@ public class Home extends javax.swing.JFrame {
         Home_ViewSugg_Btn.setText("عرض الاقتراحات");
         Home_Dictionary_Btn.setText("المصطلحات");
         Home_EmployeeFeedback_Btn.setText("آراء الموظفين");
+        Home_Settings_Btn.setText("");
         Home_Logout_Btn.setText("خروج");
         //User Management screen
         UsMng_label.setText("إدارةالمستخدم");
@@ -3109,6 +3110,7 @@ public class Home extends javax.swing.JFrame {
         Home_ViewSugg_Btn.setText("VIEW SUGGESTIONS");
         Home_Dictionary_Btn.setText("DICTIONARY");
         Home_EmployeeFeedback_Btn.setText("EMPLOYEE FEEDBACK");
+        Home_Settings_Btn.setText("SETTINGS");
         Home_Logout_Btn.setText("LOGOUT");
         //User Management screen
         UsMng_label.setText("USER MANAGEMENT");
@@ -5560,17 +5562,17 @@ public class Home extends javax.swing.JFrame {
         EnglishAllText();
     }//GEN-LAST:event_English_langKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Home_Settings_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_Settings_BtnActionPerformed
         closeAllFrames();
         SettingsFrame.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Home_Settings_BtnActionPerformed
 
-    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+    private void Home_Settings_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Settings_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             SettingsFrame.setVisible(true);
         }
-    }//GEN-LAST:event_jButton1KeyReleased
+    }//GEN-LAST:event_Home_Settings_BtnKeyReleased
 
     private void Settings_Save_Btn_fun()
     {
@@ -5835,6 +5837,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Home_EmployeeFeedback_Btn;
     private javax.swing.JButton Home_Logout_Btn;
     private javax.swing.JButton Home_Results_Btn;
+    private javax.swing.JButton Home_Settings_Btn;
     private javax.swing.JButton Home_Subject_Btn;
     private javax.swing.JButton Home_UsrMngt_Btn;
     private javax.swing.JButton Home_ViewSugg_Btn;
@@ -5959,7 +5962,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
