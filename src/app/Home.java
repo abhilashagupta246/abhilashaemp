@@ -4,6 +4,8 @@
  */
 package app;
 
+import Decoder.BASE64Decoder;
+import Decoder.BASE64Encoder;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Image;
@@ -13,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +26,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -31,7 +36,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import net.proteanit.sql.DbUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.*;
 
 /**
  *
@@ -70,7 +85,10 @@ public class Home extends javax.swing.JFrame {
     static JFrame progressFrame;
     JLabel progressLabel;
     static Container pane;
-    String selectedLanguage = "";
+    private static final String ALGORITHM = "AES";
+    private static final String KEY = "1Hbfh667adfDEJ78";
+    String servername, serveraddress, databasename, databaseusername, databasepassword="";
+    String servernameDecrypt, serveraddressDecrypt, databasenameDecrypt, databaseusernameDecrypt, databasepasswordDecrypt,url="";
 
     /**
      * Creates new form Home
@@ -78,6 +96,8 @@ public class Home extends javax.swing.JFrame {
 
     public Home() {
         initComponents();
+        readXML();
+        //con = mysqlconnect.ConnectDb(url,databaseusernameDecrypt,databasepasswordDecrypt);
         con = mysqlconnect.ConnectDb();
         closeAllFrames();
         buttonGroup11.clearSelection();
@@ -209,6 +229,7 @@ public class Home extends javax.swing.JFrame {
         Home_EmployeeFeedback_Btn = new javax.swing.JButton();
         Home_Results_Btn = new javax.swing.JButton();
         Home_Dictionary_Btn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         ViewSuggestionsFrame = new javax.swing.JInternalFrame();
         ViewSug_Label = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -224,22 +245,22 @@ public class Home extends javax.swing.JFrame {
         feedbackTable = new javax.swing.JTable();
         jScrollPane13 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        Question2_Label = new javax.swing.JLabel();
+        Question3_Label = new javax.swing.JLabel();
+        Question4_Label = new javax.swing.JLabel();
+        Question5_Label = new javax.swing.JLabel();
+        Question6_Label = new javax.swing.JLabel();
+        Question7_Label = new javax.swing.JLabel();
+        Question1 = new javax.swing.JLabel();
+        Question2 = new javax.swing.JLabel();
+        Question3 = new javax.swing.JLabel();
+        Question4 = new javax.swing.JLabel();
+        Question5 = new javax.swing.JLabel();
+        Question6 = new javax.swing.JLabel();
+        Question7 = new javax.swing.JLabel();
+        Question1_Label = new javax.swing.JLabel();
+        Question8_Label = new javax.swing.JLabel();
+        Question8 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -310,6 +331,20 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Table = new javax.swing.JTable();
         Dictionary_Label = new javax.swing.JLabel();
         Dictionary_Home_Btn = new javax.swing.JButton();
+        SettingsFrame = new javax.swing.JInternalFrame();
+        Settings_Label = new javax.swing.JLabel();
+        Settings_DBUserName = new javax.swing.JLabel();
+        Settings_DBPassword = new javax.swing.JLabel();
+        Settings_DBUserName_Textfield = new javax.swing.JTextField();
+        Settings_DBPassword_Textfield = new javax.swing.JTextField();
+        Settings_Save_Btn = new javax.swing.JButton();
+        Settings_ServerName = new javax.swing.JLabel();
+        Settings_DatabaseName = new javax.swing.JLabel();
+        Settings_ServerAddress = new javax.swing.JLabel();
+        Settings_ServerName_Textfield = new javax.swing.JTextField();
+        Settings_ServerAddress_Textfield = new javax.swing.JTextField();
+        Settings_DatabaseName_Textfield = new javax.swing.JTextField();
+        Settings_Home_Btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1729,14 +1764,24 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("SETTINGS");
+        jButton1.setPreferredSize(new java.awt.Dimension(160, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout HomeFrameLayout = new javax.swing.GroupLayout(HomeFrame.getContentPane());
         HomeFrame.getContentPane().setLayout(HomeFrameLayout);
         HomeFrameLayout.setHorizontalGroup(
             HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
-                .addContainerGap(265, Short.MAX_VALUE)
-                .addComponent(Home_label, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1744,14 +1789,23 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Home_Results_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
+                        .addComponent(Home_label, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(227, 227, 227))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
+                        .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(197, 197, 197))))
         );
         HomeFrameLayout.setVerticalGroup(
             HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1770,15 +1824,17 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                    .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         desktopPane.add(HomeFrame);
-        HomeFrame.setBounds(0, 0, 597, 415);
+        HomeFrame.setBounds(0, 0, 597, 531);
 
         ViewSuggestionsFrame.setVisible(true);
 
@@ -1925,45 +1981,53 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 680));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Question 2");
+        Question2_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question2_Label.setText("Question 2");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("Question 3");
+        Question3_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question3_Label.setText("Question 3");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("Question 4");
+        Question4_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question4_Label.setText("Question 4");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("Question 5");
+        Question5_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question5_Label.setText("Question 5");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setText("Question 6");
+        Question6_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question6_Label.setText("Question 6");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Question 7");
+        Question7_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question7_Label.setText("Question 7");
 
-        jLabel3.setText("jLabel3");
+        Question1.setText("Question1");
+        Question1.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel4.setText("jLabel4");
+        Question2.setText("Question 2");
+        Question2.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel5.setText("jLabel5");
+        Question3.setText("Question 3");
+        Question3.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel6.setText("jLabel6");
+        Question4.setText("Question 4");
+        Question4.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel7.setText("jLabel7");
+        Question5.setText("Question 5");
+        Question5.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel8.setText("jLabel8");
+        Question6.setText("Question 6");
+        Question6.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel9.setText("jLabel9");
+        Question7.setText("Question 7");
+        Question7.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Question 1");
+        Question1_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question1_Label.setText("Question 1");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("Question 8");
+        Question8_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Question8_Label.setText("Question 8");
 
-        jLabel17.setText("jLabel17");
+        Question8.setText("Question 8");
+        Question8.setPreferredSize(new java.awt.Dimension(600, 15));
 
         buttonGroup2.add(jRadioButton1);
         jRadioButton1.setText("jRadioButton1");
@@ -2093,65 +2157,83 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButton1)
-                                .addComponent(jRadioButton6)
-                                .addComponent(jRadioButton11)
-                                .addComponent(jRadioButton16)
-                                .addComponent(jRadioButton21))
-                            .addGap(464, 464, 464))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel12)
-                                .addComponent(jLabel13)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel16)
-                                .addComponent(jLabel10))
+                                .addComponent(Question1_Label)
+                                .addComponent(Question3_Label)
+                                .addComponent(Question4_Label)
+                                .addComponent(Question2_Label)
+                                .addComponent(Question7_Label)
+                                .addComponent(Question8_Label))
                             .addGap(76, 76, 76)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel17)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(jRadioButton26)
+                                .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Question1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(1, 1, 1))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRadioButton31)
-                                        .addComponent(jRadioButton36))
-                                    .addGap(64, 64, 64)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jRadioButton6)
+                                            .addGap(60, 60, 60)
+                                            .addComponent(jRadioButton7))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jRadioButton11)
+                                            .addGap(55, 55, 55)
+                                            .addComponent(jRadioButton12))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addGap(154, 154, 154)
+                                                    .addComponent(jRadioButton2))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(jRadioButton16)
+                                                    .addGap(53, 53, 53)
+                                                    .addComponent(jRadioButton17)))
+                                            .addGap(59, 59, 59)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jRadioButton8)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jRadioButton22)
-                                                    .addComponent(jRadioButton32)
-                                                    .addComponent(jRadioButton37)
-                                                    .addComponent(jRadioButton27))
-                                                .addGap(40, 40, 40)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jRadioButton33, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jRadioButton38, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jRadioButton23, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jRadioButton28, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jRadioButton17)
-                                                    .addComponent(jRadioButton12)
-                                                    .addComponent(jRadioButton7))
-                                                .addGap(40, 40, 40)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jRadioButton8)
+                                                    .addComponent(jRadioButton13, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jRadioButton18, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addComponent(jRadioButton3)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jRadioButton26)
+                                                        .addComponent(jRadioButton31))
                                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jRadioButton13, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jRadioButton18, javax.swing.GroupLayout.Alignment.TRAILING))
-                                                    .addComponent(jRadioButton3))))
-                                        .addComponent(jRadioButton2))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                            .addGap(55, 55, 55)
+                                                            .addComponent(jRadioButton27))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                            .addGap(51, 51, 51)
+                                                            .addComponent(jRadioButton32)))
+                                                    .addGap(57, 57, 57))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                            .addComponent(jRadioButton36)
+                                                            .addGap(55, 55, 55)
+                                                            .addComponent(jRadioButton37))
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                            .addComponent(jRadioButton21)
+                                                            .addGap(56, 56, 56)
+                                                            .addComponent(jRadioButton22)))
+                                                    .addGap(48, 48, 48)))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jRadioButton33, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jRadioButton38, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jRadioButton23, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jRadioButton28, javax.swing.GroupLayout.Alignment.TRAILING))))
                                     .addGap(41, 41, 41)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jRadioButton14)
@@ -2161,10 +2243,14 @@ public class Home extends javax.swing.JFrame {
                                         .addComponent(jRadioButton29)
                                         .addComponent(jRadioButton34)
                                         .addComponent(jRadioButton39)
-                                        .addComponent(jRadioButton4))))))
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
-                .addGap(42, 42, 42)
+                                        .addComponent(jRadioButton4)))
+                                .addComponent(jRadioButton1))
+                            .addGap(58, 58, 58)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Question5_Label)
+                            .addComponent(Question6_Label))
+                        .addGap(42, 42, 42)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButton25)
                     .addComponent(jRadioButton20)
@@ -2174,15 +2260,15 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton15)
                     .addComponent(jRadioButton10)
                     .addComponent(jRadioButton5))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(Question1_Label)
+                    .addComponent(Question1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
@@ -2192,8 +2278,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel11))
+                    .addComponent(Question2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Question2_Label))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton6)
@@ -2203,8 +2289,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel5))
+                    .addComponent(Question3_Label)
+                    .addComponent(Question3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton11)
@@ -2214,8 +2300,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton15))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel6))
+                    .addComponent(Question4_Label)
+                    .addComponent(Question4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton16)
@@ -2225,8 +2311,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton20))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel7))
+                    .addComponent(Question5_Label)
+                    .addComponent(Question5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton21)
@@ -2236,8 +2322,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton25))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel8))
+                    .addComponent(Question6_Label)
+                    .addComponent(Question6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton26)
@@ -2247,19 +2333,23 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton30))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton31)
-                    .addComponent(jRadioButton32)
-                    .addComponent(jRadioButton33)
-                    .addComponent(jRadioButton34)
-                    .addComponent(jRadioButton35))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Question7_Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton33)
+                            .addComponent(jRadioButton34)
+                            .addComponent(jRadioButton35)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Question7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton31)
+                            .addComponent(jRadioButton32))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel17)
+                        .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton36)
@@ -2269,8 +2359,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jRadioButton40)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel10)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(Question8_Label)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel1);
@@ -2306,9 +2396,9 @@ public class Home extends javax.swing.JFrame {
                         .addGap(277, 277, 277)
                         .addComponent(EmpFeedback_Label))
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(36, 36, 36)
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         FeedbackFrameLayout.setVerticalGroup(
             FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2700,6 +2790,112 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(DictionaryFrame);
         DictionaryFrame.setBounds(0, 0, 780, 470);
 
+        SettingsFrame.setVisible(true);
+
+        Settings_Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Settings_Label.setText("SETTINGS");
+
+        Settings_DBUserName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Settings_DBUserName.setText("DB USER NAME");
+
+        Settings_DBPassword.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Settings_DBPassword.setText("DB PASSWORD");
+
+        Settings_Save_Btn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Settings_Save_Btn.setText("Save");
+        Settings_Save_Btn.setPreferredSize(new java.awt.Dimension(60, 30));
+        Settings_Save_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Settings_Save_BtnActionPerformed(evt);
+            }
+        });
+
+        Settings_ServerName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Settings_ServerName.setText("SERVER NAME");
+
+        Settings_DatabaseName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Settings_DatabaseName.setText("DATABASE NAME");
+
+        Settings_ServerAddress.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Settings_ServerAddress.setText("SERVER ADDRESS");
+
+        Settings_Home_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Settings_Home_Btn.setText("Home");
+        Settings_Home_Btn.setPreferredSize(new java.awt.Dimension(65, 30));
+        Settings_Home_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Settings_Home_BtnActionPerformed(evt);
+            }
+        });
+        Settings_Home_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Settings_Home_BtnKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SettingsFrameLayout = new javax.swing.GroupLayout(SettingsFrame.getContentPane());
+        SettingsFrame.getContentPane().setLayout(SettingsFrameLayout);
+        SettingsFrameLayout.setHorizontalGroup(
+            SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsFrameLayout.createSequentialGroup()
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SettingsFrameLayout.createSequentialGroup()
+                        .addComponent(Settings_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(Settings_Label))
+                    .addGroup(SettingsFrameLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Settings_DBPassword)
+                            .addComponent(Settings_DBUserName)
+                            .addComponent(Settings_ServerName)
+                            .addComponent(Settings_DatabaseName)
+                            .addComponent(Settings_ServerAddress))
+                        .addGap(96, 96, 96)
+                        .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Settings_Save_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Settings_DBUserName_Textfield)
+                                .addComponent(Settings_DBPassword_Textfield)
+                                .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                .addComponent(Settings_ServerAddress_Textfield)
+                                .addComponent(Settings_ServerName_Textfield)))))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        SettingsFrameLayout.setVerticalGroup(
+            SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsFrameLayout.createSequentialGroup()
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Settings_Label)
+                    .addComponent(Settings_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Settings_ServerName)
+                    .addComponent(Settings_ServerName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Settings_ServerAddress)
+                    .addComponent(Settings_ServerAddress_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Settings_DatabaseName)
+                    .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Settings_DBUserName)
+                    .addComponent(Settings_DBUserName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Settings_DBPassword)
+                    .addComponent(Settings_DBPassword_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(Settings_Save_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
+        );
+
+        desktopPane.add(SettingsFrame);
+        SettingsFrame.setBounds(0, 0, 447, 484);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -2716,100 +2912,164 @@ public class Home extends javax.swing.JFrame {
 
     private void ArabicAllText() {
         //Login Screen
-        UserLogin_Label.setText("");
+        UserLogin_Label.setText("الدخول");
         UserLogin_Name_Label.setText("اسم المستخدم");
-        UserLogin_Password_Label.setText("");
-        UserLogin_Login_Btn.setText("");
-        UserLogin_ForgetPwd_Btn.setText("");
+        UserLogin_Password_Label.setText("كلمه السر");
+        UserLogin_Login_Btn.setText("الدخول");
+        UserLogin_ForgetPwd_Btn.setText("نسيت كلمة");
         //Home screen
-        Home_label.setText("");
-        Home_UsrMngt_Btn.setText("");
-        Home_Subject_Btn.setText("");
-        Home_ChangePwd_Btn.setText("");
-        Home_Results_Btn.setText("النتائج");
-        Home_ViewSugg_Btn.setText("");
-        Home_Dictionary_Btn.setText("");
-        Home_EmployeeFeedback_Btn.setText("");
-        Home_Logout_Btn.setText("");
+        Home_label.setText("منزل");
+        Home_UsrMngt_Btn.setText("إدارةالمستخدم");
+        Home_Subject_Btn.setText("مواضيع");
+        Home_ChangePwd_Btn.setText("تغيير كلمة السر");
+        Home_Results_Btn.setText("النتيجة");
+        Home_ViewSugg_Btn.setText("عرض الاقتراحات");
+        Home_Dictionary_Btn.setText("المصطلحات");
+        Home_EmployeeFeedback_Btn.setText("آراء الموظفين");
+        Home_Logout_Btn.setText("خروج");
         //User Management screen
-        UsMng_label.setText("");
-        UsMng_Home_Btn.setText("الرئيسية");
+        UsMng_label.setText("إدارةالمستخدم");
+        UsMng_Home_Btn.setText("منزل");
         UsMng_Name_Label.setText("اسم المستخدم");
-        UsMng_Email_Label.setText("");
-        UsMng_Delete_Btn.setText("");
-        UsMng_Update_Btn.setText("");
+        UsMng_Email_Label.setText("البريد الالكتروني");
+        UsMng_Delete_Btn.setText("حذف");
+        UsMng_Update_Btn.setText("تحديث");
         //Subject Screen
-        Sub_Label.setText("");
+        Sub_Label.setText("الموضوع");
         Sub_Home_Btn.setText("الرئيسية");
-        active.setText("");
-        inactive.setText("");
-        Sub_Status_Btn.setText("");
-        Sub_Add_Btn.setText("");
-        Sub_Delete_Btn.setText("");
-        Sub_Enter_Btn.setText("");
+        active.setText("نشط");
+        inactive.setText("غير نشط");
+        Sub_Status_Btn.setText("حالة التحديث");
+        Sub_Add_Btn.setText("إضافة");
+        Sub_Delete_Btn.setText("حذف");
+        Sub_Enter_Btn.setText("أدخل");
         //Add Subject screen
-        AddSub_Label.setText("");
-        AddSub_Back_Btn.setText("");
-        AddSub_Name_Label.setText("");
-        AddSub_Add_Btn.setText("");
+        AddSub_Label.setText("إضافة الموضوع");
+        AddSub_Back_Btn.setText("الى الخلف");
+        AddSub_Name_Label.setText("اسم الموضوع");
+        AddSub_Add_Btn.setText("إضافة");
         //lessons screen
-        Ls_Label.setText("");
-        Ls_Back_Btn.setText("");
-        Ls_Add_Btn.setText("");
-        Ls_Delete_Btn.setText("");
-        Ls_Enter_Btn.setText("");
-        Ls_Marks_Btn.setText("");
+        Ls_Label.setText("الى الخلف");
+        Ls_Back_Btn.setText("الى الخلف");
+        Ls_Add_Btn.setText("إضافة");
+        Ls_Delete_Btn.setText("حذف");
+        Ls_Enter_Btn.setText("أدخل");
+        Ls_Marks_Btn.setText("علامات الطلاب");
         //Add lesson screen
-        AddLs_Label.setText("");
-        AddLs_Back_Btn.setText("");
-        AddLs_Name_Label.setText("");
-        AddLs_Submit_Btn.setText("");
+        AddLs_Label.setText("إضافة الدرس");
+        AddLs_Back_Btn.setText("الى الخلف");
+        AddLs_Name_Label.setText("إضافة الدرس");
+        AddLs_Submit_Btn.setText("تقديم");
         //Marks details screen
-        StDetails_Label.setText("");
-        StDetails_Back_Btn.setText("");
+        StDetails_Label.setText("تفاصيل طالب");
+        StDetails_Back_Btn.setText("الى الخلف");
         //Lesson Image screen
-        Ls_Image_Back_Btn.setText("");
-        LsImage_AddImage_Btn.setText("");
-        LsImage_Delete_Btn.setText("");
-        LsImage_Questions_Btn.setText("");
+        Ls_Image_Back_Btn.setText("الى الخلف");
+        LsImage_AddImage_Btn.setText("إضافة صورة");
+        LsImage_Delete_Btn.setText("حذف صورة");
+        LsImage_Questions_Btn.setText("الأسئلة");
         //Add Lesson Image screen
-        AddLessonPicture_Back_Btn.setText("");
+        AddLessonPicture_Back_Btn.setText("الى الخلف");
         AddLessonPicture_Upload_Btn.setText("");
-        AddLessonPicture_Add_Btn.setText("");
+        AddLessonPicture_Add_Btn.setText("إضافة");
         //Questions screen
         Qst_Label.setText("الأسئلة ");
-        Qst_Back_Btn.setText("");
-        Qst_Update_Btn.setText("");
-        Qst_Add_Btn.setText("");
-        Qst_Delete_Btn.setText("");
+        Qst_Back_Btn.setText("الى الخلف");
+        Qst_Update_Btn.setText("تحديث");
+        Qst_Add_Btn.setText("إضافة");
+        Qst_Delete_Btn.setText("حذف");
         //Change Password screen
-        ChangePwd_Label.setText("");
+        ChangePwd_Label.setText("تغيير كلمة السر");
         ChangePwd_Home_Btn.setText("الرئيسية");
-        ChangePwd_NewPwd_Label.setText("");
+        ChangePwd_NewPwd_Label.setText("كلمة السر الجديدة");
         ChangePwd_ConfPwd_Label.setText("تاكيد الرقم السري");
-        ChangePwd_Submit_Btn.setText("");
+        ChangePwd_Submit_Btn.setText("تقديم");
         //Results screen
         Results_label.setText("النتائج");
         Results_Home_Btn.setText("الرئيسية");
-        Results_StudentName_Lbl.setText("");
-        Results_Subject_Lbl.setText("");
-        Results_Search_Btn.setText("");
+        Results_StudentName_Lbl.setText("أسم الطالب");
+        Results_Subject_Lbl.setText("مواضيع");
+        Results_Search_Btn.setText("بحث");
         //Suggestions screen
         ViewSug_Label.setText("ملاحظاتكم تهمنا");
         ViewSug_Home_Btn.setText("الرئيسية");
-        ViewSug_Subject_Label.setText("");
+        ViewSug_Subject_Label.setText("الموضوع  ");
         ViewSug_Suggestion_Label.setText("ملاحظاتكم تهمنا");
         //Dictionary screen
-        Dictionary_Label.setText("");
+        Dictionary_Label.setText("المصطلحات");
         Dictionary_Home_Btn.setText("الرئيسية");
-        Dictionary_Word_Label.setText("");
-        Dictionary_Meaning_Label.setText("");
-        Dictionary_Add_Btn.setText("");
-        Dictionary_Update_Btn.setText("");
-        Dictionary_Delete_Btn.setText("");
+        Dictionary_Word_Label.setText("كلمة");
+        Dictionary_Meaning_Label.setText("معنى");
+        Dictionary_Add_Btn.setText("إضافة");
+        Dictionary_Update_Btn.setText("تحديث");
+        Dictionary_Delete_Btn.setText("حذف");
         //Feedback screen
-        EmpFeedback_Label.setText("");
+        EmpFeedback_Label.setText("آراء الموظفين");
         EmpFeedback_Home_Btn.setText("الرئيسية");
+        Question1_Label.setText("1 سؤال");
+        Question2_Label.setText("2 سؤال");
+        Question3_Label.setText("3 سؤال");
+        Question4_Label.setText("4 سؤال");
+        Question5_Label.setText("5 سؤال");
+        Question6_Label.setText("6 سؤال");
+        Question7_Label.setText("7 سؤال");
+        Question8_Label.setText("8 سؤال");
+        Question1.setText("");
+        Question2.setText("");
+        Question3.setText("");
+        Question4.setText("");
+        Question5.setText("");
+        Question6.setText("");
+        Question7.setText("");
+        Question8.setText("");
+        //Answer 1 options
+        jRadioButton1.setText("");
+        jRadioButton2.setText("");
+        jRadioButton3.setText("");
+        jRadioButton4.setText("");
+        jRadioButton5.setText("");
+        //Answer 2 options
+        jRadioButton6.setText("");
+        jRadioButton7.setText("");
+        jRadioButton8.setText("");
+        jRadioButton9.setText("");
+        jRadioButton10.setText("");
+        //Answer 3 options
+        jRadioButton11.setText("");
+        jRadioButton12.setText("");
+        jRadioButton13.setText("");
+        jRadioButton14.setText("");
+        jRadioButton15.setText("");
+        //Answer 4 options
+        jRadioButton16.setText("");
+        jRadioButton17.setText("");
+        jRadioButton18.setText("");
+        jRadioButton19.setText("");
+        jRadioButton20.setText("");
+        //Answer 5 options
+        jRadioButton21.setText("");
+        jRadioButton22.setText("");
+        jRadioButton23.setText("");
+        jRadioButton24.setText("");
+        jRadioButton25.setText("");
+        //Answer 6 options
+        jRadioButton26.setText("");
+        jRadioButton27.setText("");
+        jRadioButton28.setText("");
+        jRadioButton29.setText("");
+        jRadioButton30.setText("");
+        //Answer 7 options
+        jRadioButton31.setText("");
+        jRadioButton32.setText("");
+        jRadioButton33.setText("");
+        jRadioButton34.setText("");
+        jRadioButton35.setText("");
+        //Answer 8 options
+        jRadioButton36.setText("");
+        jRadioButton37.setText("");
+        jRadioButton38.setText("");
+        jRadioButton39.setText("");
+        jRadioButton40.setText("");
 
     }
 
@@ -2857,7 +3117,7 @@ public class Home extends javax.swing.JFrame {
         Ls_Add_Btn.setText("Add");
         Ls_Delete_Btn.setText("Delete");
         Ls_Enter_Btn.setText("Enter");
-        Ls_Marks_Btn.setText("Student Marks");
+        Ls_Marks_Btn.setText("Students Marks");
         //Add lesson screen
         AddLs_Label.setText("ADD LESSONS");
         AddLs_Back_Btn.setText("Back");
@@ -2909,7 +3169,70 @@ public class Home extends javax.swing.JFrame {
         //Feedback screen
         EmpFeedback_Label.setText("EMPLOYEE FEEDBACK");
         EmpFeedback_Home_Btn.setText("Home");
-
+        Question1_Label.setText("Question 1");
+        Question2_Label.setText("Question 2");
+        Question3_Label.setText("Question 3");
+        Question4_Label.setText("Question 4");
+        Question5_Label.setText("Question 5");
+        Question6_Label.setText("Question 6");
+        Question7_Label.setText("Question 7");
+        Question8_Label.setText("Question 8");
+        Question1.setText("Question 1");
+        Question2.setText("Question 2");
+        Question3.setText("Question 3");
+        Question4.setText("Question 4");
+        Question5.setText("Question 5");
+        Question6.setText("Question 6");
+        Question7.setText("Question 7");
+        Question8.setText("Question 8");
+        //Answer 1 options
+        jRadioButton1.setText("Excellent");
+        jRadioButton2.setText("Good");
+        jRadioButton3.setText("Average");
+        jRadioButton4.setText("Below Average");
+        jRadioButton5.setText("Poor");
+        //Answer 2 options
+        jRadioButton6.setText("Excellent");
+        jRadioButton7.setText("Good");
+        jRadioButton8.setText("Average");
+        jRadioButton9.setText("Below Average");
+        jRadioButton10.setText("Poor");
+        //Answer 3 options
+        jRadioButton11.setText("Excellent");
+        jRadioButton12.setText("Good");
+        jRadioButton13.setText("Average");
+        jRadioButton14.setText("Below Average");
+        jRadioButton15.setText("Poor");
+        //Answer 4 options
+        jRadioButton16.setText("Excellent");
+        jRadioButton17.setText("Good");
+        jRadioButton18.setText("Average");
+        jRadioButton19.setText("Below Average");
+        jRadioButton20.setText("Poor");
+        //Answer 5 options
+        jRadioButton21.setText("Excellent");
+        jRadioButton22.setText("Good");
+        jRadioButton23.setText("Average");
+        jRadioButton24.setText("Below Average");
+        jRadioButton25.setText("Poor");
+        //Answer 6 options
+        jRadioButton26.setText("Excellent");
+        jRadioButton27.setText("Good");
+        jRadioButton28.setText("Average");
+        jRadioButton29.setText("Below Average");
+        jRadioButton30.setText("Poor");
+        //Answer 7 options
+        jRadioButton31.setText("Excellent");
+        jRadioButton32.setText("Good");
+        jRadioButton33.setText("Average");
+        jRadioButton34.setText("Below Average");
+        jRadioButton35.setText("Poor");
+        //Answer 8 options
+        jRadioButton36.setText("Excellent");
+        jRadioButton37.setText("Good");
+        jRadioButton38.setText("Average");
+        jRadioButton39.setText("Below Average");
+        jRadioButton40.setText("poor");
     }
 
     private void Populate_FeedbackDetails() {
@@ -2925,10 +3248,9 @@ public class Home extends javax.swing.JFrame {
                 feedbackTable.getColumnModel().getColumn(a).setMinWidth(0);
                 feedbackTable.getColumnModel().getColumn(a).setMaxWidth(0);
             }
-            if(Arabic_lang.isSelected())
-            {
-            feedbackTable.getColumnModel().getColumn(0).setHeaderValue("");
-            feedbackTable.getColumnModel().getColumn(1).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                feedbackTable.getColumnModel().getColumn(0).setHeaderValue("هوية شخصية");
+                feedbackTable.getColumnModel().getColumn(1).setHeaderValue("اسم الموظف");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -2951,7 +3273,7 @@ public class Home extends javax.swing.JFrame {
                     Ls_Image_Table.getColumnModel().getColumn(i).setMaxWidth(0);
                 }
                 if (Arabic_lang.isSelected()) {
-                    Ls_Image_Table.getColumnModel().getColumn(2).setHeaderValue("");
+                    Ls_Image_Table.getColumnModel().getColumn(2).setHeaderValue("صور");
                 }
             } catch (Exception ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -3006,14 +3328,13 @@ public class Home extends javax.swing.JFrame {
             rs = pst.executeQuery(sql);
             Result_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Result_Table.setModel(DbUtils.resultSetToTableModel(rs));
-            if(Arabic_lang.isSelected())
-            {
-            Result_Table.getColumnModel().getColumn(0).setHeaderValue("");
-            Result_Table.getColumnModel().getColumn(1).setHeaderValue("");
-            Result_Table.getColumnModel().getColumn(2).setHeaderValue("");
-            Result_Table.getColumnModel().getColumn(3).setHeaderValue("");
-            Result_Table.getColumnModel().getColumn(4).setHeaderValue("");
-            Result_Table.getColumnModel().getColumn(5).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                Result_Table.getColumnModel().getColumn(0).setHeaderValue("أسم الطالب");
+                Result_Table.getColumnModel().getColumn(1).setHeaderValue("الموضوع");
+                Result_Table.getColumnModel().getColumn(2).setHeaderValue("الى الخلف");
+                Result_Table.getColumnModel().getColumn(3).setHeaderValue("علامات");
+                Result_Table.getColumnModel().getColumn(4).setHeaderValue("تاريخ");
+                Result_Table.getColumnModel().getColumn(5).setHeaderValue("النتيجة");
             }
             killDialog();
             Populate_Checkboxes();
@@ -3033,10 +3354,9 @@ public class Home extends javax.swing.JFrame {
             Dictionary_Table.setModel(DbUtils.resultSetToTableModel(rs));
             Dictionary_Table.getColumnModel().getColumn(0).setMinWidth(0);
             Dictionary_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-            if(Arabic_lang.isSelected())
-            {
-            Dictionary_Table.getColumnModel().getColumn(1).setHeaderValue("");
-            Dictionary_Table.getColumnModel().getColumn(2).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                Dictionary_Table.getColumnModel().getColumn(1).setHeaderValue("كلمة");
+                Dictionary_Table.getColumnModel().getColumn(2).setHeaderValue("معنى");
             }
             rs.close();
             rs1 = pst.executeQuery();
@@ -3061,9 +3381,8 @@ public class Home extends javax.swing.JFrame {
             Sub_Table.getColumnModel().getColumn(0).setMaxWidth(0);
             Sub_Table.getColumnModel().getColumn(2).setMinWidth(0);
             Sub_Table.getColumnModel().getColumn(2).setMaxWidth(0);
-            if(Arabic_lang.isSelected())
-            {
-            Sub_Table.getColumnModel().getColumn(1).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                Sub_Table.getColumnModel().getColumn(1).setHeaderValue("الموضوع");
             }
             buttonGroup10.clearSelection();
         } catch (SQLException e) {
@@ -3081,9 +3400,8 @@ public class Home extends javax.swing.JFrame {
             Ls_Table.setModel(DbUtils.resultSetToTableModel(rs));
             Ls_Table.getColumnModel().getColumn(0).setMinWidth(0);
             Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-            if(Arabic_lang.isSelected())
-            {
-            Ls_Table.getColumnModel().getColumn(1).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                Ls_Table.getColumnModel().getColumn(1).setHeaderValue("الى الخلف");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -3094,16 +3412,15 @@ public class Home extends javax.swing.JFrame {
     private void Populate_Students() {
         try {
             createComponents();
-            pst = con.prepareStatement("select st.student_name as 'Student Name' ,sub.subject_name as Subject, ls.lesson_name as Lesson ,stdt.marks as 'Marks Optained' from studentmarkdetails stdt INNER JOIN students st ON stdt.student_id=st.student_id INNER JOIN subject sub ON stdt.subject_id=sub.subject_id INNER JOIN lessons ls ON stdt.lesson_id=ls.lesson_id where stdt.subject_id=" + subject + " and stdt.lesson_id=" + selectedlesson);
+            pst = con.prepareStatement("select st.student_name as 'Student Name' ,sub.subject_name as Subject, ls.lesson_name as Lesson ,stdt.marks as 'Marks' from studentmarkdetails stdt INNER JOIN students st ON stdt.student_id=st.student_id INNER JOIN subject sub ON stdt.subject_id=sub.subject_id INNER JOIN lessons ls ON stdt.lesson_id=ls.lesson_id where stdt.subject_id=" + subject + " and stdt.lesson_id=" + selectedlesson);
             rs = pst.executeQuery();
             St_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             St_Table.setModel(DbUtils.resultSetToTableModel(rs));
-             if(Arabic_lang.isSelected())
-            {
-            St_Table.getColumnModel().getColumn(0).setHeaderValue("");
-            St_Table.getColumnModel().getColumn(1).setHeaderValue("");
-            St_Table.getColumnModel().getColumn(2).setHeaderValue("");
-            St_Table.getColumnModel().getColumn(3).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                St_Table.getColumnModel().getColumn(0).setHeaderValue("أسم الطالب");
+                St_Table.getColumnModel().getColumn(1).setHeaderValue("اسم الموضوع");
+                St_Table.getColumnModel().getColumn(2).setHeaderValue("الى الخلف");
+                St_Table.getColumnModel().getColumn(3).setHeaderValue("علامات");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -3118,12 +3435,11 @@ public class Home extends javax.swing.JFrame {
             rs = pst.executeQuery();
             Suggestions_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             Suggestions_Table.setModel(DbUtils.resultSetToTableModel(rs));
-             if(Arabic_lang.isSelected())
-            {
-            Suggestions_Table.getColumnModel().getColumn(0).setHeaderValue("");
-            Suggestions_Table.getColumnModel().getColumn(1).setHeaderValue("اسم المستخدم");
-            Suggestions_Table.getColumnModel().getColumn(2).setHeaderValue("");
-            Suggestions_Table.getColumnModel().getColumn(3).setHeaderValue("ملاحظاتكم تهمنا");
+            if (Arabic_lang.isSelected()) {
+                Suggestions_Table.getColumnModel().getColumn(0).setHeaderValue("هوية شخصية");
+                Suggestions_Table.getColumnModel().getColumn(1).setHeaderValue("اسم المستخدم");
+                Suggestions_Table.getColumnModel().getColumn(2).setHeaderValue("مواضيع");
+                Suggestions_Table.getColumnModel().getColumn(3).setHeaderValue("ملاحظاتكم تهمنا");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -3234,7 +3550,7 @@ public class Home extends javax.swing.JFrame {
         ChangePasswordFrame.setVisible(false);
         StudentManagementFrame.setVisible(false);
         HomeFrame.setVisible(false);
-        //UsersProfileFrame.setVisible(false);
+        SettingsFrame.setVisible(false);
         ViewSuggestionsFrame.setVisible(false);
         FeedbackFrame.setVisible(false);
         ResultFrame.setVisible(false);
@@ -3251,10 +3567,9 @@ public class Home extends javax.swing.JFrame {
             User_Table.setModel(DbUtils.resultSetToTableModel(rs));
             User_Table.getColumnModel().getColumn(0).setMinWidth(0);
             User_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-             if(Arabic_lang.isSelected())
-            {
-            User_Table.getColumnModel().getColumn(1).setHeaderValue("");
-            User_Table.getColumnModel().getColumn(2).setHeaderValue("");
+            if (Arabic_lang.isSelected()) {
+                User_Table.getColumnModel().getColumn(1).setHeaderValue("اسم المستخدم");
+                User_Table.getColumnModel().getColumn(2).setHeaderValue("البريد الإلكتروني معرف");
             }
 
         } catch (SQLException e) {
@@ -3272,13 +3587,12 @@ public class Home extends javax.swing.JFrame {
             Qst_Table.setModel(DbUtils.resultSetToTableModel(rs));
             Qst_Table.getColumnModel().getColumn(0).setMinWidth(0);
             Qst_Table.getColumnModel().getColumn(0).setMaxWidth(0);
-             if(Arabic_lang.isSelected())
-            {
-            Qst_Table.getColumnModel().getColumn(1).setHeaderValue("الأسئلة ");
-            Qst_Table.getColumnModel().getColumn(2).setHeaderValue("");
-            Qst_Table.getColumnModel().getColumn(3).setHeaderValue("");
-            Qst_Table.getColumnModel().getColumn(4).setHeaderValue("");
-            Qst_Table.getColumnModel().getColumn(5).setHeaderValue("الأجوبة");
+            if (Arabic_lang.isSelected()) {
+                Qst_Table.getColumnModel().getColumn(1).setHeaderValue("الأسئلة ");
+                Qst_Table.getColumnModel().getColumn(2).setHeaderValue("الخيار الأول");
+                Qst_Table.getColumnModel().getColumn(3).setHeaderValue("الخيار الثاني");
+                Qst_Table.getColumnModel().getColumn(4).setHeaderValue("الخيار الثالث");
+                Qst_Table.getColumnModel().getColumn(5).setHeaderValue("الأجوبة");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -5216,6 +5530,167 @@ public class Home extends javax.swing.JFrame {
         EnglishAllText();
     }//GEN-LAST:event_English_langKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        closeAllFrames();
+        SettingsFrame.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            SettingsFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1KeyReleased
+
+    private void Settings_Save_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Settings_Save_BtnActionPerformed
+        try {
+            servername = encrypt(Settings_ServerName_Textfield.getText());
+            serveraddress = encrypt(Settings_ServerAddress_Textfield.getText());
+            databasename = encrypt(Settings_DatabaseName_Textfield.getText());
+            databaseusername = encrypt(Settings_DBUserName_Textfield.getText());
+            databasepassword = encrypt(Settings_DBPassword_Textfield.getText());
+            saveToXML(servername, serveraddress, databasename, databaseusername, databasepassword);
+        } catch (Exception e) {
+
+        }
+        Settings_ServerName_Textfield.setText("");
+        Settings_ServerAddress_Textfield.setText("");
+        Settings_DatabaseName_Textfield.setText("");
+        Settings_DBUserName_Textfield.setText("");
+        Settings_DBPassword_Textfield.setText("");
+    }//GEN-LAST:event_Settings_Save_BtnActionPerformed
+
+    private void Settings_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Settings_Home_BtnActionPerformed
+        closeAllFrames();
+        HomeFrame.setVisible(true);
+    }//GEN-LAST:event_Settings_Home_BtnActionPerformed
+
+    private void Settings_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Settings_Home_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+            HomeFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_Settings_Home_BtnKeyReleased
+
+    public void saveToXML(String servername, String serveraddress, String databasename, String databaseusername, String databasepassword) {
+        try {
+
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // root elements
+            Document doc = docBuilder.newDocument();
+            org.w3c.dom.Element rootElement = doc.createElement("DatabaseConnection");
+            doc.appendChild(rootElement);
+
+            // connection elements
+            org.w3c.dom.Element Connection = doc.createElement("Connection");
+            rootElement.appendChild(Connection);
+
+            // ServerName elements
+            org.w3c.dom.Element ServerName = doc.createElement("ServerName");
+            ServerName.appendChild(doc.createTextNode(servername));
+            Connection.appendChild(ServerName);
+
+            // ServerAddress elements
+            org.w3c.dom.Element ServerAddress = doc.createElement("ServerAddress");
+            ServerAddress.appendChild(doc.createTextNode(serveraddress));
+            Connection.appendChild(ServerAddress);
+
+            // DatabaseName elements
+            org.w3c.dom.Element DatabaseName = doc.createElement("DatabaseName");
+            DatabaseName.appendChild(doc.createTextNode(databasename));
+            Connection.appendChild(DatabaseName);
+
+            // DatabaseUserName elements
+            org.w3c.dom.Element DatabaseUserName = doc.createElement("DatabaseUserName");
+            DatabaseUserName.appendChild(doc.createTextNode(databaseusername));
+            Connection.appendChild(DatabaseUserName);
+
+            // DatabasePassword elements
+            org.w3c.dom.Element DatabasePassword = doc.createElement("DatabasePassword");
+            DatabasePassword.appendChild(doc.createTextNode(databasepassword));
+            Connection.appendChild(DatabasePassword);
+
+            // write the content into xml file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("C:\\wamp\\www\\serverFile\\server.xml"));
+
+            // Output to console for testing
+            transformer.transform(source, result);
+
+            System.out.println("File saved!");
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+    }
+
+    public static String encrypt(String value) throws Exception {
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(Home.ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encryptedByteValue = cipher.doFinal(value.getBytes("utf-8"));
+        String encryptedValue64 = new BASE64Encoder().encode(encryptedByteValue);
+        return encryptedValue64;
+
+    }
+
+    public static String decrypt(String value) throws Exception {
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(Home.ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decryptedValue64 = new BASE64Decoder().decodeBuffer(value);
+        byte[] decryptedByteValue = cipher.doFinal(decryptedValue64);
+        String decryptedValue = new String(decryptedByteValue, "utf-8");
+        return decryptedValue;
+
+    }
+
+    private static Key generateKey() throws Exception {
+        Key key = new SecretKeySpec(Home.KEY.getBytes(), Home.ALGORITHM);
+        return key;
+    }
+
+    public void readXML() {
+        try {
+
+            File fXmlFile = new File("C:\\wamp\\www\\serverFile\\server.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+
+            NodeList nList = doc.getElementsByTagName("Connection");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                Node nNode = nList.item(temp);
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode;
+
+                    servernameDecrypt = decrypt(eElement.getElementsByTagName("ServerName").item(0).getTextContent());
+                    serveraddressDecrypt = decrypt(eElement.getElementsByTagName("ServerAddress").item(0).getTextContent());
+                    databasenameDecrypt = decrypt(eElement.getElementsByTagName("DatabaseName").item(0).getTextContent());
+                    databaseusernameDecrypt = decrypt(eElement.getElementsByTagName("DatabaseUserName").item(0).getTextContent());
+                    databasepasswordDecrypt = decrypt(eElement.getElementsByTagName("DatabasePassword").item(0).getTextContent());
+                    url=serveraddressDecrypt+"/"+databasenameDecrypt+"?useUnicode=yes&characterEncoding=UTF-8";
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -5334,6 +5809,22 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable Qst_Table;
     private javax.swing.JTextArea Qst_Textarea;
     private javax.swing.JButton Qst_Update_Btn;
+    private javax.swing.JLabel Question1;
+    private javax.swing.JLabel Question1_Label;
+    private javax.swing.JLabel Question2;
+    private javax.swing.JLabel Question2_Label;
+    private javax.swing.JLabel Question3;
+    private javax.swing.JLabel Question3_Label;
+    private javax.swing.JLabel Question4;
+    private javax.swing.JLabel Question4_Label;
+    private javax.swing.JLabel Question5;
+    private javax.swing.JLabel Question5_Label;
+    private javax.swing.JLabel Question6;
+    private javax.swing.JLabel Question6_Label;
+    private javax.swing.JLabel Question7;
+    private javax.swing.JLabel Question7_Label;
+    private javax.swing.JLabel Question8;
+    private javax.swing.JLabel Question8_Label;
     private javax.swing.JInternalFrame QuestionsFrame;
     private javax.swing.JInternalFrame ResultFrame;
     private javax.swing.JTable Result_Table;
@@ -5342,6 +5833,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Results_StudentName_Lbl;
     private javax.swing.JLabel Results_Subject_Lbl;
     private javax.swing.JLabel Results_label;
+    private javax.swing.JInternalFrame SettingsFrame;
+    private javax.swing.JLabel Settings_DBPassword;
+    private javax.swing.JTextField Settings_DBPassword_Textfield;
+    private javax.swing.JLabel Settings_DBUserName;
+    private javax.swing.JTextField Settings_DBUserName_Textfield;
+    private javax.swing.JLabel Settings_DatabaseName;
+    private javax.swing.JTextField Settings_DatabaseName_Textfield;
+    private javax.swing.JButton Settings_Home_Btn;
+    private javax.swing.JLabel Settings_Label;
+    private javax.swing.JButton Settings_Save_Btn;
+    private javax.swing.JLabel Settings_ServerAddress;
+    private javax.swing.JTextField Settings_ServerAddress_Textfield;
+    private javax.swing.JLabel Settings_ServerName;
+    private javax.swing.JTextField Settings_ServerName_Textfield;
     private javax.swing.JButton StDetails_Back_Btn;
     private javax.swing.JLabel StDetails_Label;
     private javax.swing.JTable St_Table;
@@ -5395,25 +5900,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
