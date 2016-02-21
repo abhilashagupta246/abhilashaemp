@@ -2797,6 +2797,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(DictionaryFrame);
         DictionaryFrame.setBounds(0, 0, 780, 470);
 
+        SettingsFrame.setPreferredSize(new java.awt.Dimension(525, 500));
         SettingsFrame.setVisible(true);
 
         Settings_Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -2853,7 +2854,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SettingsFrameLayout.createSequentialGroup()
                         .addComponent(Settings_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
+                        .addGap(110, 110, 110)
                         .addComponent(Settings_Label))
                     .addGroup(SettingsFrameLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -2872,41 +2873,44 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                 .addComponent(Settings_ServerAddress_Textfield)
                                 .addComponent(Settings_ServerName_Textfield)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         SettingsFrameLayout.setVerticalGroup(
             SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SettingsFrameLayout.createSequentialGroup()
+                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Settings_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Settings_Label))
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Settings_Label)
-                    .addComponent(Settings_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Settings_ServerName)
-                    .addComponent(Settings_ServerName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Settings_ServerAddress)
-                    .addComponent(Settings_ServerAddress_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Settings_DatabaseName)
-                    .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Settings_DBUserName)
-                    .addComponent(Settings_DBUserName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Settings_DBPassword)
-                    .addComponent(Settings_DBPassword_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                    .addGroup(SettingsFrameLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Settings_ServerName)
+                            .addComponent(Settings_ServerName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Settings_ServerAddress)
+                            .addComponent(Settings_ServerAddress_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Settings_DatabaseName)
+                            .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Settings_DBUserName)
+                            .addComponent(Settings_DBUserName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(Settings_DBPassword))
+                    .addGroup(SettingsFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Settings_DBPassword_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
                 .addComponent(Settings_Save_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64))
         );
 
         desktopPane.add(SettingsFrame);
-        SettingsFrame.setBounds(0, 0, 476, 488);
+        SettingsFrame.setBounds(0, 0, 525, 500);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2938,7 +2942,7 @@ public class Home extends javax.swing.JFrame {
         Home_ViewSugg_Btn.setText("عرض الاقتراحات");
         Home_Dictionary_Btn.setText("المصطلحات");
         Home_EmployeeFeedback_Btn.setText("آراء الموظفين");
-        Home_Settings_Btn.setText("");
+        Home_Settings_Btn.setText("إعدادات");
         Home_Logout_Btn.setText("خروج");
         //User Management screen
         UsMng_label.setText("إدارةالمستخدم");
