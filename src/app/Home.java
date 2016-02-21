@@ -5580,7 +5580,6 @@ public class Home extends javax.swing.JFrame {
             databasename = Settings_DatabaseName_Textfield.getText();
             databaseusername = Settings_DBUserName_Textfield.getText();
             databasepassword = Settings_DBPassword_Textfield.getText();
-             System.out.println(Settings_ServerAddress_Textfield.getText().trim()+"Hello");
             if(!Settings_ServerAddress_Textfield.getText().trim().equals("") && !Settings_DatabaseName_Textfield.getText().trim().equals("") && !Settings_DBUserName_Textfield.getText().trim().equals(""))
             {
             saveToXML(encrypt(servername), encrypt(serveraddress), encrypt(databasename), encrypt(databaseusername), encrypt(databasepassword));
