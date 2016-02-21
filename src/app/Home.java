@@ -2983,7 +2983,7 @@ public class Home extends javax.swing.JFrame {
         LsImage_Questions_Btn.setText("الأسئلة");
         //Add Lesson Image screen
         AddLessonPicture_Back_Btn.setText("الى الخلف");
-        AddLessonPicture_Upload_Btn.setText("");
+        AddLessonPicture_Upload_Btn.setText("تحميل");
         AddLessonPicture_Add_Btn.setText("إضافة");
         //Questions screen
         Qst_Label.setText("الأسئلة ");
@@ -3006,7 +3006,7 @@ public class Home extends javax.swing.JFrame {
         //Suggestions screen
         ViewSug_Label.setText("ملاحظاتكم تهمنا");
         ViewSug_Home_Btn.setText("الرئيسية");
-        ViewSug_Subject_Label.setText("الموضوع  ");
+        ViewSug_Subject_Label.setText("الموضوع");
         ViewSug_Suggestion_Label.setText("ملاحظاتكم تهمنا");
         //Dictionary screen
         Dictionary_Label.setText("المصطلحات");
@@ -3084,14 +3084,14 @@ public class Home extends javax.swing.JFrame {
         jRadioButton39.setText("");
         jRadioButton40.setText("");
         //Settings screen
-        Settings_Label.setText("");
-        Settings_Home_Btn.setText("");
-        Settings_ServerName.setText("");
-        Settings_ServerAddress.setText("");
-        Settings_DatabaseName.setText("");
-        Settings_DBUserName.setText("");
-        Settings_DBPassword.setText("");
-        Settings_Save_Btn.setText("");
+        Settings_Label.setText("إعدادات");
+        Settings_Home_Btn.setText("الرئيسية");
+        Settings_ServerName.setText("اسم الخادم");
+        Settings_ServerAddress.setText("عنوان المستقبل");
+        Settings_DatabaseName.setText("اسم قاعدة البيانات");
+        Settings_DBUserName.setText("اسم المستخدم قاعدة البيانات ");
+        Settings_DBPassword.setText("كلمة السر قاعدة البيانات");
+        Settings_Save_Btn.setText("حفظ");
     }
 
     private void EnglishAllText() {
