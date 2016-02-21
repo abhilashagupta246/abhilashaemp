@@ -97,13 +97,20 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         readXML();
-        //con = mysqlconnect.ConnectDb(url,databaseusernameDecrypt,databasepasswordDecrypt);
-        con = mysqlconnect.ConnectDb();
+        con = mysqlconnect.ConnectDb(url,databaseusernameDecrypt,databasepasswordDecrypt);
         closeAllFrames();
+        if(con==null)
+        {
+        SettingsFrame.setVisible(true);
+        Settings_Home_Btn.setVisible(false);
+        }
+        else
+        {
         buttonGroup11.clearSelection();
         English_lang.setSelected(true);
         UserLoginFrame.setLocation(200, 200);
         UserLoginFrame.setVisible(true);
+        }
     }
 
     /**
@@ -2796,10 +2803,10 @@ public class Home extends javax.swing.JFrame {
         Settings_Label.setText("SETTINGS");
 
         Settings_DBUserName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Settings_DBUserName.setText("DB USER NAME");
+        Settings_DBUserName.setText("DATABASE USER NAME *");
 
         Settings_DBPassword.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Settings_DBPassword.setText("DB PASSWORD");
+        Settings_DBPassword.setText("DATABASE PASSWORD");
 
         Settings_Save_Btn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Settings_Save_Btn.setText("Save");
@@ -2809,15 +2816,20 @@ public class Home extends javax.swing.JFrame {
                 Settings_Save_BtnActionPerformed(evt);
             }
         });
+        Settings_Save_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Settings_Save_BtnKeyReleased(evt);
+            }
+        });
 
         Settings_ServerName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Settings_ServerName.setText("SERVER NAME");
 
         Settings_DatabaseName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Settings_DatabaseName.setText("DATABASE NAME");
+        Settings_DatabaseName.setText("DATABASE NAME *");
 
         Settings_ServerAddress.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Settings_ServerAddress.setText("SERVER ADDRESS");
+        Settings_ServerAddress.setText("SERVER ADDRESS *");
 
         Settings_Home_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Settings_Home_Btn.setText("Home");
@@ -2860,7 +2872,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                 .addComponent(Settings_ServerAddress_Textfield)
                                 .addComponent(Settings_ServerName_Textfield)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SettingsFrameLayout.setVerticalGroup(
             SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2880,7 +2892,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Settings_DatabaseName)
                     .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Settings_DBUserName)
                     .addComponent(Settings_DBUserName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2894,7 +2906,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(SettingsFrame);
-        SettingsFrame.setBounds(0, 0, 447, 484);
+        SettingsFrame.setBounds(0, 0, 465, 488);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -3070,7 +3082,15 @@ public class Home extends javax.swing.JFrame {
         jRadioButton38.setText("");
         jRadioButton39.setText("");
         jRadioButton40.setText("");
-
+        //Settings screen
+        Settings_Label.setText("");
+        Settings_Home_Btn.setText("");
+        Settings_ServerName.setText("");
+        Settings_ServerAddress.setText("");
+        Settings_DatabaseName.setText("");
+        Settings_DBUserName.setText("");
+        Settings_DBPassword.setText("");
+        Settings_Save_Btn.setText("");
     }
 
     private void EnglishAllText() {
@@ -3233,6 +3253,15 @@ public class Home extends javax.swing.JFrame {
         jRadioButton38.setText("Average");
         jRadioButton39.setText("Below Average");
         jRadioButton40.setText("poor");
+         //Settings screen
+        Settings_Label.setText("SETTINGS");
+        Settings_Home_Btn.setText("Home");
+        Settings_ServerName.setText("SERVER NAME");
+        Settings_ServerAddress.setText("SERVER ADDRESS");
+        Settings_DatabaseName.setText("DATABASE NAME");
+        Settings_DBUserName.setText("DATABASE USERNAME");
+        Settings_DBPassword.setText("DATABASE PASSWORD");
+        Settings_Save_Btn.setText("Save");
     }
 
     private void Populate_FeedbackDetails() {
@@ -3556,6 +3585,7 @@ public class Home extends javax.swing.JFrame {
         ResultFrame.setVisible(false);
         AddLessonPictureFrame.setVisible(false);
         DictionaryFrame.setVisible(false);
+        SettingsFrame.setVisible(false);
     }
 
     private void Populate_Users() {
@@ -5542,14 +5572,22 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1KeyReleased
 
-    private void Settings_Save_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Settings_Save_BtnActionPerformed
-        try {
+    private void Settings_Save_Btn_fun()
+    {
+         try {
             servername = encrypt(Settings_ServerName_Textfield.getText());
             serveraddress = encrypt(Settings_ServerAddress_Textfield.getText());
             databasename = encrypt(Settings_DatabaseName_Textfield.getText());
             databaseusername = encrypt(Settings_DBUserName_Textfield.getText());
             databasepassword = encrypt(Settings_DBPassword_Textfield.getText());
+            if(Settings_ServerAddress_Textfield.getText().trim()!="" && Settings_DatabaseName_Textfield.getText().trim()!=null && Settings_DBUserName_Textfield.getText().trim()!=null)
+            {
             saveToXML(servername, serveraddress, databasename, databaseusername, databasepassword);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
+            }
         } catch (Exception e) {
 
         }
@@ -5558,6 +5596,10 @@ public class Home extends javax.swing.JFrame {
         Settings_DatabaseName_Textfield.setText("");
         Settings_DBUserName_Textfield.setText("");
         Settings_DBPassword_Textfield.setText("");
+    }
+    
+    private void Settings_Save_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Settings_Save_BtnActionPerformed
+       Settings_Save_Btn_fun();
     }//GEN-LAST:event_Settings_Save_BtnActionPerformed
 
     private void Settings_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Settings_Home_BtnActionPerformed
@@ -5571,6 +5613,12 @@ public class Home extends javax.swing.JFrame {
             HomeFrame.setVisible(true);
         }
     }//GEN-LAST:event_Settings_Home_BtnKeyReleased
+
+    private void Settings_Save_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Settings_Save_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Settings_Save_Btn_fun();
+        }
+    }//GEN-LAST:event_Settings_Save_BtnKeyReleased
 
     public void saveToXML(String servername, String serveraddress, String databasename, String databaseusername, String databasepassword) {
         try {
@@ -5620,8 +5668,20 @@ public class Home extends javax.swing.JFrame {
 
             // Output to console for testing
             transformer.transform(source, result);
-
-            System.out.println("File saved!");
+            JOptionPane.showMessageDialog(null, "Please Log in again");
+           
+            readXML();
+            con = mysqlconnect.ConnectDb(url,databaseusernameDecrypt,databasepasswordDecrypt);
+            closeAllFrames();
+            login = false;
+            UserLoginFrame.setVisible(true);
+            UserLoginFrame.setLocation(200, 200);
+            buttonGroup11.clearSelection();
+            English_lang.setSelected(true);
+            Settings_Home_Btn.setVisible(true);
+            EnglishAllText();
+            
+            //System.out.println("File saved!");
 
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
@@ -5666,7 +5726,7 @@ public class Home extends javax.swing.JFrame {
 
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("Connection");
 
@@ -5687,7 +5747,7 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+           SettingsFrame.setVisible(true);
         }
     }
 

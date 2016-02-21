@@ -3673,7 +3673,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3699,7 +3699,7 @@
                           <Component id="Settings_DatabaseName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Settings_DatabaseName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Settings_DBUserName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Settings_DBUserName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -3730,7 +3730,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DB USER NAME"/>
+                <Property name="text" type="java.lang.String" value="DATABASE USER NAME *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Settings_DBPassword">
@@ -3738,7 +3738,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DB PASSWORD"/>
+                <Property name="text" type="java.lang.String" value="DATABASE PASSWORD"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="Settings_DBUserName_Textfield">
@@ -3757,6 +3757,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Settings_Save_BtnActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Settings_Save_BtnKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="Settings_ServerName">
@@ -3772,7 +3773,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DATABASE NAME"/>
+                <Property name="text" type="java.lang.String" value="DATABASE NAME *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Settings_ServerAddress">
@@ -3780,7 +3781,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="SERVER ADDRESS"/>
+                <Property name="text" type="java.lang.String" value="SERVER ADDRESS *"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="Settings_ServerName_Textfield">
