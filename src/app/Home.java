@@ -2717,7 +2717,7 @@ public class Home extends javax.swing.JFrame {
     private void ArabicAllText() {
         //Login Screen
         UserLogin_Label.setText("");
-        UserLogin_Name_Label.setText("");
+        UserLogin_Name_Label.setText("اسم المستخدم");
         UserLogin_Password_Label.setText("");
         UserLogin_Login_Btn.setText("");
         UserLogin_ForgetPwd_Btn.setText("");
@@ -2726,21 +2726,21 @@ public class Home extends javax.swing.JFrame {
         Home_UsrMngt_Btn.setText("");
         Home_Subject_Btn.setText("");
         Home_ChangePwd_Btn.setText("");
-        Home_Results_Btn.setText("");
+        Home_Results_Btn.setText("النتائج");
         Home_ViewSugg_Btn.setText("");
         Home_Dictionary_Btn.setText("");
         Home_EmployeeFeedback_Btn.setText("");
         Home_Logout_Btn.setText("");
         //User Management screen
         UsMng_label.setText("");
-        UsMng_Home_Btn.setText("");
-        UsMng_Name_Label.setText("");
+        UsMng_Home_Btn.setText("الرئيسية");
+        UsMng_Name_Label.setText("اسم المستخدم");
         UsMng_Email_Label.setText("");
         UsMng_Delete_Btn.setText("");
         UsMng_Update_Btn.setText("");
         //Subject Screen
         Sub_Label.setText("");
-        Sub_Home_Btn.setText("");
+        Sub_Home_Btn.setText("الرئيسية");
         active.setText("");
         inactive.setText("");
         Sub_Status_Btn.setText("");
@@ -2777,31 +2777,31 @@ public class Home extends javax.swing.JFrame {
         AddLessonPicture_Upload_Btn.setText("");
         AddLessonPicture_Add_Btn.setText("");
         //Questions screen
-        Qst_Label.setText("");
+        Qst_Label.setText("الأسئلة ");
         Qst_Back_Btn.setText("");
         Qst_Update_Btn.setText("");
         Qst_Add_Btn.setText("");
         Qst_Delete_Btn.setText("");
         //Change Password screen
         ChangePwd_Label.setText("");
-        ChangePwd_Home_Btn.setText("");
+        ChangePwd_Home_Btn.setText("الرئيسية");
         ChangePwd_NewPwd_Label.setText("");
-        ChangePwd_ConfPwd_Label.setText("");
+        ChangePwd_ConfPwd_Label.setText("تاكيد الرقم السري");
         ChangePwd_Submit_Btn.setText("");
         //Results screen
-        Results_label.setText("");
-        Results_Home_Btn.setText("");
+        Results_label.setText("النتائج");
+        Results_Home_Btn.setText("الرئيسية");
         Results_StudentName_Lbl.setText("");
         Results_Subject_Lbl.setText("");
         Results_Search_Btn.setText("");
         //Suggestions screen
-        ViewSug_Label.setText("");
-        ViewSug_Home_Btn.setText("");
+        ViewSug_Label.setText("ملاحظاتكم تهمنا");
+        ViewSug_Home_Btn.setText("الرئيسية");
         ViewSug_Subject_Label.setText("");
-        ViewSug_Suggestion_Label.setText("");
+        ViewSug_Suggestion_Label.setText("ملاحظاتكم تهمنا");
         //Dictionary screen
         Dictionary_Label.setText("");
-        Dictionary_Home_Btn.setText("");
+        Dictionary_Home_Btn.setText("الرئيسية");
         Dictionary_Word_Label.setText("");
         Dictionary_Meaning_Label.setText("");
         Dictionary_Add_Btn.setText("");
@@ -2809,7 +2809,7 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Delete_Btn.setText("");
         //Feedback screen
         EmpFeedback_Label.setText("");
-        EmpFeedback_Home_Btn.setText("");
+        EmpFeedback_Home_Btn.setText("الرئيسية");
 
     }
 
@@ -3083,7 +3083,7 @@ public class Home extends javax.swing.JFrame {
             Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
             if(Arabic_lang.isSelected())
             {
-            Ls_Table.getColumnModel().getColumn(1).setHeaderValue("Lessons");
+            Ls_Table.getColumnModel().getColumn(1).setHeaderValue("");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -3121,9 +3121,9 @@ public class Home extends javax.swing.JFrame {
              if(Arabic_lang.isSelected())
             {
             Suggestions_Table.getColumnModel().getColumn(0).setHeaderValue("");
-            Suggestions_Table.getColumnModel().getColumn(1).setHeaderValue("");
+            Suggestions_Table.getColumnModel().getColumn(1).setHeaderValue("اسم المستخدم");
             Suggestions_Table.getColumnModel().getColumn(2).setHeaderValue("");
-            Suggestions_Table.getColumnModel().getColumn(3).setHeaderValue("");
+            Suggestions_Table.getColumnModel().getColumn(3).setHeaderValue("ملاحظاتكم تهمنا");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -3274,11 +3274,11 @@ public class Home extends javax.swing.JFrame {
             Qst_Table.getColumnModel().getColumn(0).setMaxWidth(0);
              if(Arabic_lang.isSelected())
             {
-            Qst_Table.getColumnModel().getColumn(1).setHeaderValue("");
+            Qst_Table.getColumnModel().getColumn(1).setHeaderValue("الأسئلة ");
             Qst_Table.getColumnModel().getColumn(2).setHeaderValue("");
             Qst_Table.getColumnModel().getColumn(3).setHeaderValue("");
             Qst_Table.getColumnModel().getColumn(4).setHeaderValue("");
-            Qst_Table.getColumnModel().getColumn(5).setHeaderValue("");
+            Qst_Table.getColumnModel().getColumn(5).setHeaderValue("الأجوبة");
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
