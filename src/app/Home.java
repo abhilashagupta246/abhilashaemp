@@ -3257,9 +3257,9 @@ public class Home extends javax.swing.JFrame {
         Settings_Label.setText("SETTINGS");
         Settings_Home_Btn.setText("Home");
         Settings_ServerName.setText("SERVER NAME");
-        Settings_ServerAddress.setText("SERVER ADDRESS");
-        Settings_DatabaseName.setText("DATABASE NAME");
-        Settings_DBUserName.setText("DATABASE USERNAME");
+        Settings_ServerAddress.setText("SERVER ADDRESS *");
+        Settings_DatabaseName.setText("DATABASE NAME *");
+        Settings_DBUserName.setText("DATABASE USERNAME *");
         Settings_DBPassword.setText("DATABASE PASSWORD");
         Settings_Save_Btn.setText("Save");
     }
@@ -5575,21 +5575,21 @@ public class Home extends javax.swing.JFrame {
     private void Settings_Save_Btn_fun()
     {
          try {
-            servername = encrypt(Settings_ServerName_Textfield.getText());
-            serveraddress = encrypt(Settings_ServerAddress_Textfield.getText());
-            databasename = encrypt(Settings_DatabaseName_Textfield.getText());
-            databaseusername = encrypt(Settings_DBUserName_Textfield.getText());
-            databasepassword = encrypt(Settings_DBPassword_Textfield.getText());
-            if(Settings_ServerAddress_Textfield.getText().trim()!="" && Settings_DatabaseName_Textfield.getText().trim()!=null && Settings_DBUserName_Textfield.getText().trim()!=null)
+            servername = Settings_ServerName_Textfield.getText();
+            serveraddress = Settings_ServerAddress_Textfield.getText();
+            databasename = Settings_DatabaseName_Textfield.getText();
+            databaseusername = Settings_DBUserName_Textfield.getText();
+            databasepassword = Settings_DBPassword_Textfield.getText();
+             System.out.println(Settings_ServerAddress_Textfield.getText().trim()+"Hello");
+            if(!Settings_ServerAddress_Textfield.getText().trim().equals("") && !Settings_DatabaseName_Textfield.getText().trim().equals("") && !Settings_DBUserName_Textfield.getText().trim().equals(""))
             {
-            saveToXML(servername, serveraddress, databasename, databaseusername, databasepassword);
+            saveToXML(encrypt(servername), encrypt(serveraddress), encrypt(databasename), encrypt(databaseusername), encrypt(databasepassword));
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "Please fill mandatory fields");
             }
         } catch (Exception e) {
-
         }
         Settings_ServerName_Textfield.setText("");
         Settings_ServerAddress_Textfield.setText("");
