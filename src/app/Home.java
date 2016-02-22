@@ -5673,7 +5673,7 @@ public class Home extends javax.swing.JFrame {
 
             // Output to console for testing
             transformer.transform(source, result);
-            JOptionPane.showMessageDialog(null, "Please Log in again");
+            JOptionPane.showMessageDialog(null, "Server Settings saved.Please Log in again");
            
             readXML();
             con = mysqlconnect.ConnectDb(url,databaseusernameDecrypt,databasepasswordDecrypt);
