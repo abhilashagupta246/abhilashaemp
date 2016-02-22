@@ -3651,19 +3651,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="Settings_Home_Btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                               <Component id="Settings_Label" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Settings_DBPassword" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_DBUserName" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_ServerName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_DatabaseName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_ServerAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="Settings_DBPassword" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Settings_DBUserName" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Settings_ServerName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Settings_DatabaseName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="Settings_ServerAddress" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="Settings_Save_Btn" min="-2" pref="76" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -3676,7 +3681,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="58" max="32767" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3687,39 +3692,34 @@
                           <Component id="Settings_Home_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Settings_Label" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Settings_ServerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_ServerName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Settings_ServerAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_ServerAddress_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Settings_DatabaseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_DatabaseName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="40" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Settings_DBUserName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings_DBUserName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="Settings_DBPassword" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="Settings_DBPassword_Textfield" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Settings_ServerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Settings_ServerName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Settings_ServerAddress_Textfield" min="-2" max="-2" attributes="0"/>
+                          <Component id="Settings_ServerAddress" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Settings_DatabaseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Settings_DatabaseName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Settings_DBUserName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Settings_DBUserName_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Settings_DBPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Settings_DBPassword_Textfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="Settings_Save_Btn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3736,15 +3736,15 @@
             <Component class="javax.swing.JLabel" name="Settings_DBUserName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
+                  <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DATABASE USER NAME *"/>
+                <Property name="text" type="java.lang.String" value="DATABASE USER NAME "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Settings_DBPassword">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
+                  <Font name="Tahoma" size="11" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="DATABASE PASSWORD"/>
               </Properties>
@@ -3781,7 +3781,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DATABASE NAME *"/>
+                <Property name="text" type="java.lang.String" value="DATABASE NAME "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Settings_ServerAddress">
@@ -3789,7 +3789,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="SERVER ADDRESS *"/>
+                <Property name="text" type="java.lang.String" value="SERVER ADDRESS "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="Settings_ServerName_Textfield">
