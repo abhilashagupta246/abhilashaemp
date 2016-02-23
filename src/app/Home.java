@@ -5160,9 +5160,8 @@ public class Home extends javax.swing.JFrame {
         Populate_FeedbackDetails();
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnMouseClicked
 
-    private void EmpFeedback_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFeedback_Home_BtnActionPerformed
-        closeAllFrames();
-        HomeFrame.setVisible(true);
+    private void clearButtonGroup()
+    {
         buttonGroup2.clearSelection();
         buttonGroup3.clearSelection();
         buttonGroup4.clearSelection();
@@ -5171,6 +5170,11 @@ public class Home extends javax.swing.JFrame {
         buttonGroup7.clearSelection();
         buttonGroup8.clearSelection();
         buttonGroup9.clearSelection();
+    }
+    private void EmpFeedback_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFeedback_Home_BtnActionPerformed
+        closeAllFrames();
+        HomeFrame.setVisible(true);
+        clearButtonGroup();
     }//GEN-LAST:event_EmpFeedback_Home_BtnActionPerformed
 
     private void EmpFeedback_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmpFeedback_Home_BtnKeyReleased
@@ -5178,13 +5182,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             buttonGroup2.clearSelection();
-        buttonGroup3.clearSelection();
-        buttonGroup4.clearSelection();
-        buttonGroup5.clearSelection();
-        buttonGroup6.clearSelection();
-        buttonGroup7.clearSelection();
-        buttonGroup8.clearSelection();
-        buttonGroup9.clearSelection();
+            clearButtonGroup();
         }
     }//GEN-LAST:event_EmpFeedback_Home_BtnKeyReleased
 

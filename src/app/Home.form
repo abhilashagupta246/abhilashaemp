@@ -2375,15 +2375,10 @@
                                                               <Component id="jRadioButton26" min="-2" max="-2" attributes="0"/>
                                                               <Component id="jRadioButton31" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           </Group>
+                                                          <EmptySpace min="53" pref="53" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Group type="102" attributes="0">
-                                                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                                                  <Component id="jRadioButton27" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <Group type="102" alignment="0" attributes="0">
-                                                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                                                  <Component id="jRadioButton32" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
+                                                              <Component id="jRadioButton27" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="jRadioButton32" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
@@ -3718,13 +3713,11 @@
                               <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="Settings_DBPassword_Textfield" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="Settings_DBUserName_Textfield" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="Settings_Save_Btn" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="Settings_DatabaseName_Textfield" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="Settings_ServerAddress_Textfield" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="Settings_ServerName_Textfield" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="Settings_DBUserName_Textfield" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Settings_Save_Btn" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <Component id="Settings_DatabaseName_Textfield" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Settings_ServerAddress_Textfield" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Settings_ServerName_Textfield" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
