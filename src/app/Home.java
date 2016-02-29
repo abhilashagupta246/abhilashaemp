@@ -9,6 +9,7 @@ import Decoder.BASE64Encoder;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
@@ -23,6 +24,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -56,6 +58,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 import org.w3c.dom.Document;
 import org.w3c.dom.*;
 
@@ -2726,6 +2732,11 @@ public class Home extends javax.swing.JFrame {
         Results_Report_Btn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Results_Report_Btn.setText("Export Report");
         Results_Report_Btn.setPreferredSize(new java.awt.Dimension(103, 30));
+        Results_Report_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Results_Report_BtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ResultFrameLayout = new javax.swing.GroupLayout(ResultFrame.getContentPane());
         ResultFrame.getContentPane().setLayout(ResultFrameLayout);
@@ -3060,7 +3071,7 @@ public class Home extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(DictionaryFrameLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Dictionary_MAIT))))
         );
 
@@ -6025,6 +6036,29 @@ public class Home extends javax.swing.JFrame {
        Settings_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
          goWebsite(Settings_MAIT);
     }//GEN-LAST:event_Settings_MAITMouseClicked
+
+    private void Results_Report_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Results_Report_BtnActionPerformed
+         //Path to your .jasper file in your package
+        String reportName = "./reports/List.jasper";
+         
+        //Get a stream to read the file
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream(reportName);
+ 
+        JasperPrint jp;
+        try {
+            jp = JasperFillManager.fillReport(is, null, con);
+            JRViewer jv = new JRViewer(jp);
+            JFrame ReportFrame = new JFrame();
+        
+        ReportFrame.getContentPane().add(jv);
+        ReportFrame.validate();
+        ReportFrame.setVisible(true);
+        ReportFrame.setSize(new Dimension(800,600));
+        ReportFrame.setLocation(300,100);
+        } catch (JRException ex) {
+            Logger.getLogger(List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Results_Report_BtnActionPerformed
 
     private void goWebsite(JLabel website) {
         website.addMouseListener(new MouseAdapter() {

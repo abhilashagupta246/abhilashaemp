@@ -3578,6 +3578,9 @@
                   <Dimension value="[103, 30]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Results_Report_BtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -3789,7 +3792,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane5" min="-2" pref="354" max="-2" attributes="0"/>
-                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="Dictionary_MAIT" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
