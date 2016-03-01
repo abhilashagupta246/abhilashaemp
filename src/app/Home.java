@@ -114,21 +114,16 @@ public class Home extends javax.swing.JFrame {
         if(con==null)
         {
         SettingsFrame.setVisible(true);
+        SettingsFrame.setLocation(350, 200);
         Settings_Home_Btn.setVisible(false);
         }
         else
         {
-           
         buttonGroup11.clearSelection();
         English_lang.setSelected(true);
        //UserLoginFrame.setBounds(400, 400, 600, 400);
         UserLoginFrame.setLocation(350, 200);
         UserLoginFrame.setVisible(true);
-        
-//        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//        GraphicsDevice gd = ge.getDefaultScreenDevice();
-//        final boolean isTranslucencySupported= gd.isWindowTranslucencySupported(PERPIXEL_TRANSPARENT);            
-          
         }
     }
 
@@ -969,14 +964,20 @@ public class Home extends javax.swing.JFrame {
             .addGroup(SubjectFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Sub_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126)
+                .addGap(148, 148, 148)
                 .addComponent(Sub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                .addGap(0, 68, Short.MAX_VALUE)
-                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Sub_MAIT)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(SubjectFrameLayout.createSequentialGroup()
+                        .addGap(0, 68, Short.MAX_VALUE)
                         .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(SubjectFrameLayout.createSequentialGroup()
                                 .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -989,12 +990,8 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(66, 66, 66)
                                 .addComponent(inactive)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(113, 113, 113))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Sub_MAIT)
-                .addContainerGap())
+                                .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(113, 113, 113))
         );
         SubjectFrameLayout.setVerticalGroup(
             SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1010,7 +1007,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(active)
                     .addComponent(inactive)
                     .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1621,7 +1618,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(Arabic_lang)))
                         .addContainerGap())))
             .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(80, 80, 80)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1648,7 +1645,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(English_lang)
                     .addComponent(Arabic_lang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Name_Label)
@@ -1662,13 +1659,13 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(UserLogin_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
                         .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
+                .addGap(43, 43, 43)
                 .addComponent(Login_MAIT)
                 .addContainerGap())
         );
 
         desktopPane.add(UserLoginFrame);
-        UserLoginFrame.setBounds(0, 0, 572, 340);
+        UserLoginFrame.setBounds(0, 0, 572, 344);
 
         ChangePasswordFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         ChangePasswordFrame.setVisible(true);
@@ -3151,7 +3148,7 @@ public class Home extends javax.swing.JFrame {
         SettingsFrame.setPreferredSize(new java.awt.Dimension(550, 525));
         SettingsFrame.setVisible(true);
 
-        Settings_Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Settings_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         Settings_Label.setText("SETTINGS");
 
         Settings_DBUserName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -3266,7 +3263,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Settings_DatabaseName)
                     .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Settings_DBUserName)
                     .addComponent(Settings_DBUserName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4242,6 +4239,7 @@ public class Home extends javax.swing.JFrame {
     private void Sub_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Add_BtnActionPerformed
         closeAllFrames();
         AddSubjectFrame.setVisible(true);
+        AddSubjectFrame.setLocation(300,100);
     }//GEN-LAST:event_Sub_Add_BtnActionPerformed
 
     private void subject_delete_fn() {
@@ -4302,9 +4300,11 @@ public class Home extends javax.swing.JFrame {
             Populate_Subject();
             closeAllFrames();
             SubjectFrame.setVisible(true);
+            SubjectFrame.setLocation(300,100);
         } else {
             JOptionPane.showMessageDialog(null, "Please enter a new Subject", "Alert", JOptionPane.ERROR_MESSAGE);
             AddSubjectFrame.setVisible(true);
+            AddSubjectFrame.setLocation(300,100);
             AddSub_Name_Textfield.setText("");
         }
     }
@@ -4322,15 +4322,10 @@ public class Home extends javax.swing.JFrame {
                 JLabel progressLabel = new JLabel();
                 pane.add(progressLabel);
                 progressLabel.setText("Processing...");
-                //byte[]imagedata=getByte("C:\\Users\\user\\Documents\\Downloads\\page-loader.gif");
-                //progressFrame.setIcon(new ImageIcon());
-
-                //progressLabel.setIcon(icon);
                 progressLabel.setBounds(80, 5, 280, 70);
                 progressFrame.setResizable(false);
                 progressFrame.setVisible(true);
-            }
-        });
+            }});
     }
 
     private void killDialog() {
@@ -4382,6 +4377,7 @@ public class Home extends javax.swing.JFrame {
                 Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
                 closeAllFrames();
                 LessonsFrame.setVisible(true);
+                LessonsFrame.setLocation(300, 150);
                 Populate_Lessons();
 
             } catch (SQLException ex) {
@@ -4417,6 +4413,7 @@ public class Home extends javax.swing.JFrame {
 
                 closeAllFrames();
                 LessonsImageFrame.setVisible(true);
+                LessonsImageFrame.setLocation(150,50);
                 Populate_LessonPictures();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -4439,12 +4436,14 @@ public class Home extends javax.swing.JFrame {
         }
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
         Populate_Lessons();
 
     }
     private void LsImage_AddImage_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsImage_AddImage_BtnActionPerformed
         closeAllFrames();
         AddLessonPictureFrame.setVisible(true);
+        AddLessonPictureFrame.setLocation(200,50);
     }//GEN-LAST:event_LsImage_AddImage_BtnActionPerformed
 
     private void Ls_Delete_Btn_fun() {
@@ -4481,6 +4480,7 @@ public class Home extends javax.swing.JFrame {
     private void Ls_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Add_BtnActionPerformed
         closeAllFrames();
         AddLessonFrame.setVisible(true);
+        AddLessonFrame.setLocation(300, 200);
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
     private void AddLs_Submit_Btn_fun() {
@@ -4498,6 +4498,7 @@ public class Home extends javax.swing.JFrame {
             Populate_Lessons();
             closeAllFrames();
             LessonsFrame.setVisible(true);
+            LessonsFrame.setLocation(300, 150);
             AddLs_Name_TextArea.setText("");
 
         } else {
@@ -4673,6 +4674,7 @@ public class Home extends javax.swing.JFrame {
     private void LsImage_Questions_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsImage_Questions_BtnActionPerformed
         closeAllFrames();
         QuestionsFrame.setVisible(true);
+        QuestionsFrame.setLocation(200,50);
         Populate_Questions();
 
     }//GEN-LAST:event_LsImage_Questions_BtnActionPerformed
@@ -4816,12 +4818,14 @@ public class Home extends javax.swing.JFrame {
     private void AddLs_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLs_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
         Populate_Lessons();
     }//GEN-LAST:event_AddLs_Back_BtnActionPerformed
 
     private void Qst_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
         Populate_Lessons();
     }//GEN-LAST:event_Qst_Back_BtnActionPerformed
 
@@ -4836,6 +4840,7 @@ public class Home extends javax.swing.JFrame {
     private void Ls_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Back_BtnActionPerformed
         closeAllFrames();
         SubjectFrame.setVisible(true);
+        SubjectFrame.setLocation(300,100);
         Populate_Subject();
     }//GEN-LAST:event_Ls_Back_BtnActionPerformed
 
@@ -4854,7 +4859,7 @@ public class Home extends javax.swing.JFrame {
                 login = true;
                 userLoginName = rs.getString("username");
                 HomeFrame.setVisible(true);
-                HomeFrame.setLocation(350, 125);
+                HomeFrame.setLocation(300, 100);
                 Home_label.requestFocus();
             } else {
                 JOptionPane.showMessageDialog(null, "Username or Password is incorrect");
@@ -4883,9 +4888,11 @@ public class Home extends javax.swing.JFrame {
                 ChangePasswordFrame.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Password Changed Successfully", "Alert", JOptionPane.ERROR_MESSAGE);
                 HomeFrame.setVisible(true);
+                HomeFrame.setLocation(300, 100);
                 HomeFrame.requestFocus();
             } else {
                 ChangePasswordFrame.setVisible(true);
+                ChangePasswordFrame.setLocation(350, 200);
                 JOptionPane.showMessageDialog(null, "Password and Confirm Password Mismatched", "Alert", JOptionPane.ERROR_MESSAGE);
                 ChangePasswordFrame.requestFocus();
             }
@@ -4986,6 +4993,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             Populate_Students();
             StudentManagementFrame.setVisible(true);
+            StudentManagementFrame.setLocation(300,100);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a lesson to check the students marks", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
@@ -5008,6 +5016,7 @@ public class Home extends javax.swing.JFrame {
     private void Ls_Image_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Image_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
         Populate_Lessons();
         LsImage_PictureLabel.setIcon(null);
     }//GEN-LAST:event_Ls_Image_Back_BtnActionPerformed
@@ -5015,6 +5024,7 @@ public class Home extends javax.swing.JFrame {
     private void StDetails_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StDetails_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
         Populate_Lessons();
     }//GEN-LAST:event_StDetails_Back_BtnActionPerformed
 
@@ -5056,6 +5066,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             AddSubjectFrame.setVisible(true);
+            AddSubjectFrame.setLocation(300,100);
             AddSub_Name_Textfield.requestFocus();
         }
     }//GEN-LAST:event_Sub_Add_BtnKeyReleased
@@ -5109,6 +5120,7 @@ public class Home extends javax.swing.JFrame {
         AddSub_Name_Textfield.setText("");
         closeAllFrames();
         SubjectFrame.setVisible(true);
+        SubjectFrame.setLocation(300,100);
         Populate_Subject();
 
     }//GEN-LAST:event_AddSub_Back_BtnActionPerformed
@@ -5117,6 +5129,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             SubjectFrame.setVisible(true);
+            SubjectFrame.setLocation(300,100);
             Populate_Subject();
         }
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
@@ -5133,6 +5146,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             SubjectFrame.setVisible(true);
+            SubjectFrame.setLocation(300,100);
             Populate_Subject();
         }
     }//GEN-LAST:event_Ls_Back_BtnKeyReleased
@@ -5141,6 +5155,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             AddLessonFrame.setVisible(true);
+            AddLessonFrame.setLocation(350, 200);
         }
     }//GEN-LAST:event_Ls_Add_BtnKeyReleased
 
@@ -5148,6 +5163,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Ls_Delete_Btn_fun();
             LessonsFrame.setVisible(true);
+            LessonsFrame.setLocation(300, 150);
             Populate_Lessons();
         }
     }//GEN-LAST:event_Ls_Delete_BtnKeyReleased
@@ -5162,6 +5178,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
+            LessonsFrame.setLocation(300, 150);
             Populate_Lessons();
         }
     }//GEN-LAST:event_AddLs_Back_BtnKeyReleased
@@ -5176,6 +5193,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
+            LessonsFrame.setLocation(300, 1500);
             Populate_Lessons();
             LsImage_PictureLabel.setIcon(null);
         }
@@ -5186,6 +5204,7 @@ public class Home extends javax.swing.JFrame {
             //LsContent_Update_Btn_fun();
             closeAllFrames();
             AddLessonPictureFrame.setVisible(true);
+            AddLessonPictureFrame.setLocation(200,50);
         }
     }//GEN-LAST:event_LsImage_AddImage_BtnKeyReleased
 
@@ -5193,6 +5212,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             QuestionsFrame.setVisible(true);
+            QuestionsFrame.setLocation(200,50);
             Populate_Questions();
         }
     }//GEN-LAST:event_LsImage_Questions_BtnKeyReleased
@@ -5201,6 +5221,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
+            LessonsFrame.setLocation(300, 150);
             Populate_Lessons();
         }
     }//GEN-LAST:event_Qst_Back_BtnKeyReleased
@@ -5250,6 +5271,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
+            LessonsFrame.setLocation(300, 150);
             Populate_Lessons();
         }
     }//GEN-LAST:event_StDetails_Back_BtnKeyReleased
@@ -5291,6 +5313,7 @@ public class Home extends javax.swing.JFrame {
     private void Home_UsrMngt_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnMouseClicked
         closeAllFrames();
         UserManagementFrame.setVisible(true);
+        UserManagementFrame.setLocation(300,100);
         Populate_Users();
         UsMng_Name_Textfield.setText("");
         UsMng_Email_Textfield.setText("");
@@ -5299,6 +5322,7 @@ public class Home extends javax.swing.JFrame {
     private void Home_UsrMngt_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnActionPerformed
         closeAllFrames();
         UserManagementFrame.setVisible(true);
+        UserManagementFrame.setLocation(300,100);
         Populate_Users();
         UsMng_Name_Textfield.setText("");
         UsMng_Email_Textfield.setText("");
@@ -5309,6 +5333,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             UserManagementFrame.setVisible(true);
+            UserManagementFrame.setLocation(300,100);
             Populate_Users();
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
@@ -5319,6 +5344,7 @@ public class Home extends javax.swing.JFrame {
 
         closeAllFrames();
         SubjectFrame.setVisible(true);
+        SubjectFrame.setLocation(300,100);
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnMouseClicked
 
@@ -5326,6 +5352,8 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             SubjectFrame.setVisible(true);
+            SubjectFrame.setLocation(300,100);
+            SubjectFrame.setLocation(300,100);
             Populate_Subject();
         }
 
@@ -5334,12 +5362,14 @@ public class Home extends javax.swing.JFrame {
     private void Home_ChangePwd_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnMouseClicked
         closeAllFrames();
         ChangePasswordFrame.setVisible(true);
+        ChangePasswordFrame.setLocation(350, 200);
     }//GEN-LAST:event_Home_ChangePwd_BtnMouseClicked
 
     private void Home_ChangePwd_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             ChangePasswordFrame.setVisible(true);
+            ChangePasswordFrame.setLocation(350, 200);
         }
     }//GEN-LAST:event_Home_ChangePwd_BtnKeyReleased
 
@@ -5376,34 +5406,40 @@ public class Home extends javax.swing.JFrame {
     private void UsMng_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_UsMng_Home_BtnActionPerformed
 
     private void UsMng_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnMouseClicked
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_UsMng_Home_BtnMouseClicked
 
     private void UsMng_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
         }
     }//GEN-LAST:event_UsMng_Home_BtnKeyReleased
 
     private void Sub_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_Sub_Home_BtnActionPerformed
 
     private void Sub_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_Home_BtnMouseClicked
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_Sub_Home_BtnMouseClicked
 
     private void Sub_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Home_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
         }
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Sub_Status_Btn.requestFocus();
@@ -5413,18 +5449,21 @@ public class Home extends javax.swing.JFrame {
     private void ChangePwd_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_ChangePwd_Home_BtnActionPerformed
 
     private void ChangePwd_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
         }
     }//GEN-LAST:event_ChangePwd_Home_BtnKeyReleased
 
     private void ChangePwd_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnMouseClicked
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
 
     }//GEN-LAST:event_ChangePwd_Home_BtnMouseClicked
 
@@ -5476,17 +5515,20 @@ public class Home extends javax.swing.JFrame {
     private void Home_ChangePwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnActionPerformed
         closeAllFrames();
         ChangePasswordFrame.setVisible(true);
+        ChangePasswordFrame.setLocation(350, 200);
     }//GEN-LAST:event_Home_ChangePwd_BtnActionPerformed
 
     private void Home_Subject_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_Subject_BtnActionPerformed
         closeAllFrames();
         SubjectFrame.setVisible(true);
+        SubjectFrame.setLocation(300,100);
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnActionPerformed
 
     private void Home_ViewSugg_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_ViewSugg_BtnActionPerformed
         closeAllFrames();
         ViewSuggestionsFrame.setVisible(true);
+        ViewSuggestionsFrame.setLocation(300,50);
         Populate_Suggestions();
     }//GEN-LAST:event_Home_ViewSugg_BtnActionPerformed
 
@@ -5494,6 +5536,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             ViewSuggestionsFrame.setVisible(true);
+            ViewSuggestionsFrame.setLocation(300,50);
             Populate_Suggestions();
         }
     }//GEN-LAST:event_Home_ViewSugg_BtnKeyReleased
@@ -5501,6 +5544,7 @@ public class Home extends javax.swing.JFrame {
     private void Home_ViewSugg_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_ViewSugg_BtnMouseClicked
         closeAllFrames();
         ViewSuggestionsFrame.setVisible(true);
+        ViewSuggestionsFrame.setLocation(300,50);
         Populate_Suggestions();
     }//GEN-LAST:event_Home_ViewSugg_BtnMouseClicked
 
@@ -5508,6 +5552,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         ViewSug_Suggestion_Textarea.setText("");
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
         ViewSug_Subject_Textfield.setText("");
         ViewSug_Suggestion_Textarea.setText("");
     }//GEN-LAST:event_ViewSug_Home_BtnActionPerformed
@@ -5516,6 +5561,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         ViewSug_Suggestion_Textarea.setText("");
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
         ViewSug_Subject_Textfield.setText("");
         ViewSug_Suggestion_Textarea.setText("");
 
@@ -5526,6 +5572,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             ViewSug_Suggestion_Textarea.setText("");
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
             ViewSug_Subject_Textfield.setText("");
             ViewSug_Suggestion_Textarea.setText("");
         }
@@ -5730,6 +5777,7 @@ public class Home extends javax.swing.JFrame {
     private void EmpFeedback_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFeedback_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
         clearButtonGroup();
     }//GEN-LAST:event_EmpFeedback_Home_BtnActionPerformed
 
@@ -5737,6 +5785,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
             buttonGroup2.clearSelection();
             clearButtonGroup();
         }
@@ -5745,18 +5794,21 @@ public class Home extends javax.swing.JFrame {
     private void Home_Results_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_Results_BtnActionPerformed
         closeAllFrames();
         ResultFrame.setVisible(true);
+        ResultFrame.setLocation(150,150);
         Populate_Results();
     }//GEN-LAST:event_Home_Results_BtnActionPerformed
 
     private void Results_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Results_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_Results_Home_BtnActionPerformed
 
     private void Results_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Results_Home_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
         }
     }//GEN-LAST:event_Results_Home_BtnKeyReleased
 
@@ -5764,6 +5816,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             ResultFrame.setVisible(true);
+            ResultFrame.setLocation(150,150);
             Populate_Results();
         }
     }//GEN-LAST:event_Home_Results_BtnKeyReleased
@@ -5785,6 +5838,7 @@ public class Home extends javax.swing.JFrame {
     private void AddLessonPicture_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonPicture_Back_BtnActionPerformed
         closeAllFrames();
         LessonsImageFrame.setVisible(true);
+        LessonsImageFrame.setLocation(150,50);
         Populate_LessonPictures();
     }//GEN-LAST:event_AddLessonPicture_Back_BtnActionPerformed
 
@@ -5792,6 +5846,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsImageFrame.setVisible(true);
+            LessonsImageFrame.setLocation(150,50);
             Populate_LessonPictures();
         }
     }//GEN-LAST:event_AddLessonPicture_Back_BtnKeyReleased
@@ -5810,6 +5865,7 @@ public class Home extends javax.swing.JFrame {
                 pst.setString(2, LessonImageUrl);
                 pst.executeUpdate();
                 LessonsImageFrame.setVisible(true);
+                LessonsImageFrame.setLocation(150,50);
                 Populate_LessonPictures();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -5958,6 +6014,7 @@ public class Home extends javax.swing.JFrame {
     private void Home_Dictionary_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_Dictionary_BtnActionPerformed
         closeAllFrames();
         DictionaryFrame.setVisible(true);
+        DictionaryFrame.setLocation(250,100);
         Populate_Dictionary();
     }//GEN-LAST:event_Home_Dictionary_BtnActionPerformed
 
@@ -5965,6 +6022,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             DictionaryFrame.setVisible(true);
+            DictionaryFrame.setLocation(250,100);
             Populate_Dictionary();
         }
     }//GEN-LAST:event_Home_Dictionary_BtnKeyReleased
@@ -5972,6 +6030,7 @@ public class Home extends javax.swing.JFrame {
     private void Dictionary_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dictionary_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
         Dictionary_Word_Textfield.setText("");
         Dictionary_Meaning_Textarea.setText("");
         
@@ -5981,6 +6040,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
             Dictionary_Word_Textfield.setText("");
             Dictionary_Meaning_Textarea.setText("");
         }
@@ -6175,12 +6235,14 @@ public class Home extends javax.swing.JFrame {
     private void Home_Settings_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_Settings_BtnActionPerformed
         closeAllFrames();
         SettingsFrame.setVisible(true);
+        SettingsFrame.setLocation(300, 100);
     }//GEN-LAST:event_Home_Settings_BtnActionPerformed
 
     private void Home_Settings_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Settings_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             SettingsFrame.setVisible(true);
+            SettingsFrame.setLocation(300, 100);
         }
     }//GEN-LAST:event_Home_Settings_BtnKeyReleased
 
@@ -6216,12 +6278,14 @@ public class Home extends javax.swing.JFrame {
     private void Settings_Home_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Settings_Home_BtnActionPerformed
         closeAllFrames();
         HomeFrame.setVisible(true);
+        HomeFrame.setLocation(300, 100);
     }//GEN-LAST:event_Settings_Home_BtnActionPerformed
 
     private void Settings_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Settings_Home_BtnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             HomeFrame.setVisible(true);
+            HomeFrame.setLocation(300, 100);
         }
     }//GEN-LAST:event_Settings_Home_BtnKeyReleased
 
@@ -6354,6 +6418,7 @@ public class Home extends javax.swing.JFrame {
     private void adusr_back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adusr_back_btnActionPerformed
         closeAllFrames();
         UserManagementFrame.setVisible(true);
+        UserManagementFrame.setLocation(300,100);
     }//GEN-LAST:event_adusr_back_btnActionPerformed
 
     private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
@@ -6535,6 +6600,7 @@ public class Home extends javax.swing.JFrame {
             }
         } catch (Exception e) {
            SettingsFrame.setVisible(true);
+           SettingsFrame.setLocation(350, 200);
         }
     }
 
