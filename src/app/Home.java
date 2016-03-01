@@ -13,14 +13,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
-import java.awt.Rectangle;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -126,8 +121,10 @@ public class Home extends javax.swing.JFrame {
            
         buttonGroup11.clearSelection();
         English_lang.setSelected(true);
+       //UserLoginFrame.setBounds(400, 400, 600, 400);
         UserLoginFrame.setLocation(350, 200);
         UserLoginFrame.setVisible(true);
+        
 //        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 //        GraphicsDevice gd = ge.getDefaultScreenDevice();
 //        final boolean isTranslucencySupported= gd.isWindowTranslucencySupported(PERPIXEL_TRANSPARENT);            
@@ -155,6 +152,7 @@ public class Home extends javax.swing.JFrame {
         buttonGroup9 = new javax.swing.ButtonGroup();
         buttonGroup10 = new javax.swing.ButtonGroup();
         buttonGroup11 = new javax.swing.ButtonGroup();
+        buttonGroup12 = new javax.swing.ButtonGroup();
         desktopPane = new javax.swing.JDesktopPane();
         LessonsFrame = new javax.swing.JInternalFrame();
         Ls_Label = new javax.swing.JLabel();
@@ -214,6 +212,10 @@ public class Home extends javax.swing.JFrame {
         UsMng_Email_Label = new javax.swing.JLabel();
         UsMng_Home_Btn = new javax.swing.JButton();
         UserMg_MAIT = new javax.swing.JLabel();
+        UsMng_Add_Btn = new javax.swing.JButton();
+        Usmng_active_btn = new javax.swing.JRadioButton();
+        Usmng_inactive_btn = new javax.swing.JRadioButton();
+        Usmng_changeStatus_btn = new javax.swing.JButton();
         QuestionsFrame = new javax.swing.JInternalFrame();
         Qst_Label = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -392,6 +394,19 @@ public class Home extends javax.swing.JFrame {
         Settings_DatabaseName_Textfield = new javax.swing.JTextField();
         Settings_Home_Btn = new javax.swing.JButton();
         Settings_MAIT = new javax.swing.JLabel();
+        AddUserFrame = new javax.swing.JInternalFrame();
+        Add_User_Label = new javax.swing.JLabel();
+        adusr_username_label = new javax.swing.JLabel();
+        adusr_username_textfield = new javax.swing.JTextField();
+        adusr_email_label = new javax.swing.JLabel();
+        adusr_email_textfield = new javax.swing.JTextField();
+        adusr_password_label = new javax.swing.JLabel();
+        adusr_password_textfield = new javax.swing.JTextField();
+        adusr_confPassword_label = new javax.swing.JLabel();
+        adusr_confpassword_textfield = new javax.swing.JTextField();
+        adusr_add_btn = new javax.swing.JButton();
+        adusr_back_btn = new javax.swing.JButton();
+        adusr_MAIT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1141,7 +1156,7 @@ public class Home extends javax.swing.JFrame {
 
         UsMng_Delete_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         UsMng_Delete_Btn.setText("Delete");
-        UsMng_Delete_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        UsMng_Delete_Btn.setPreferredSize(new java.awt.Dimension(120, 30));
         UsMng_Delete_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsMng_Delete_BtnActionPerformed(evt);
@@ -1154,8 +1169,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         UsMng_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        UsMng_Update_Btn.setText("Update");
-        UsMng_Update_Btn.setPreferredSize(new java.awt.Dimension(100, 30));
+        UsMng_Update_Btn.setText("Edit");
+        UsMng_Update_Btn.setPreferredSize(new java.awt.Dimension(120, 30));
         UsMng_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsMng_Update_BtnActionPerformed(evt);
@@ -1199,40 +1214,72 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        UsMng_Add_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        UsMng_Add_Btn.setText("Add");
+        UsMng_Add_Btn.setPreferredSize(new java.awt.Dimension(120, 30));
+        UsMng_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsMng_Add_BtnActionPerformed(evt);
+            }
+        });
+
+        buttonGroup12.add(Usmng_active_btn);
+        Usmng_active_btn.setText("Active");
+
+        buttonGroup12.add(Usmng_inactive_btn);
+        Usmng_inactive_btn.setText("Inactive");
+
+        Usmng_changeStatus_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Usmng_changeStatus_btn.setText("Change Status");
+        Usmng_changeStatus_btn.setPreferredSize(new java.awt.Dimension(120, 30));
+        Usmng_changeStatus_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Usmng_changeStatus_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout UserManagementFrameLayout = new javax.swing.GroupLayout(UserManagementFrame.getContentPane());
         UserManagementFrame.getContentPane().setLayout(UserManagementFrameLayout);
         UserManagementFrameLayout.setHorizontalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(0, 65, Short.MAX_VALUE)
-                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(161, 161, 161)
-                                .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                                    .addComponent(UsMng_Name_Label)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(UsMng_Email_Label)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(UsMng_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
-                        .addComponent(UsMng_label, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 74, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(UserMg_MAIT)
                 .addContainerGap())
+            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UserManagementFrameLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(UsMng_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150)
+                        .addComponent(UsMng_label, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Usmng_active_btn)
+                        .addGap(89, 89, 89)
+                        .addComponent(Usmng_inactive_btn)
+                        .addGap(145, 145, 145)
+                        .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addGap(0, 32, Short.MAX_VALUE)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(111, 111, 111)
+                                .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                .addComponent(UsMng_Name_Label)
+                                .addGap(37, 37, 37)
+                                .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(111, 111, 111)
+                                .addComponent(UsMng_Email_Label)
+                                .addGap(37, 37, 37)
+                                .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 107, Short.MAX_VALUE))
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1247,15 +1294,27 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsMng_Name_Label)
                     .addComponent(UsMng_Email_Label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(UserMg_MAIT)
-                .addContainerGap())
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Usmng_active_btn)
+                            .addComponent(Usmng_inactive_btn))
+                        .addGap(18, 18, 18)
+                        .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(UserMg_MAIT)
+                        .addContainerGap())
+                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))))
         );
 
         desktopPane.add(UserManagementFrame);
@@ -3214,6 +3273,120 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(SettingsFrame);
         SettingsFrame.setBounds(0, 0, 550, 525);
 
+        AddUserFrame.setVisible(true);
+
+        Add_User_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Add_User_Label.setText("ADD USER");
+
+        adusr_username_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        adusr_username_label.setText("USER NAME");
+
+        adusr_username_textfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adusr_username_textfieldActionPerformed(evt);
+            }
+        });
+
+        adusr_email_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        adusr_email_label.setText("EMAIL ID");
+
+        adusr_password_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        adusr_password_label.setText("PASSWORD");
+
+        adusr_confPassword_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        adusr_confPassword_label.setText("CONFIRM PASSWORD");
+
+        adusr_add_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        adusr_add_btn.setText("Add");
+        adusr_add_btn.setPreferredSize(new java.awt.Dimension(70, 30));
+        adusr_add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adusr_add_btnActionPerformed(evt);
+            }
+        });
+
+        adusr_back_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        adusr_back_btn.setText("Back");
+        adusr_back_btn.setPreferredSize(new java.awt.Dimension(70, 30));
+        adusr_back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adusr_back_btnActionPerformed(evt);
+            }
+        });
+
+        adusr_MAIT.setText("MAIT");
+        adusr_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adusr_MAITMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddUserFrameLayout = new javax.swing.GroupLayout(AddUserFrame.getContentPane());
+        AddUserFrame.getContentPane().setLayout(AddUserFrameLayout);
+        AddUserFrameLayout.setHorizontalGroup(
+            AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddUserFrameLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(adusr_back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205)
+                .addComponent(Add_User_Label)
+                .addContainerGap(258, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddUserFrameLayout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adusr_username_label)
+                    .addComponent(adusr_email_label)
+                    .addComponent(adusr_password_label)
+                    .addComponent(adusr_confPassword_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(AddUserFrameLayout.createSequentialGroup()
+                        .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(adusr_confpassword_textfield)
+                            .addComponent(adusr_password_textfield)
+                            .addComponent(adusr_email_textfield)
+                            .addComponent(adusr_username_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(136, 136, 136))
+                    .addGroup(AddUserFrameLayout.createSequentialGroup()
+                        .addComponent(adusr_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(adusr_MAIT)
+                        .addGap(26, 26, 26))))
+        );
+        AddUserFrameLayout.setVerticalGroup(
+            AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddUserFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(adusr_password_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AddUserFrameLayout.createSequentialGroup()
+                        .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Add_User_Label)
+                            .addComponent(adusr_back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adusr_username_label)
+                            .addComponent(adusr_username_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adusr_email_label)
+                            .addComponent(adusr_email_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addComponent(adusr_password_label)))
+                .addGap(39, 39, 39)
+                .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adusr_confPassword_label)
+                    .addComponent(adusr_confpassword_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(AddUserFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adusr_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adusr_MAIT))
+                .addContainerGap())
+        );
+
+        desktopPane.add(AddUserFrame);
+        AddUserFrame.setBounds(0, 0, 688, 400);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -3251,8 +3424,20 @@ public class Home extends javax.swing.JFrame {
         UsMng_Home_Btn.setText("منزل");
         UsMng_Name_Label.setText("اسم المستخدم");
         UsMng_Email_Label.setText("البريد الالكتروني");
+        Usmng_active_btn.setText("");
+        Usmng_inactive_btn.setText("");
+        Usmng_changeStatus_btn.setText("");
+        UsMng_Add_Btn.setText("");
         UsMng_Delete_Btn.setText("حذف");
-        UsMng_Update_Btn.setText("تحديث");
+        UsMng_Update_Btn.setText("");
+        //Add User Screen
+        Add_User_Label.setText("");
+        adusr_back_btn.setText("");
+        adusr_username_label.setText("");
+        adusr_email_label.setText("");
+        adusr_password_label.setText("");
+        adusr_confPassword_label.setText("");
+        adusr_add_btn.setText("");
         //Subject Screen
         Sub_Label.setText("الموضوع");
         Sub_Home_Btn.setText("الرئيسية");
@@ -3398,6 +3583,28 @@ public class Home extends javax.swing.JFrame {
         Settings_DBUserName.setText("اسم المستخدم قاعدة البيانات ");
         Settings_DBPassword.setText("كلمة السر قاعدة البيانات");
         Settings_Save_Btn.setText("حفظ");
+        //MAIT tag
+        adusr_MAIT.setText("MAIT");
+        Ls_MAIT.setText("MAIT");
+        AddLs_MAIT.setText("MAIT");
+        Ls_MAIT.setText("MAIT");
+        AddLs_MAIT.setText("MAIT");
+        LsImage_MAIT.setText("MAIT");
+        Sub_MAIT.setText("MAIT");
+        AddSub_MAIT.setText("MAIT");
+        UserMg_MAIT.setText("MAIT");
+        Qst_MAIT.setText("MAIT");
+        Login_MAIT.setText("MAIT");
+        Chg_Pwd_MAIT.setText("MAIT");
+        StuMgnt_MAIT.setText("MAIT");
+        Home_MAIT.setText("MAIT");
+        Suggestions_MAIT.setText("MAIT");
+        Feedback_MAIT.setText("MAIT");
+        Results_MAIT.setText("MAIT");
+        AddLsPicture_MAIT.setText("MAIT");
+        Dictionary_MAIT.setText("MAIT");
+        Settings_MAIT.setText("MAIT");
+        adusr_MAIT.setText("MAIT");
     }
 
     private void EnglishAllText() {
@@ -3423,8 +3630,20 @@ public class Home extends javax.swing.JFrame {
         UsMng_Home_Btn.setText("Home");
         UsMng_Name_Label.setText("USER NAME");
         UsMng_Email_Label.setText("EMAIL");
+        Usmng_active_btn.setText("Active");
+        Usmng_inactive_btn.setText("Inactive");
+        Usmng_changeStatus_btn.setText("Change Status");
+        UsMng_Add_Btn.setText("Add");
         UsMng_Delete_Btn.setText("Delete");
-        UsMng_Update_Btn.setText("Update");
+        UsMng_Update_Btn.setText("Edit");
+        //Add User Screen
+        Add_User_Label.setText("ADD USER");
+        adusr_back_btn.setText("Back");
+        adusr_username_label.setText("USER NAME");
+        adusr_email_label.setText("EMAIL ID");
+        adusr_password_label.setText("PASSWORD");
+        adusr_confPassword_label.setText("CONFIRM PASSWORD");
+        adusr_add_btn.setText("Add");
         //Subject Screen
         Sub_Label.setText("SUBJECTS");
         Sub_Home_Btn.setText("Home");
@@ -3570,6 +3789,28 @@ public class Home extends javax.swing.JFrame {
         Settings_DBUserName.setText("DATABASE USERNAME ");
         Settings_DBPassword.setText("DATABASE PASSWORD");
         Settings_Save_Btn.setText("Save");
+        //MAIT tag
+        adusr_MAIT.setText("MAIT");
+        Ls_MAIT.setText("MAIT");
+        AddLs_MAIT.setText("MAIT");
+        Ls_MAIT.setText("MAIT");
+        AddLs_MAIT.setText("MAIT");
+        LsImage_MAIT.setText("MAIT");
+        Sub_MAIT.setText("MAIT");
+        AddSub_MAIT.setText("MAIT");
+        UserMg_MAIT.setText("MAIT");
+        Qst_MAIT.setText("MAIT");
+        Login_MAIT.setText("MAIT");
+        Chg_Pwd_MAIT.setText("MAIT");
+        StuMgnt_MAIT.setText("MAIT");
+        Home_MAIT.setText("MAIT");
+        Suggestions_MAIT.setText("MAIT");
+        Feedback_MAIT.setText("MAIT");
+        Results_MAIT.setText("MAIT");
+        AddLsPicture_MAIT.setText("MAIT");
+        Dictionary_MAIT.setText("MAIT");
+        Settings_MAIT.setText("MAIT");
+        adusr_MAIT.setText("MAIT");
     }
 
     private void Populate_FeedbackDetails() {
@@ -3894,17 +4135,21 @@ public class Home extends javax.swing.JFrame {
         AddLessonPictureFrame.setVisible(false);
         DictionaryFrame.setVisible(false);
         SettingsFrame.setVisible(false);
+        AddUserFrame.setVisible(false);
     }
 
     private void Populate_Users() {
         try {
             createComponents();
-            pst = con.prepareStatement("select id as Id,username as 'User Name', email as 'Email Id' from user");
+            pst = con.prepareStatement("select id as Id,username as 'User Name', email as 'Email Id',status as status from user");
             rs = pst.executeQuery();
             User_Table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             User_Table.setModel(DbUtils.resultSetToTableModel(rs));
             User_Table.getColumnModel().getColumn(0).setMinWidth(0);
             User_Table.getColumnModel().getColumn(0).setMaxWidth(0);
+            User_Table.getColumnModel().getColumn(3).setMinWidth(0);
+            User_Table.getColumnModel().getColumn(3).setMaxWidth(0);
+             buttonGroup12.clearSelection();
             if (Arabic_lang.isSelected()) {
                 User_Table.getColumnModel().getColumn(1).setHeaderValue("اسم المستخدم");
                 User_Table.getColumnModel().getColumn(2).setHeaderValue("البريد الإلكتروني معرف");
@@ -4280,6 +4525,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_UsMng_Delete_BtnActionPerformed
 
     private void UserTable_fun() {
+         String userStatus="";
         int row = User_Table.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
 
@@ -4290,6 +4536,14 @@ public class Home extends javax.swing.JFrame {
         if (row >= 0) {
             UsMng_Name_Textfield.setText(selectedUsername);
             UsMng_Email_Textfield.setText(selectedUserEmail);
+             userStatus = User_Table.getModel().getValueAt(User_Table.getSelectedRow(), 3).toString();
+            // System.out.println("app.Home.UserTable_fun()..."+userStatus);
+            if (userStatus != "Y") {
+                Usmng_inactive_btn.setSelected(true);
+            }
+            if (userStatus.equalsIgnoreCase("Y")) {
+                Usmng_active_btn.setSelected(true);
+            }
         }
     }
     private void User_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TableMouseClicked
@@ -4313,42 +4567,50 @@ public class Home extends javax.swing.JFrame {
         return ValidEmailId;
     }
 
-//    private void UsMng_Add_Btn_fun() {
-//        rowcount = User_Table.getSelectedRowCount();
-//        if (!UsMng_Name_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Email_Textfield.getText().trim().equalsIgnoreCase("") && !UsMng_Password_Textfield.getText().equalsIgnoreCase("") && rowcount == 0) {
-//            if (userCheck(UsMng_Email_Textfield.getText())) {
-//                JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
-//                UsMng_Email_Textfield.setText("");
-//            } else if (!EmailValidator(UsMng_Email_Textfield.getText().trim())) {
-//                JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
-//                UsMng_Email_Textfield.setText("");
-//            } else {
-//                try {
-//                    String insertuser = "INSERT INTO user(username,email,password,gender,image) VALUES(?,?,?,?,?)";
-//                    pst = con.prepareStatement(insertuser);
-//                    pst.setString(1, UsMng_Name_Textfield.getText());
-//                    pst.setString(2, UsMng_Email_Textfield.getText());
-//                    pst.setString(3, UsMng_Password_Textfield.getText());
-//                    pst.setString(4, "None");
-//                    pst.setString(5, "http://www.research.cmru.ac.th/2014/ris/researcher/blank-person.jpg");
-//                    pst.executeUpdate();
-//                    UsMng_Name_Textfield.setText("");
-//                    UsMng_Email_Textfield.setText("");
-//                    UsMng_Password_Textfield.setText("");
-//                    //updateUsersIndex();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
-//            UserManagementFrame.requestFocus();
-//            UsMng_Name_Textfield.setText("");
-//            UsMng_Email_Textfield.setText("");
-//            UsMng_Password_Textfield.setText("");
-//        }
-//        Populate_Users();
-//    }
+ private void Adusr_Add_Btn_fun() {
+        rowcount = User_Table.getSelectedRowCount();
+        if (!adusr_username_textfield.getText().trim().equalsIgnoreCase("") && !adusr_email_textfield.getText().trim().equalsIgnoreCase("") && !adusr_password_textfield.getText().equalsIgnoreCase("") &&!adusr_confpassword_textfield.getText().equalsIgnoreCase("")) {
+            if (userCheck(adusr_email_textfield.getText())) {
+                JOptionPane.showMessageDialog(null, "Email Id already exist", "Alert", JOptionPane.ERROR_MESSAGE);
+                adusr_email_textfield.setText("");
+            } else if (!EmailValidator(adusr_email_textfield.getText().trim())) {
+                JOptionPane.showMessageDialog(null, "Please enter valid Email Id", "Alert", JOptionPane.ERROR_MESSAGE);
+                adusr_email_textfield.setText("");
+            } 
+            else if(!(adusr_password_textfield.getText()).equals(adusr_confpassword_textfield.getText())){
+            JOptionPane.showMessageDialog(null, "Password and Confirm Password Mismatched", "Alert", JOptionPane.ERROR_MESSAGE);
+            adusr_password_textfield.setText("");
+            adusr_confpassword_textfield.setText("");
+            }else {
+                try {
+                    String insertuser = "INSERT INTO user(username,email,password,status,activation_key) VALUES(?,?,?,?,?)";
+                    pst = con.prepareStatement(insertuser);
+                    pst.setString(1, adusr_username_textfield.getText());
+                    pst.setString(2, adusr_email_textfield.getText());
+                    pst.setString(3, adusr_password_textfield.getText());
+                    pst.setString(4, "Y");
+                    pst.setString(5, "1");
+                    pst.executeUpdate();
+                    adusr_username_textfield.setText("");
+                    adusr_email_textfield.setText("");
+                    adusr_password_textfield.setText("");
+                    adusr_confpassword_textfield.setText("");
+                    //updateUsersIndex();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
+            AddUserFrame.requestFocus();
+                    adusr_username_textfield.setText("");
+                    adusr_email_textfield.setText("");
+                    adusr_password_textfield.setText("");
+                    adusr_confpassword_textfield.setText("");
+        }
+        Populate_Users();
+    }
+ 
     private void UsMng_Update_Btn_fun() {
         rowcount = User_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount == 0) {
@@ -6060,6 +6322,34 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Results_Report_BtnActionPerformed
 
+    private void adusr_username_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adusr_username_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adusr_username_textfieldActionPerformed
+
+    private void Usmng_changeStatus_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Usmng_changeStatus_btnActionPerformed
+        User_Status_Btn_fun();
+    }//GEN-LAST:event_Usmng_changeStatus_btnActionPerformed
+
+    private void adusr_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adusr_add_btnActionPerformed
+         Adusr_Add_Btn_fun();
+    }//GEN-LAST:event_adusr_add_btnActionPerformed
+
+    private void adusr_back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adusr_back_btnActionPerformed
+        closeAllFrames();
+        UserManagementFrame.setVisible(true);
+    }//GEN-LAST:event_adusr_back_btnActionPerformed
+
+    private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
+         closeAllFrames();
+       AddUserFrame.setVisible(true);
+
+    }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
+
+    private void adusr_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adusr_MAITMouseClicked
+       adusr_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
+         goWebsite(adusr_MAIT);
+    }//GEN-LAST:event_adusr_MAITMouseClicked
+
     private void goWebsite(JLabel website) {
         website.addMouseListener(new MouseAdapter() {
            // @Override
@@ -6071,6 +6361,29 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    
+    private void User_Status_Btn_fun() {
+        rowcount = User_Table.getSelectedRowCount();
+        if (rowcount == 1) {
+            String UpdateStatus = "";
+            if (Usmng_active_btn.isSelected()) {
+                UpdateStatus = "Y";
+            }
+            if (Usmng_inactive_btn.isSelected()) {
+                UpdateStatus = "N";
+            }
+            String sql = "Update user set status='" + UpdateStatus + "' where id=" + selectedUserid;
+            try {
+                pst = con.prepareStatement(sql);
+                pst.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a single user to update status", "Alert", JOptionPane.ERROR_MESSAGE);
+        }
+        Populate_Users();
     }
     
     public void saveToXML(String servername, String serveraddress, String databasename, String databaseusername, String databasepassword) {
@@ -6262,6 +6575,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel AddSub_Name_Label;
     private javax.swing.JTextField AddSub_Name_Textfield;
     private javax.swing.JInternalFrame AddSubjectFrame;
+    private javax.swing.JInternalFrame AddUserFrame;
+    private javax.swing.JLabel Add_User_Label;
     private javax.swing.JRadioButton Arabic_lang;
     private javax.swing.JInternalFrame ChangePasswordFrame;
     private javax.swing.JLabel ChangePwd_ConfPwd_Label;
@@ -6391,6 +6706,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JInternalFrame SubjectFrame;
     private javax.swing.JLabel Suggestions_MAIT;
     private javax.swing.JTable Suggestions_Table;
+    private javax.swing.JButton UsMng_Add_Btn;
     private javax.swing.JButton UsMng_Delete_Btn;
     private javax.swing.JLabel UsMng_Email_Label;
     private javax.swing.JTextField UsMng_Email_Textfield;
@@ -6410,6 +6726,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JInternalFrame UserManagementFrame;
     private javax.swing.JLabel UserMg_MAIT;
     private javax.swing.JTable User_Table;
+    private javax.swing.JRadioButton Usmng_active_btn;
+    private javax.swing.JButton Usmng_changeStatus_btn;
+    private javax.swing.JRadioButton Usmng_inactive_btn;
     private javax.swing.JButton ViewSug_Home_Btn;
     private javax.swing.JLabel ViewSug_Label;
     private javax.swing.JLabel ViewSug_Subject_Label;
@@ -6418,9 +6737,21 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextArea ViewSug_Suggestion_Textarea;
     private javax.swing.JInternalFrame ViewSuggestionsFrame;
     private javax.swing.JRadioButton active;
+    private javax.swing.JLabel adusr_MAIT;
+    private javax.swing.JButton adusr_add_btn;
+    private javax.swing.JButton adusr_back_btn;
+    private javax.swing.JLabel adusr_confPassword_label;
+    private javax.swing.JTextField adusr_confpassword_textfield;
+    private javax.swing.JLabel adusr_email_label;
+    private javax.swing.JTextField adusr_email_textfield;
+    private javax.swing.JLabel adusr_password_label;
+    private javax.swing.JTextField adusr_password_textfield;
+    private javax.swing.JLabel adusr_username_label;
+    private javax.swing.JTextField adusr_username_textfield;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup10;
     private javax.swing.ButtonGroup buttonGroup11;
+    private javax.swing.ButtonGroup buttonGroup12;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
