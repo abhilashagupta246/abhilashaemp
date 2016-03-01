@@ -2809,25 +2809,23 @@ public class Home extends javax.swing.JFrame {
                         .addGap(297, 297, 297)
                         .addComponent(Results_label)
                         .addGap(0, 490, Short.MAX_VALUE))
-                    .addComponent(jScrollPane14))
-                .addContainerGap())
-            .addGroup(ResultFrameLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(Results_StudentName_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(Results_Subject_Lbl)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ResultFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Results_MAIT)
+                    .addComponent(jScrollPane14)
+                    .addGroup(ResultFrameLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(Results_StudentName_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(Results_Subject_Lbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ResultFrameLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Results_MAIT)))
                 .addContainerGap())
         );
         ResultFrameLayout.setVerticalGroup(
@@ -3494,6 +3492,7 @@ public class Home extends javax.swing.JFrame {
         Results_StudentName_Lbl.setText("أسم الطالب");
         Results_Subject_Lbl.setText("مواضيع");
         Results_Search_Btn.setText("بحث");
+        Results_Report_Btn.setText("");
         //Suggestions screen
         ViewSug_Label.setText("ملاحظاتكم تهمنا");
         ViewSug_Home_Btn.setText("الرئيسية");
@@ -3700,6 +3699,7 @@ public class Home extends javax.swing.JFrame {
         Results_StudentName_Lbl.setText("STUDENT NAME");
         Results_Subject_Lbl.setText("SUBJECT");
         Results_Search_Btn.setText("Search");
+        Results_Report_Btn.setText("Export Report");
         //Suggestions screen
         ViewSug_Label.setText("SUGGESTIONS");
         ViewSug_Home_Btn.setText("Home");
@@ -4309,6 +4309,10 @@ public class Home extends javax.swing.JFrame {
                 JLabel progressLabel = new JLabel();
                 pane.add(progressLabel);
                 progressLabel.setText("Processing...");
+                //byte[]imagedata=getByte("C:\\Users\\user\\Documents\\Downloads\\page-loader.gif");
+                //progressFrame.setIcon(new ImageIcon());
+
+                //progressLabel.setIcon(icon);
                 progressLabel.setBounds(80, 5, 280, 70);
                 progressFrame.setResizable(false);
                 progressFrame.setVisible(true);
@@ -6301,7 +6305,7 @@ public class Home extends javax.swing.JFrame {
 
     private void Results_Report_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Results_Report_BtnActionPerformed
          //Path to your .jasper file in your package
-        String reportName = "./reports/List.jasper";
+        String reportName = "./reports/Results.jasper";
          
         //Get a stream to read the file
         InputStream is = this.getClass().getClassLoader().getResourceAsStream(reportName);

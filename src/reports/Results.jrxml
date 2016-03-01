@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2f293cb-bc82-465b-a376-2cc2551ae366">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select st.student_name as 'Student Name',sub.subject_name as Subject, ls.lesson_name as Lesson,rlt.marks as Marks,rlt.result as Result from results rlt INNER JOIN students st ON rlt.student_id=st.student_id INNER JOIN subject sub ON rlt.subject_id=sub.subject_id INNER JOIN lessons ls ON rlt.lesson_id=ls.lesson_id ]]>
+	</queryString>
+	<field name="Student Name" class="java.lang.String"/>
+	<field name="Subject" class="java.lang.String"/>
+	<field name="Lesson" class="java.lang.String"/>
+	<field name="Marks" class="java.lang.Integer"/>
+	<field name="Result" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ee58da6f-213b-4bff-82f3-195f3b2bc683" x="209" y="21" width="124" height="34"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[RESULTS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="14807b4e-6217-44b0-bdfa-b70b23e3a69a" x="11" y="13" width="125" height="32"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Student Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="427d1c79-940b-4c7e-9619-09554dde9b95" x="170" y="13" width="73" height="32"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="033ddb14-60a7-44d7-b770-a58dc85fc5cb" x="279" y="13" width="79" height="32"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Lesson]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d78650ba-04e6-4b76-8d6d-4957e665b692" x="385" y="13" width="71" height="32"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Marks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2a14eaa-cc00-4f85-8c03-2e4ee1004b10" x="481" y="13" width="62" height="32"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Result]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement uuid="4ece201b-1e95-4a88-a866-effb3f013cb0" x="11" y="18" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Student Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="38276e84-4a97-4099-814e-0237a6d0657a" x="279" y="18" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Lesson}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="aa805ae7-af10-4531-894a-718c33aa1a73" x="170" y="18" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Subject}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1f6f3c0b-5d6c-44c0-b490-3c00306247b9" x="385" y="18" width="71" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Marks}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f59e840d-72b4-4063-94fc-1c2ada259cc0" x="481" y="18" width="62" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Result}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
