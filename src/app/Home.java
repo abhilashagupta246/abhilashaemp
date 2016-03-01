@@ -2271,25 +2271,32 @@ public class Home extends javax.swing.JFrame {
         Question7_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Question7_Label.setText("Question 7");
 
-        Question1.setText("Question1");
+        Question1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question1.setText("The objectives of the training were clearly defined.");
         Question1.setPreferredSize(new java.awt.Dimension(500, 15));
 
-        Question2.setText("Question 2");
+        Question2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question2.setText("The topics covered were relevant to me");
         Question2.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        Question3.setText("Question 3");
+        Question3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question3.setText("The content was organized and easy to follow");
         Question3.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        Question4.setText("Question 4");
+        Question4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question4.setText("The content length was appropriate for the information presented");
         Question4.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        Question5.setText("Question 5");
+        Question5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question5.setText("The content provided me with new skills and knowledge");
         Question5.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        Question6.setText("Question 6");
+        Question6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question6.setText("Information given is of practical value");
         Question6.setPreferredSize(new java.awt.Dimension(600, 15));
 
-        Question7.setText("Question 7");
+        Question7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question7.setText("The questions were adequately answered");
         Question7.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question1_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -2298,145 +2305,151 @@ public class Home extends javax.swing.JFrame {
         Question8_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Question8_Label.setText("Question 8");
 
-        Question8.setText("Question 8");
+        Question8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Question8.setText("The overall experience of taking the course");
         Question8.setPreferredSize(new java.awt.Dimension(600, 15));
 
         buttonGroup2.add(jRadioButton1);
-        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.setText("Excellent");
         jRadioButton1.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup2.add(jRadioButton2);
-        jRadioButton2.setText("jRadioButton2");
+        jRadioButton2.setText("Good");
         jRadioButton2.setPreferredSize(new java.awt.Dimension(100, 23));
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setText("jRadioButton3");
+        jRadioButton3.setText("Average");
         jRadioButton3.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setText("jRadioButton4");
+        jRadioButton4.setText("Below Average");
         jRadioButton4.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup2.add(jRadioButton5);
-        jRadioButton5.setText("jRadioButton5");
+        jRadioButton5.setText("Poor");
         jRadioButton5.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup3.add(jRadioButton6);
-        jRadioButton6.setText("jRadioButton6");
+        jRadioButton6.setText("Excellent");
         jRadioButton6.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup3.add(jRadioButton7);
-        jRadioButton7.setText("jRadioButton7");
+        jRadioButton7.setText("Good");
         jRadioButton7.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup3.add(jRadioButton8);
-        jRadioButton8.setText("jRadioButton8");
+        jRadioButton8.setText("Average");
         jRadioButton8.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup3.add(jRadioButton9);
-        jRadioButton9.setText("jRadioButton9");
+        jRadioButton9.setText("Below Average");
         jRadioButton9.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup3.add(jRadioButton10);
-        jRadioButton10.setText("jRadioButton10");
+        jRadioButton10.setText("Poor");
         jRadioButton10.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup4.add(jRadioButton11);
-        jRadioButton11.setText("jRadioButton11");
+        jRadioButton11.setText("Excellent");
 
         buttonGroup4.add(jRadioButton12);
-        jRadioButton12.setText("jRadioButton12");
+        jRadioButton12.setText("Good");
         jRadioButton12.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup4.add(jRadioButton13);
-        jRadioButton13.setText("jRadioButton13");
+        jRadioButton13.setText("Average");
 
         buttonGroup4.add(jRadioButton14);
-        jRadioButton14.setText("jRadioButton14");
+        jRadioButton14.setText("Below Average");
 
         buttonGroup4.add(jRadioButton15);
-        jRadioButton15.setText("jRadioButton15");
+        jRadioButton15.setText("Poor");
 
         buttonGroup5.add(jRadioButton16);
-        jRadioButton16.setText("jRadioButton16");
+        jRadioButton16.setText("Excellent");
 
         buttonGroup5.add(jRadioButton17);
-        jRadioButton17.setText("jRadioButton17");
+        jRadioButton17.setText("Good");
 
         buttonGroup5.add(jRadioButton18);
-        jRadioButton18.setText("jRadioButton18");
+        jRadioButton18.setText("Average");
 
         buttonGroup5.add(jRadioButton19);
-        jRadioButton19.setText("jRadioButton19");
+        jRadioButton19.setText("Below Average");
 
         buttonGroup5.add(jRadioButton20);
-        jRadioButton20.setText("jRadioButton20");
+        jRadioButton20.setText("Poor");
 
         buttonGroup6.add(jRadioButton21);
-        jRadioButton21.setText("jRadioButton21");
+        jRadioButton21.setText("Excellent");
         jRadioButton21.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup6.add(jRadioButton22);
-        jRadioButton22.setText("jRadioButton22");
+        jRadioButton22.setText("Good");
         jRadioButton22.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup6.add(jRadioButton23);
-        jRadioButton23.setText("jRadioButton23");
+        jRadioButton23.setText("Average");
         jRadioButton23.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup6.add(jRadioButton24);
-        jRadioButton24.setText("jRadioButton24");
+        jRadioButton24.setText("Below Average");
 
         buttonGroup6.add(jRadioButton25);
-        jRadioButton25.setText("jRadioButton25");
+        jRadioButton25.setText("Poor");
 
         buttonGroup7.add(jRadioButton26);
-        jRadioButton26.setText("jRadioButton26");
+        jRadioButton26.setText("Excellent");
         jRadioButton26.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup7.add(jRadioButton27);
-        jRadioButton27.setText("jRadioButton27");
+        jRadioButton27.setText("Good");
 
         buttonGroup7.add(jRadioButton28);
-        jRadioButton28.setText("jRadioButton28");
+        jRadioButton28.setText("Average");
 
         buttonGroup7.add(jRadioButton29);
-        jRadioButton29.setText("jRadioButton29");
+        jRadioButton29.setText("Below Average");
 
         buttonGroup7.add(jRadioButton30);
-        jRadioButton30.setText("jRadioButton30");
+        jRadioButton30.setText("Poor");
 
         buttonGroup8.add(jRadioButton31);
-        jRadioButton31.setText("jRadioButton31");
+        jRadioButton31.setText("Excellent");
         jRadioButton31.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup8.add(jRadioButton32);
-        jRadioButton32.setText("jRadioButton32");
+        jRadioButton32.setText("Good");
 
         buttonGroup8.add(jRadioButton33);
-        jRadioButton33.setText("jRadioButton33");
+        jRadioButton33.setText("Average");
 
         buttonGroup8.add(jRadioButton34);
-        jRadioButton34.setText("jRadioButton34");
+        jRadioButton34.setText("Below Average");
 
         buttonGroup8.add(jRadioButton35);
-        jRadioButton35.setText("jRadioButton35");
+        jRadioButton35.setText("Poor");
 
         buttonGroup9.add(jRadioButton36);
-        jRadioButton36.setText("jRadioButton36");
+        jRadioButton36.setText("Excellent");
         jRadioButton36.setPreferredSize(new java.awt.Dimension(100, 23));
 
         buttonGroup9.add(jRadioButton37);
-        jRadioButton37.setText("jRadioButton37");
+        jRadioButton37.setText("Good");
 
         buttonGroup9.add(jRadioButton38);
-        jRadioButton38.setText("jRadioButton38");
+        jRadioButton38.setText("Average");
 
         buttonGroup9.add(jRadioButton39);
-        jRadioButton39.setText("jRadioButton39");
+        jRadioButton39.setText("Below Average");
 
         buttonGroup9.add(jRadioButton40);
-        jRadioButton40.setText("jRadioButton40");
+        jRadioButton40.setText("Poor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2647,7 +2660,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(Question8_Label)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel1);
@@ -2690,9 +2703,9 @@ public class Home extends javax.swing.JFrame {
                         .addGap(277, 277, 277)
                         .addComponent(EmpFeedback_Label))
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(60, 60, 60)
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeedbackFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
@@ -3724,14 +3737,14 @@ public class Home extends javax.swing.JFrame {
         Question6_Label.setText("Question 6");
         Question7_Label.setText("Question 7");
         Question8_Label.setText("Question 8");
-        Question1.setText("Question 1");
-        Question2.setText("Question 2");
-        Question3.setText("Question 3");
-        Question4.setText("Question 4");
-        Question5.setText("Question 5");
-        Question6.setText("Question 6");
-        Question7.setText("Question 7");
-        Question8.setText("Question 8");
+        Question1.setText("The objectives of the training were clearly defined");
+        Question2.setText("The topics covered were relevant to me");
+        Question3.setText("The content was organized and easy to follow");
+        Question4.setText("The content length was appropriate for the information presented");
+        Question5.setText("The content provided me with new skills and knowledge");
+        Question6.setText("Information given is of practical value");
+        Question7.setText("The questions were adequately answered");
+        Question8.setText("The overall experience of taking the course");
         //Answer 1 options
         jRadioButton1.setText("Excellent");
         jRadioButton2.setText("Good");
@@ -6353,6 +6366,10 @@ public class Home extends javax.swing.JFrame {
        adusr_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
          goWebsite(adusr_MAIT);
     }//GEN-LAST:event_adusr_MAITMouseClicked
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void goWebsite(JLabel website) {
         website.addMouseListener(new MouseAdapter() {
