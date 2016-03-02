@@ -1866,7 +1866,6 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(StudentManagementFrame);
         StudentManagementFrame.setBounds(0, 0, 683, 368);
 
-        HomeFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 650, 600));
         HomeFrame.setPreferredSize(new java.awt.Dimension(650, 600));
         HomeFrame.setVisible(true);
 
@@ -2058,7 +2057,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

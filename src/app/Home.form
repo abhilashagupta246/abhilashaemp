@@ -2048,9 +2048,6 @@
         </Container>
         <Container class="javax.swing.JInternalFrame" name="HomeFrame">
           <Properties>
-            <Property name="normalBounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
-              <Rectangle value="[0, 0, 650, 600]"/>
-            </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[650, 600]"/>
             </Property>
@@ -2073,7 +2070,7 @@
                           <Component id="Home_ViewSugg_Btn" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="Home_ChangePwd_Btn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="191" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Home_Dictionary_Btn" min="-2" max="-2" attributes="0"/>
                           <Component id="Home_Subject_Btn" alignment="0" min="-2" max="-2" attributes="0"/>
