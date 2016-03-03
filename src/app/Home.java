@@ -94,6 +94,7 @@ public class Home extends javax.swing.JFrame {
     long StartTime, EndTime;
     ArrayList<String> wordList = new ArrayList<String>();
     ArrayList<String> subjectList = new ArrayList<String>();
+    ArrayList<String> feedbackQuestionsList = new ArrayList<String>();
     static JFrame progressFrame;
     JLabel progressLabel;
     static Container pane;
@@ -282,7 +283,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane12 = new javax.swing.JScrollPane();
         feedbackTable = new javax.swing.JTable();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        feedbackQuestionsPanel = new javax.swing.JPanel();
         Question2_Label = new javax.swing.JLabel();
         Question3_Label = new javax.swing.JLabel();
         Question4_Label = new javax.swing.JLabel();
@@ -342,6 +343,7 @@ public class Home extends javax.swing.JFrame {
         EmpFeedback_Home_Btn = new javax.swing.JButton();
         EmpFeedback_Label = new javax.swing.JLabel();
         Feedback_MAIT = new javax.swing.JLabel();
+        EmpFeedback_Add_Btn = new javax.swing.JButton();
         ResultFrame = new javax.swing.JInternalFrame();
         jScrollPane14 = new javax.swing.JScrollPane();
         Result_Table = new javax.swing.JTable();
@@ -410,6 +412,13 @@ public class Home extends javax.swing.JFrame {
         LessonContent_Questions_Btn = new javax.swing.JButton();
         LessonContent_Back_Btn = new javax.swing.JButton();
         LessonContent_MAIT = new javax.swing.JLabel();
+        MAITFrame = new javax.swing.JInternalFrame();
+        AddFeedbackQuestionFrame = new javax.swing.JInternalFrame();
+        AddFeedbackQuestion_Label = new javax.swing.JLabel();
+        AddFeedbackQuestion_back_btn = new javax.swing.JButton();
+        AddFeedbackQuestion_question_label = new javax.swing.JLabel();
+        AddFeedbackQuestion_question_textfield = new javax.swing.JTextField();
+        AddFeedbackQuestion_add_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -2265,7 +2274,7 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane12.setViewportView(feedbackTable);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 700));
+        feedbackQuestionsPanel.setPreferredSize(new java.awt.Dimension(1000, 700));
 
         Question2_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Question2_Label.setText("Question 2");
@@ -2286,7 +2295,7 @@ public class Home extends javax.swing.JFrame {
         Question7_Label.setText("Question 7");
 
         Question1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question1.setText("The objectives of the training were clearly defined.");
+        Question1.setText("The objectives of the training were clearly defined");
         Question1.setPreferredSize(new java.awt.Dimension(500, 15));
 
         Question2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -2465,92 +2474,96 @@ public class Home extends javax.swing.JFrame {
         buttonGroup9.add(jRadioButton40);
         jRadioButton40.setText("Poor");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout feedbackQuestionsPanelLayout = new javax.swing.GroupLayout(feedbackQuestionsPanel);
+        feedbackQuestionsPanel.setLayout(feedbackQuestionsPanelLayout);
+        feedbackQuestionsPanelLayout.setHorizontalGroup(
+            feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(Question1_Label)
                                 .addComponent(Question3_Label)
                                 .addComponent(Question4_Label)
                                 .addComponent(Question2_Label)
                                 .addComponent(Question7_Label)
                                 .addComponent(Question8_Label))
-                            .addGap(75, 75, 75)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Question1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                                    .addGap(75, 75, 75)
+                                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Question7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Question6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Question5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Question4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Question3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Question2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Question1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                                    .addGap(74, 74, 74)
+                                    .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(1, 1, 1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, feedbackQuestionsPanelLayout.createSequentialGroup()
+                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                     .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(54, 54, 54)
                                     .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(jRadioButton26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jRadioButton31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGap(53, 53, 53)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jRadioButton27)
                                                 .addComponent(jRadioButton32)))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addComponent(jRadioButton36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(53, 53, 53)
                                             .addComponent(jRadioButton37))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addComponent(jRadioButton21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(53, 53, 53)
                                             .addComponent(jRadioButton22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addGap(53, 53, 53)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jRadioButton33, javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(jRadioButton38, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addGap(54, 54, 54)
                                             .addComponent(jRadioButton23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addGap(54, 54, 54)
                                             .addComponent(jRadioButton28))))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jRadioButton16)
                                         .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jRadioButton11))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addGap(53, 53, 53)
                                             .addComponent(jRadioButton17))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addGap(53, 53, 53)
                                             .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                                             .addGap(52, 52, 52)
                                             .addComponent(jRadioButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(53, 53, 53)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jRadioButton18)
                                         .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jRadioButton13))))
                             .addGap(53, 53, 53)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jRadioButton14)
                                 .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jRadioButton19)
@@ -2560,12 +2573,12 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jRadioButton39)
                                 .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(52, 52, 52)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Question5_Label)
                             .addComponent(Question6_Label))
                         .addGap(42, 42, 42)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButton25)
                     .addComponent(jRadioButton20)
                     .addComponent(jRadioButton30)
@@ -2576,108 +2589,108 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        feedbackQuestionsPanelLayout.setVerticalGroup(
+            feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Question1_Label)
                     .addComponent(Question1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Question2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Question2_Label))
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Question3_Label)
                     .addComponent(Question3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton11)
                     .addComponent(jRadioButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton13)
                     .addComponent(jRadioButton14)
                     .addComponent(jRadioButton15))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Question4_Label)
                     .addComponent(Question4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton16)
                     .addComponent(jRadioButton17)
                     .addComponent(jRadioButton18)
                     .addComponent(jRadioButton19)
                     .addComponent(jRadioButton20))
                 .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Question5_Label)
                     .addComponent(Question5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton24)
                     .addComponent(jRadioButton25))
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Question6_Label)
                     .addComponent(Question6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton27)
                     .addComponent(jRadioButton28)
                     .addComponent(jRadioButton29)
                     .addComponent(jRadioButton30))
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                         .addComponent(Question7_Label)
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton33)
                             .addComponent(jRadioButton34)
                             .addComponent(jRadioButton35)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                         .addComponent(Question7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton32))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton37)
                             .addComponent(jRadioButton38)
                             .addComponent(jRadioButton39)
                             .addComponent(jRadioButton40)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(Question8_Label)))
+                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Question8_Label)
+                            .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        jScrollPane13.setViewportView(jPanel1);
+        jScrollPane13.setViewportView(feedbackQuestionsPanel);
 
         EmpFeedback_Home_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EmpFeedback_Home_Btn.setText("Home");
@@ -2703,6 +2716,18 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        EmpFeedback_Add_Btn.setText("Add Feedback Question");
+        EmpFeedback_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpFeedback_Add_BtnActionPerformed(evt);
+            }
+        });
+        EmpFeedback_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                EmpFeedback_Add_BtnKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout FeedbackFrameLayout = new javax.swing.GroupLayout(FeedbackFrame.getContentPane());
         FeedbackFrame.getContentPane().setLayout(FeedbackFrameLayout);
         FeedbackFrameLayout.setHorizontalGroup(
@@ -2711,7 +2736,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmpFeedback_Add_Btn))
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addGap(277, 277, 277)
@@ -2733,7 +2759,10 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(EmpFeedback_Label))
                 .addGap(29, 29, 29)
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FeedbackFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(EmpFeedback_Add_Btn))
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
@@ -3518,6 +3547,96 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(LessonContentFrame);
         LessonContentFrame.setBounds(0, 0, 700, 450);
 
+        MAITFrame.setVisible(true);
+
+        javax.swing.GroupLayout MAITFrameLayout = new javax.swing.GroupLayout(MAITFrame.getContentPane());
+        MAITFrame.getContentPane().setLayout(MAITFrameLayout);
+        MAITFrameLayout.setHorizontalGroup(
+            MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        MAITFrameLayout.setVerticalGroup(
+            MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        desktopPane.add(MAITFrame);
+        MAITFrame.setBounds(0, 0, 22, 33);
+
+        AddFeedbackQuestionFrame.setVisible(true);
+
+        AddFeedbackQuestion_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        AddFeedbackQuestion_Label.setText("ADD FEEDBACK QUESTION");
+
+        AddFeedbackQuestion_back_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddFeedbackQuestion_back_btn.setText("Back");
+        AddFeedbackQuestion_back_btn.setPreferredSize(new java.awt.Dimension(60, 30));
+        AddFeedbackQuestion_back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFeedbackQuestion_back_btnActionPerformed(evt);
+            }
+        });
+        AddFeedbackQuestion_back_btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddFeedbackQuestion_back_btnKeyReleased(evt);
+            }
+        });
+
+        AddFeedbackQuestion_question_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        AddFeedbackQuestion_question_label.setText("QUESTION");
+
+        AddFeedbackQuestion_question_textfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFeedbackQuestion_question_textfieldActionPerformed(evt);
+            }
+        });
+
+        AddFeedbackQuestion_add_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddFeedbackQuestion_add_btn.setText("Add");
+        AddFeedbackQuestion_add_btn.setPreferredSize(new java.awt.Dimension(60, 30));
+        AddFeedbackQuestion_add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFeedbackQuestion_add_btnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddFeedbackQuestionFrameLayout = new javax.swing.GroupLayout(AddFeedbackQuestionFrame.getContentPane());
+        AddFeedbackQuestionFrame.getContentPane().setLayout(AddFeedbackQuestionFrameLayout);
+        AddFeedbackQuestionFrameLayout.setHorizontalGroup(
+            AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFeedbackQuestionFrameLayout.createSequentialGroup()
+                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(AddFeedbackQuestion_question_label))
+                    .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AddFeedbackQuestion_back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddFeedbackQuestion_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddFeedbackQuestion_question_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddFeedbackQuestion_Label))
+                .addGap(31, 31, 31))
+        );
+        AddFeedbackQuestionFrameLayout.setVerticalGroup(
+            AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
+                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddFeedbackQuestion_back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddFeedbackQuestion_Label))
+                .addGap(71, 71, 71)
+                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddFeedbackQuestion_question_label)
+                    .addComponent(AddFeedbackQuestion_question_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(AddFeedbackQuestion_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+
+        desktopPane.add(AddFeedbackQuestionFrame);
+        AddFeedbackQuestionFrame.setBounds(0, 0, 680, 267);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -3953,17 +4072,36 @@ public class Home extends javax.swing.JFrame {
         Settings_MAIT.setText("MAIT");
         adusr_MAIT.setText("MAIT");
     }
-
+    private void Populate_FeedbackQuestions()
+    {
+        try {
+            pst = con.prepareStatement("select question1,question2,question3,question4,question5,question6,question7,question8 from feedbacktable");
+            rs = pst.executeQuery();
+            int i=0;
+            while(rs.next())
+            {
+                feedbackQuestionsList.add(rs.getString(i));
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        for(int j=0;j<feedbackQuestionsList.size();j++)
+       {
+       feedbackQuestionsList.add(Question1.getText());
+       }
+       
+    }
+    
     private void Populate_FeedbackDetails() {
         try {
-
             pst = con.prepareStatement("select employee_id as ID,employee_name as 'Employee Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
             createComponents();
             rs = pst.executeQuery();
             feedbackTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
-
             feedbackTable.setModel(DbUtils.resultSetToTableModel(rs));
-            for (int a = 2; a <= 10; a++) {
+            for (int a = 2; a <= 18; a++) {
                 feedbackTable.getColumnModel().getColumn(a).setMinWidth(0);
                 feedbackTable.getColumnModel().getColumn(a).setMaxWidth(0);
             }
@@ -3971,6 +4109,7 @@ public class Home extends javax.swing.JFrame {
                 feedbackTable.getColumnModel().getColumn(0).setHeaderValue("هوية شخصية");
                 feedbackTable.getColumnModel().getColumn(1).setHeaderValue("اسم الموظف");
             }
+            
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -6433,7 +6572,8 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         FeedbackFrame.setVisible(true);
         Populate_FeedbackDetails();
-        jPanel1.setEnabled(false);
+        Populate_FeedbackQuestions();
+        feedbackQuestionsPanel.setEnabled(false);
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnActionPerformed
 
     private void Home_EmployeeFeedback_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_EmployeeFeedback_BtnMouseClicked
@@ -6607,12 +6747,71 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_Home_Subject_BtnActionPerformed
 
     private void Home_Subject_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_Subject_BtnMouseClicked
-
         closeAllFrames();
         SubjectFrame.setVisible(true);
         SubjectFrame.setLocation(300,100);
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnMouseClicked
+
+    private void EmpFeedback_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFeedback_Add_BtnActionPerformed
+        closeAllFrames();
+        AddFeedbackQuestionFrame.setVisible(true);
+    }//GEN-LAST:event_EmpFeedback_Add_BtnActionPerformed
+
+    private void AddFeedbackQuestion_question_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_question_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddFeedbackQuestion_question_textfieldActionPerformed
+
+    private void AddFeedbackQuestion_back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_back_btnActionPerformed
+        closeAllFrames();
+        FeedbackFrame.setVisible(true);
+    }//GEN-LAST:event_AddFeedbackQuestion_back_btnActionPerformed
+
+    private void AddFeedbackQuestion_back_btnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_back_btnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+        FeedbackFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_AddFeedbackQuestion_back_btnKeyReleased
+
+    private void EmpFeedback_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmpFeedback_Add_BtnKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            closeAllFrames();
+        AddFeedbackQuestionFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_EmpFeedback_Add_BtnKeyReleased
+
+    private void AddFeedbackQuestion_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_add_btnActionPerformed
+        int i=feedbackQuestionsList.size();
+        for(int j=0;j<i;j++)
+        {
+       JLabel question=new JLabel();
+       //JRadioButton jradio=new JRadioButton();
+      
+       question.setFont(new Font("Tahoma", Font.BOLD, 14));
+       question.setText("Question "+i++);
+       feedbackQuestionsPanel.add(question);
+      // feedbackQuestionsPanel.add(jradio);
+       String sql="alter table feedbacktable add question"+i+" TEXT ,add answer"+i+" TEXT";
+            try {
+                pst=con.prepareStatement(sql);
+                pst.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         String insertQuestion="insert into feedbacktable (question"+i+") values (?)";
+            try {
+                pst=con.prepareStatement(insertQuestion);
+                pst.setString(1,AddFeedbackQuestion_question_textfield.getText().trim());
+                createComponents();
+                pst.executeUpdate();
+                pst.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+    }//GEN-LAST:event_AddFeedbackQuestion_add_btnActionPerformed
     private void LessonContent_Edit_fun()
     {
         try {
@@ -6833,6 +7032,12 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JInternalFrame AddFeedbackQuestionFrame;
+    private javax.swing.JLabel AddFeedbackQuestion_Label;
+    private javax.swing.JButton AddFeedbackQuestion_add_btn;
+    private javax.swing.JButton AddFeedbackQuestion_back_btn;
+    private javax.swing.JLabel AddFeedbackQuestion_question_label;
+    private javax.swing.JTextField AddFeedbackQuestion_question_textfield;
     private javax.swing.JInternalFrame AddLessonFrame;
     private javax.swing.JInternalFrame AddLessonPictureFrame;
     private javax.swing.JButton AddLessonPicture_Add_Btn;
@@ -6877,6 +7082,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Dictionary_Update_Btn;
     private javax.swing.JLabel Dictionary_Word_Label;
     private javax.swing.JTextField Dictionary_Word_Textfield;
+    private javax.swing.JButton EmpFeedback_Add_Btn;
     private javax.swing.JButton EmpFeedback_Home_Btn;
     private javax.swing.JLabel EmpFeedback_Label;
     private javax.swing.JRadioButton English_lang;
@@ -6920,6 +7126,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Ls_MAIT;
     private javax.swing.JButton Ls_Marks_Btn;
     private javax.swing.JTable Ls_Table;
+    private javax.swing.JInternalFrame MAITFrame;
     private javax.swing.JButton Qst_Add_Btn;
     private javax.swing.JButton Qst_Back_Btn;
     private javax.swing.JButton Qst_Delete_Btn;
@@ -7046,12 +7253,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup8;
     private javax.swing.ButtonGroup buttonGroup9;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JPanel feedbackQuestionsPanel;
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
