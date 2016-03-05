@@ -37,11 +37,14 @@ import java.util.regex.Pattern;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;
@@ -149,6 +152,7 @@ public class Home extends javax.swing.JFrame {
         buttonGroup10 = new javax.swing.ButtonGroup();
         buttonGroup11 = new javax.swing.ButtonGroup();
         buttonGroup12 = new javax.swing.ButtonGroup();
+        jTextField1 = new javax.swing.JTextField();
         desktopPane = new javax.swing.JDesktopPane();
         LessonsFrame = new javax.swing.JInternalFrame();
         Ls_Label = new javax.swing.JLabel();
@@ -343,7 +347,7 @@ public class Home extends javax.swing.JFrame {
         EmpFeedback_Home_Btn = new javax.swing.JButton();
         EmpFeedback_Label = new javax.swing.JLabel();
         Feedback_MAIT = new javax.swing.JLabel();
-        EmpFeedback_Add_Btn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         ResultFrame = new javax.swing.JInternalFrame();
         jScrollPane14 = new javax.swing.JScrollPane();
         Result_Table = new javax.swing.JTable();
@@ -413,12 +417,20 @@ public class Home extends javax.swing.JFrame {
         LessonContent_Back_Btn = new javax.swing.JButton();
         LessonContent_MAIT = new javax.swing.JLabel();
         MAITFrame = new javax.swing.JInternalFrame();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        maitlabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         AddFeedbackQuestionFrame = new javax.swing.JInternalFrame();
         AddFeedbackQuestion_Label = new javax.swing.JLabel();
         AddFeedbackQuestion_back_btn = new javax.swing.JButton();
         AddFeedbackQuestion_question_label = new javax.swing.JLabel();
         AddFeedbackQuestion_question_textfield = new javax.swing.JTextField();
         AddFeedbackQuestion_add_btn = new javax.swing.JButton();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -2716,15 +2728,10 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        EmpFeedback_Add_Btn.setText("Add Feedback Question");
-        EmpFeedback_Add_Btn.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Add Feedback Question");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmpFeedback_Add_BtnActionPerformed(evt);
-            }
-        });
-        EmpFeedback_Add_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                EmpFeedback_Add_BtnKeyReleased(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -2737,7 +2744,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmpFeedback_Add_Btn))
+                    .addComponent(jButton2))
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addGap(277, 277, 277)
@@ -2761,8 +2768,8 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(EmpFeedback_Add_Btn))
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton2))
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
@@ -3549,19 +3556,74 @@ public class Home extends javax.swing.JFrame {
 
         MAITFrame.setVisible(true);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("DNRD V1.0");
+
+        jLabel3.setText("If you need any information please visit our website");
+
+        maitlabel.setText("<html>\n<a href=\"www.google.com\">www.google.com</a>\n</html>");
+        maitlabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                maitlabelMouseClicked(evt);
+            }
+        });
+
+        jButton1.setText("Close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("or mail us at ");
+
+        jLabel6.setText("info@mait.ae");
+
         javax.swing.GroupLayout MAITFrameLayout = new javax.swing.GroupLayout(MAITFrame.getContentPane());
         MAITFrame.getContentPane().setLayout(MAITFrameLayout);
         MAITFrameLayout.setHorizontalGroup(
             MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(MAITFrameLayout.createSequentialGroup()
+                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MAITFrameLayout.createSequentialGroup()
+                        .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MAITFrameLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(MAITFrameLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(MAITFrameLayout.createSequentialGroup()
+                                        .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jLabel3))))
+                        .addGap(0, 47, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         MAITFrameLayout.setVerticalGroup(
             MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(MAITFrameLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(85, 85, 85)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         desktopPane.add(MAITFrame);
-        MAITFrame.setBounds(0, 0, 22, 33);
+        MAITFrame.setBounds(0, 0, 368, 282);
 
         AddFeedbackQuestionFrame.setVisible(true);
 
@@ -3629,13 +3691,13 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddFeedbackQuestion_question_label)
                     .addComponent(AddFeedbackQuestion_question_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(AddFeedbackQuestion_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
 
         desktopPane.add(AddFeedbackQuestionFrame);
-        AddFeedbackQuestionFrame.setBounds(0, 0, 680, 267);
+        AddFeedbackQuestionFrame.setBounds(0, 0, 680, 275);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -4074,34 +4136,31 @@ public class Home extends javax.swing.JFrame {
     }
     private void Populate_FeedbackQuestions()
     {
+        feedbackQuestionsList.clear();
         try {
-            pst = con.prepareStatement("select question1,question2,question3,question4,question5,question6,question7,question8 from feedbacktable");
+            pst = con.prepareStatement("select * from feedbackquestionstable");
             rs = pst.executeQuery();
-            int i=0;
             while(rs.next())
             {
-                feedbackQuestionsList.add(rs.getString(i));
-                i++;
+                feedbackQuestionsList.add(rs.getString("questions"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
-        for(int j=0;j<feedbackQuestionsList.size();j++)
-       {
-       feedbackQuestionsList.add(Question1.getText());
-       }
-       
     }
     
     private void Populate_FeedbackDetails() {
         try {
+            Populate_FeedbackQuestions();
+             int i=feedbackQuestionsList.size();
+             int length=0;
+             length=i-8;
             pst = con.prepareStatement("select employee_id as ID,employee_name as 'Employee Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
             createComponents();
             rs = pst.executeQuery();
             feedbackTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             feedbackTable.setModel(DbUtils.resultSetToTableModel(rs));
-            for (int a = 2; a <= 18; a++) {
+            for (int a = 2; a <10+length ; a++) {
                 feedbackTable.getColumnModel().getColumn(a).setMinWidth(0);
                 feedbackTable.getColumnModel().getColumn(a).setMaxWidth(0);
             }
@@ -4417,6 +4476,8 @@ public class Home extends javax.swing.JFrame {
         SettingsFrame.setVisible(false);
         AddUserFrame.setVisible(false);
         LessonContentFrame.setVisible(false);
+        AddFeedbackQuestionFrame.setVisible(false);
+        MAITFrame.setVisible(false);
     }
 
     private void Populate_Users() {
@@ -4518,7 +4579,11 @@ public class Home extends javax.swing.JFrame {
         rowcount = Sub_Table.getSelectedRowCount();
         if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one subject at a time", "Alert", JOptionPane.ERROR_MESSAGE);
-        } else {
+        } 
+       else { 
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
             DefaultTableModel model = (DefaultTableModel) Sub_Table.getModel();
             String selected = model.getValueAt(viewIndex, 0).toString();
             if (viewIndex != -1) {
@@ -4533,7 +4598,13 @@ public class Home extends javax.swing.JFrame {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, w);
                 }
             }
-        }
+    } else if (response == JOptionPane.NO_OPTION) {
+      SubjectFrame.setVisible(true);
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      SubjectFrame.setVisible(true);
+    }
+      
+    }
     }
     private void Sub_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnActionPerformed
         subject_delete_fn();
@@ -4728,7 +4799,12 @@ public class Home extends javax.swing.JFrame {
         if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select one lesson at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
-        } else {
+        } 
+         else 
+        {
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if( response == JOptionPane.YES_OPTION) {
             DefaultTableModel model = (DefaultTableModel) Ls_Table.getModel();
 
             String selected = model.getValueAt(row, 0).toString();
@@ -4746,6 +4822,12 @@ public class Home extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Connection Error!");
                 }
             }
+        }
+        else if (response == JOptionPane.NO_OPTION) {
+      LessonsFrame.setVisible(true);
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      LessonsFrame.setVisible(true);
+    }
         }
     }
     private void Ls_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ls_Delete_BtnActionPerformed
@@ -4796,7 +4878,11 @@ public class Home extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Please select a user to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             UserManagementFrame.requestFocus();
-        } else {
+        } 
+        else{
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
             DefaultTableModel model = (DefaultTableModel) User_Table.getModel();
             String selected = model.getValueAt(row, 0).toString();
             model.removeRow(row);
@@ -4811,7 +4897,12 @@ public class Home extends javax.swing.JFrame {
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
             Populate_Users();
+    } else if (response == JOptionPane.NO_OPTION) {
+      UserManagementFrame.setVisible(true);
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      UserManagementFrame.setVisible(true);
         }
+    }
     }
 
     private void UsMng_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Delete_BtnActionPerformed
@@ -4889,6 +4980,7 @@ public class Home extends javax.swing.JFrame {
                     adusr_email_textfield.setText("");
                     adusr_password_textfield.setText("");
                     adusr_confpassword_textfield.setText("");
+                    NewUser_Mail();
                     //updateUsersIndex();
                 } catch (SQLException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -5184,6 +5276,42 @@ public class Home extends javax.swing.JFrame {
         ChangedPwd_Submit_Btn_fun();
     }//GEN-LAST:event_ChangePwd_Submit_BtnActionPerformed
 
+    private void NewUser_Mail()
+    {
+        String messageBody = null;
+            String[] recipients = new String[1];
+            String[] bccRecipients = new String[]{""};
+            String subject = "New User Registered";
+            StringBuffer messageBodyBuffer = new StringBuffer();
+            String user = adusr_username_textfield.getText();
+
+            String sql = "select password,email from user where username='" + user + "'";
+            messageBodyBuffer.append("Hi Admin");
+            try {
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    //recipients[0] = rs.getString("email"); //email id of Admin
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("A new User has registered.Please login in and approve its status ");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Regards,");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Team");
+                    messageBody = messageBodyBuffer.toString();
+
+                    new MailUtil().sendMail(recipients, bccRecipients, subject, messageBody);
+                    } else {
+                    //JOptionPane.showMessageDialog(null, "User does not exist", "Alert", JOptionPane.ERROR_MESSAGE);
+                    UserLoginFrame.requestFocus();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+                
     private void UserLogin_ForgetPwd() {
         if (!UserLogin_Name_Textfield.getText().trim().equals("")) {
             String messageBody = null;
@@ -5239,7 +5367,10 @@ public class Home extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Please select one question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             QuestionsFrame.requestFocus();
-        } else {
+        } 
+         int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
             DefaultTableModel model = (DefaultTableModel) Qst_Table.getModel();
             String selected = model.getValueAt(row, 0).toString();
             model.removeRow(row);
@@ -5258,6 +5389,10 @@ public class Home extends javax.swing.JFrame {
             Qst_Opt2_Textfield.setText("");
             Qst_Opt3_Textfield.setText("");
             buttonGroup1.clearSelection();
+    } else if (response == JOptionPane.NO_OPTION) {
+      QuestionsFrame.setVisible(true);
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      QuestionsFrame.setVisible(true);
         }
     }
     private void Qst_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnActionPerformed
@@ -6181,7 +6316,13 @@ public class Home extends javax.swing.JFrame {
         if (rowcount > 1 || rowcount == 0) {
             JOptionPane.showMessageDialog(null, "Please select a word from the table to delete at a time", "Alert", JOptionPane.ERROR_MESSAGE);
             DictionaryFrame.requestFocus();
-        } else if (wordList.contains(Dictionary_Word_Textfield.getText().trim())) {
+        }
+        else 
+        {
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if( response == JOptionPane.YES_OPTION) {
+            if (wordList.contains(Dictionary_Word_Textfield.getText().trim())) {
             DefaultTableModel model = (DefaultTableModel) Dictionary_Table.getModel();
             if (row >= 0) {
                 model.removeRow(row);
@@ -6200,7 +6341,8 @@ public class Home extends javax.swing.JFrame {
         }
         DictionaryFrame.requestFocus();
     }
-
+    }
+    }
     private void Dictionary_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dictionary_Delete_BtnActionPerformed
         Dictionary_Delete_Btn_fun();
     }//GEN-LAST:event_Dictionary_Delete_BtnActionPerformed
@@ -6332,82 +6474,97 @@ public class Home extends javax.swing.JFrame {
 
     private void Ls_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Ls_MAITMouseClicked
         Ls_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Ls_MAIT);
+         MAITFrame.setVisible(true);
+         MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Ls_MAITMouseClicked
 
     private void AddLs_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddLs_MAITMouseClicked
        AddLs_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(AddLs_MAIT);
+         MAITFrame.setVisible(true);
+         MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_AddLs_MAITMouseClicked
 
     private void LsImage_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LsImage_MAITMouseClicked
         LsImage_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(LsImage_MAIT);
+         MAITFrame.setVisible(true);
+         MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_LsImage_MAITMouseClicked
 
     private void Sub_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_MAITMouseClicked
        LsImage_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(LsImage_MAIT);
+         MAITFrame.setVisible(true);
+         MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Sub_MAITMouseClicked
 
     private void AddSubjectFrameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddSubjectFrameMouseClicked
         AddSub_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(AddSub_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_AddSubjectFrameMouseClicked
 
     private void UserMg_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserMg_MAITMouseClicked
         UserMg_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(UserMg_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_UserMg_MAITMouseClicked
 
     private void Qst_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Qst_MAITMouseClicked
         Qst_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Qst_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Qst_MAITMouseClicked
 
     private void Login_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Login_MAITMouseClicked
         Login_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Login_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Login_MAITMouseClicked
 
     private void Chg_Pwd_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Chg_Pwd_MAITMouseClicked
        Chg_Pwd_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Chg_Pwd_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Chg_Pwd_MAITMouseClicked
 
     private void StuMgnt_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StuMgnt_MAITMouseClicked
        StuMgnt_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(StuMgnt_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_StuMgnt_MAITMouseClicked
 
     private void Suggestions_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Suggestions_MAITMouseClicked
         Suggestions_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Suggestions_MAIT);
+       MAITFrame.setVisible(true);
     }//GEN-LAST:event_Suggestions_MAITMouseClicked
 
     private void Feedback_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Feedback_MAITMouseClicked
        Feedback_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Feedback_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Feedback_MAITMouseClicked
 
     private void Results_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Results_MAITMouseClicked
         Results_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Results_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Results_MAITMouseClicked
 
     private void AddLsPicture_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddLsPicture_MAITMouseClicked
         AddLsPicture_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(AddLsPicture_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_AddLsPicture_MAITMouseClicked
 
     private void Dictionary_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Dictionary_MAITMouseClicked
         Dictionary_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Dictionary_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Dictionary_MAITMouseClicked
 
     private void Settings_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Settings_MAITMouseClicked
        Settings_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(Settings_MAIT);
+       MAITFrame.setVisible(true);
+       MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Settings_MAITMouseClicked
 
     private void Results_Report_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Results_Report_BtnActionPerformed
@@ -6753,11 +6910,6 @@ public class Home extends javax.swing.JFrame {
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnMouseClicked
 
-    private void EmpFeedback_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFeedback_Add_BtnActionPerformed
-        closeAllFrames();
-        AddFeedbackQuestionFrame.setVisible(true);
-    }//GEN-LAST:event_EmpFeedback_Add_BtnActionPerformed
-
     private void AddFeedbackQuestion_question_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_question_textfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AddFeedbackQuestion_question_textfieldActionPerformed
@@ -6774,44 +6926,83 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AddFeedbackQuestion_back_btnKeyReleased
 
-    private void EmpFeedback_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmpFeedback_Add_BtnKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            closeAllFrames();
-        AddFeedbackQuestionFrame.setVisible(true);
-        }
-    }//GEN-LAST:event_EmpFeedback_Add_BtnKeyReleased
-
     private void AddFeedbackQuestion_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_add_btnActionPerformed
-        int i=feedbackQuestionsList.size();
-        for(int j=0;j<i;j++)
-        {
+      int i=feedbackQuestionsList.size();
+       // System.out.println(i);
+//        for(int j=0;j<i;j++)
+//        {
        JLabel question=new JLabel();
-       //JRadioButton jradio=new JRadioButton();
-      
+       JTextArea quest=new JTextArea();
+       ButtonGroup group=new ButtonGroup();
+       JRadioButton jradio1=new JRadioButton();
+      JRadioButton jradio2=new JRadioButton();
+      JRadioButton jradio3=new JRadioButton();
+      JRadioButton jradio4=new JRadioButton();
+      JRadioButton jradio5=new JRadioButton();
+      group.add(jradio1);
+      group.add(jradio2);
+      group.add(jradio3);
+      group.add(jradio4);
+      group.add(jradio5);
+      jradio1.setText("Excellent");
+      jradio2.setText("Good");
+      jradio3.setText("Average");
+      jradio4.setText("Below Average");
+      jradio5.setText("Poor");
+      quest.setText(AddFeedbackQuestion_question_textfield.getText());
        question.setFont(new Font("Tahoma", Font.BOLD, 14));
        question.setText("Question "+i++);
        feedbackQuestionsPanel.add(question);
-      // feedbackQuestionsPanel.add(jradio);
-       String sql="alter table feedbacktable add question"+i+" TEXT ,add answer"+i+" TEXT";
+       feedbackQuestionsPanel.add(jradio1);
+       feedbackQuestionsPanel.add(jradio2);
+       feedbackQuestionsPanel.add(jradio3);
+       feedbackQuestionsPanel.add(jradio4);
+       feedbackQuestionsPanel.add(jradio5);
+       feedbackQuestionsPanel.add(quest);
+       String sql="insert into feedbackquestionstable (questions) values(?)";
             try {
                 pst=con.prepareStatement(sql);
-                pst.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-         String insertQuestion="insert into feedbacktable (question"+i+") values (?)";
-            try {
-                pst=con.prepareStatement(insertQuestion);
                 pst.setString(1,AddFeedbackQuestion_question_textfield.getText().trim());
-                createComponents();
-                pst.executeUpdate();
                 pst.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         
+        String sqlOption="alter table feedbacktable add answer"+i+" TEXT";
+            try {
+                pst=con.prepareStatement(sqlOption);
+                pst.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ //       }
+//         String insertQuestion="insert into feedbacktable (question"+i+") values (?)";
+//            try {
+//                pst=con.prepareStatement(insertQuestion);
+//                pst.setString(1,AddFeedbackQuestion_question_textfield.getText().trim());
+//                createComponents();
+//                pst.executeUpdate();
+//                pst.executeUpdate();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        
     }//GEN-LAST:event_AddFeedbackQuestion_add_btnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MAITFrame.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        closeAllFrames();
+        AddFeedbackQuestionFrame.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void maitlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maitlabelMouseClicked
+        maitlabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        goWebsite(maitlabel);
+    }//GEN-LAST:event_maitlabelMouseClicked
+   
     private void LessonContent_Edit_fun()
     {
         try {
@@ -7082,7 +7273,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Dictionary_Update_Btn;
     private javax.swing.JLabel Dictionary_Word_Label;
     private javax.swing.JTextField Dictionary_Word_Textfield;
-    private javax.swing.JButton EmpFeedback_Add_Btn;
     private javax.swing.JButton EmpFeedback_Home_Btn;
     private javax.swing.JLabel EmpFeedback_Label;
     private javax.swing.JRadioButton English_lang;
@@ -7256,9 +7446,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel feedbackQuestionsPanel;
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -7314,5 +7510,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel maitlabel;
     // End of variables declaration//GEN-END:variables
 }
