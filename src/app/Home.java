@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
+import static java.awt.SystemColor.window;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -422,7 +423,7 @@ public class Home extends javax.swing.JFrame {
         maitlabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        mailmait_label = new javax.swing.JLabel();
         AddFeedbackQuestionFrame = new javax.swing.JInternalFrame();
         AddFeedbackQuestion_Label = new javax.swing.JLabel();
         AddFeedbackQuestion_back_btn = new javax.swing.JButton();
@@ -3577,7 +3578,12 @@ public class Home extends javax.swing.JFrame {
 
         jLabel5.setText("or mail us at ");
 
-        jLabel6.setText("info@mait.ae");
+        mailmait_label.setText("<html>\n<a href=\"mailto:info@mait.ae\">info@mait.ae</a>\n</html>");
+        mailmait_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mailmait_labelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout MAITFrameLayout = new javax.swing.GroupLayout(MAITFrame.getContentPane());
         MAITFrame.getContentPane().setLayout(MAITFrameLayout);
@@ -3598,7 +3604,7 @@ public class Home extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6))
+                                        .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3))))
                         .addGap(0, 47, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
@@ -3618,7 +3624,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
@@ -5276,6 +5282,48 @@ public class Home extends javax.swing.JFrame {
         ChangedPwd_Submit_Btn_fun();
     }//GEN-LAST:event_ChangePwd_Submit_BtnActionPerformed
 
+     private void StatusChange_Mail(String status)
+    {
+        String messageBody = null;
+        String user="";
+            String[] recipients = new String[1];
+            String[] bccRecipients = new String[]{""};
+            String subject = "New User Registered";
+            StringBuffer messageBodyBuffer = new StringBuffer();
+            String sql = "Select username,email from user where id="+ selectedUserid;
+            try {
+                pst = con.prepareStatement(sql);
+                pst.executeUpdate();
+                while(rs.next())
+                {
+                    user=rs.getString("username");
+                    recipients[0] = rs.getString("email"); //email id of user
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    messageBodyBuffer.append("Hi ").append(user);
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    if(status.equals("Y"))
+                    {
+                    messageBodyBuffer.append("Your account has been activated.You can successfully login the application now.");
+                    }
+                    if(status.equals("N"))
+                    {
+                    messageBodyBuffer.append("Your account has been deactivated.You can not log in the application now.");
+                    }
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Regards,");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Team");
+                    messageBody = messageBodyBuffer.toString();
+
+                    new MailUtil().sendMail(recipients, bccRecipients, subject, messageBody);
+            
+    }
+     
     private void NewUser_Mail()
     {
         String messageBody = null;
@@ -6535,6 +6583,7 @@ public class Home extends javax.swing.JFrame {
     private void Suggestions_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Suggestions_MAITMouseClicked
         Suggestions_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
        MAITFrame.setVisible(true);
+       MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_Suggestions_MAITMouseClicked
 
     private void Feedback_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Feedback_MAITMouseClicked
@@ -6663,12 +6712,14 @@ public class Home extends javax.swing.JFrame {
 
     private void LessonContent_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LessonContent_MAITMouseClicked
         LessonContent_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(LessonContent_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400, 200);
     }//GEN-LAST:event_LessonContent_MAITMouseClicked
 
     private void Home_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_MAITMouseClicked
         Home_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        goWebsite(Home_MAIT);
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400, 200);
     }//GEN-LAST:event_Home_MAITMouseClicked
 
     private void Home_Settings_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Settings_BtnKeyReleased
@@ -7002,6 +7053,11 @@ public class Home extends javax.swing.JFrame {
         maitlabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         goWebsite(maitlabel);
     }//GEN-LAST:event_maitlabelMouseClicked
+
+    private void mailmait_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mailmait_labelMouseClicked
+        mailmait_label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        goMail(mailmait_label);
+    }//GEN-LAST:event_mailmait_labelMouseClicked
    
     private void LessonContent_Edit_fun()
     {
@@ -7030,6 +7086,21 @@ public class Home extends javax.swing.JFrame {
         });
     }
     
+    private void goMail(JLabel mailto) {
+        mailto.addMouseListener(new MouseAdapter() {
+           // @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    //It looks like there's a problem
+                    Desktop.getDesktop().mail(new URI("mailto:info@mait.ae?subject=Hello"));
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
     private void User_Status_Btn_fun() {
         rowcount = User_Table.getSelectedRowCount();
         if (rowcount == 1) {
@@ -7047,6 +7118,7 @@ public class Home extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
+            StatusChange_Mail(UpdateStatus);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a single user to update status", "Alert", JOptionPane.ERROR_MESSAGE);
         }
@@ -7454,7 +7526,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -7511,6 +7582,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel mailmait_label;
     private javax.swing.JLabel maitlabel;
     // End of variables declaration//GEN-END:variables
 }

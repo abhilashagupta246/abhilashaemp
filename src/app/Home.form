@@ -4683,7 +4683,7 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mailmait_label" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -4712,7 +4712,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="maitlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mailmait_label" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="60" max="32767" attributes="0"/>
                   </Group>
@@ -4754,10 +4754,13 @@
                 <Property name="text" type="java.lang.String" value="or mail us at "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="mailmait_label">
               <Properties>
-                <Property name="text" type="java.lang.String" value="info@mait.ae"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;a href=&quot;mailto:info@mait.ae&quot;&gt;info@mait.ae&lt;/a&gt;&#xa;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mailmait_labelMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
