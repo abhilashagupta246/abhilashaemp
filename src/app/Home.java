@@ -425,6 +425,7 @@ public class Home extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         mailmait_label = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         AddFeedbackQuestionFrame = new javax.swing.JInternalFrame();
         AddFeedbackQuestion_Label = new javax.swing.JLabel();
         AddFeedbackQuestion_back_btn = new javax.swing.JButton();
@@ -3575,7 +3576,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel3.setText("If you need any information please visit our website");
 
-        maitlabel.setText("<html>\n<a href=\"www.google.com\">www.google.com</a>\n</html>");
+        maitlabel.setText("<html>\n<a href=\"www.mait.ae\">www.mait.ae</a>\n</html>");
         maitlabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 maitlabelMouseClicked(evt);
@@ -3598,38 +3599,47 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
+
         javax.swing.GroupLayout MAITFrameLayout = new javax.swing.GroupLayout(MAITFrame.getContentPane());
         MAITFrame.getContentPane().setLayout(MAITFrameLayout);
         MAITFrameLayout.setHorizontalGroup(
             MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MAITFrameLayout.createSequentialGroup()
                 .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(MAITFrameLayout.createSequentialGroup()
                         .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(MAITFrameLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(MAITFrameLayout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(MAITFrameLayout.createSequentialGroup()
-                                        .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel3))))
-                        .addGap(0, 47, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                                .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(MAITFrameLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel3))
+                            .addGroup(MAITFrameLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 69, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         MAITFrameLayout.setVerticalGroup(
             MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MAITFrameLayout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(85, 85, 85)
+                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MAITFrameLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(85, 85, 85))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -3638,11 +3648,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         desktopPane.add(MAITFrame);
-        MAITFrame.setBounds(0, 0, 368, 282);
+        MAITFrame.setBounds(0, 0, 368, 286);
 
         AddFeedbackQuestionFrame.setVisible(true);
 
@@ -6709,12 +6719,15 @@ public class Home extends javax.swing.JFrame {
     private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
          closeAllFrames();
        AddUserFrame.setVisible(true);
+       AddUserFrame.setLocation(300,100);
        AddUserFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
 
     private void adusr_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adusr_MAITMouseClicked
        adusr_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-         goWebsite(adusr_MAIT);
+       //goWebsite(adusr_MAIT);
+       MAITFrame.setVisible(true);
+       MAITFrame.setLocation(400,200);
     }//GEN-LAST:event_adusr_MAITMouseClicked
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -7142,7 +7155,7 @@ public class Home extends javax.swing.JFrame {
            // @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Desktop.getDesktop().browse(new URI("http://www.google.com/webhp?nomo=1&hl=fr"));
+                    Desktop.getDesktop().browse(new URI("http://www.mait.ae/webhp?nomo=1&hl=fr"));
                 } catch (URISyntaxException | IOException ex) {
                     //It looks like there's a problem
                 }
@@ -7591,6 +7604,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
