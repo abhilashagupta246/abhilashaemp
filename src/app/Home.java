@@ -131,6 +131,7 @@ public class Home extends javax.swing.JFrame {
         UserLoginFrame.setLocation(350, 200);
         UserLoginFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         UserLoginFrame.setVisible(true);
+        //UserLoginFrame.getContentPane().setBackground(new Color(44,34,32));
         }
     }
 
@@ -242,12 +243,12 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Password_Label = new javax.swing.JLabel();
         UserLogin_Login_Btn = new javax.swing.JButton();
         UserLogin_Name_Textfield = new javax.swing.JTextField();
-        UserLogin_ForgetPwd_Btn = new javax.swing.JButton();
         UserLogin_Password_Textfield = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         English_lang = new javax.swing.JRadioButton();
         Arabic_lang = new javax.swing.JRadioButton();
         Login_MAIT = new javax.swing.JLabel();
+        ForgetPasswordLabel = new javax.swing.JLabel();
         ChangePasswordFrame = new javax.swing.JInternalFrame();
         ChangePwd_Label = new javax.swing.JLabel();
         ChangePwd_NewPwd_Label = new javax.swing.JLabel();
@@ -521,7 +522,7 @@ public class Home extends javax.swing.JFrame {
 
         Ls_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Ls_Back_Btn.setText("Back");
-        Ls_Back_Btn.setPreferredSize(new java.awt.Dimension(70, 30));
+        Ls_Back_Btn.setPreferredSize(new java.awt.Dimension(90, 30));
         Ls_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ls_Back_BtnActionPerformed(evt);
@@ -635,7 +636,7 @@ public class Home extends javax.swing.JFrame {
 
         AddLs_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddLs_Back_Btn.setText("Back");
-        AddLs_Back_Btn.setPreferredSize(new java.awt.Dimension(80, 30));
+        AddLs_Back_Btn.setPreferredSize(new java.awt.Dimension(90, 30));
         AddLs_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddLs_Back_BtnActionPerformed(evt);
@@ -1013,23 +1014,25 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 68, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SubjectFrameLayout.createSequentialGroup()
-                        .addGap(0, 68, Short.MAX_VALUE)
-                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(SubjectFrameLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                                .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(SubjectFrameLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SubjectFrameLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(active)
-                                .addGap(66, 66, 66)
-                                .addComponent(inactive)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(31, 31, 31)))
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inactive)
+                            .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(113, 113, 113))
         );
         SubjectFrameLayout.setVerticalGroup(
@@ -1046,12 +1049,12 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(active)
                     .addComponent(inactive)
                     .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(Sub_MAIT)
                 .addContainerGap())
         );
@@ -1086,11 +1089,12 @@ public class Home extends javax.swing.JFrame {
         });
 
         AddSub_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        AddSub_Label.setText("ADD SUBJECT");
+        AddSub_Label.setText("ADD SUBJECTS");
+        AddSub_Label.setPreferredSize(new java.awt.Dimension(180, 28));
 
         AddSub_Back_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddSub_Back_Btn.setText("Back");
-        AddSub_Back_Btn.setPreferredSize(new java.awt.Dimension(60, 30));
+        AddSub_Back_Btn.setPreferredSize(new java.awt.Dimension(90, 30));
         AddSub_Back_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddSub_Back_BtnActionPerformed(evt);
@@ -1119,7 +1123,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(AddSub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(AddSub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1136,7 +1140,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddSub_Label)
+                    .addComponent(AddSub_Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AddSubjectFrameLayout.createSequentialGroup()
                         .addComponent(AddSub_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
@@ -1280,44 +1284,45 @@ public class Home extends javax.swing.JFrame {
         UserManagementFrame.getContentPane().setLayout(UserManagementFrameLayout);
         UserManagementFrameLayout.setHorizontalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(UsMng_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150)
+                .addComponent(UsMng_label, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 208, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(UserMg_MAIT)
-                .addContainerGap())
+                .addComponent(Usmng_active_btn)
+                .addGap(52, 52, 52)
+                .addComponent(Usmng_inactive_btn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(UsMng_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
-                        .addComponent(UsMng_label, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(67, 67, 67)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Usmng_active_btn)
-                        .addGap(89, 89, 89)
-                        .addComponent(Usmng_inactive_btn)
-                        .addGap(145, 145, 145)
-                        .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(0, 32, Short.MAX_VALUE)
-                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                                .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(111, 111, 111)
-                                .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(99, 99, 99)
-                                .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(UserManagementFrameLayout.createSequentialGroup()
                                 .addComponent(UsMng_Name_Label)
-                                .addGap(37, 37, 37)
+                                .addGap(44, 44, 44)
                                 .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(111, 111, 111)
+                                .addGap(83, 83, 83)
                                 .addComponent(UsMng_Email_Label)
-                                .addGap(37, 37, 37)
-                                .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 107, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(UsMng_Email_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 62, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
+                        .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(UserManagementFrameLayout.createSequentialGroup()
+                                .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(UserMg_MAIT)))))
+                .addContainerGap())
         );
         UserManagementFrameLayout.setVerticalGroup(
             UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1332,26 +1337,25 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(UsMng_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsMng_Name_Label)
                     .addComponent(UsMng_Email_Label))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Usmng_active_btn)
+                    .addComponent(Usmng_inactive_btn)
+                    .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(46, 46, 46)
+                        .addComponent(UserMg_MAIT))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserManagementFrameLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Usmng_active_btn)
-                            .addComponent(Usmng_inactive_btn))
-                        .addGap(49, 49, 49)
-                        .addComponent(UserMg_MAIT)
-                        .addContainerGap())
-                    .addGroup(UserManagementFrameLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22))))
+                            .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)))
+                .addContainerGap())
         );
 
         desktopPane.add(UserManagementFrame);
@@ -1589,20 +1593,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        UserLogin_ForgetPwd_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        UserLogin_ForgetPwd_Btn.setText("Forget Password");
-        UserLogin_ForgetPwd_Btn.setPreferredSize(new java.awt.Dimension(127, 30));
-        UserLogin_ForgetPwd_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserLogin_ForgetPwd_BtnActionPerformed(evt);
-            }
-        });
-        UserLogin_ForgetPwd_Btn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                UserLogin_ForgetPwd_BtnKeyReleased(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Select Language");
 
@@ -1639,6 +1629,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        ForgetPasswordLabel.setText("<html>\n<a href=\"Forget Password\">Forget Password</a>\n</html>");
+        ForgetPasswordLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ForgetPasswordLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout UserLoginFrameLayout = new javax.swing.GroupLayout(UserLoginFrame.getContentPane());
         UserLoginFrame.getContentPane().setLayout(UserLoginFrameLayout);
         UserLoginFrameLayout.setHorizontalGroup(
@@ -1660,20 +1657,18 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(Arabic_lang)))
                         .addContainerGap())))
             .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                        .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(UserLogin_ForgetPwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                        .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(UserLogin_Name_Label)
-                            .addComponent(UserLogin_Password_Label))
-                        .addGap(125, 125, 125)
-                        .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(UserLogin_Name_Textfield)
-                            .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(91, 91, 91)
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(UserLogin_Name_Label)
+                        .addComponent(UserLogin_Password_Label)))
+                .addGap(77, 77, 77)
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(UserLogin_Name_Textfield)
+                        .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ForgetPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         UserLoginFrameLayout.setVerticalGroup(
@@ -1687,27 +1682,27 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(English_lang)
                     .addComponent(Arabic_lang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
-                        .addComponent(UserLogin_Name_Label)
-                        .addGap(30, 30, 30)
-                        .addComponent(UserLogin_Password_Label)
-                        .addGap(50, 50, 50)
-                        .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UserLogin_ForgetPwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
-                        .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
+                        .addComponent(UserLogin_Password_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(UserLoginFrameLayout.createSequentialGroup()
+                        .addComponent(UserLogin_Name_Label)
+                        .addGap(30, 30, 30)
+                        .addComponent(UserLogin_Password_Label)))
+                .addGap(39, 39, 39)
+                .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ForgetPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(Login_MAIT)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         desktopPane.add(UserLoginFrame);
-        UserLoginFrame.setBounds(0, 0, 572, 348);
+        UserLoginFrame.setBounds(0, 0, 572, 356);
 
         ChangePasswordFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         ChangePasswordFrame.setPreferredSize(new java.awt.Dimension(500, 300));
@@ -1778,23 +1773,26 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(ChangePwd_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
-                .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ChangePwd_NewPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
-                            .addGap(99, 99, 99)
+                .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
+                        .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ChangePwd_NewPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ChangePwd_NewPwd_Label)
-                                .addComponent(ChangePwd_ConfPwd_Label)))
-                        .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
-                            .addGap(279, 279, 279)
-                            .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ChangePwd_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ChangePwd_ConfPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(70, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangePasswordFrameLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Chg_Pwd_MAIT))
+                                .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
+                                    .addGap(99, 99, 99)
+                                    .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ChangePwd_NewPwd_Label)
+                                        .addComponent(ChangePwd_ConfPwd_Label)))
+                                .addGroup(ChangePasswordFrameLayout.createSequentialGroup()
+                                    .addGap(279, 279, 279)
+                                    .addGroup(ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ChangePwd_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ChangePwd_ConfPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 60, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ChangePasswordFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Chg_Pwd_MAIT)))
+                .addContainerGap())
         );
         ChangePasswordFrameLayout.setVerticalGroup(
             ChangePasswordFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1813,7 +1811,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(ChangePwd_ConfPwd_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(ChangePwd_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Chg_Pwd_MAIT)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1903,13 +1901,12 @@ public class Home extends javax.swing.JFrame {
         StudentManagementFrame.setBounds(0, 0, 683, 378);
 
         HomeFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
-        HomeFrame.setPreferredSize(new java.awt.Dimension(650, 600));
+        HomeFrame.setPreferredSize(new java.awt.Dimension(650, 500));
         HomeFrame.setVisible(true);
 
         Home_Subject_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_Subject_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Subjects.jpg"))); // NOI18N
         Home_Subject_Btn.setText("SUBJECTS");
-        Home_Subject_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_Subject_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_Subject_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_Subject_BtnMouseClicked(evt);
@@ -1927,9 +1924,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_UsrMngt_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_UsrMngt_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserManagement.jpg"))); // NOI18N
         Home_UsrMngt_Btn.setText("USER MANAGEMENT");
-        Home_UsrMngt_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_UsrMngt_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_UsrMngt_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_UsrMngt_BtnMouseClicked(evt);
@@ -1947,9 +1943,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_ChangePwd_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_ChangePwd_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Changepassword.jpg"))); // NOI18N
         Home_ChangePwd_Btn.setText("CHANGE PASSWORD");
-        Home_ChangePwd_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_ChangePwd_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_ChangePwd_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_ChangePwd_BtnMouseClicked(evt);
@@ -1967,9 +1962,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_Logout_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_Logout_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.jpg"))); // NOI18N
         Home_Logout_Btn.setText("LOGOUT");
-        Home_Logout_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_Logout_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_Logout_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_Logout_BtnMouseClicked(evt);
@@ -1991,9 +1985,8 @@ public class Home extends javax.swing.JFrame {
         Home_label.setPreferredSize(new java.awt.Dimension(35, 30));
 
         Home_ViewSugg_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_ViewSugg_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suggestions.jpg"))); // NOI18N
         Home_ViewSugg_Btn.setText("VIEW SUGGESTIONS");
-        Home_ViewSugg_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_ViewSugg_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_ViewSugg_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_ViewSugg_BtnMouseClicked(evt);
@@ -2011,9 +2004,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_EmployeeFeedback_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_EmployeeFeedback_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/feedback.jpg"))); // NOI18N
-        Home_EmployeeFeedback_Btn.setText("EMPLOYEE FEEDBACK");
-        Home_EmployeeFeedback_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_EmployeeFeedback_Btn.setText("STUDENTS FEEDBACK");
+        Home_EmployeeFeedback_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_EmployeeFeedback_Btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_EmployeeFeedback_BtnMouseClicked(evt);
@@ -2031,9 +2023,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_Results_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_Results_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/results.jpg"))); // NOI18N
         Home_Results_Btn.setText("RESULTS");
-        Home_Results_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_Results_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_Results_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Home_Results_BtnActionPerformed(evt);
@@ -2046,9 +2037,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_Dictionary_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_Dictionary_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dictionary.jpg"))); // NOI18N
         Home_Dictionary_Btn.setText("DICTIONARY");
-        Home_Dictionary_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_Dictionary_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_Dictionary_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Home_Dictionary_BtnActionPerformed(evt);
@@ -2061,9 +2051,8 @@ public class Home extends javax.swing.JFrame {
         });
 
         Home_Settings_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Home_Settings_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.jpg"))); // NOI18N
         Home_Settings_Btn.setText("SETTINGS");
-        Home_Settings_Btn.setPreferredSize(new java.awt.Dimension(120, 75));
+        Home_Settings_Btn.setPreferredSize(new java.awt.Dimension(170, 35));
         Home_Settings_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Home_Settings_BtnActionPerformed(evt);
@@ -2089,12 +2078,12 @@ public class Home extends javax.swing.JFrame {
             HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeFrameLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
-                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2102,13 +2091,13 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Home_Results_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(100, 100, 100))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(228, Short.MAX_VALUE)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
-                        .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(182, 182, 182)
+                        .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154)
                         .addComponent(Home_MAIT)
-                        .addGap(27, 27, 27))
+                        .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeFrameLayout.createSequentialGroup()
                         .addComponent(Home_label, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(255, 255, 255))))
@@ -2119,31 +2108,30 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Home_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home_Results_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Home_Settings_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Home_MAIT)
-                    .addGroup(HomeFrameLayout.createSequentialGroup()
-                        .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Home_Subject_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Home_UsrMngt_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Home_Results_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Home_ChangePwd_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Home_ViewSugg_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Home_Dictionary_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(HomeFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Home_EmployeeFeedback_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Home_Settings_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(Home_Logout_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         desktopPane.add(HomeFrame);
-        HomeFrame.setBounds(0, 0, 650, 600);
+        HomeFrame.setBounds(0, 0, 650, 500);
 
         ViewSuggestionsFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         ViewSuggestionsFrame.setVisible(true);
@@ -2225,25 +2213,28 @@ public class Home extends javax.swing.JFrame {
             .addGroup(ViewSuggestionsFrameLayout.createSequentialGroup()
                 .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewSuggestionsFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ViewSug_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(121, 121, 121)
-                        .addComponent(ViewSug_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ViewSuggestionsFrameLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewSuggestionsFrameLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ViewSug_Suggestion_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ViewSug_Subject_Label))
-                .addGap(51, 51, 51)
-                .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                    .addComponent(ViewSug_Subject_Textfield))
-                .addGap(81, 81, 81)
-                .addComponent(Suggestions_MAIT))
+                        .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ViewSuggestionsFrameLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(ViewSug_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(121, 121, 121)
+                                .addComponent(ViewSug_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ViewSuggestionsFrameLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 19, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewSuggestionsFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ViewSug_Suggestion_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ViewSug_Subject_Label))
+                        .addGap(51, 51, 51)
+                        .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                            .addComponent(ViewSug_Subject_Textfield))
+                        .addGap(71, 71, 71)
+                        .addComponent(Suggestions_MAIT)))
+                .addContainerGap())
         );
         ViewSuggestionsFrameLayout.setVerticalGroup(
             ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2260,7 +2251,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ViewSug_Subject_Label)
                             .addComponent(ViewSug_Subject_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(ViewSuggestionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViewSuggestionsFrameLayout.createSequentialGroup()
                                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2275,7 +2266,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(ViewSuggestionsFrame);
-        ViewSuggestionsFrame.setBounds(0, 0, 613, 573);
+        ViewSuggestionsFrame.setBounds(0, 0, 613, 577);
 
         FeedbackFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         FeedbackFrame.setPreferredSize(new java.awt.Dimension(1200, 700));
@@ -2304,7 +2295,7 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane12.setViewportView(feedbackTable);
 
-        jScrollPane13.setPreferredSize(new java.awt.Dimension(900, 600));
+        jScrollPane13.setPreferredSize(new java.awt.Dimension(900, 700));
 
         feedbackQuestionsPanel.setPreferredSize(new java.awt.Dimension(1000, 700));
 
@@ -2383,7 +2374,7 @@ public class Home extends javax.swing.JFrame {
 
         buttonGroup2.add(jRadioButton4);
         jRadioButton4.setText("Below Average");
-        jRadioButton4.setPreferredSize(new java.awt.Dimension(100, 23));
+        jRadioButton4.setPreferredSize(new java.awt.Dimension(110, 23));
 
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setText("Poor");
@@ -2403,7 +2394,7 @@ public class Home extends javax.swing.JFrame {
 
         buttonGroup3.add(jRadioButton9);
         jRadioButton9.setText("Below Average");
-        jRadioButton9.setPreferredSize(new java.awt.Dimension(100, 23));
+        jRadioButton9.setPreferredSize(new java.awt.Dimension(110, 23));
 
         buttonGroup3.add(jRadioButton10);
         jRadioButton10.setText("Poor");
@@ -2534,7 +2525,7 @@ public class Home extends javax.swing.JFrame {
                                         .addComponent(Question2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(Question1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
-                                    .addGap(74, 74, 74)
+                                    .addGap(64, 64, 64)
                                     .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(1, 1, 1))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, feedbackQuestionsPanelLayout.createSequentialGroup()
@@ -2705,20 +2696,17 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton32))))
-                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton37)
-                            .addComponent(jRadioButton38)
-                            .addComponent(jRadioButton39)
-                            .addComponent(jRadioButton40)))
-                    .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Question8_Label)
-                            .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Question8_Label)
+                    .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton37)
+                    .addComponent(jRadioButton38)
+                    .addComponent(jRadioButton39)
+                    .addComponent(jRadioButton40))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
@@ -2789,7 +2777,7 @@ public class Home extends javax.swing.JFrame {
         FeedbackFrame.setBounds(0, 0, 1200, 700);
 
         ResultFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
-        ResultFrame.setPreferredSize(new java.awt.Dimension(1000, 400));
+        ResultFrame.setPreferredSize(new java.awt.Dimension(1000, 425));
         ResultFrame.setVisible(true);
 
         Result_Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -2876,19 +2864,12 @@ public class Home extends javax.swing.JFrame {
             ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ResultFrameLayout.createSequentialGroup()
                 .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ResultFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Results_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(297, 297, 297)
-                        .addComponent(Results_label)
-                        .addGap(0, 490, Short.MAX_VALUE))
                     .addComponent(jScrollPane14)
                     .addGroup(ResultFrameLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
                         .addComponent(Results_StudentName_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addGap(28, 28, 28)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
+                        .addGap(128, 128, 128)
                         .addComponent(Results_Subject_Lbl)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2896,9 +2877,17 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
                         .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ResultFrameLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Results_MAIT)))
+                    .addGroup(ResultFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ResultFrameLayout.createSequentialGroup()
+                                .addComponent(Results_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(297, 297, 297)
+                                .addComponent(Results_label)
+                                .addGap(0, 490, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ResultFrameLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Results_MAIT)))))
                 .addContainerGap())
         );
         ResultFrameLayout.setVerticalGroup(
@@ -2915,14 +2904,14 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addGap(17, 17, 17)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Results_MAIT))
         );
 
         desktopPane.add(ResultFrame);
-        ResultFrame.setBounds(0, 0, 1000, 400);
+        ResultFrame.setBounds(0, 0, 1000, 425);
 
         AddLessonPictureFrame.setVisible(true);
 
@@ -3023,7 +3012,7 @@ public class Home extends javax.swing.JFrame {
         AddLessonPictureFrame.setBounds(0, 0, 636, 635);
 
         DictionaryFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
-        DictionaryFrame.setPreferredSize(new java.awt.Dimension(780, 470));
+        DictionaryFrame.setPreferredSize(new java.awt.Dimension(780, 525));
         DictionaryFrame.setVisible(true);
 
         Dictionary_Word_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -3207,7 +3196,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(DictionaryFrame);
-        DictionaryFrame.setBounds(0, 0, 780, 470);
+        DictionaryFrame.setBounds(0, 0, 780, 525);
 
         SettingsFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         SettingsFrame.setPreferredSize(new java.awt.Dimension(550, 525));
@@ -3555,14 +3544,14 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(LessonContent_Back_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(LessonContentFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LessonContent_Edit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LessonContent_Questions_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LessonContentFrameLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(LessonContent_MAIT)))
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         desktopPane.add(LessonContentFrame);
@@ -3648,11 +3637,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         desktopPane.add(MAITFrame);
-        MAITFrame.setBounds(0, 0, 368, 286);
+        MAITFrame.setBounds(0, 0, 368, 298);
 
         AddFeedbackQuestionFrame.setVisible(true);
 
@@ -3762,7 +3751,7 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Name_Label.setText("اسم المستخدم");
         UserLogin_Password_Label.setText("كلمه السر");
         UserLogin_Login_Btn.setText("الدخول");
-        UserLogin_ForgetPwd_Btn.setText("نسيت كلمة");
+        //UserLogin_ForgetPwd_Btn.setText("نسيت كلمة");
         //Home screen
         Home_label.setText("منزل");
         Home_UsrMngt_Btn.setText("إدارةالمستخدم");
@@ -3794,8 +3783,8 @@ public class Home extends javax.swing.JFrame {
         adusr_confPassword_label.setText("تأكيد الرقم السري");
         adusr_add_btn.setText("إضافة");
         //Subject Screen
-        Sub_Label.setText("الموضوع");
-        Sub_Home_Btn.setText("الرئيسية");
+        Sub_Label.setText("منزل");
+        Sub_Home_Btn.setText("منزل");
         active.setText("نشط");
         inactive.setText("غير نشط");
         Sub_Status_Btn.setText("حالة التحديث");
@@ -3843,25 +3832,25 @@ public class Home extends javax.swing.JFrame {
         Qst_Delete_Btn.setText("حذف");
         //Change Password screen
         ChangePwd_Label.setText("تغيير كلمة السر");
-        ChangePwd_Home_Btn.setText("الرئيسية");
+        ChangePwd_Home_Btn.setText("منزل");
         ChangePwd_NewPwd_Label.setText("كلمة السر الجديدة");
         ChangePwd_ConfPwd_Label.setText("تاكيد الرقم السري");
         ChangePwd_Submit_Btn.setText("تقديم");
         //Results screen
         Results_label.setText("النتائج");
-        Results_Home_Btn.setText("الرئيسية");
+        Results_Home_Btn.setText("منزل");
         Results_StudentName_Lbl.setText("أسم الطالب");
         Results_Subject_Lbl.setText("مواضيع");
         Results_Search_Btn.setText("بحث");
         Results_Report_Btn.setText("");
         //Suggestions screen
         ViewSug_Label.setText("ملاحظاتكم تهمنا");
-        ViewSug_Home_Btn.setText("الرئيسية");
+        ViewSug_Home_Btn.setText("منزل");
         ViewSug_Subject_Label.setText("الموضوع");
         ViewSug_Suggestion_Label.setText("ملاحظاتكم تهمنا");
         //Dictionary screen
         Dictionary_Label.setText("المصطلحات");
-        Dictionary_Home_Btn.setText("الرئيسية");
+        Dictionary_Home_Btn.setText("منزل");
         Dictionary_Word_Label.setText("كلمة");
         Dictionary_Meaning_Label.setText("معنى");
         Dictionary_Add_Btn.setText("إضافة");
@@ -3869,7 +3858,7 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Delete_Btn.setText("حذف");
         //Feedback screen
         EmpFeedback_Label.setText("آراء الموظفين");
-        EmpFeedback_Home_Btn.setText("الرئيسية");
+        EmpFeedback_Home_Btn.setText("منزل");
         Question1_Label.setText("1 سؤال");
         Question2_Label.setText("2 سؤال");
         Question3_Label.setText("3 سؤال");
@@ -3936,7 +3925,7 @@ public class Home extends javax.swing.JFrame {
         jRadioButton40.setText("سؤال");
         //Settings screen
         Settings_Label.setText("إعدادات");
-        Settings_Home_Btn.setText("الرئيسية");
+        Settings_Home_Btn.setText("منزل");
         Settings_ServerName.setText("اسم الخادم");
         Settings_ServerAddress.setText("عنوان المستقبل");
         Settings_DatabaseName.setText("اسم قاعدة البيانات");
@@ -3950,8 +3939,18 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Label.setText("LOGIN");
         UserLogin_Name_Label.setText("USER NAME");
         UserLogin_Password_Label.setText("PASSWORD");
+//        try 
+//        {
+//            Image imgLogin = ImageIO.read(getClass().getResource("/images/new.png"));
+//            //Image imgForget = ImageIO.read(getClass().getResource("/images/"));
+//            UserLogin_Login_Btn.setIcon(new ImageIcon(imgLogin));
+//            // UserLogin_Login_Btn.setText("Login");
+//           // UserLogin_ForgetPwd_Btn.setIcon(new ImageIcon(imgForget));
+//            //UserLogin_ForgetPwd_Btn.setText("Forget Password");
+//        } 
+//        catch (IOException ex) {}
         UserLogin_Login_Btn.setText("Login");
-        UserLogin_ForgetPwd_Btn.setText("Forget Password");
+        //UserLogin_ForgetPwd_Btn.setText("Forget Password");
         //Home screen
         Home_label.setText("HOME");
         Home_UsrMngt_Btn.setText("USER MANAGEMENT");
@@ -4155,7 +4154,7 @@ public class Home extends javax.swing.JFrame {
 //             int i=feedbackQuestionsList.size();
 //             int length=0;
 //             length=i-8;
-            pst = con.prepareStatement("select employee_id as ID,employee_name as 'Employee Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
+            pst = con.prepareStatement("select employee_id as ID,employee_name as 'Student Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
             createComponents();
             rs = pst.executeQuery();
             feedbackTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -5422,11 +5421,6 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void UserLogin_ForgetPwd_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnActionPerformed
-
-        UserLogin_ForgetPwd();
-    }//GEN-LAST:event_UserLogin_ForgetPwd_BtnActionPerformed
-
     private void Qst_Delete_Btn_fun() {
         int row = Qst_Table.getSelectedRow();
         rowcount = Qst_Table.getSelectedRowCount();
@@ -5536,16 +5530,9 @@ public class Home extends javax.swing.JFrame {
             UserLogin_fun();
         } else {
             //UserLoginFrame.requestFocus();
-            UserLogin_ForgetPwd_Btn.requestFocus();
+            //UserLogin_ForgetPwd_Btn.requestFocus();
         }
     }//GEN-LAST:event_UserLogin_Login_BtnKeyReleased
-
-    private void UserLogin_ForgetPwd_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogin_ForgetPwd_BtnKeyReleased
-
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            UserLogin_ForgetPwd();
-        }
-    }//GEN-LAST:event_UserLogin_ForgetPwd_BtnKeyReleased
 
     private void Sub_Add_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Add_BtnKeyReleased
 
@@ -7135,6 +7122,11 @@ public class Home extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void ForgetPasswordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ForgetPasswordLabelMouseClicked
+        ForgetPasswordLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        UserLogin_ForgetPwd();
+    }//GEN-LAST:event_ForgetPasswordLabelMouseClicked
    
     private void LessonContent_Edit_fun()
     {
@@ -7428,6 +7420,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JRadioButton English_lang;
     private javax.swing.JInternalFrame FeedbackFrame;
     private javax.swing.JLabel Feedback_MAIT;
+    private javax.swing.JLabel ForgetPasswordLabel;
     private javax.swing.JInternalFrame HomeFrame;
     private javax.swing.JButton Home_ChangePwd_Btn;
     private javax.swing.JButton Home_Dictionary_Btn;
@@ -7548,7 +7541,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton UsMng_Update_Btn;
     private javax.swing.JLabel UsMng_label;
     private javax.swing.JInternalFrame UserLoginFrame;
-    private javax.swing.JButton UserLogin_ForgetPwd_Btn;
     private javax.swing.JLabel UserLogin_Label;
     private javax.swing.JButton UserLogin_Login_Btn;
     private javax.swing.JLabel UserLogin_Name_Label;
