@@ -131,6 +131,7 @@ public class Home extends javax.swing.JFrame {
         UserLoginFrame.setLocation(350, 200);
         UserLoginFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         UserLoginFrame.setVisible(true);
+        
         //UserLoginFrame.getContentPane().setBackground(new Color(44,34,32));
         }
     }
@@ -1587,7 +1588,7 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Login_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         UserLogin_Login_Btn.setText("Login");
         UserLogin_Login_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        UserLogin_Login_Btn.setPreferredSize(new java.awt.Dimension(127, 30));
+        UserLogin_Login_Btn.setPreferredSize(new java.awt.Dimension(110, 60));
         UserLogin_Login_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserLogin_Login_BtnActionPerformed(evt);
@@ -1688,7 +1689,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(English_lang)
                     .addComponent(Arabic_lang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1698,17 +1699,17 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(UserLogin_Name_Label)
                         .addGap(30, 30, 30)
                         .addComponent(UserLogin_Password_Label)))
-                .addGap(39, 39, 39)
+                .addGap(49, 49, 49)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ForgetPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(ForgetPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserLogin_Login_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(Login_MAIT)
                 .addGap(20, 20, 20))
         );
 
         desktopPane.add(UserLoginFrame);
-        UserLoginFrame.setBounds(0, 0, 572, 360);
+        UserLoginFrame.setBounds(0, 0, 572, 352);
 
         ChangePasswordFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         ChangePasswordFrame.setPreferredSize(new java.awt.Dimension(500, 300));
@@ -3570,7 +3571,7 @@ public class Home extends javax.swing.JFrame {
         MAITFrame.setVisible(true);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("DNRD V1.0");
+        jLabel2.setText("GDFRA V1.0");
 
         jLabel3.setText("If you need any information please visit our website");
 
@@ -3597,34 +3598,30 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo.jpg"))); // NOI18N
 
         javax.swing.GroupLayout MAITFrameLayout = new javax.swing.GroupLayout(MAITFrame.getContentPane());
         MAITFrame.getContentPane().setLayout(MAITFrameLayout);
         MAITFrameLayout.setHorizontalGroup(
             MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MAITFrameLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(MAITFrameLayout.createSequentialGroup()
+                        .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(MAITFrameLayout.createSequentialGroup()
                         .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(MAITFrameLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
                                 .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(20, 20, 20)
                                 .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(MAITFrameLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel3))
-                            .addGroup(MAITFrameLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel3))
                         .addGap(0, 69, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -3633,11 +3630,12 @@ public class Home extends javax.swing.JFrame {
             .addGroup(MAITFrameLayout.createSequentialGroup()
                 .addGroup(MAITFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MAITFrameLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MAITFrameLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)))
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MAITFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addGap(36, 36, 36)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -3646,11 +3644,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(maitlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(mailmait_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         desktopPane.add(MAITFrame);
-        MAITFrame.setBounds(0, 0, 368, 302);
+        MAITFrame.setBounds(0, 0, 368, 254);
 
         AddFeedbackQuestionFrame.setVisible(true);
 
