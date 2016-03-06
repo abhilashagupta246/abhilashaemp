@@ -6,6 +6,7 @@ package app;
 
 import Decoder.BASE64Decoder;
 import Decoder.BASE64Encoder;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -13,7 +14,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
-import static java.awt.SystemColor.window;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -112,6 +112,7 @@ public class Home extends javax.swing.JFrame {
      */
 
     public Home() {
+        
         initComponents();
         readXML();
         con = mysqlconnect.ConnectDb(url,databaseusernameDecrypt,databasepasswordDecrypt);
@@ -121,13 +122,14 @@ public class Home extends javax.swing.JFrame {
         SettingsFrame.setVisible(true);
         SettingsFrame.setLocation(350, 200);
         Settings_Home_Btn.setVisible(false);
+        SettingsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
         else
         {
         buttonGroup11.clearSelection();
         English_lang.setSelected(true);
-       //UserLoginFrame.setBounds(400, 400, 600, 400);
         UserLoginFrame.setLocation(350, 200);
+        UserLoginFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         UserLoginFrame.setVisible(true);
         }
     }
@@ -348,7 +350,6 @@ public class Home extends javax.swing.JFrame {
         EmpFeedback_Home_Btn = new javax.swing.JButton();
         EmpFeedback_Label = new javax.swing.JLabel();
         Feedback_MAIT = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         ResultFrame = new javax.swing.JInternalFrame();
         jScrollPane14 = new javax.swing.JScrollPane();
         Result_Table = new javax.swing.JTable();
@@ -430,11 +431,16 @@ public class Home extends javax.swing.JFrame {
         AddFeedbackQuestion_question_label = new javax.swing.JLabel();
         AddFeedbackQuestion_question_textfield = new javax.swing.JTextField();
         AddFeedbackQuestion_add_btn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
 
+        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        LessonsFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         LessonsFrame.setPreferredSize(new java.awt.Dimension(600, 400));
         LessonsFrame.setVisible(true);
 
@@ -540,7 +546,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Ls_MAIT.setText("MAIT");
+        Ls_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Ls_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Ls_MAITMouseClicked(evt);
@@ -602,6 +608,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(LessonsFrame);
         LessonsFrame.setBounds(0, 0, 600, 400);
 
+        AddLessonFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         AddLessonFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         AddLessonFrame.setVisible(true);
 
@@ -639,7 +646,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        AddLs_MAIT.setText("MAIT");
+        AddLs_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         AddLs_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AddLs_MAITMouseClicked(evt);
@@ -683,7 +690,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(AddLs_Name_TextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addComponent(AddLs_Submit_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(AddLs_MAIT)
                 .addContainerGap())
         );
@@ -843,6 +850,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(LessonsImageFrame);
         LessonsImageFrame.setBounds(0, 0, 1000, 600);
 
+        SubjectFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         SubjectFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 800, 550));
         SubjectFrame.setPreferredSize(new java.awt.Dimension(600, 475));
         SubjectFrame.setVisible(true);
@@ -980,7 +988,7 @@ public class Home extends javax.swing.JFrame {
         buttonGroup10.add(inactive);
         inactive.setText("Inactive");
 
-        Sub_MAIT.setText("MAIT");
+        Sub_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Sub_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Sub_MAITMouseClicked(evt);
@@ -1037,7 +1045,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(active)
                     .addComponent(inactive)
                     .addComponent(Sub_Status_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(SubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Sub_Enter_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sub_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1050,6 +1058,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(SubjectFrame);
         SubjectFrame.setBounds(0, 0, 600, 475);
 
+        AddSubjectFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         AddSubjectFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         AddSubjectFrame.setVisible(true);
         AddSubjectFrame.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1092,7 +1101,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        AddSub_MAIT.setText("MAIT");
+        AddSub_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
 
         javax.swing.GroupLayout AddSubjectFrameLayout = new javax.swing.GroupLayout(AddSubjectFrame.getContentPane());
         AddSubjectFrame.getContentPane().setLayout(AddSubjectFrameLayout);
@@ -1133,7 +1142,7 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(AddSubjectFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddSub_Name_Label)
                             .addComponent(AddSub_Name_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(AddSub_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(AddSub_MAIT)
@@ -1143,6 +1152,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddSubjectFrame);
         AddSubjectFrame.setBounds(0, 0, 500, 300);
 
+        UserManagementFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         UserManagementFrame.setPreferredSize(new java.awt.Dimension(725, 525));
         UserManagementFrame.setVisible(true);
 
@@ -1234,7 +1244,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        UserMg_MAIT.setText("MAIT");
+        UserMg_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         UserMg_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UserMg_MAITMouseClicked(evt);
@@ -1257,7 +1267,7 @@ public class Home extends javax.swing.JFrame {
         Usmng_inactive_btn.setText("Inactive");
 
         Usmng_changeStatus_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Usmng_changeStatus_btn.setText("Change Status");
+        Usmng_changeStatus_btn.setText("Update Status");
         Usmng_changeStatus_btn.setPreferredSize(new java.awt.Dimension(120, 30));
         Usmng_changeStatus_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1329,24 +1339,24 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Usmng_active_btn)
                             .addComponent(Usmng_inactive_btn))
-                        .addGap(18, 18, 18)
-                        .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
+                        .addGap(49, 49, 49)
                         .addComponent(UserMg_MAIT)
                         .addContainerGap())
                     .addGroup(UserManagementFrameLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(Usmng_changeStatus_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(UserManagementFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(UsMng_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(UsMng_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UsMng_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22))))
         );
 
         desktopPane.add(UserManagementFrame);
         UserManagementFrame.setBounds(0, 0, 725, 525);
 
+        QuestionsFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         QuestionsFrame.setPreferredSize(new java.awt.Dimension(800, 600));
         QuestionsFrame.setVisible(true);
 
@@ -1464,7 +1474,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Qst_MAIT.setText("MAIT");
+        Qst_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Qst_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Qst_MAITMouseClicked(evt);
@@ -1543,7 +1553,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Qst_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Qst_Add_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Qst_Delete_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Qst_MAIT)
                 .addContainerGap())
         );
@@ -1551,6 +1561,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(QuestionsFrame);
         QuestionsFrame.setBounds(0, 0, 800, 600);
 
+        UserLoginFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         UserLoginFrame.setVisible(true);
 
         UserLogin_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -1620,7 +1631,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Login_MAIT.setText("MAIT");
+        Login_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Login_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Login_MAITMouseClicked(evt);
@@ -1675,7 +1686,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(English_lang)
                     .addComponent(Arabic_lang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(UserLoginFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UserLoginFrameLayout.createSequentialGroup()
                         .addComponent(UserLogin_Name_Label)
@@ -1695,8 +1706,9 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(UserLoginFrame);
-        UserLoginFrame.setBounds(0, 0, 572, 344);
+        UserLoginFrame.setBounds(0, 0, 572, 348);
 
+        ChangePasswordFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         ChangePasswordFrame.setPreferredSize(new java.awt.Dimension(500, 300));
         ChangePasswordFrame.setVisible(true);
 
@@ -1748,7 +1760,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Chg_Pwd_MAIT.setText("MAIT");
+        Chg_Pwd_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Chg_Pwd_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Chg_Pwd_MAITMouseClicked(evt);
@@ -1808,6 +1820,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(ChangePasswordFrame);
         ChangePasswordFrame.setBounds(0, 0, 500, 300);
 
+        StudentManagementFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         StudentManagementFrame.setVisible(true);
 
         StDetails_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -1846,7 +1859,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        StuMgnt_MAIT.setText("MAIT");
+        StuMgnt_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         StuMgnt_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StuMgnt_MAITMouseClicked(evt);
@@ -1886,8 +1899,9 @@ public class Home extends javax.swing.JFrame {
         );
 
         desktopPane.add(StudentManagementFrame);
-        StudentManagementFrame.setBounds(0, 0, 683, 368);
+        StudentManagementFrame.setBounds(0, 0, 683, 378);
 
+        HomeFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         HomeFrame.setPreferredSize(new java.awt.Dimension(650, 600));
         HomeFrame.setVisible(true);
 
@@ -2060,8 +2074,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Home_MAIT.setText("MAIT ");
-        Home_MAIT.setToolTipText("MAIT");
+        Home_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
+        Home_MAIT.setToolTipText("");
         Home_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Home_MAITMouseClicked(evt);
@@ -2130,6 +2144,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(HomeFrame);
         HomeFrame.setBounds(0, 0, 650, 600);
 
+        ViewSuggestionsFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         ViewSuggestionsFrame.setVisible(true);
 
         ViewSug_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -2195,7 +2210,7 @@ public class Home extends javax.swing.JFrame {
         ViewSug_Subject_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ViewSug_Subject_Label.setText("SUBJECT");
 
-        Suggestions_MAIT.setText("MAIT");
+        Suggestions_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Suggestions_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Suggestions_MAITMouseClicked(evt);
@@ -2261,7 +2276,8 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(ViewSuggestionsFrame);
         ViewSuggestionsFrame.setBounds(0, 0, 613, 573);
 
-        FeedbackFrame.setPreferredSize(new java.awt.Dimension(1300, 900));
+        FeedbackFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
+        FeedbackFrame.setPreferredSize(new java.awt.Dimension(1200, 700));
         FeedbackFrame.setVisible(true);
 
         feedbackTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -2286,6 +2302,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane12.setViewportView(feedbackTable);
+
+        jScrollPane13.setPreferredSize(new java.awt.Dimension(900, 600));
 
         feedbackQuestionsPanel.setPreferredSize(new java.awt.Dimension(1000, 700));
 
@@ -2696,7 +2714,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jRadioButton39)
                             .addComponent(jRadioButton40)))
                     .addGroup(feedbackQuestionsPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(43, 43, 43)
                         .addGroup(feedbackQuestionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Question8_Label)
                             .addComponent(Question8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -2720,19 +2738,12 @@ public class Home extends javax.swing.JFrame {
         });
 
         EmpFeedback_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        EmpFeedback_Label.setText("EMPLOYEE FEEDBACK");
+        EmpFeedback_Label.setText("STUDENTS FEEDBACK");
 
-        Feedback_MAIT.setText("MAIT");
+        Feedback_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Feedback_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Feedback_MAITMouseClicked(evt);
-            }
-        });
-
-        jButton2.setText("Add Feedback Question");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -2744,16 +2755,15 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addGap(277, 277, 277)
                         .addComponent(EmpFeedback_Label))
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeedbackFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
@@ -2767,19 +2777,17 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(EmpFeedback_Label))
                 .addGap(29, 29, 29)
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
                 .addContainerGap())
         );
 
         desktopPane.add(FeedbackFrame);
-        FeedbackFrame.setBounds(0, 0, 1300, 900);
+        FeedbackFrame.setBounds(0, 0, 1200, 700);
 
+        ResultFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         ResultFrame.setPreferredSize(new java.awt.Dimension(1000, 400));
         ResultFrame.setVisible(true);
 
@@ -2845,7 +2853,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Results_MAIT.setText("MAIT");
+        Results_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Results_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Results_MAITMouseClicked(evt);
@@ -2907,7 +2915,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addGap(17, 17, 17)
                 .addComponent(Results_MAIT))
         );
@@ -3013,6 +3021,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddLessonPictureFrame);
         AddLessonPictureFrame.setBounds(0, 0, 636, 635);
 
+        DictionaryFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         DictionaryFrame.setPreferredSize(new java.awt.Dimension(780, 470));
         DictionaryFrame.setVisible(true);
 
@@ -3129,7 +3138,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Dictionary_MAIT.setText("MAIT");
+        Dictionary_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Dictionary_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Dictionary_MAITMouseClicked(evt);
@@ -3199,6 +3208,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(DictionaryFrame);
         DictionaryFrame.setBounds(0, 0, 780, 470);
 
+        SettingsFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         SettingsFrame.setPreferredSize(new java.awt.Dimension(550, 525));
         SettingsFrame.setVisible(true);
 
@@ -3258,7 +3268,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Settings_MAIT.setText("MAIT");
+        Settings_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         Settings_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Settings_MAITMouseClicked(evt);
@@ -3317,7 +3327,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Settings_DatabaseName)
                     .addComponent(Settings_DatabaseName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(SettingsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Settings_DBUserName)
                     .addComponent(Settings_DBUserName_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3335,6 +3345,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(SettingsFrame);
         SettingsFrame.setBounds(0, 0, 550, 525);
 
+        AddUserFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         AddUserFrame.setVisible(true);
 
         Add_User_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -3376,7 +3387,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        adusr_MAIT.setText("MAIT");
+        adusr_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         adusr_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adusr_MAITMouseClicked(evt);
@@ -3449,6 +3460,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddUserFrame);
         AddUserFrame.setBounds(0, 0, 688, 400);
 
+        LessonContentFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         LessonContentFrame.setPreferredSize(new java.awt.Dimension(700, 450));
         LessonContentFrame.setVisible(true);
 
@@ -3501,7 +3513,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        LessonContent_MAIT.setText("MAIT");
+        LessonContent_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
         LessonContent_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LessonContent_MAITMouseClicked(evt);
@@ -3555,6 +3567,7 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(LessonContentFrame);
         LessonContentFrame.setBounds(0, 0, 700, 450);
 
+        MAITFrame.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         MAITFrame.setVisible(true);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -3668,23 +3681,35 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("MAIT");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout AddFeedbackQuestionFrameLayout = new javax.swing.GroupLayout(AddFeedbackQuestionFrame.getContentPane());
         AddFeedbackQuestionFrame.getContentPane().setLayout(AddFeedbackQuestionFrameLayout);
         AddFeedbackQuestionFrameLayout.setHorizontalGroup(
             AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddFeedbackQuestionFrameLayout.createSequentialGroup()
-                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(AddFeedbackQuestion_question_label))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4))
                     .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(AddFeedbackQuestion_back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddFeedbackQuestion_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddFeedbackQuestion_question_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddFeedbackQuestion_Label))
+                        .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(AddFeedbackQuestion_question_label))
+                            .addGroup(AddFeedbackQuestionFrameLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(AddFeedbackQuestion_back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addGroup(AddFeedbackQuestionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddFeedbackQuestion_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddFeedbackQuestion_question_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddFeedbackQuestion_Label))))
                 .addGap(31, 31, 31))
         );
         AddFeedbackQuestionFrameLayout.setVerticalGroup(
@@ -3699,7 +3724,9 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(AddFeedbackQuestion_question_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(AddFeedbackQuestion_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel4)
+                .addContainerGap())
         );
 
         desktopPane.add(AddFeedbackQuestionFrame);
@@ -3734,7 +3761,7 @@ public class Home extends javax.swing.JFrame {
         Home_Results_Btn.setText("النتيجة");
         Home_ViewSugg_Btn.setText("عرض الاقتراحات");
         Home_Dictionary_Btn.setText("المصطلحات");
-        Home_EmployeeFeedback_Btn.setText("آراء الموظفين");
+        Home_EmployeeFeedback_Btn.setText("");
         Home_Settings_Btn.setText("إعدادات");
         Home_Logout_Btn.setText("خروج");
         //User Management screen
@@ -3742,20 +3769,20 @@ public class Home extends javax.swing.JFrame {
         UsMng_Home_Btn.setText("منزل");
         UsMng_Name_Label.setText("اسم المستخدم");
         UsMng_Email_Label.setText("البريد الالكتروني");
-        Usmng_active_btn.setText("");
-        Usmng_inactive_btn.setText("");
-        Usmng_changeStatus_btn.setText("");
-        UsMng_Add_Btn.setText("");
+        Usmng_active_btn.setText("نشط");
+        Usmng_inactive_btn.setText("غير نشط");
+        Usmng_changeStatus_btn.setText("حالة التحديث");
+        UsMng_Add_Btn.setText("إضافة");
         UsMng_Delete_Btn.setText("حذف");
-        UsMng_Update_Btn.setText("");
+        UsMng_Update_Btn.setText("تحديث");
         //Add User Screen
         Add_User_Label.setText("");
-        adusr_back_btn.setText("");
-        adusr_username_label.setText("");
-        adusr_email_label.setText("");
-        adusr_password_label.setText("");
-        adusr_confPassword_label.setText("");
-        adusr_add_btn.setText("");
+        adusr_back_btn.setText("الى الخلف");
+        adusr_username_label.setText("اسم المستخدم");
+        adusr_email_label.setText("البريد الإلكتروني معرف");
+        adusr_password_label.setText("كلمه السر");
+        adusr_confPassword_label.setText("تأكيد الرقم السري");
+        adusr_add_btn.setText("إضافة");
         //Subject Screen
         Sub_Label.setText("الموضوع");
         Sub_Home_Btn.setText("الرئيسية");
@@ -3796,7 +3823,7 @@ public class Home extends javax.swing.JFrame {
 //        AddLessonPicture_Add_Btn.setText("إضافة");
          //Lesson content screen
           LessonContent_Back_Btn.setText("الى الخلف");
-          LessonContent_Edit_Btn.setText("Edit");
+          LessonContent_Edit_Btn.setText("");
           LessonContent_Questions_Btn.setText("الأسئلة");
         //Questions screen
         Qst_Label.setText("الأسئلة ");
@@ -3906,28 +3933,6 @@ public class Home extends javax.swing.JFrame {
         Settings_DBUserName.setText("اسم المستخدم قاعدة البيانات ");
         Settings_DBPassword.setText("كلمة السر قاعدة البيانات");
         Settings_Save_Btn.setText("حفظ");
-        //MAIT tag
-        adusr_MAIT.setText("MAIT");
-        Ls_MAIT.setText("MAIT");
-        AddLs_MAIT.setText("MAIT");
-        Ls_MAIT.setText("MAIT");
-        AddLs_MAIT.setText("MAIT");
-        LsImage_MAIT.setText("MAIT");
-        Sub_MAIT.setText("MAIT");
-        AddSub_MAIT.setText("MAIT");
-        UserMg_MAIT.setText("MAIT");
-        Qst_MAIT.setText("MAIT");
-        Login_MAIT.setText("MAIT");
-        Chg_Pwd_MAIT.setText("MAIT");
-        StuMgnt_MAIT.setText("MAIT");
-        Home_MAIT.setText("MAIT");
-        Suggestions_MAIT.setText("MAIT");
-        Feedback_MAIT.setText("MAIT");
-        Results_MAIT.setText("MAIT");
-        AddLsPicture_MAIT.setText("MAIT");
-        Dictionary_MAIT.setText("MAIT");
-        Settings_MAIT.setText("MAIT");
-        adusr_MAIT.setText("MAIT");
     }
 
     private void EnglishAllText() {
@@ -3945,7 +3950,7 @@ public class Home extends javax.swing.JFrame {
         Home_Results_Btn.setText("RESULTS");
         Home_ViewSugg_Btn.setText("VIEW SUGGESTIONS");
         Home_Dictionary_Btn.setText("DICTIONARY");
-        Home_EmployeeFeedback_Btn.setText("EMPLOYEE FEEDBACK");
+        Home_EmployeeFeedback_Btn.setText("STUDENTS FEEDBACK");
         Home_Settings_Btn.setText("SETTINGS");
         Home_Logout_Btn.setText("LOGOUT");
         //User Management screen
@@ -3955,7 +3960,7 @@ public class Home extends javax.swing.JFrame {
         UsMng_Email_Label.setText("EMAIL");
         Usmng_active_btn.setText("Active");
         Usmng_inactive_btn.setText("Inactive");
-        Usmng_changeStatus_btn.setText("Change Status");
+        Usmng_changeStatus_btn.setText("Update Status");
         UsMng_Add_Btn.setText("Add");
         UsMng_Delete_Btn.setText("Delete");
         UsMng_Update_Btn.setText("Edit");
@@ -4042,7 +4047,7 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Update_Btn.setText("Update");
         Dictionary_Delete_Btn.setText("Delete");
         //Feedback screen
-        EmpFeedback_Label.setText("EMPLOYEE FEEDBACK");
+        EmpFeedback_Label.setText("STUDENTS FEEDBACK");
         EmpFeedback_Home_Btn.setText("Home");
         Question1_Label.setText("Question 1");
         Question2_Label.setText("Question 2");
@@ -4117,56 +4122,35 @@ public class Home extends javax.swing.JFrame {
         Settings_DBUserName.setText("DATABASE USERNAME ");
         Settings_DBPassword.setText("DATABASE PASSWORD");
         Settings_Save_Btn.setText("Save");
-        //MAIT tag
-        adusr_MAIT.setText("MAIT");
-        Ls_MAIT.setText("MAIT");
-        AddLs_MAIT.setText("MAIT");
-        Ls_MAIT.setText("MAIT");
-        AddLs_MAIT.setText("MAIT");
-        LsImage_MAIT.setText("MAIT");
-        Sub_MAIT.setText("MAIT");
-        AddSub_MAIT.setText("MAIT");
-        UserMg_MAIT.setText("MAIT");
-        Qst_MAIT.setText("MAIT");
-        Login_MAIT.setText("MAIT");
-        Chg_Pwd_MAIT.setText("MAIT");
-        StuMgnt_MAIT.setText("MAIT");
-        Home_MAIT.setText("MAIT");
-        Suggestions_MAIT.setText("MAIT");
-        Feedback_MAIT.setText("MAIT");
-        Results_MAIT.setText("MAIT");
-        AddLsPicture_MAIT.setText("MAIT");
-        Dictionary_MAIT.setText("MAIT");
-        Settings_MAIT.setText("MAIT");
-        adusr_MAIT.setText("MAIT");
     }
-    private void Populate_FeedbackQuestions()
-    {
-        feedbackQuestionsList.clear();
-        try {
-            pst = con.prepareStatement("select * from feedbackquestionstable");
-            rs = pst.executeQuery();
-            while(rs.next())
-            {
-                feedbackQuestionsList.add(rs.getString("questions"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
+//    private void Populate_FeedbackQuestions()
+//    {
+//        feedbackQuestionsList.clear();
+//        try {
+//            pst = con.prepareStatement("select * from feedbackquestionstable");
+//            rs = pst.executeQuery();
+//            while(rs.next())
+//            {
+//                feedbackQuestionsList.add(rs.getString("questions"));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
     private void Populate_FeedbackDetails() {
         try {
-            Populate_FeedbackQuestions();
-             int i=feedbackQuestionsList.size();
-             int length=0;
-             length=i-8;
+//            Populate_FeedbackQuestions();
+//             int i=feedbackQuestionsList.size();
+//             int length=0;
+//             length=i-8;
             pst = con.prepareStatement("select employee_id as ID,employee_name as 'Employee Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
             createComponents();
             rs = pst.executeQuery();
             feedbackTable.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             feedbackTable.setModel(DbUtils.resultSetToTableModel(rs));
-            for (int a = 2; a <10+length ; a++) {
+            for (int a = 2; a <11 ; a++) {
                 feedbackTable.getColumnModel().getColumn(a).setMinWidth(0);
                 feedbackTable.getColumnModel().getColumn(a).setMaxWidth(0);
             }
@@ -4578,6 +4562,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         AddSubjectFrame.setVisible(true);
         AddSubjectFrame.setLocation(300,100);
+        AddSubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Sub_Add_BtnActionPerformed
 
     private void subject_delete_fn() {
@@ -4606,11 +4591,18 @@ public class Home extends javax.swing.JFrame {
             }
     } else if (response == JOptionPane.NO_OPTION) {
       SubjectFrame.setVisible(true);
+      SubjectFrame.setLocation(300,100);
+      SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+      
     } else if (response == JOptionPane.CLOSED_OPTION) {
       SubjectFrame.setVisible(true);
+      SubjectFrame.setLocation(300,100);
+      SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }
       
     }
+        SubjectFrame.getContentPane().setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+        SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }
     private void Sub_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_Delete_BtnActionPerformed
         subject_delete_fn();
@@ -4649,12 +4641,15 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             SubjectFrame.setVisible(true);
             SubjectFrame.setLocation(300,100);
+            SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         } else {
             JOptionPane.showMessageDialog(null, "Please enter a new Subject", "Alert", JOptionPane.ERROR_MESSAGE);
             AddSubjectFrame.setVisible(true);
             AddSubjectFrame.setLocation(300,100);
+            AddSubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             AddSub_Name_Textfield.setText("");
         }
+        
     }
 
     public void createComponents() {
@@ -4725,6 +4720,7 @@ public class Home extends javax.swing.JFrame {
                 Ls_Table.getColumnModel().getColumn(0).setMaxWidth(0);
                 closeAllFrames();
                 LessonsFrame.setVisible(true);
+                LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
                 LessonsFrame.setLocation(300, 150);
                 Populate_Lessons();
 
@@ -4768,6 +4764,7 @@ public class Home extends javax.swing.JFrame {
                 //Populate_LessonPictures();
                 LessonContentFrame.setVisible(true);
                 LessonContentFrame.setLocation(150,50);
+                LessonContentFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -4789,6 +4786,7 @@ public class Home extends javax.swing.JFrame {
         }
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         LessonsFrame.setLocation(300, 150);
         Populate_Lessons();
 
@@ -4831,8 +4829,12 @@ public class Home extends javax.swing.JFrame {
         }
         else if (response == JOptionPane.NO_OPTION) {
       LessonsFrame.setVisible(true);
+      LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     } else if (response == JOptionPane.CLOSED_OPTION) {
       LessonsFrame.setVisible(true);
+      LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }
         }
     }
@@ -4845,6 +4847,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         AddLessonFrame.setVisible(true);
         AddLessonFrame.setLocation(300, 200);
+        AddLessonFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Ls_Add_BtnActionPerformed
 
     private void AddLs_Submit_Btn_fun() {
@@ -4863,6 +4866,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             LessonsFrame.setLocation(300, 150);
+            LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             AddLs_Name_TextArea.setText("");
 
         } else {
@@ -4905,8 +4909,12 @@ public class Home extends javax.swing.JFrame {
             Populate_Users();
     } else if (response == JOptionPane.NO_OPTION) {
       UserManagementFrame.setVisible(true);
+      UserManagementFrame.setLocation(300,100);
+      UserManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     } else if (response == JOptionPane.CLOSED_OPTION) {
       UserManagementFrame.setVisible(true);
+      UserManagementFrame.setLocation(300,100);
+      UserManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }
     }
@@ -4986,14 +4994,14 @@ public class Home extends javax.swing.JFrame {
                     adusr_email_textfield.setText("");
                     adusr_password_textfield.setText("");
                     adusr_confpassword_textfield.setText("");
-                    NewUser_Mail();
+                    NewUserAdmin_Mail();
                     //updateUsersIndex();
                 } catch (SQLException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Please enter new user information", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter user information correctly", "Alert", JOptionPane.ERROR_MESSAGE);
             AddUserFrame.requestFocus();
                     adusr_username_textfield.setText("");
                     adusr_email_textfield.setText("");
@@ -5049,6 +5057,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         QuestionsFrame.setVisible(true);
         QuestionsFrame.setLocation(200,50);
+        QuestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Questions();
 
     }//GEN-LAST:event_LsImage_Questions_BtnActionPerformed
@@ -5193,6 +5202,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         LessonsFrame.setVisible(true);
         LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Lessons();
     }//GEN-LAST:event_AddLs_Back_BtnActionPerformed
 
@@ -5200,6 +5210,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         LessonsFrame.setVisible(true);
         LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Lessons();
     }//GEN-LAST:event_Qst_Back_BtnActionPerformed
 
@@ -5215,6 +5226,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         SubjectFrame.setVisible(true);
         SubjectFrame.setLocation(300,100);
+        SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Subject();
     }//GEN-LAST:event_Ls_Back_BtnActionPerformed
 
@@ -5234,6 +5246,7 @@ public class Home extends javax.swing.JFrame {
                 userLoginName = rs.getString("username");
                 HomeFrame.setVisible(true);
                 HomeFrame.setLocation(300, 50);
+                HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
                 Home_label.requestFocus();
             } else {
                 JOptionPane.showMessageDialog(null, "Username or Password is incorrect");
@@ -5263,6 +5276,7 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Password Changed Successfully", "Alert", JOptionPane.ERROR_MESSAGE);
                 HomeFrame.setVisible(true);
                 HomeFrame.setLocation(300, 50);
+                HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
                 HomeFrame.requestFocus();
             } else {
                 ChangePasswordFrame.setVisible(true);
@@ -5288,7 +5302,7 @@ public class Home extends javax.swing.JFrame {
         String user="";
             String[] recipients = new String[1];
             String[] bccRecipients = new String[]{""};
-            String subject = "New User Registered";
+            String subject = "Status Change Mail";
             StringBuffer messageBodyBuffer = new StringBuffer();
             String sql = "Select username,email from user where id="+ selectedUserid;
             try {
@@ -5324,7 +5338,7 @@ public class Home extends javax.swing.JFrame {
             
     }
      
-    private void NewUser_Mail()
+    private void NewUserAdmin_Mail()
     {
         String messageBody = null;
             String[] recipients = new String[1];
@@ -5332,17 +5346,18 @@ public class Home extends javax.swing.JFrame {
             String subject = "New User Registered";
             StringBuffer messageBodyBuffer = new StringBuffer();
             String user = adusr_username_textfield.getText();
-
-            String sql = "select password,email from user where username='" + user + "'";
-            messageBodyBuffer.append("Hi Admin");
-            try {
-                pst = con.prepareStatement(sql);
-                rs = pst.executeQuery();
-                if (rs.next()) {
-                    //recipients[0] = rs.getString("email"); //email id of Admin
+                    messageBodyBuffer.append("Hi ").append(user);
+            
+                    recipients[0] = adusr_email_textfield.getText(); 
                     messageBodyBuffer.append("</br>");
                     messageBodyBuffer.append("</br>");
-                    messageBodyBuffer.append("A new User has registered.Please login in and approve its status ");
+                    messageBodyBuffer.append("You have been registered in the application.You can successfully log in the application");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Your username is: ").append("user");
+                    messageBodyBuffer.append("</br>");
+                    messageBodyBuffer.append("Your password is: ").append(adusr_password_textfield.getText());
+                    messageBodyBuffer.append("</br>");
                     messageBodyBuffer.append("</br>");
                     messageBodyBuffer.append("</br>");
                     messageBodyBuffer.append("Regards,");
@@ -5351,13 +5366,8 @@ public class Home extends javax.swing.JFrame {
                     messageBody = messageBodyBuffer.toString();
 
                     new MailUtil().sendMail(recipients, bccRecipients, subject, messageBody);
-                    } else {
-                    //JOptionPane.showMessageDialog(null, "User does not exist", "Alert", JOptionPane.ERROR_MESSAGE);
+                   
                     UserLoginFrame.requestFocus();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
     }
                 
     private void UserLogin_ForgetPwd() {
@@ -5439,8 +5449,12 @@ public class Home extends javax.swing.JFrame {
             buttonGroup1.clearSelection();
     } else if (response == JOptionPane.NO_OPTION) {
       QuestionsFrame.setVisible(true);
+      QuestionsFrame.setLocation(200,50);
+      QuestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     } else if (response == JOptionPane.CLOSED_OPTION) {
       QuestionsFrame.setVisible(true);
+     QuestionsFrame.setLocation(200,50);
+     QuestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }
     private void Qst_Delete_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Qst_Delete_BtnActionPerformed
@@ -5453,6 +5467,7 @@ public class Home extends javax.swing.JFrame {
             Populate_Students();
             StudentManagementFrame.setVisible(true);
             StudentManagementFrame.setLocation(300,100);
+            StudentManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         } else {
             JOptionPane.showMessageDialog(null, "Please select a lesson to check the students marks", "Alert", JOptionPane.ERROR_MESSAGE);
             LessonsFrame.requestFocus();
@@ -5476,6 +5491,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         LessonsFrame.setVisible(true);
         LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Lessons();
         LsImage_PictureLabel.setIcon(null);
     }//GEN-LAST:event_Ls_Image_Back_BtnActionPerformed
@@ -5484,6 +5500,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         LessonsFrame.setVisible(true);
         LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Lessons();
     }//GEN-LAST:event_StDetails_Back_BtnActionPerformed
 
@@ -5526,6 +5543,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             AddSubjectFrame.setVisible(true);
             AddSubjectFrame.setLocation(300,100);
+            AddSubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             AddSub_Name_Textfield.requestFocus();
         }
     }//GEN-LAST:event_Sub_Add_BtnKeyReleased
@@ -5580,6 +5598,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         SubjectFrame.setVisible(true);
         SubjectFrame.setLocation(300,100);
+        SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Subject();
 
     }//GEN-LAST:event_AddSub_Back_BtnActionPerformed
@@ -5589,6 +5608,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             SubjectFrame.setVisible(true);
             SubjectFrame.setLocation(300,100);
+            SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Subject();
         }
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
@@ -5606,6 +5626,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             SubjectFrame.setVisible(true);
             SubjectFrame.setLocation(300,100);
+            SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Subject();
         }
     }//GEN-LAST:event_Ls_Back_BtnKeyReleased
@@ -5615,6 +5636,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             AddLessonFrame.setVisible(true);
             AddLessonFrame.setLocation(350, 200);
+            AddLessonFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_Ls_Add_BtnKeyReleased
 
@@ -5623,6 +5645,7 @@ public class Home extends javax.swing.JFrame {
             Ls_Delete_Btn_fun();
             LessonsFrame.setVisible(true);
             LessonsFrame.setLocation(300, 150);
+            LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Lessons();
         }
     }//GEN-LAST:event_Ls_Delete_BtnKeyReleased
@@ -5638,6 +5661,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             LessonsFrame.setLocation(300, 150);
+            LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Lessons();
         }
     }//GEN-LAST:event_AddLs_Back_BtnKeyReleased
@@ -5652,7 +5676,8 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             LessonsFrame.setVisible(true);
-            LessonsFrame.setLocation(300, 1500);
+            LessonsFrame.setLocation(300, 150);
+            LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Lessons();
             LsImage_PictureLabel.setIcon(null);
         }
@@ -5672,6 +5697,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             QuestionsFrame.setVisible(true);
             QuestionsFrame.setLocation(200,50);
+            QuestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Questions();
         }
     }//GEN-LAST:event_LsImage_Questions_BtnKeyReleased
@@ -5681,6 +5707,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             LessonsFrame.setLocation(300, 150);
+            LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Lessons();
         }
     }//GEN-LAST:event_Qst_Back_BtnKeyReleased
@@ -5731,6 +5758,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             LessonsFrame.setVisible(true);
             LessonsFrame.setLocation(300, 150);
+            LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Lessons();
         }
     }//GEN-LAST:event_StDetails_Back_BtnKeyReleased
@@ -5773,12 +5801,14 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_UsMng_Home_BtnActionPerformed
 
     private void UsMng_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnMouseClicked
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_UsMng_Home_BtnMouseClicked
 
     private void UsMng_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsMng_Home_BtnKeyReleased
@@ -5786,6 +5816,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_UsMng_Home_BtnKeyReleased
 
@@ -5793,12 +5824,14 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Sub_Home_BtnActionPerformed
 
     private void Sub_Home_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Sub_Home_BtnMouseClicked
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Sub_Home_BtnMouseClicked
 
     private void Sub_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Sub_Home_BtnKeyReleased
@@ -5806,6 +5839,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Sub_Status_Btn.requestFocus();
@@ -5816,6 +5850,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_ChangePwd_Home_BtnActionPerformed
 
     private void ChangePwd_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChangePwd_Home_BtnKeyReleased
@@ -5823,6 +5858,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_ChangePwd_Home_BtnKeyReleased
 
@@ -5830,6 +5866,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
 
     }//GEN-LAST:event_ChangePwd_Home_BtnMouseClicked
 
@@ -5838,6 +5875,7 @@ public class Home extends javax.swing.JFrame {
         ViewSug_Suggestion_Textarea.setText("");
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         ViewSug_Subject_Textfield.setText("");
         ViewSug_Suggestion_Textarea.setText("");
     }//GEN-LAST:event_ViewSug_Home_BtnActionPerformed
@@ -5847,6 +5885,7 @@ public class Home extends javax.swing.JFrame {
         ViewSug_Suggestion_Textarea.setText("");
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         ViewSug_Subject_Textfield.setText("");
         ViewSug_Suggestion_Textarea.setText("");
 
@@ -5858,6 +5897,7 @@ public class Home extends javax.swing.JFrame {
             ViewSug_Suggestion_Textarea.setText("");
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             ViewSug_Subject_Textfield.setText("");
             ViewSug_Suggestion_Textarea.setText("");
         }
@@ -6042,6 +6082,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         clearButtonGroup();
     }//GEN-LAST:event_EmpFeedback_Home_BtnActionPerformed
 
@@ -6050,6 +6091,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             buttonGroup2.clearSelection();
             clearButtonGroup();
         }
@@ -6059,6 +6101,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Results_Home_BtnActionPerformed
 
     private void Results_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Results_Home_BtnKeyReleased
@@ -6066,6 +6109,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_Results_Home_BtnKeyReleased
 
@@ -6263,6 +6307,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Dictionary_Word_Textfield.setText("");
         Dictionary_Meaning_Textarea.setText("");
         
@@ -6273,6 +6318,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Dictionary_Word_Textfield.setText("");
             Dictionary_Meaning_Textarea.setText("");
         }
@@ -6504,6 +6550,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         HomeFrame.setVisible(true);
         HomeFrame.setLocation(300, 50);
+        HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Settings_Home_BtnActionPerformed
 
     private void Settings_Home_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Settings_Home_BtnKeyReleased
@@ -6511,6 +6558,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             HomeFrame.setVisible(true);
             HomeFrame.setLocation(300, 50);
+            HomeFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_Settings_Home_BtnKeyReleased
 
@@ -6655,12 +6703,13 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         UserManagementFrame.setVisible(true);
         UserManagementFrame.setLocation(300,100);
+        UserManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_adusr_back_btnActionPerformed
 
     private void UsMng_Add_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsMng_Add_BtnActionPerformed
          closeAllFrames();
        AddUserFrame.setVisible(true);
-
+       AddUserFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_UsMng_Add_BtnActionPerformed
 
     private void adusr_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adusr_MAITMouseClicked
@@ -6675,6 +6724,8 @@ public class Home extends javax.swing.JFrame {
     private void LessonContent_Back_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LessonContent_Back_BtnActionPerformed
         closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Lessons();
     }//GEN-LAST:event_LessonContent_Back_BtnActionPerformed
 
@@ -6682,6 +6733,8 @@ public class Home extends javax.swing.JFrame {
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
              closeAllFrames();
         LessonsFrame.setVisible(true);
+        LessonsFrame.setLocation(300, 150);
+        LessonsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Lessons();
          }
     }//GEN-LAST:event_LessonContent_Back_BtnKeyReleased
@@ -6699,6 +6752,8 @@ public class Home extends javax.swing.JFrame {
     private void LessonContent_Questions_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LessonContent_Questions_BtnActionPerformed
         closeAllFrames();
         QuestionsFrame.setVisible(true);
+        QuestionsFrame.setLocation(200,50);
+        QuestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Questions();
     }//GEN-LAST:event_LessonContent_Questions_BtnActionPerformed
 
@@ -6706,6 +6761,8 @@ public class Home extends javax.swing.JFrame {
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
               closeAllFrames();
         QuestionsFrame.setVisible(true);
+        QuestionsFrame.setLocation(200,50);
+        QuestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Questions();
          }
     }//GEN-LAST:event_LessonContent_Questions_BtnKeyReleased
@@ -6727,6 +6784,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             SettingsFrame.setVisible(true);
             SettingsFrame.setLocation(300, 100);
+            SettingsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_Home_Settings_BtnKeyReleased
 
@@ -6734,6 +6792,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         SettingsFrame.setVisible(true);
         SettingsFrame.setLocation(300, 100);
+        SettingsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Home_Settings_BtnActionPerformed
 
     private void Home_Dictionary_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_Dictionary_BtnKeyReleased
@@ -6741,6 +6800,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             DictionaryFrame.setVisible(true);
             DictionaryFrame.setLocation(250,100);
+            DictionaryFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Dictionary();
         }
     }//GEN-LAST:event_Home_Dictionary_BtnKeyReleased
@@ -6749,6 +6809,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         DictionaryFrame.setVisible(true);
         DictionaryFrame.setLocation(250,100);
+        DictionaryFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Dictionary();
     }//GEN-LAST:event_Home_Dictionary_BtnActionPerformed
 
@@ -6757,6 +6818,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             ResultFrame.setVisible(true);
             ResultFrame.setLocation(150,150);
+            ResultFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Results();
         }
     }//GEN-LAST:event_Home_Results_BtnKeyReleased
@@ -6765,6 +6827,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         ResultFrame.setVisible(true);
         ResultFrame.setLocation(150,150);
+        ResultFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Results();
     }//GEN-LAST:event_Home_Results_BtnActionPerformed
 
@@ -6772,6 +6835,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
             FeedbackFrame.setVisible(true);
+            FeedbackFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_FeedbackDetails();
         }
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnKeyReleased
@@ -6779,14 +6843,16 @@ public class Home extends javax.swing.JFrame {
     private void Home_EmployeeFeedback_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_EmployeeFeedback_BtnActionPerformed
         closeAllFrames();
         FeedbackFrame.setVisible(true);
+        FeedbackFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_FeedbackDetails();
-        Populate_FeedbackQuestions();
+        //Populate_FeedbackQuestions();
         feedbackQuestionsPanel.setEnabled(false);
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnActionPerformed
 
     private void Home_EmployeeFeedback_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_EmployeeFeedback_BtnMouseClicked
         closeAllFrames();
         FeedbackFrame.setVisible(true);
+        FeedbackFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_FeedbackDetails();
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnMouseClicked
 
@@ -6795,6 +6861,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             ViewSuggestionsFrame.setVisible(true);
             ViewSuggestionsFrame.setLocation(300,50);
+            ViewSuggestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Suggestions();
         }
     }//GEN-LAST:event_Home_ViewSugg_BtnKeyReleased
@@ -6803,6 +6870,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         ViewSuggestionsFrame.setVisible(true);
         ViewSuggestionsFrame.setLocation(300,50);
+        ViewSuggestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Suggestions();
     }//GEN-LAST:event_Home_ViewSugg_BtnActionPerformed
 
@@ -6810,6 +6878,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         ViewSuggestionsFrame.setVisible(true);
         ViewSuggestionsFrame.setLocation(300,50);
+        ViewSuggestionsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Suggestions();
     }//GEN-LAST:event_Home_ViewSugg_BtnMouseClicked
 
@@ -6847,6 +6916,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             ChangePasswordFrame.setVisible(true);
             ChangePasswordFrame.setLocation(350, 200);
+            ChangePasswordFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_Home_ChangePwd_BtnKeyReleased
 
@@ -6899,12 +6969,14 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         ChangePasswordFrame.setVisible(true);
         ChangePasswordFrame.setLocation(350, 200);
+        ChangePasswordFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Home_ChangePwd_BtnActionPerformed
 
     private void Home_ChangePwd_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_ChangePwd_BtnMouseClicked
         closeAllFrames();
         ChangePasswordFrame.setVisible(true);
         ChangePasswordFrame.setLocation(350, 200);
+        ChangePasswordFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_Home_ChangePwd_BtnMouseClicked
 
     private void Home_UsrMngt_BtnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Home_UsrMngt_BtnKeyReleased
@@ -6913,6 +6985,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             UserManagementFrame.setVisible(true);
             UserManagementFrame.setLocation(300,100);
+            UserManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Users();
             UsMng_Name_Textfield.setText("");
             UsMng_Email_Textfield.setText("");
@@ -6923,6 +6996,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         UserManagementFrame.setVisible(true);
         UserManagementFrame.setLocation(300,100);
+        UserManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Users();
         UsMng_Name_Textfield.setText("");
         UsMng_Email_Textfield.setText("");
@@ -6932,6 +7006,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         UserManagementFrame.setVisible(true);
         UserManagementFrame.setLocation(300,100);
+        UserManagementFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Users();
         UsMng_Name_Textfield.setText("");
         UsMng_Email_Textfield.setText("");
@@ -6942,7 +7017,7 @@ public class Home extends javax.swing.JFrame {
             closeAllFrames();
             SubjectFrame.setVisible(true);
             SubjectFrame.setLocation(300,100);
-            SubjectFrame.setLocation(300,100);
+            SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
             Populate_Subject();
         }
     }//GEN-LAST:event_Home_Subject_BtnKeyReleased
@@ -6951,6 +7026,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         SubjectFrame.setVisible(true);
         SubjectFrame.setLocation(300,100);
+        SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnActionPerformed
 
@@ -6958,6 +7034,7 @@ public class Home extends javax.swing.JFrame {
         closeAllFrames();
         SubjectFrame.setVisible(true);
         SubjectFrame.setLocation(300,100);
+        SubjectFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_Subject();
     }//GEN-LAST:event_Home_Subject_BtnMouseClicked
 
@@ -6968,24 +7045,23 @@ public class Home extends javax.swing.JFrame {
     private void AddFeedbackQuestion_back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_back_btnActionPerformed
         closeAllFrames();
         FeedbackFrame.setVisible(true);
+        FeedbackFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
     }//GEN-LAST:event_AddFeedbackQuestion_back_btnActionPerformed
 
     private void AddFeedbackQuestion_back_btnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_back_btnKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             closeAllFrames();
         FeedbackFrame.setVisible(true);
+        FeedbackFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }//GEN-LAST:event_AddFeedbackQuestion_back_btnKeyReleased
 
     private void AddFeedbackQuestion_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFeedbackQuestion_add_btnActionPerformed
       int i=feedbackQuestionsList.size();
-       // System.out.println(i);
-//        for(int j=0;j<i;j++)
-//        {
-       JLabel question=new JLabel();
-       JTextArea quest=new JTextArea();
-       ButtonGroup group=new ButtonGroup();
-       JRadioButton jradio1=new JRadioButton();
+      JLabel question=new JLabel();
+      JTextArea quest=new JTextArea();
+      ButtonGroup group=new ButtonGroup();
+      JRadioButton jradio1=new JRadioButton();
       JRadioButton jradio2=new JRadioButton();
       JRadioButton jradio3=new JRadioButton();
       JRadioButton jradio4=new JRadioButton();
@@ -7001,8 +7077,8 @@ public class Home extends javax.swing.JFrame {
       jradio4.setText("Below Average");
       jradio5.setText("Poor");
       quest.setText(AddFeedbackQuestion_question_textfield.getText());
-       question.setFont(new Font("Tahoma", Font.BOLD, 14));
-       question.setText("Question "+i++);
+      question.setFont(new Font("Tahoma", Font.BOLD, 14));
+      question.setText("Question "+i++);
        feedbackQuestionsPanel.add(question);
        feedbackQuestionsPanel.add(jradio1);
        feedbackQuestionsPanel.add(jradio2);
@@ -7026,28 +7102,12 @@ public class Home extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
- //       }
-//         String insertQuestion="insert into feedbacktable (question"+i+") values (?)";
-//            try {
-//                pst=con.prepareStatement(insertQuestion);
-//                pst.setString(1,AddFeedbackQuestion_question_textfield.getText().trim());
-//                createComponents();
-//                pst.executeUpdate();
-//                pst.executeUpdate();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-        
+            AddFeedbackQuestion_question_textfield.setText("");
     }//GEN-LAST:event_AddFeedbackQuestion_add_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         MAITFrame.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        closeAllFrames();
-        AddFeedbackQuestionFrame.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void maitlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maitlabelMouseClicked
         maitlabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -7058,6 +7118,10 @@ public class Home extends javax.swing.JFrame {
         mailmait_label.setCursor(new Cursor(Cursor.HAND_CURSOR));
         goMail(mailmait_label);
     }//GEN-LAST:event_mailmait_labelMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseClicked
    
     private void LessonContent_Edit_fun()
     {
@@ -7254,6 +7318,7 @@ public class Home extends javax.swing.JFrame {
         } catch (Exception e) {
            SettingsFrame.setVisible(true);
            SettingsFrame.setLocation(350, 200);
+           SettingsFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         }
     }
 
@@ -7519,12 +7584,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
