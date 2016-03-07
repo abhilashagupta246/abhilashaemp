@@ -2871,11 +2871,11 @@ public class Home extends javax.swing.JFrame {
         ResultFrameLayout.setHorizontalGroup(
             ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ResultFrameLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane14)
                     .addGroup(ResultFrameLayout.createSequentialGroup()
                         .addComponent(Results_StudentName_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(128, 128, 128)
                         .addComponent(Results_Subject_Lbl)
@@ -2883,28 +2883,27 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(205, 205, 205))
                     .addGroup(ResultFrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ResultFrameLayout.createSequentialGroup()
-                                .addComponent(Results_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(297, 297, 297)
-                                .addComponent(Results_label)
-                                .addGap(0, 490, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ResultFrameLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Results_MAIT)))))
-                .addContainerGap())
+                        .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ResultFrameLayout.createSequentialGroup()
+                                    .addComponent(Results_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(369, 369, 369)
+                                    .addComponent(Results_label))
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Results_MAIT))
+                        .addContainerGap(23, Short.MAX_VALUE))))
         );
         ResultFrameLayout.setVerticalGroup(
             ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ResultFrameLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Results_label)
-                    .addComponent(Results_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(Results_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Results_label))
+                .addGap(33, 33, 33)
                 .addGroup(ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Results_StudentName_Lbl)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2912,10 +2911,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Results_MAIT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(Results_MAIT)
+                .addContainerGap())
         );
 
         desktopPane.add(ResultFrame);
@@ -3767,7 +3767,7 @@ public class Home extends javax.swing.JFrame {
         Home_Results_Btn.setText("النتيجة");
         Home_ViewSugg_Btn.setText("عرض الاقتراحات");
         Home_Dictionary_Btn.setText("المصطلحات");
-        Home_EmployeeFeedback_Btn.setText("");
+        Home_EmployeeFeedback_Btn.setText("طلاب ردود الفعل");
         Home_Settings_Btn.setText("إعدادات");
         Home_Logout_Btn.setText("خروج");
         //User Management screen
@@ -3782,7 +3782,7 @@ public class Home extends javax.swing.JFrame {
         UsMng_Delete_Btn.setText("حذف");
         UsMng_Update_Btn.setText("تحديث");
         //Add User Screen
-        Add_User_Label.setText("");
+        Add_User_Label.setText("إضافة مستخدم");
         adusr_back_btn.setText("الى الخلف");
         adusr_username_label.setText("اسم المستخدم");
         adusr_email_label.setText("البريد الإلكتروني معرف");
@@ -3829,7 +3829,7 @@ public class Home extends javax.swing.JFrame {
 //        AddLessonPicture_Add_Btn.setText("إضافة");
          //Lesson content screen
           LessonContent_Back_Btn.setText("الى الخلف");
-          LessonContent_Edit_Btn.setText("");
+          LessonContent_Edit_Btn.setText("تحرير");
           LessonContent_Questions_Btn.setText("الأسئلة");
         //Questions screen
         Qst_Label.setText("الأسئلة ");
@@ -3849,7 +3849,7 @@ public class Home extends javax.swing.JFrame {
         Results_StudentName_Lbl.setText("أسم الطالب");
         Results_Subject_Lbl.setText("مواضيع");
         Results_Search_Btn.setText("بحث");
-        Results_Report_Btn.setText("");
+        Results_Report_Btn.setText("تقرير التصدير");
         //Suggestions screen
         ViewSug_Label.setText("ملاحظاتكم تهمنا");
         ViewSug_Home_Btn.setText("منزل");
@@ -3864,7 +3864,7 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Update_Btn.setText("تحديث");
         Dictionary_Delete_Btn.setText("حذف");
         //Feedback screen
-        EmpFeedback_Label.setText("آراء الموظفين");
+        EmpFeedback_Label.setText("طلاب ردود الفعل");
         EmpFeedback_Home_Btn.setText("منزل");
         Question1_Label.setText("1 سؤال");
         Question2_Label.setText("2 سؤال");
@@ -3883,53 +3883,53 @@ public class Home extends javax.swing.JFrame {
         Question7.setText("8 سؤال");
         Question8.setText("8 سؤال");
         //Answer 1 options
-        jRadioButton1.setText("8 سؤال");
-        jRadioButton2.setText("7 سؤال");
-        jRadioButton3.setText("6 سؤال");
-        jRadioButton4.setText("5 سؤال");
-        jRadioButton5.setText("4سؤال ");
+        jRadioButton1.setText("ممتاز");
+        jRadioButton2.setText("جيد");
+        jRadioButton3.setText("متوسط");
+        jRadioButton4.setText("تحت المعدل");
+        jRadioButton5.setText("فقير");
         //Answer 2 options
-        jRadioButton6.setText("سؤال");
-        jRadioButton7.setText("سؤال");
-        jRadioButton8.setText("سؤال");
-        jRadioButton9.setText("سؤال");
-        jRadioButton10.setText("سؤال");
+        jRadioButton6.setText("ممتاز");
+        jRadioButton7.setText("جيد");
+        jRadioButton8.setText("متوسط");
+        jRadioButton9.setText("تحت المعدل");
+        jRadioButton10.setText("فقير");
         //Answer 3 options
-        jRadioButton11.setText("سؤال");
-        jRadioButton12.setText("سؤال");
-        jRadioButton13.setText("سؤال");
-        jRadioButton14.setText("سؤال");
-        jRadioButton15.setText("سؤال");
+        jRadioButton11.setText("ممتاز");
+        jRadioButton12.setText("جيد");
+        jRadioButton13.setText("متوسط");
+        jRadioButton14.setText("تحت المعدل");
+        jRadioButton15.setText("فقير");
         //Answer 4 options
-        jRadioButton16.setText("سؤال");
-        jRadioButton17.setText("سؤال");
-        jRadioButton18.setText("سؤال");
-        jRadioButton19.setText("سؤال");
-        jRadioButton20.setText("سؤال");
+        jRadioButton16.setText("ممتاز");
+        jRadioButton17.setText("جيد");
+        jRadioButton18.setText("متوسط");
+        jRadioButton19.setText("تحت المعدل");
+        jRadioButton20.setText("فقير");
         //Answer 5 options
-        jRadioButton21.setText("سؤال");
-        jRadioButton22.setText("سؤال");
-        jRadioButton23.setText("سؤال");
-        jRadioButton24.setText("سؤال");
-        jRadioButton25.setText("سؤال");
+        jRadioButton21.setText("ممتاز");
+        jRadioButton22.setText("جيد");
+        jRadioButton23.setText("متوسط");
+        jRadioButton24.setText("تحت المعدل");
+        jRadioButton25.setText("فقير");
         //Answer 6 options
-        jRadioButton26.setText("سؤال");
-        jRadioButton27.setText("سؤال");
-        jRadioButton28.setText("سؤال");
-        jRadioButton29.setText("سؤال");
-        jRadioButton30.setText("سؤال");
+        jRadioButton26.setText("ممتاز");
+        jRadioButton27.setText("جيد");
+        jRadioButton28.setText("متوسط");
+        jRadioButton29.setText("تحت المعدل");
+        jRadioButton30.setText("فقير");
         //Answer 7 options
-        jRadioButton31.setText("سؤال");
-        jRadioButton32.setText("سؤال");
-        jRadioButton33.setText("سؤال");
-        jRadioButton34.setText("سؤال");
-        jRadioButton35.setText("سؤال");
+        jRadioButton31.setText("ممتاز");
+        jRadioButton32.setText("جيد");
+        jRadioButton33.setText("متوسط");
+        jRadioButton34.setText("تحت المعدل");
+        jRadioButton35.setText("فقير");
         //Answer 8 options
-        jRadioButton36.setText("سؤال");
-        jRadioButton37.setText("سؤال");
-        jRadioButton38.setText("سؤال");
-        jRadioButton39.setText("سؤال");
-        jRadioButton40.setText("سؤال");
+        jRadioButton36.setText("ممتاز");
+        jRadioButton37.setText("جيد");
+        jRadioButton38.setText("متوسط");
+        jRadioButton39.setText("تحت المعدل");
+        jRadioButton40.setText("فقير");
         //Settings screen
         Settings_Label.setText("إعدادات");
         Settings_Home_Btn.setText("منزل");
@@ -4172,7 +4172,7 @@ public class Home extends javax.swing.JFrame {
             }
             if (Arabic_lang.isSelected()) {
                 feedbackTable.getColumnModel().getColumn(0).setHeaderValue("هوية شخصية");
-                feedbackTable.getColumnModel().getColumn(1).setHeaderValue("");
+                feedbackTable.getColumnModel().getColumn(1).setHeaderValue("أسم الطالب");
             }
             
         } catch (SQLException e) {
@@ -7154,7 +7154,7 @@ public class Home extends javax.swing.JFrame {
            // @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Desktop.getDesktop().browse(new URI("http://www.mait.ae/webhp?nomo=1&hl=fr"));
+                    Desktop.getDesktop().browse(new URI("http://www.mait.ae"));
                 } catch (URISyntaxException | IOException ex) {
                     //It looks like there's a problem
                 }
