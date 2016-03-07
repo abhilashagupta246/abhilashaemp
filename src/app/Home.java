@@ -106,7 +106,8 @@ public class Home extends javax.swing.JFrame {
     private static final String KEY = "1Hbfh667adfDEJ78";
     String servername, serveraddress, databasename, databaseusername, databasepassword="";
     String servernameDecrypt, serveraddressDecrypt, databasenameDecrypt, databaseusernameDecrypt, databasepasswordDecrypt,url="";
-
+    String selectedFbQuestionId="";
+    String selectedFbQuestion="";
     /**
      * Creates new form Home
      */
@@ -352,7 +353,7 @@ public class Home extends javax.swing.JFrame {
         EmpFeedback_Home_Btn = new javax.swing.JButton();
         EmpFeedback_Label = new javax.swing.JLabel();
         Feedback_MAIT = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        EmpFeedback_Update_Btn = new javax.swing.JButton();
         ResultFrame = new javax.swing.JInternalFrame();
         jScrollPane14 = new javax.swing.JScrollPane();
         Result_Table = new javax.swing.JTable();
@@ -437,12 +438,14 @@ public class Home extends javax.swing.JFrame {
         AddFeedbackQuestion_add_btn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         UpdateFeedbackQuestions = new javax.swing.JInternalFrame();
-        jLabel7 = new javax.swing.JLabel();
+        Update_Fb_Label = new javax.swing.JLabel();
         jScrollPane16 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        update_Fb_qst_table = new javax.swing.JTable();
+        Update_Fb_qstn_Label = new javax.swing.JLabel();
+        Update_Fb_qstn_Textfield = new javax.swing.JTextField();
+        Update_fb_qstn_Update_Btn = new javax.swing.JButton();
+        Update_Fb_Back_btn = new javax.swing.JButton();
+        Update_fb_qstn_MAIT = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -1645,6 +1648,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         ForgetPasswordLabel.setText("<html>\n<a href=\"Forget Password\">Forget Password</a>\n</html>");
+        ForgetPasswordLabel.setToolTipText("");
         ForgetPasswordLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ForgetPasswordLabelMouseClicked(evt);
@@ -2334,31 +2338,24 @@ public class Home extends javax.swing.JFrame {
         Question7_Label.setText("Question 7");
 
         Question1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question1.setText("The objectives of the training were clearly defined");
         Question1.setPreferredSize(new java.awt.Dimension(500, 15));
 
         Question2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question2.setText("The topics covered were relevant to me");
         Question2.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question3.setText("The content was organized and easy to follow");
         Question3.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question4.setText("The content length was appropriate for the information presented");
         Question4.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question5.setText("The content provided me with new skills and knowledge");
         Question5.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question6.setText("Information given is of practical value");
         Question6.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question7.setText("The questions were adequately answered");
         Question7.setPreferredSize(new java.awt.Dimension(600, 15));
 
         Question1_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -2368,7 +2365,6 @@ public class Home extends javax.swing.JFrame {
         Question8_Label.setText("Question 8");
 
         Question8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Question8.setText("The overall experience of taking the course");
         Question8.setPreferredSize(new java.awt.Dimension(600, 15));
 
         buttonGroup2.add(jRadioButton1);
@@ -2752,26 +2748,33 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        EmpFeedback_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EmpFeedback_Update_Btn.setText("Update Feedback Questions");
+        EmpFeedback_Update_Btn.setPreferredSize(new java.awt.Dimension(190, 30));
+        EmpFeedback_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpFeedback_Update_BtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FeedbackFrameLayout = new javax.swing.GroupLayout(FeedbackFrame.getContentPane());
         FeedbackFrame.getContentPane().setLayout(FeedbackFrameLayout);
         FeedbackFrameLayout.setHorizontalGroup(
             FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                .addGap(20, 20, 20)
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
+                        .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(414, 414, 414)
                         .addComponent(EmpFeedback_Label))
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmpFeedback_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeedbackFrameLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
@@ -2780,16 +2783,17 @@ public class Home extends javax.swing.JFrame {
         FeedbackFrameLayout.setVerticalGroup(
             FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FeedbackFrameLayout.createSequentialGroup()
-                .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmpFeedback_Label))
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EmpFeedback_Label)
+                    .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addComponent(EmpFeedback_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
                 .addContainerGap())
@@ -2908,7 +2912,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(Results_label))
                                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Results_MAIT))
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         ResultFrameLayout.setVerticalGroup(
             ResultFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2925,7 +2929,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Search_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results_Report_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(Results_MAIT)
@@ -3752,11 +3756,13 @@ public class Home extends javax.swing.JFrame {
         desktopPane.add(AddFeedbackQuestionFrame);
         AddFeedbackQuestionFrame.setBounds(0, 0, 680, 275);
 
+        UpdateFeedbackQuestions.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/images/transparent.png"))); // NOI18N
         UpdateFeedbackQuestions.setVisible(true);
 
-        jLabel7.setText("jLabel7");
+        Update_Fb_Label.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Update_Fb_Label.setText("FEEDBACK QUESTIONS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        update_Fb_qst_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -3768,57 +3774,98 @@ public class Home extends javax.swing.JFrame {
                 {null}
             },
             new String [] {
-                "Title 1"
+                "Questions"
             }
         ));
-        jScrollPane16.setViewportView(jTable1);
+        update_Fb_qst_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                update_Fb_qst_tableMouseClicked(evt);
+            }
+        });
+        jScrollPane16.setViewportView(update_Fb_qst_table);
 
-        jLabel8.setText("jLabel8");
+        Update_Fb_qstn_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Update_Fb_qstn_Label.setText("QUESTION");
 
-        jTextField2.setText("jTextField2");
+        Update_fb_qstn_Update_Btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Update_fb_qstn_Update_Btn.setText("Update");
+        Update_fb_qstn_Update_Btn.setPreferredSize(new java.awt.Dimension(73, 30));
+        Update_fb_qstn_Update_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Update_fb_qstn_Update_BtnActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        Update_Fb_Back_btn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Update_Fb_Back_btn.setText("Back");
+        Update_Fb_Back_btn.setPreferredSize(new java.awt.Dimension(90, 30));
+        Update_Fb_Back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Update_Fb_Back_btnActionPerformed(evt);
+            }
+        });
+
+        Update_fb_qstn_MAIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MAITLogo.jpg"))); // NOI18N
+        Update_fb_qstn_MAIT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Update_fb_qstn_MAITMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout UpdateFeedbackQuestionsLayout = new javax.swing.GroupLayout(UpdateFeedbackQuestions.getContentPane());
         UpdateFeedbackQuestions.getContentPane().setLayout(UpdateFeedbackQuestionsLayout);
         UpdateFeedbackQuestionsLayout.setHorizontalGroup(
             UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Update_Fb_Back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Update_Fb_Label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Update_fb_qstn_MAIT)
+                .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                .addGap(0, 114, Short.MAX_VALUE)
                 .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(jLabel7))
-                    .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addComponent(Update_Fb_qstn_Label)
+                        .addGap(26, 26, 26)
                         .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(109, 109, 109)
-                                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                                .addComponent(Update_fb_qstn_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(238, 238, 238))
+                            .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                                .addComponent(Update_Fb_qstn_Textfield)
+                                .addGap(77, 77, 77))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))))
         );
         UpdateFeedbackQuestionsLayout.setVerticalGroup(
             UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Update_Fb_Label)
+                    .addComponent(Update_Fb_Back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Update_Fb_qstn_Label)
+                    .addComponent(Update_Fb_qstn_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(45, 45, 45))
+                        .addGap(45, 45, 45)
+                        .addComponent(Update_fb_qstn_MAIT))
+                    .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(Update_fb_qstn_Update_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
         );
 
         desktopPane.add(UpdateFeedbackQuestions);
-        UpdateFeedbackQuestions.setBounds(0, 0, 632, 388);
+        UpdateFeedbackQuestions.setBounds(0, 0, 659, 416);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -3840,7 +3887,7 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Name_Label.setText("اسم المستخدم");
         UserLogin_Password_Label.setText("كلمه السر");
         UserLogin_Login_Btn.setText("الدخول");
-        //UserLogin_ForgetPwd_Btn.setText("نسيت كلمة");
+        ForgetPasswordLabel.setText("<html><a href='Forget Password'>نسيت كلمة</a></html>");
         //Home screen
         Home_label.setText("منزل");
         Home_UsrMngt_Btn.setText("إدارةالمستخدم");
@@ -3956,14 +4003,14 @@ public class Home extends javax.swing.JFrame {
         Question6_Label.setText("6 سؤال");
         Question7_Label.setText("7 سؤال");
         Question8_Label.setText("8 سؤال");
-        Question1.setText("8 سؤال");
-        Question2.setText("8 سؤال");
-        Question3.setText("8 سؤال");
-        Question4.setText("8 سؤال");
-        Question5.setText("8 سؤال");
-        Question6.setText("8 سؤال");
-        Question7.setText("8 سؤال");
-        Question8.setText("8 سؤال");
+//        Question1.setText("8 سؤال");
+//        Question2.setText("8 سؤال");
+//        Question3.setText("8 سؤال");
+//        Question4.setText("8 سؤال");
+//        Question5.setText("8 سؤال");
+//        Question6.setText("8 سؤال");
+//        Question7.setText("8 سؤال");
+//        Question8.setText("8 سؤال");
         //Answer 1 options
         jRadioButton1.setText("ممتاز");
         jRadioButton2.setText("جيد");
@@ -4028,16 +4075,6 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Label.setText("LOGIN");
         UserLogin_Name_Label.setText("USER NAME");
         UserLogin_Password_Label.setText("PASSWORD");
-//        try 
-//        {
-//            Image imgLogin = ImageIO.read(getClass().getResource("/images/new.png"));
-//            //Image imgForget = ImageIO.read(getClass().getResource("/images/"));
-//            UserLogin_Login_Btn.setIcon(new ImageIcon(imgLogin));
-//            // UserLogin_Login_Btn.setText("Login");
-//           // UserLogin_ForgetPwd_Btn.setIcon(new ImageIcon(imgForget));
-//            //UserLogin_ForgetPwd_Btn.setText("Forget Password");
-//        } 
-//        catch (IOException ex) {}
         UserLogin_Login_Btn.setText("Login");
         //UserLogin_ForgetPwd_Btn.setText("Forget Password");
         //Home screen
@@ -4155,14 +4192,14 @@ public class Home extends javax.swing.JFrame {
         Question6_Label.setText("Question 6");
         Question7_Label.setText("Question 7");
         Question8_Label.setText("Question 8");
-        Question1.setText("The objectives of the training were clearly defined");
-        Question2.setText("The topics covered were relevant to me");
-        Question3.setText("The content was organized and easy to follow");
-        Question4.setText("The content length was appropriate for the information presented");
-        Question5.setText("The content provided me with new skills and knowledge");
-        Question6.setText("Information given is of practical value");
-        Question7.setText("The questions were adequately answered");
-        Question8.setText("The overall experience of taking the course");
+//        Question1.setText("The objectives of the training were clearly defined");
+//        Question2.setText("The topics covered were relevant to me");
+//        Question3.setText("The content was organized and easy to follow");
+//        Question4.setText("The content length was appropriate for the information presented");
+//        Question5.setText("The content provided me with new skills and knowledge");
+//        Question6.setText("Information given is of practical value");
+//        Question7.setText("The questions were adequately answered");
+//        Question8.setText("The overall experience of taking the course");
         //Answer 1 options
         jRadioButton1.setText("Excellent");
         jRadioButton2.setText("Good");
@@ -4222,27 +4259,32 @@ public class Home extends javax.swing.JFrame {
         Settings_Save_Btn.setText("Save");
     }
     
-//    private void Populate_FeedbackQuestions()
-//    {
-//        feedbackQuestionsList.clear();
-//        try {
-//            pst = con.prepareStatement("select * from feedbackquestionstable");
-//            rs = pst.executeQuery();
-//            while(rs.next())
-//            {
-//                feedbackQuestionsList.add(rs.getString("questions"));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    private void Populate_FeedbackQuestionsText()
+    {
+        feedbackQuestionsList.clear();
+        try {
+            pst = con.prepareStatement("select * from feedbackquestionstable");
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                feedbackQuestionsList.add(rs.getString("questions"));
+            }
+            Question1.setText(feedbackQuestionsList.get(0));
+                      Question2.setText(feedbackQuestionsList.get(1));
+                      Question3.setText(feedbackQuestionsList.get(2));
+                      Question4.setText(feedbackQuestionsList.get(3));
+                      Question5.setText(feedbackQuestionsList.get(4));
+                      Question6.setText(feedbackQuestionsList.get(5));
+                      Question7.setText(feedbackQuestionsList.get(6));
+                      Question8.setText(feedbackQuestionsList.get(7));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     private void Populate_FeedbackDetails() {
         try {
-//            Populate_FeedbackQuestions();
-//             int i=feedbackQuestionsList.size();
-//             int length=0;
-//             length=i-8;
+            Populate_FeedbackQuestionsText();
             pst = con.prepareStatement("select employee_id as ID,employee_name as 'Student Name',examination_date,answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8 from feedbacktable");
             createComponents();
             rs = pst.executeQuery();
@@ -4256,7 +4298,6 @@ public class Home extends javax.swing.JFrame {
                 feedbackTable.getColumnModel().getColumn(0).setHeaderValue("هوية شخصية");
                 feedbackTable.getColumnModel().getColumn(1).setHeaderValue("أسم الطالب");
             }
-            
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -4566,6 +4607,7 @@ public class Home extends javax.swing.JFrame {
         LessonContentFrame.setVisible(false);
         AddFeedbackQuestionFrame.setVisible(false);
         MAITFrame.setVisible(false);
+        UpdateFeedbackQuestions.setVisible(false);
     }
 
     private void Populate_Users() {
@@ -4612,7 +4654,24 @@ public class Home extends javax.swing.JFrame {
         }
         killDialog();
     }
-
+    
+    private void Populate_FeedbackQuestions() {
+        try {
+            createComponents();
+            pst = con.prepareStatement("select question_no as Id, questions as Questions from feedbackquestionstable");
+            rs = pst.executeQuery();
+            update_Fb_qst_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
+            update_Fb_qst_table.setModel(DbUtils.resultSetToTableModel(rs));
+            update_Fb_qst_table.getColumnModel().getColumn(0).setMinWidth(0);
+            update_Fb_qst_table.getColumnModel().getColumn(0).setMaxWidth(0);
+            if (Arabic_lang.isSelected()) {
+                update_Fb_qst_table.getColumnModel().getColumn(1).setHeaderValue("الأسئلة ");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+        }
+        killDialog();
+    }
     private void Delete_Lesson(String selected) {
         List results = new List();
         String lessonquery = "";
@@ -6934,8 +6993,7 @@ public class Home extends javax.swing.JFrame {
         FeedbackFrame.setVisible(true);
         FeedbackFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         Populate_FeedbackDetails();
-        //Populate_FeedbackQuestions();
-        feedbackQuestionsPanel.setEnabled(false);
+        //feedbackQuestionsPanel.setEnabled(false);
     }//GEN-LAST:event_Home_EmployeeFeedback_BtnActionPerformed
 
     private void Home_EmployeeFeedback_BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Home_EmployeeFeedback_BtnMouseClicked
@@ -7216,7 +7274,83 @@ public class Home extends javax.swing.JFrame {
         ForgetPasswordLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         UserLogin_ForgetPwd();
     }//GEN-LAST:event_ForgetPasswordLabelMouseClicked
+
+    private void EmpFeedback_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpFeedback_Update_BtnActionPerformed
+       closeAllFrames();
+       UpdateFeedbackQuestions.setVisible(true);
+       UpdateFeedbackQuestions.setLocation(300,150);
+       UpdateFeedbackQuestions.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+       Populate_FeedbackQuestions();
+    }//GEN-LAST:event_EmpFeedback_Update_BtnActionPerformed
+
+    private void update_Fb_qst_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_Fb_qst_tableMouseClicked
+        update_Fb_qst_table_fun();
+    }//GEN-LAST:event_update_Fb_qst_tableMouseClicked
+
+    private void Update_Fb_qstn_TextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_Fb_qstn_TextfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Update_Fb_qstn_TextfieldActionPerformed
+
+    private void Update_fb_qstn_Update_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_fb_qstn_Update_BtnActionPerformed
+       Update_fb_qstn_Update_Btn_fun();
+    }//GEN-LAST:event_Update_fb_qstn_Update_BtnActionPerformed
+
+    private void Update_Fb_Back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Update_Fb_Back_btnActionPerformed
+        closeAllFrames();
+        FeedbackFrame.setVisible(true);
+       Populate_FeedbackDetails();
+    }//GEN-LAST:event_Update_Fb_Back_btnActionPerformed
+
+    private void Update_fb_qstn_MAITMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Update_fb_qstn_MAITMouseClicked
+        Update_fb_qstn_MAIT.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        MAITFrame.setVisible(true);
+        MAITFrame.setLocation(400, 200);
+    }//GEN-LAST:event_Update_fb_qstn_MAITMouseClicked
    
+    private void Update_fb_qstn_Update_Btn_fun() {
+        rowcount = update_Fb_qst_table.getSelectedRowCount();
+        if (rowcount > 1 || rowcount == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a question to update at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            UpdateFeedbackQuestions.requestFocus();
+        } else {
+            
+            try {
+
+                pst = con.prepareStatement("Update feedbackquestionstable set questions=? where question_no=" + selectedFbQuestionId);
+                pst.setString(1, Update_Fb_qstn_Textfield.getText());
+                pst.executeUpdate();
+                Update_Fb_qstn_Textfield.setText("");
+                Populate_FeedbackQuestions();
+
+            } catch (Exception w) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, w);
+            }
+
+        }
+    }
+    
+    private void update_Fb_qst_table_fun() {
+        rowcount = update_Fb_qst_table.getSelectedRowCount();
+        int row = update_Fb_qst_table.getSelectedRow();
+
+        if (rowcount > 1 || rowcount == 0) {
+            JOptionPane.showMessageDialog(null, "Please select one question at a time", "Alert", JOptionPane.ERROR_MESSAGE);
+            QuestionsFrame.requestFocus();
+        } else {
+
+            DefaultTableModel model = (DefaultTableModel) update_Fb_qst_table.getModel();
+            selectedFbQuestionId = model.getValueAt(row, 0).toString();
+            selectedFbQuestion = model.getValueAt(row, 1).toString();
+           
+
+            if (row >= 0) {
+                Update_Fb_qstn_Textfield.setText(selectedFbQuestion);
+               
+                
+            }
+
+        }
+    }
     private void LessonContent_Edit_fun()
     {
         try {
@@ -7506,6 +7640,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField Dictionary_Word_Textfield;
     private javax.swing.JButton EmpFeedback_Home_Btn;
     private javax.swing.JLabel EmpFeedback_Label;
+    private javax.swing.JButton EmpFeedback_Update_Btn;
     private javax.swing.JRadioButton English_lang;
     private javax.swing.JInternalFrame FeedbackFrame;
     private javax.swing.JLabel Feedback_MAIT;
@@ -7621,6 +7756,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Suggestions_MAIT;
     private javax.swing.JTable Suggestions_Table;
     private javax.swing.JInternalFrame UpdateFeedbackQuestions;
+    private javax.swing.JButton Update_Fb_Back_btn;
+    private javax.swing.JLabel Update_Fb_Label;
+    private javax.swing.JLabel Update_Fb_qstn_Label;
+    private javax.swing.JTextField Update_Fb_qstn_Textfield;
+    private javax.swing.JLabel Update_fb_qstn_MAIT;
+    private javax.swing.JButton Update_fb_qstn_Update_Btn;
     private javax.swing.JButton UsMng_Add_Btn;
     private javax.swing.JButton UsMng_Delete_Btn;
     private javax.swing.JLabel UsMng_Email_Label;
@@ -7679,8 +7820,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -7689,8 +7828,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -7747,10 +7884,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel mailmait_label;
     private javax.swing.JLabel maitlabel;
+    private javax.swing.JTable update_Fb_qst_table;
     // End of variables declaration//GEN-END:variables
 }
