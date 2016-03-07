@@ -352,6 +352,7 @@ public class Home extends javax.swing.JFrame {
         EmpFeedback_Home_Btn = new javax.swing.JButton();
         EmpFeedback_Label = new javax.swing.JLabel();
         Feedback_MAIT = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         ResultFrame = new javax.swing.JInternalFrame();
         jScrollPane14 = new javax.swing.JScrollPane();
         Result_Table = new javax.swing.JTable();
@@ -435,6 +436,13 @@ public class Home extends javax.swing.JFrame {
         AddFeedbackQuestion_question_textfield = new javax.swing.JTextField();
         AddFeedbackQuestion_add_btn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        UpdateFeedbackQuestions = new javax.swing.JInternalFrame();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -2744,6 +2752,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+
         javax.swing.GroupLayout FeedbackFrameLayout = new javax.swing.GroupLayout(FeedbackFrame.getContentPane());
         FeedbackFrame.getContentPane().setLayout(FeedbackFrameLayout);
         FeedbackFrameLayout.setHorizontalGroup(
@@ -2752,7 +2762,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EmpFeedback_Home_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeedbackFrameLayout.createSequentialGroup()
                         .addGap(277, 277, 277)
@@ -2774,7 +2785,10 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(EmpFeedback_Label))
                 .addGap(29, 29, 29)
                 .addGroup(FeedbackFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FeedbackFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton2))
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Feedback_MAIT)
@@ -3571,7 +3585,7 @@ public class Home extends javax.swing.JFrame {
         MAITFrame.setVisible(true);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("GDFRA V1.0");
+        jLabel2.setText("DNRD V1.0");
 
         jLabel3.setText("If you need any information please visit our website");
 
@@ -3737,6 +3751,74 @@ public class Home extends javax.swing.JFrame {
 
         desktopPane.add(AddFeedbackQuestionFrame);
         AddFeedbackQuestionFrame.setBounds(0, 0, 680, 275);
+
+        UpdateFeedbackQuestions.setVisible(true);
+
+        jLabel7.setText("jLabel7");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        jScrollPane16.setViewportView(jTable1);
+
+        jLabel8.setText("jLabel8");
+
+        jTextField2.setText("jTextField2");
+
+        jButton3.setText("jButton3");
+
+        javax.swing.GroupLayout UpdateFeedbackQuestionsLayout = new javax.swing.GroupLayout(UpdateFeedbackQuestions.getContentPane());
+        UpdateFeedbackQuestions.getContentPane().setLayout(UpdateFeedbackQuestionsLayout);
+        UpdateFeedbackQuestionsLayout.setHorizontalGroup(
+            UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(jLabel7))
+                    .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(109, 109, 109)
+                                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        UpdateFeedbackQuestionsLayout.setVerticalGroup(
+            UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(UpdateFeedbackQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(UpdateFeedbackQuestionsLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel8)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(45, 45, 45))
+        );
+
+        desktopPane.add(UpdateFeedbackQuestions);
+        UpdateFeedbackQuestions.setBounds(0, 0, 632, 388);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -7538,6 +7620,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JInternalFrame SubjectFrame;
     private javax.swing.JLabel Suggestions_MAIT;
     private javax.swing.JTable Suggestions_Table;
+    private javax.swing.JInternalFrame UpdateFeedbackQuestions;
     private javax.swing.JButton UsMng_Add_Btn;
     private javax.swing.JButton UsMng_Delete_Btn;
     private javax.swing.JLabel UsMng_Email_Label;
@@ -7596,6 +7679,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable feedbackTable;
     private javax.swing.JRadioButton inactive;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -7604,6 +7689,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -7651,6 +7738,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -7659,7 +7747,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel mailmait_label;
     private javax.swing.JLabel maitlabel;
     // End of variables declaration//GEN-END:variables
