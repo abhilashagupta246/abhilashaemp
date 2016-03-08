@@ -3994,6 +3994,7 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Delete_Btn.setText("حذف");
         //Feedback screen
         EmpFeedback_Label.setText("طلاب ردود الفعل");
+        EmpFeedback_Update_Btn.setText("تحديث الأسئلة ردود الفعل");
         EmpFeedback_Home_Btn.setText("منزل");
         Question1_Label.setText("1 سؤال");
         Question2_Label.setText("2 سؤال");
@@ -4068,6 +4069,11 @@ public class Home extends javax.swing.JFrame {
         Settings_DBUserName.setText("اسم المستخدم قاعدة البيانات ");
         Settings_DBPassword.setText("كلمة السر قاعدة البيانات");
         Settings_Save_Btn.setText("حفظ");
+         //Update feedback questions
+        Update_Fb_Back_btn.setText("الى الخلف");
+        Update_Fb_Label.setText("أسئلة ردود الفعل");
+        Update_Fb_qstn_Label.setText("الأسئلة");
+        Update_fb_qstn_Update_Btn.setText("تحديث");
     }
 
     private void EnglishAllText() {
@@ -4076,7 +4082,7 @@ public class Home extends javax.swing.JFrame {
         UserLogin_Name_Label.setText("USER NAME");
         UserLogin_Password_Label.setText("PASSWORD");
         UserLogin_Login_Btn.setText("Login");
-        //UserLogin_ForgetPwd_Btn.setText("Forget Password");
+        ForgetPasswordLabel.setText("<html><a href='Forget Password'>Forget Password</a></html>");
         //Home screen
         Home_label.setText("HOME");
         Home_UsrMngt_Btn.setText("USER MANAGEMENT");
@@ -4183,6 +4189,7 @@ public class Home extends javax.swing.JFrame {
         Dictionary_Delete_Btn.setText("Delete");
         //Feedback screen
         EmpFeedback_Label.setText("STUDENTS FEEDBACK");
+        EmpFeedback_Update_Btn.setText("Update Feedback Questions");
         EmpFeedback_Home_Btn.setText("Home");
         Question1_Label.setText("Question 1");
         Question2_Label.setText("Question 2");
@@ -4257,6 +4264,11 @@ public class Home extends javax.swing.JFrame {
         Settings_DBUserName.setText("DATABASE USERNAME ");
         Settings_DBPassword.setText("DATABASE PASSWORD");
         Settings_Save_Btn.setText("Save");
+        //Update feedback questions
+        Update_Fb_Back_btn.setText("Back");
+        Update_Fb_Label.setText("FEEDBACK DETAILS");
+        Update_Fb_qstn_Label.setText("QUESTION");
+        Update_fb_qstn_Update_Btn.setText("Update");
     }
     
     private void Populate_FeedbackQuestionsText()
@@ -4265,9 +4277,21 @@ public class Home extends javax.swing.JFrame {
         try {
             pst = con.prepareStatement("select * from feedbackquestionstable");
             rs = pst.executeQuery();
+            if (Arabic_lang.isSelected())
+            {
+               while(rs.next())
+            {
+                
+                feedbackQuestionsList.add(rs.getString("arabicquestions"));
+            } 
+            }
+            else
+            {
             while(rs.next())
             {
-                feedbackQuestionsList.add(rs.getString("questions"));
+                
+                feedbackQuestionsList.add(rs.getString("englishquestions"));
+            }
             }
             Question1.setText(feedbackQuestionsList.get(0));
                       Question2.setText(feedbackQuestionsList.get(1));
@@ -4658,14 +4682,23 @@ public class Home extends javax.swing.JFrame {
     private void Populate_FeedbackQuestions() {
         try {
             createComponents();
-            pst = con.prepareStatement("select question_no as Id, questions as Questions from feedbackquestionstable");
+            pst = con.prepareStatement("select question_no as Id, englishquestions as Questions,arabicquestions from feedbackquestionstable");
             rs = pst.executeQuery();
             update_Fb_qst_table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 12));
             update_Fb_qst_table.setModel(DbUtils.resultSetToTableModel(rs));
+            if (Arabic_lang.isSelected()) {
+                update_Fb_qst_table.getColumnModel().getColumn(2).setHeaderValue("الأسئلة ");
+                update_Fb_qst_table.getColumnModel().getColumn(0).setMinWidth(0);
+                 update_Fb_qst_table.getColumnModel().getColumn(0).setMaxWidth(0);
+                 update_Fb_qst_table.getColumnModel().getColumn(1).setMinWidth(0);
+                 update_Fb_qst_table.getColumnModel().getColumn(1).setMaxWidth(0);
+            }
+            else
+            {
             update_Fb_qst_table.getColumnModel().getColumn(0).setMinWidth(0);
             update_Fb_qst_table.getColumnModel().getColumn(0).setMaxWidth(0);
-            if (Arabic_lang.isSelected()) {
-                update_Fb_qst_table.getColumnModel().getColumn(1).setHeaderValue("الأسئلة ");
+            update_Fb_qst_table.getColumnModel().getColumn(2).setMinWidth(0);
+            update_Fb_qst_table.getColumnModel().getColumn(2).setMaxWidth(0);
             }
         } catch (SQLException e) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
@@ -7315,9 +7348,14 @@ public class Home extends javax.swing.JFrame {
         } else {
             
             try {
-
-                pst = con.prepareStatement("Update feedbackquestionstable set questions=? where question_no=" + selectedFbQuestionId);
+if(Arabic_lang.isSelected()){
+                pst = con.prepareStatement("Update feedbackquestionstable set arabicquestions=? where question_no=" + selectedFbQuestionId);
                 pst.setString(1, Update_Fb_qstn_Textfield.getText());
+}
+else{
+     pst = con.prepareStatement("Update feedbackquestionstable set englishquestions=? where question_no=" + selectedFbQuestionId);
+                pst.setString(1, Update_Fb_qstn_Textfield.getText());
+}
                 pst.executeUpdate();
                 Update_Fb_qstn_Textfield.setText("");
                 Populate_FeedbackQuestions();
@@ -7340,7 +7378,13 @@ public class Home extends javax.swing.JFrame {
 
             DefaultTableModel model = (DefaultTableModel) update_Fb_qst_table.getModel();
             selectedFbQuestionId = model.getValueAt(row, 0).toString();
-            selectedFbQuestion = model.getValueAt(row, 1).toString();
+            if(Arabic_lang.isSelected()){
+                selectedFbQuestion = model.getValueAt(row, 2).toString();
+            }
+            else{
+              selectedFbQuestion = model.getValueAt(row, 1).toString();  
+            }
+            
            
 
             if (row >= 0) {
